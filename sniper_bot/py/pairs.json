@@ -671,4 +671,94 @@
       "blockHash": "0x2ac144bb36710b971ae058d549733247b541b8718071559e882d50dcb7736d72",
       "blockNumber": 8555423,
       "timeComputerSaw": "Wed Jun 23 15:26:51 2021"
+}{
+      "args": {
+            "token0": "0xA7692456fca97Ab2C41bb139354Ca387edb79693",
+            "token1": "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c",
+            "pair": "0x51E8abbabA59eaBE869022742ebd41575dcECee4",
+            "": 230117
+      },
+      "event": "PairCreated",
+      "logIndex": 241,
+      "transactionIndex": 45,
+      "transactionHash": "0x07f5bd53555d878e720c7ee7e6ac649908e0ad54a3a7e928fbb9a87a060691a3",
+      "address": "0xcA143Ce32Fe78f1f7019d7d551a6402fC5350c73",
+      "blockHash": "0x47ea0862105eca2bf5de20eb58b0d67ff89e0c9d465bf54073cc030fc16b062f",
+      "blockNumber": 8555427,
+      "timeComputerSaw": "Wed Jun 23 15:27:01 2021"
+}{
+      "args": {
+            "token0": "0x544eC0fBbcF75a075E28377DED15a6765581d5f1",
+            "token1": "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c",
+            "pair": "0xb5c3Be45ac94467ad8157b489b933959C25E1A03",
+            "": 230118
+      },
+      "event": "PairCreated",
+      "logIndex": 288,
+      "transactionIndex": 70,
+      "transactionHash": "0xe31d099e5cf228544c5449b860d6e6a9ec99ee95000d673f39df0e62674aa43e",
+      "address": "0xcA143Ce32Fe78f1f7019d7d551a6402fC5350c73",
+      "blockHash": "0x6eca2bd3991d221035d58d7a595d4c1c5780bb8206f55e954f1eb198837f1e5f",
+      "blockNumber": 8555429,
+      "timeComputerSaw": "Wed Jun 23 15:27:09 2021"
+}{
+      "args": {
+            "token0": "0x3A63FA14472776C39173E67bC57a8df44A845009",
+            "token1": "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c",
+            "pair": "0x493Db643611ab013911CC63327Bfd01E99C1f0Fe",
+            "": 230119
+      },
+      "event": "PairCreated",
+      "logIndex": 413,
+      "transactionIndex": 84,
+      "transactionHash": "0x22b375320de6473c4fbb3c46b3f1b462bbd5be0da6b35b4d4b8cd4b3863ced26",
+      "address": "0xcA143Ce32Fe78f1f7019d7d551a6402fC5350c73",
+      "blockHash": "0xf7c8a3c6c21e96a69cfa94e7c97c3fb0f07cf3243620b777b49ba8cecbd61412",
+      "blockNumber": 8555436,
+      "timeComputerSaw": "Wed Jun 23 15:27:29 2021"
+}{
+      "args": {
+            "token0": "0x9eEC44C91f8600966E17C68EB9CBbc2527e71755",
+            "token1": "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c",
+            "pair": "0xe4b1883F29046131ff14b1B4074D9CE94b47d008",
+            "": 230120
+      },
+      "event": "PairCreated",
+      "logIndex": 109,
+      "transactionIndex": 32,
+      "transactionHash": "0xcc0e7e8c87956d038bc0f7a41d851ac2ac7323e524a57280218332d664fb0e97",
+      "address": "0xcA143Ce32Fe78f1f7019d7d551a6402fC5350c73",
+      "blockHash": "0xa2b1db7d08d725cf4b9e56f72ac445bf5234924b4f14bd82cfada94fab699c8a",
+      "blockNumber": 8555457,
+      "timeComputerSaw": "Wed Jun 23 15:28:33 2021"
+}{
+      "args": {
+            "token0": "0x9cbfEAD661cbC9688fB786672d80a2d93C40E6cE",
+            "token1": "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c",
+            "pair": "0xf871b7e680d8E5E75EDF15C26eFA31049afDB1f5",
+            "": 230121
+      },
+      "event": "PairCreated",
+      "logIndex": 412,
+      "transactionIndex": 134,
+      "transactionHash": "0x14e6977094847bfbc3dc7a255ac05c05767daa238428b42d2fa5c7479d3030ee",
+      "address": "0xcA143Ce32Fe78f1f7019d7d551a6402fC5350c73",
+      "blockHash": "0xd46dedd29ab71a7930fb20cf7ca0df251ce0afa01c831b3f5bfed7d30c193974",
+      "blockNumber": 8555468,
+      "timeComputerSaw": "Wed Jun 23 15:29:06 2021"
+}{
+      "args": {
+            "token0": "0x58Af8aB44aa8ee4e6cD73AC1008FC83EAF7e8293",
+            "token1": "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c",
+            "pair": "0x2304ca1587EF02C4fF1831Af336061c859a19DCA",
+            "": 230122
+      },
+      "event": "PairCreated",
+      "logIndex": 400,
+      "transactionIndex": 119,
+      "transactionHash": "0x23bbe70d5c1b3c5f718e6947b5b23ee28874177c879551ab32800cb55c1168d8",
+      "address": "0xcA143Ce32Fe78f1f7019d7d551a6402fC5350c73",
+      "blockHash": "0x665e94e628e84712a3c4a0c8aef6f8ef30e5e31da71929f25af72370f934ab19",
+      "blockNumber": 8555479,
+      "timeComputerSaw": "Wed Jun 23 15:29:38 2021"
 }
