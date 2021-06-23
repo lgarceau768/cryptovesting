@@ -1,0 +1,473 @@
+Scrape started on: 13:14:50
+[STARTUP | Mon May 31 13:14:50 2021 | z:\Repos\cryptovesting\main.py | <module>]: Init Database
+[STARTUP | Mon May 31 13:14:52 2021 | z:\Repos\cryptovesting\main.py | <module>]: Running Controlled Chome to get TokenFomo.io full list
+[STARTUP | Mon May 31 13:14:56 2021 | z:\Repos\cryptovesting\main.py | <module>]: Selinum Scrape Done Closing
+[LOG | Mon May 31 13:15:24 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Ethereum Burn failed eth check
+[LOG | Mon May 31 13:15:24 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Ethereum Gnee failed eth check
+[LOG | Mon May 31 13:15:24 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Zapper NFT failed eth check
+[LOG | Mon May 31 13:15:24 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: ShibaFood failed eth check
+[LOG | Mon May 31 13:15:24 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Cobidex failed eth check
+[LOG | Mon May 31 13:15:24 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: AquagoatSwap failed eth check
+[LOG | Mon May 31 13:15:24 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: FTH Capital failed eth check
+[LOG | Mon May 31 13:15:24 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Zapper NFT failed eth check
+[LOG | Mon May 31 13:15:24 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: NYAN INU failed eth check
+[LOG | Mon May 31 13:15:24 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: NYAN INU failed eth check
+[LOG | Mon May 31 13:15:24 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Fiat24 CHF failed eth check
+[LOG | Mon May 31 13:15:24 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: FZXZ Coin failed eth check
+[LOG | Mon May 31 13:15:24 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: FZXZ Coin failed eth check
+[LOG | Mon May 31 13:15:24 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Ethereum Immortal failed eth check
+[LOG | Mon May 31 13:15:24 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: LaShu Inu failed eth check
+[LOG | Mon May 31 13:15:24 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: INDIA COIN failed eth check
+[LOG | Mon May 31 13:15:24 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Ethereum Slut failed eth check
+[LOG | Mon May 31 13:15:24 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Fiat24 GBP failed eth check
+[LOG | Mon May 31 13:15:24 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Ethereum LOL failed eth check
+[LOG | Mon May 31 13:15:24 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: belkainu failed eth check
+[LOG | Mon May 31 13:15:24 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Ethereum Shiba v2 failed eth check
+[LOG | Mon May 31 13:15:24 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Fredrick and Penny failed eth check
+[LOG | Mon May 31 13:15:24 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Zapper NFT failed eth check
+[LOG | Mon May 31 13:15:24 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Mammoth Project failed eth check
+[LOG | Mon May 31 13:15:24 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Active Alligator failed eth check
+[LOG | Mon May 31 13:15:24 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Big Cat Rescue failed eth check
+[LOG | Mon May 31 13:15:24 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Three Inu Finance failed eth check
+[LOG | Mon May 31 13:15:24 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Jujitsu Inu failed eth check
+[LOG | Mon May 31 13:15:24 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: BitcoinMax.io failed eth check
+[LOG | Mon May 31 13:15:24 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: RareMoonCats failed eth check
+[LOG | Mon May 31 13:15:24 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: BONDLY-USDT LP Staking Pool failed eth check
+[LOG | Mon May 31 13:15:24 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Meta Mask Token failed eth check
+[LOG | Mon May 31 13:15:24 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: FjordToken failed eth check
+[LOG | Mon May 31 13:15:24 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Doggy failed eth check
+[LOG | Mon May 31 13:15:24 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: https://t.me/kantoinu failed eth check
+[LOG | Mon May 31 13:15:24 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Ether Dog Community failed eth check
+[LOG | Mon May 31 13:15:24 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Farming Coin failed eth check
+[LOG | Mon May 31 13:15:24 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Morocco failed eth check
+[LOG | Mon May 31 13:15:25 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Ether Dog Community failed eth check
+[LOG | Mon May 31 13:15:25 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: SafeCats failed eth check
+[LOG | Mon May 31 13:15:25 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: MoMe Network failed eth check
+[LOG | Mon May 31 13:15:25 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Twerkies failed eth check
+[LOG | Mon May 31 13:15:25 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: BONDLY-ETH LP Staking Pool failed eth check
+[LOG | Mon May 31 13:15:25 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Ethereum Leash failed eth check
+[LOG | Mon May 31 13:15:25 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Ethereum Puppy failed eth check
+[LOG | Mon May 31 13:15:25 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Comrade Token | ComradeToken.com failed eth check
+[LOG | Mon May 31 13:15:25 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Miami Vice failed eth check
+[LOG | Mon May 31 13:15:25 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Charged Particles Protocol failed eth check
+[LOG | Mon May 31 13:15:25 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Ice Cream Token failed eth check
+[LOG | Mon May 31 13:15:25 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Fomo Inu failed eth check
+[LOG | Mon May 31 13:15:25 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Assets Core Platform Token failed eth check
+[LOG | Mon May 31 13:15:25 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Hologram Coin failed eth check
+[LOG | Mon May 31 13:15:25 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Ethereum Extreme failed eth check
+[LOG | Mon May 31 13:15:25 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Tellor Tributes failed eth check
+[LOG | Mon May 31 13:15:25 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Tellor Tributes failed eth check
+[LOG | Mon May 31 13:15:25 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: SHIBASWAP failed eth check
+[LOG | Mon May 31 13:15:25 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Ethereum Elon failed eth check
+[LOG | Mon May 31 13:15:25 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Ethereum Genesis failed eth check
+[LOG | Mon May 31 13:15:25 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Ethereum Blast failed eth check
+[LOG | Mon May 31 13:15:25 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Ether Bonny  t . me/etherbonnytoken failed eth check
+[LOG | Mon May 31 13:15:25 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Kai Inu failed eth check
+[LOG | Mon May 31 13:15:25 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: MetacaskNFT failed eth check
+[LOG | Mon May 31 13:15:25 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: I'MBored failed eth check
+[LOG | Mon May 31 13:15:25 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: MuskRat failed eth check
+[LOG | Mon May 31 13:15:25 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Keres Inu failed eth check
+[LOG | Mon May 31 13:15:25 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Eth S failed eth check
+[LOG | Mon May 31 13:15:25 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Kanto Inu failed eth check
+[LOG | Mon May 31 13:15:25 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Vida failed eth check
+[LOG | Mon May 31 13:15:25 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Jieun failed eth check
+[LOG | Mon May 31 13:15:25 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Hadonggeun failed eth check
+[LOG | Mon May 31 13:15:25 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: crypto knight failed eth check
+[LOG | Mon May 31 13:15:25 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Tosui Inu failed eth check
+[LOG | Mon May 31 13:15:25 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Ethereum Bank  t . me/ethereumbanktoken failed eth check
+[LOG | Mon May 31 13:15:25 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Farallon Capital failed eth check
+[LOG | Mon May 31 13:15:25 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Fiat24 EUR failed eth check
+[LOG | Mon May 31 13:15:25 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Fiat24 USD failed eth check
+[LOG | Mon May 31 13:15:25 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Fiat24 Account failed eth check
+[LOG | Mon May 31 13:15:25 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Ethereum pak failed eth check
+[LOG | Mon May 31 13:15:25 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Spell Token failed eth check
+[LOG | Mon May 31 13:15:25 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Ethereum X Elon Musk failed eth check
+[LOG | Mon May 31 13:15:26 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Dirtbag Inu failed eth check
+[LOG | Mon May 31 13:15:26 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: WolfHead t.me/WolfHeadToken failed eth check
+[LOG | Mon May 31 13:15:26 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Digital Pet Collection failed eth check
+[LOG | Mon May 31 13:15:26 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: charged.fi failed eth check
+[LOG | Mon May 31 13:15:26 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Dematrix failed eth check
+[LOG | Mon May 31 13:15:26 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: HopeDealer failed eth check
+[LOG | Mon May 31 13:15:26 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Ethereum failed eth check
+[LOG | Mon May 31 13:15:26 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Ethereum Ultimate failed eth check
+[LOG | Mon May 31 13:15:26 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Ethereum Beyond failed eth check
+[LOG | Mon May 31 13:15:26 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: EQT failed eth check
+[LOG | Mon May 31 13:15:26 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: ZOOME failed eth check
+[LOG | Mon May 31 13:15:26 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: YEEZY failed eth check
+[LOG | Mon May 31 13:15:26 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: KaikenToken failed eth check
+[LOG | Mon May 31 13:15:26 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: GoshiDoge failed eth check
+[LOG | Mon May 31 13:15:26 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: GOLDEN BRIDGE COIN failed eth check
+[LOG | Mon May 31 13:15:26 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: NFTCONVERSIONS failed eth check
+[LOG | Mon May 31 13:15:26 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Aimi Neko failed eth check
+[LOG | Mon May 31 13:15:26 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Eth Pro failed eth check
+[LOG | Mon May 31 13:15:26 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: ZenFrog failed eth check
+[LOG | Mon May 31 13:15:26 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Ethereum Bunny failed eth check
+[LOG | Mon May 31 13:15:26 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: https://t.me/EthereumExodia failed eth check
+[LOG | Mon May 31 13:15:26 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Shiba Bone Inu failed eth check
+[LOG | Mon May 31 13:15:26 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Ethereum Shiba failed eth check
+[LOG | Mon May 31 13:15:26 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: ArtvatarsCommunity failed eth check
+[LOG | Mon May 31 13:15:26 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Bunny.Farm failed eth check
+[LOG | Mon May 31 13:15:26 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Etherium DOGE KILLER failed eth check
+[LOG | Mon May 31 13:15:26 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Digital Pets failed eth check
+[LOG | Mon May 31 13:15:26 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: TESTII failed eth check
+[LOG | Mon May 31 13:15:26 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: DeShu failed eth check
+[LOG | Mon May 31 13:15:26 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Apple Token failed eth check
+[LOG | Mon May 31 13:15:26 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: 3MSCI DeFi presentation 5/28/2021 Commemorative Coin failed eth check
+[LOG | Mon May 31 13:15:26 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Ding Dan Coin failed eth check
+[LOG | Mon May 31 13:15:26 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Ethereum Banana failed eth check
+[LOG | Mon May 31 13:15:26 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Bull Coin failed eth check
+[LOG | Mon May 31 13:15:26 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: TULIP Token failed eth check
+[LOG | Mon May 31 13:15:26 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Contractart failed eth check
+[LOG | Mon May 31 13:15:26 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Daxtra Resume Processing Token Class 1A failed eth check
+[LOG | Mon May 31 13:15:26 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Pizza failed eth check
+[LOG | Mon May 31 13:15:26 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: eWallet failed eth check
+[LOG | Mon May 31 13:15:26 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: E-ADGO failed eth check
+[LOG | Mon May 31 13:15:26 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: OxCoin Token failed eth check
+[LOG | Mon May 31 13:15:26 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: DAVOS CUSTODY PTE. LTD. failed eth check
+[LOG | Mon May 31 13:15:26 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: DEF Token failed eth check
+[LOG | Mon May 31 13:15:26 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: ZIQ Swap failed eth check
+[LOG | Mon May 31 13:15:26 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Fund Token failed eth check
+[LOG | Mon May 31 13:15:26 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: SHIBA INU KILLER failed eth check
+[LOG | Mon May 31 13:15:26 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: EtherBTC failed eth check
+[LOG | Mon May 31 13:15:26 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Ethereum X Uniswap failed eth check
+[LOG | Mon May 31 13:15:26 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Cola Swap failed eth check
+[LOG | Mon May 31 13:15:26 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: ZOOT www.zootoken.io failed eth check
+[LOG | Mon May 31 13:15:27 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Ethereum Dick failed eth check
+[LOG | Mon May 31 13:15:27 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Etherium AKITA failed eth check
+[LOG | Mon May 31 13:15:27 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Ether Kitty failed eth check
+[LOG | Mon May 31 13:15:27 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: CatProtocol failed eth check
+[LOG | Mon May 31 13:15:27 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Ethereum Dick failed eth check
+[LOG | Mon May 31 13:15:27 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Komondor Inu Finance failed eth check
+[LOG | Mon May 31 13:15:27 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: MARTIAN DOG TOKEN failed eth check
+[LOG | Mon May 31 13:15:27 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: BITSAFE TOKEN failed eth check
+[LOG | Mon May 31 13:15:27 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Bananya Token failed eth check
+[LOG | Mon May 31 13:15:27 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Smile failed eth check
+[LOG | Mon May 31 13:15:27 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Baka failed eth check
+[LOG | Mon May 31 13:15:27 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Komondor Inu Finance failed eth check
+[LOG | Mon May 31 13:15:27 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: EthereumPlus failed eth check
+[LOG | Mon May 31 13:15:27 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Ethereum Eco failed eth check
+[LOG | Mon May 31 13:15:27 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: MonaCoin failed eth check
+[LOG | Mon May 31 13:15:27 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Kinoaki Inu failed eth check
+[LOG | Mon May 31 13:15:27 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: wrapped Bitcoin Hyper failed eth check
+[LOG | Mon May 31 13:15:27 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Future Coin failed eth check
+[LOG | Mon May 31 13:15:27 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: AudiShiba Inu failed eth check
+[LOG | Mon May 31 13:15:27 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Tuschay Coin failed eth check
+[LOG | Mon May 31 13:15:27 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Etherium Vitalik failed eth check
+[LOG | Mon May 31 13:15:27 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: HashersAI failed eth check
+[LOG | Mon May 31 13:15:27 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: CodeToken.finance failed eth check
+[LOG | Mon May 31 13:15:27 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: BeckyCoin failed eth check
+[LOG | Mon May 31 13:15:27 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Levoist failed eth check
+[LOG | Mon May 31 13:15:27 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Shozo Inu failed eth check
+[LOG | Mon May 31 13:15:27 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: BITSAFE TOKEN failed eth check
+[LOG | Mon May 31 13:15:27 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Labrador Inu failed eth check
+[LOG | Mon May 31 13:15:27 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Otsughi Shiba failed eth check
+[LOG | Mon May 31 13:15:27 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Fendi Drip failed eth check
+[LOG | Mon May 31 13:15:27 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Cream yvWETH failed eth check
+[LOG | Mon May 31 13:15:27 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Kon Inu failed eth check
+[LOG | Mon May 31 13:15:27 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: 3DBTC failed eth check
+[LOG | Mon May 31 13:15:27 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: POSH failed eth check
+[LOG | Mon May 31 13:15:27 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Etherium Vitalik failed eth check
+[LOG | Mon May 31 13:15:27 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Shiba Inu Bone failed eth check
+[LOG | Mon May 31 13:15:27 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Captain Planet  failed eth check
+[LOG | Mon May 31 13:15:27 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Toji Inu failed eth check
+[LOG | Mon May 31 13:15:27 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: EthereumMax failed eth check
+[LOG | Mon May 31 13:15:27 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Aika Inu failed eth check
+[LOG | Mon May 31 13:15:27 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Supercat failed eth check
+[LOG | Mon May 31 13:15:27 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Lossless Protocol failed eth check
+[LOG | Mon May 31 13:15:27 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Majal Coin failed eth check
+[LOG | Mon May 31 13:15:27 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: EQT failed eth check
+[LOG | Mon May 31 13:15:27 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: DNFT Protocol failed eth check
+[LOG | Mon May 31 13:15:27 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Ethereum Platinum failed eth check
+[LOG | Mon May 31 13:15:27 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: ETHEREUM MOON failed eth check
+[LOG | Mon May 31 13:15:28 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: MI failed eth check
+[LOG | Mon May 31 13:15:28 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: ShibaDefi Inu failed eth check
+[LOG | Mon May 31 13:15:28 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Ethereum ELON failed eth check
+[LOG | Mon May 31 13:15:28 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Ethereum Inu failed eth check
+[LOG | Mon May 31 13:15:28 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Ethereum Top failed eth check
+[LOG | Mon May 31 13:15:28 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Ethereum Ape failed eth check
+[LOG | Mon May 31 13:15:28 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Etherum Shiba Inu failed eth check
+[LOG | Mon May 31 13:15:28 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Ethereum Shiba failed eth check
+[LOG | Mon May 31 13:15:28 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: startfi.io failed eth check
+[LOG | Mon May 31 13:15:28 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Baby Ethereum Inu failed eth check
+[LOG | Mon May 31 13:15:28 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: DNC Token failed eth check
+[LOG | Mon May 31 13:15:28 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Ethereum Reserve failed eth check
+[LOG | Mon May 31 13:15:28 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: eKISHU failed eth check
+[LOG | Mon May 31 13:15:28 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: QANplatform failed eth check
+[LOG | Mon May 31 13:15:28 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Ethereum Akita Inu failed eth check
+[LOG | Mon May 31 13:15:28 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: REDUCE failed eth check
+[LOG | Mon May 31 13:15:28 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Trust Coin failed eth check
+[LOG | Mon May 31 13:15:28 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: ARAMYM failed eth check
+[LOG | Mon May 31 13:15:28 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: WaffleToken failed eth check
+[LOG | Mon May 31 13:15:28 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Eskimo Inu failed eth check
+[LOG | Mon May 31 13:15:28 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Etherum President failed eth check
+[LOG | Mon May 31 13:15:28 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: METACITY failed eth check
+[LOG | Mon May 31 13:15:28 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: WGRT failed eth check
+[LOG | Mon May 31 13:15:28 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Two Sigma Investments failed eth check
+[LOG | Mon May 31 13:15:28 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Charged Particles failed eth check
+[LOG | Mon May 31 13:15:28 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: eAkita failed eth check
+[LOG | Mon May 31 13:15:28 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Ethereum Private failed eth check
+[LOG | Mon May 31 13:15:28 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Etherium Vitalik failed eth check
+[LOG | Mon May 31 13:15:28 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: AMANITA MUSCARIA failed eth check
+[LOG | Mon May 31 13:15:28 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: KEI failed eth check
+[LOG | Mon May 31 13:15:28 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Maple Inu failed eth check
+[LOG | Mon May 31 13:15:28 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Songoku Inu failed eth check
+[LOG | Mon May 31 13:15:28 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Ethereum Infinity failed eth check
+[LOG | Mon May 31 13:15:28 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: AIRAVATA - THE KING OF ELEPHANTS failed eth check
+[LOG | Mon May 31 13:15:28 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: VENIX failed eth check
+[LOG | Mon May 31 13:15:28 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Shiba Inu Swap failed eth check
+[LOG | Mon May 31 13:15:28 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: SHLB failed eth check
+[LOG | Mon May 31 13:15:28 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: ATEM failed eth check
+[LOG | Mon May 31 13:15:28 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Ethereum SAFEMOON failed eth check
+[LOG | Mon May 31 13:15:28 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: TVPreP failed eth check
+[LOG | Mon May 31 13:15:28 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Icrumba failed eth check
+[LOG | Mon May 31 13:15:28 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: OceanEx failed eth check
+[LOG | Mon May 31 13:15:28 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Ethereum KISHU failed eth check
+[LOG | Mon May 31 13:15:28 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: PigSwap failed eth check
+[LOG | Mon May 31 13:15:28 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Spadez failed eth check
+[LOG | Mon May 31 13:15:28 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Ethereum Gold failed eth check
+[LOG | Mon May 31 13:15:28 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: EthereumCat failed eth check
+[LOG | Mon May 31 13:15:28 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Watermelon Swap Token failed eth check
+[LOG | Mon May 31 13:15:28 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Ethereum SHIBA failed eth check
+[LOG | Mon May 31 13:15:28 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: United Finance Ordinance failed eth check
+[LOG | Mon May 31 13:15:28 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: slashprotocol.com failed eth check
+[LOG | Mon May 31 13:15:28 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: LTC failed eth check
+[LOG | Mon May 31 13:15:28 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Hachiko Inu failed eth check
+[LOG | Mon May 31 13:15:28 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Ethereum Sushi failed eth check
+[LOG | Mon May 31 13:15:28 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Ethereum Final Boss failed eth check
+[LOG | Mon May 31 13:15:28 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: UREEQA Collectibles failed eth check
+[LOG | Mon May 31 13:15:28 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: eSuperDoge failed eth check
+[LOG | Mon May 31 13:15:28 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: It's Louie Baby! failed eth check
+[LOG | Mon May 31 13:15:28 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: ETHEREUM SHIB failed eth check
+[LOG | Mon May 31 13:15:28 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Takashi Inu failed eth check
+[LOG | Mon May 31 13:15:29 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Ethereum X Shiba failed eth check
+[LOG | Mon May 31 13:15:29 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: eMoon failed eth check
+[LOG | Mon May 31 13:15:29 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Ethereum Akita failed eth check
+[LOG | Mon May 31 13:15:29 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: TaitossCoin failed eth check
+[LOG | Mon May 31 13:15:29 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Ethereum Shiba failed eth check
+[LOG | Mon May 31 13:15:29 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: ReaNance failed eth check
+[LOG | Mon May 31 13:15:29 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: SLO Token failed eth check
+[LOG | Mon May 31 13:15:29 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Etherboy failed eth check
+[LOG | Mon May 31 13:15:29 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: PayPal Elite failed eth check
+[LOG | Mon May 31 13:15:29 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Ethereum Spring failed eth check
+[LOG | Mon May 31 13:15:29 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Ethereum Shiba failed eth check
+[LOG | Mon May 31 13:15:29 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: TheStrengthCoin failed eth check
+[LOG | Mon May 31 13:15:29 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Katsu Inu failed eth check
+[LOG | Mon May 31 13:15:29 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Ethereum Shiba failed eth check
+[LOG | Mon May 31 13:15:29 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: ExinSwap ETH(Ether)-SOL(Solana) LP Token failed eth check
+[LOG | Mon May 31 13:15:29 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Ethereum Spring failed eth check
+[LOG | Mon May 31 13:15:29 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: ExinSwap DOGE(Dogecoin)-SHIB(Ether) LP Token failed eth check
+[LOG | Mon May 31 13:15:29 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: ExinSwap BTC(Bitcoin)-SHIB(Ether) LP Token failed eth check
+[LOG | Mon May 31 13:15:29 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: ExinSwap XIN(Ether)-SHIB(Ether) LP Token failed eth check
+[LOG | Mon May 31 13:15:29 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Hibiki Inu failed eth check
+[LOG | Mon May 31 13:15:29 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: ExinSwap pUSD(Ether)-SHIB(Ether) LP Token failed eth check
+[LOG | Mon May 31 13:15:29 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Cookie Swap failed eth check
+[LOG | Mon May 31 13:15:29 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: ExinSwap SOL(Solana)-BTC(Bitcoin) LP Token failed eth check
+[LOG | Mon May 31 13:15:29 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: ET Token failed eth check
+[LOG | Mon May 31 13:15:29 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: MIMI Health Token failed eth check
+[LOG | Mon May 31 13:15:29 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Akihiro Inu failed eth check
+[LOG | Mon May 31 13:15:29 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: ExinSwap SOL(Solana)-XIN(Ether) LP Token failed eth check
+[LOG | Mon May 31 13:15:29 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Bridgewater Finance failed eth check
+[LOG | Mon May 31 13:15:29 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: eTHEREUMGIRL failed eth check
+[LOG | Mon May 31 13:15:29 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: ExinSwap pUSD(Ether)-SOL(Solana) LP Token failed eth check
+[LOG | Mon May 31 13:15:29 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Richi Inu failed eth check
+[LOG | Mon May 31 13:15:29 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: JST failed eth check
+[LOG | Mon May 31 13:15:29 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: EthereumExodia failed eth check
+[LOG | Mon May 31 13:15:29 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: https://t.me/EthereumExodia failed eth check
+[LOG | Mon May 31 13:15:29 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Ethereum Hyper failed eth check
+[LOG | Mon May 31 13:15:29 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Ethereum Inu failed eth check
+[LOG | Mon May 31 13:15:29 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Yamaha YBR 125 #1 failed eth check
+[LOG | Mon May 31 13:15:29 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Fade failed eth check
+[LOG | Mon May 31 13:15:29 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: EthereumPeepo failed eth check
+[LOG | Mon May 31 13:15:29 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Ethereum Inu failed eth check
+[LOG | Mon May 31 13:15:29 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Moon Kishu failed eth check
+[LOG | Mon May 31 13:15:29 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Musicbee failed eth check
+[LOG | Mon May 31 13:15:29 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: VIET DRAGON failed eth check
+[LOG | Mon May 31 13:15:29 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Shiba Swap failed eth check
+[LOG | Mon May 31 13:15:29 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Token failed eth check
+[LOG | Mon May 31 13:15:29 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Ethereum Supremely failed eth check
+[LOG | Mon May 31 13:15:29 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Ethereum Superior failed eth check
+[LOG | Mon May 31 13:15:29 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Monkey failed eth check
+[LOG | Mon May 31 13:15:29 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: EthereumWojak failed eth check
+[LOG | Mon May 31 13:15:29 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: BeauTiful.Token failed eth check
+[LOG | Mon May 31 13:15:29 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Chika Inu failed eth check
+[LOG | Mon May 31 13:15:29 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Ethereum Prime failed eth check
+[LOG | Mon May 31 13:15:29 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: BezoBucks failed eth check
+[LOG | Mon May 31 13:15:29 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: MommyMilkers failed eth check
+[LOG | Mon May 31 13:15:29 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: SATCOIN failed eth check
+[LOG | Mon May 31 13:15:29 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Mika Inu failed eth check
+[LOG | Mon May 31 13:15:29 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin:  failed eth check
+[LOG | Mon May 31 13:15:29 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: SAFESOUL failed eth check
+[LOG | Mon May 31 13:15:29 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: ShibCat failed eth check
+[LOG | Mon May 31 13:15:29 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: DalaiSHIBA failed eth check
+[LOG | Mon May 31 13:15:29 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin:  failed eth check
+[LOG | Mon May 31 13:15:29 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: EthereumExodia failed eth check
+[LOG | Mon May 31 13:15:29 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Ethereum Extreme failed eth check
+[LOG | Mon May 31 13:15:29 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: ShibCat failed eth check
+[LOG | Mon May 31 13:15:30 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Webah Inu failed eth check
+[LOG | Mon May 31 13:15:30 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Rocbabies failed eth check
+[LOG | Mon May 31 13:15:30 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Ethereum Emperor failed eth check
+[LOG | Mon May 31 13:15:30 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: rubbishcoin failed eth check
+[LOG | Mon May 31 13:15:30 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Clostridium failed eth check
+[LOG | Mon May 31 13:15:30 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Token failed eth check
+[LOG | Mon May 31 13:15:30 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Addisonrae failed eth check
+[LOG | Mon May 31 13:15:30 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Monkey Token failed eth check
+[LOG | Mon May 31 13:15:30 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Inu Supreme failed eth check
+[LOG | Mon May 31 13:15:30 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Meta Mask Token failed eth check
+[LOG | Mon May 31 13:15:30 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: K&F Arts failed eth check
+[LOG | Mon May 31 13:15:30 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Rattan Shiba failed eth check
+[LOG | Mon May 31 13:15:30 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: teddybear failed eth check
+[LOG | Mon May 31 13:15:30 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Peen Inu failed eth check
+[LOG | Mon May 31 13:15:30 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Ethereum Unlimited failed eth check
+[LOG | Mon May 31 13:15:30 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: teddybear failed eth check
+[LOG | Mon May 31 13:15:30 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Golden Retriever Inu failed eth check
+[LOG | Mon May 31 13:15:30 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Ether Dust failed eth check
+[LOG | Mon May 31 13:15:30 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: EtheRFI failed eth check
+[LOG | Mon May 31 13:15:30 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: ReDsoX failed eth check
+[LOG | Mon May 31 13:15:30 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: CHAMPION AUTISM failed eth check
+[LOG | Mon May 31 13:15:30 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Marines failed eth check
+[LOG | Mon May 31 13:15:30 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Akita Swap failed eth check
+[LOG | Mon May 31 13:15:30 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Mavericks Farm failed eth check
+[LOG | Mon May 31 13:15:30 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: DIRTBAG INU  (t.me/dirtbaginu) failed eth check
+[LOG | Mon May 31 13:15:30 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Crypto Pig  NFTs failed eth check
+[LOG | Mon May 31 13:15:30 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: artium failed eth check
+[LOG | Mon May 31 13:15:30 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: GalacticInu failed eth check
+[LOG | Mon May 31 13:15:30 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Tideweigh Uniques failed eth check
+[LOG | Mon May 31 13:15:30 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: PayPal Pro failed eth check
+[LOG | Mon May 31 13:15:30 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: EthereumSupreme failed eth check
+[LOG | Mon May 31 13:15:30 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: DIRTBAG INU  (t.me/dirtbaginu) failed eth check
+[LOG | Mon May 31 13:15:30 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Miura  Inu failed eth check
+[LOG | Mon May 31 13:15:30 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Ethereum1000x failed eth check
+[LOG | Mon May 31 13:15:30 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: BUCKY COIN failed eth check
+[LOG | Mon May 31 13:15:30 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: EthereumHaven (https://t.me/EthereumHaven) failed eth check
+[LOG | Mon May 31 13:15:30 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: TANZANITE failed eth check
+[LOG | Mon May 31 13:15:30 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: DAKID failed eth check
+[LOG | Mon May 31 13:15:30 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: GameOfDeathDoge failed eth check
+[LOG | Mon May 31 13:15:30 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Life Token failed eth check
+[LOG | Mon May 31 13:15:30 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Inoue Inu failed eth check
+[LOG | Mon May 31 13:15:30 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: GreenCoin failed eth check
+[LOG | Mon May 31 13:15:30 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Ethereum Supreme failed eth check
+[LOG | Mon May 31 13:15:30 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Ethereum Supreme failed eth check
+[LOG | Mon May 31 13:15:30 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Public Bitcoin Mining failed eth check
+[LOG | Mon May 31 13:15:30 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Ethereum Supreme failed eth check
+[LOG | Mon May 31 13:15:30 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Ethereum Force failed eth check
+[LOG | Mon May 31 13:15:30 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: once upo failed eth check
+[LOG | Mon May 31 13:15:30 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: German Shepherd Inu failed eth check
+[LOG | Mon May 31 13:15:30 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Ethereum Supreme failed eth check
+[LOG | Mon May 31 13:15:30 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Safe Dog Finance failed eth check
+[LOG | Mon May 31 13:15:30 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: EthereumSupreme failed eth check
+[LOG | Mon May 31 13:15:30 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: AUTISM failed eth check
+[LOG | Mon May 31 13:15:30 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Mafia Cat t.me/MafiaCatCoin failed eth check
+[LOG | Mon May 31 13:15:31 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Ota Inu NFT failed eth check
+[LOG | Mon May 31 13:15:31 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Green Doge Inu failed eth check
+[LOG | Mon May 31 13:15:31 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Legends of Etherea failed eth check
+[LOG | Mon May 31 13:15:31 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Coalition Coin failed eth check
+[LOG | Mon May 31 13:15:31 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Tori Inu failed eth check
+[LOG | Mon May 31 13:15:31 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: EthereumMoon failed eth check
+[LOG | Mon May 31 13:15:31 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: SKIBA INU failed eth check
+[LOG | Mon May 31 13:15:31 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Ethereum 2.0.5 failed eth check
+[LOG | Mon May 31 13:15:31 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Halloween failed eth check
+[LOG | Mon May 31 13:15:31 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Washu Inu failed eth check
+[LOG | Mon May 31 13:15:31 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Matsukami Inu failed eth check
+[LOG | Mon May 31 13:15:31 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: NFTBazaar failed eth check
+[LOG | Mon May 31 13:15:31 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Ethereum King failed eth check
+[LOG | Mon May 31 13:15:31 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: DNA failed eth check
+[LOG | Mon May 31 13:15:31 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: InterstellarInu failed eth check
+[LOG | Mon May 31 13:15:31 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Raspberry failed eth check
+[LOG | Mon May 31 13:15:31 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: An American Funeral 2020-Smwhr failed eth check
+[LOG | Mon May 31 13:15:31 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Hakku Inu failed eth check
+[LOG | Mon May 31 13:15:31 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: USDTToken failed eth check
+[LOG | Mon May 31 13:15:31 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: cryptokenup failed eth check
+[LOG | Mon May 31 13:15:31 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Hero dog  Finance failed eth check
+[LOG | Mon May 31 13:15:31 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: An American Funeral 2020-Smwhr failed eth check
+[LOG | Mon May 31 13:15:31 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Ethereum Pro failed eth check
+[LOG | Mon May 31 13:15:31 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Baki Inu failed eth check
+[LOG | Mon May 31 13:15:31 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Automata failed eth check
+[LOG | Mon May 31 13:15:31 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: KaZa Protocol failed eth check
+[LOG | Mon May 31 13:15:31 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Veiny Eggplant failed eth check
+[LOG | Mon May 31 13:15:31 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Dream Token failed eth check
+[LOG | Mon May 31 13:15:31 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: chubbydriver.com failed eth check
+[LOG | Mon May 31 13:15:31 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: An American Funeral, 2020-Tgthr failed eth check
+[LOG | Mon May 31 13:15:31 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: ChowChow  Finance failed eth check
+[LOG | Mon May 31 13:15:31 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: NFTmoon failed eth check
+[LOG | Mon May 31 13:15:31 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: blockchan::alpha_logo failed eth check
+[LOG | Mon May 31 13:15:31 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: HelloKitty failed eth check
+[LOG | Mon May 31 13:15:31 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Magnificent failed eth check
+[LOG | Mon May 31 13:15:31 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: QueenInu failed eth check
+[LOG | Mon May 31 13:15:31 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Meta Mask failed eth check
+[LOG | Mon May 31 13:15:31 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Queen Shiba failed eth check
+[LOG | Mon May 31 13:15:31 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Hary Inu failed eth check
+[LOG | Mon May 31 13:15:31 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Spaghetti Finance failed eth check
+[LOG | Mon May 31 13:15:31 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: MATICPAD failed eth check
+[LOG | Mon May 31 13:15:31 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Pink  Panther failed eth check
+[LOG | Mon May 31 13:15:31 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: An American Funeral, 2020-Smwhr failed eth check
+[LOG | Mon May 31 13:15:31 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Cacau Digital failed eth check
+[LOG | Mon May 31 13:15:31 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Fratcoin failed eth check
+[LOG | Mon May 31 13:15:31 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: An American Funeral, 2020-Love failed eth check
+[LOG | Mon May 31 13:15:31 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Fratcoin failed eth check
+[LOG | Mon May 31 13:15:31 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Etherum Queen failed eth check
+[LOG | Mon May 31 13:15:31 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Super  Doggy failed eth check
+[LOG | Mon May 31 13:15:32 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Coinvise failed eth check
+[LOG | Mon May 31 13:15:32 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: PowerShiba Inu failed eth check
+[LOG | Mon May 31 13:15:32 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: SafeGoat failed eth check
+[LOG | Mon May 31 13:15:32 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: An American Funeral, 2020 failed eth check
+[LOG | Mon May 31 13:15:32 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Ethereum 2.0 failed eth check
+[LOG | Mon May 31 13:15:32 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: CockCoin failed eth check
+[LOG | Mon May 31 13:15:32 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Hachiko failed eth check
+[LOG | Mon May 31 13:15:32 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Chelsea Fan Token failed eth check
+[LOG | Mon May 31 13:15:32 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Samoyed  INU failed eth check
+[LOG | Mon May 31 13:15:32 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Dubaicoin failed eth check
+[LOG | Mon May 31 13:15:32 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: nyaninu.com failed eth check
+[LOG | Mon May 31 13:15:32 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Mooncat failed eth check
+[LOG | Mon May 31 13:15:32 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: NFTcat failed eth check
+[LOG | Mon May 31 13:15:32 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Kitty kitty Inu failed eth check
+[LOG | Mon May 31 13:15:32 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Shibadex failed eth check
+[LOG | Mon May 31 13:15:32 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Sundae Swap failed eth check
+[LOG | Mon May 31 13:15:32 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: WooziToken failed eth check
+[LOG | Mon May 31 13:15:32 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Social Football Token failed eth check
+[LOG | Mon May 31 13:15:32 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: KISHU failed eth check
+[LOG | Mon May 31 13:15:32 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Nature failed eth check
+[LOG | Mon May 31 13:15:32 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Mona Inu failed eth check
+[LOG | Mon May 31 13:15:32 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Dubai Shiba Inu failed eth check
+[LOG | Mon May 31 13:15:32 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: https://t.me/NarutoUzumakiCoin KAWAAAAIIIII failed eth check
+[LOG | Mon May 31 13:15:32 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Fly Token failed eth check
+[LOG | Mon May 31 13:15:32 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Bon Finance failed eth check
+[LOG | Mon May 31 13:15:32 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: NYANINU failed eth check
+[LOG | Mon May 31 13:15:32 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: TINKU failed eth check
+[LOG | Mon May 31 13:15:32 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Australian Dingo failed eth check
+[LOG | Mon May 31 13:15:32 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Fly Token failed eth check
+[LOG | Mon May 31 13:15:32 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Baller failed eth check
+[LOG | Mon May 31 13:15:32 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Dachshund Inu failed eth check
+[LOG | Mon May 31 13:15:32 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Robot Inu failed eth check
+[LOG | Mon May 31 13:15:32 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: Ethereum Ultra failed eth check
+[LOG | Mon May 31 13:15:32 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | parseFomo]: coin: WallStreetShibas failed eth check
+[STARTUP | Mon May 31 13:15:32 2021 | z:\Repos\cryptovesting\main.py | <module>]: Parse the Fomo HTML
+[STARTUP | Mon May 31 13:15:32 2021 | z:\Repos\cryptovesting\main.py | <module>]: Beginning Coin Loop
+[SCRAPE | Mon May 31 13:15:33 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | getSniffer]: token: Tokens FOrBots not found on sniffer
+[SCRAPE | Mon May 31 13:15:41 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | getSniffer]: token: ShinyShiba not found on sniffer
+[SCRAPE | Mon May 31 13:15:42 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | getSniffer]: token: OctoSwap not found on sniffer
+[SCRAPE | Mon May 31 13:15:42 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | getSniffer]: token: Loyal Finance not found on sniffer
+[SCRAPE | Mon May 31 13:15:43 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | getSniffer]: token: GokuMoon Exclusive not found on sniffer
+[SCRAPE | Mon May 31 13:15:43 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | getSniffer]: token: SafePump not found on sniffer
+[SCRAPE | Mon May 31 13:15:44 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | getSniffer]: token: Pinkamute not found on sniffer
+[SCRAPE | Mon May 31 13:15:44 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | getSniffer]: token:  UFO not found on sniffer
+[SCRAPE | Mon May 31 13:15:44 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | getSniffer]: token: MoonCupcake not found on sniffer
+[SCRAPE | Mon May 31 13:15:45 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | getSniffer]: token:  Chance not found on sniffer
+[SCRAPE | Mon May 31 13:15:45 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | getSniffer]: token: CleanWater not found on sniffer
+[SCRAPE | Mon May 31 13:15:46 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | getSniffer]: token: VikingSwap Token not found on sniffer
+[SCRAPE | Mon May 31 13:15:46 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | getSniffer]: token: Jaws not found on sniffer
+[SCRAPE | Mon May 31 13:15:47 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | getSniffer]: token:  PornHub not found on sniffer
+[SCRAPE | Mon May 31 13:15:47 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | getSniffer]: token: FC BARCELONA not found on sniffer
+[SCRAPE | Mon May 31 13:15:47 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | getSniffer]: token: PRiNCESSMERMAiD not found on sniffer
+[SCRAPE | Mon May 31 13:15:48 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | getSniffer]: token: TwindexAlphaToken not found on sniffer
+[SCRAPE | Mon May 31 13:15:48 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | getSniffer]: token: European Football Associations not found on sniffer
+[SCRAPE | Mon May 31 13:15:49 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | getSniffer]: token: Safe Doors Gold not found on sniffer
+[SCRAPE | Mon May 31 13:15:49 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | getSniffer]: token: Aku The Bodyguard not found on sniffer
+[SCRAPE | Mon May 31 13:15:49 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | getSniffer]: token: RARESHIBA not found on sniffer
+[SCRAPE | Mon May 31 13:15:50 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | getSniffer]: token: NewMoon not found on sniffer
+[SCRAPE | Mon May 31 13:15:50 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | getSniffer]: token: Venus Protocol not found on sniffer
+[SCRAPE | Mon May 31 13:15:51 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | getSniffer]: token: SafeMath not found on sniffer
+[SCRAPE | Mon May 31 13:15:51 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | getSniffer]: token: SafeMoon not found on sniffer
+[SCRAPE | Mon May 31 13:15:52 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | getSniffer]: token:  OnlyFans not found on sniffer
+[SCRAPE | Mon May 31 13:15:52 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | getSniffer]: token: EURO CAT not found on sniffer
+[SCRAPE | Mon May 31 13:15:53 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | getSniffer]: token: DogFunny not found on sniffer
+[SCRAPE | Mon May 31 13:15:53 2021 | z:\Repos\cryptovesting\pyFiles\scrape_poc.py | getSniffer]: token: FlowerFinance not found on sniffer

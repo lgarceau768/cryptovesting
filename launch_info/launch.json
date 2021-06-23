@@ -1,0 +1,32 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Liquidity Pool Check",
+      "type": "python",
+      "request": "launch",
+      "program": "${file}",
+      "args": ["-s", "lp"],
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "Sniff Existing Coins",
+      "type": "python",
+      "request": "launch",
+      "program": "${file}",
+      "args": ["-s", "sc"],
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "Scrape Fomo and Sniffer",
+      "type": "python",
+      "request": "launch",
+      "program": "${file}",
+      "args": ["-s", "sfrs"],
+      "console": "integratedTerminal"
+    }
+  ]
+}

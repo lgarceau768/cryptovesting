@@ -1,0 +1,45 @@
+Scrape started on: 22:48:44
+[STARTUP | Fri May 28 22:48:44 2021 | main.py | <module>]: Init Database
+[DATABASE | Fri May 28 22:48:44 2021 | main.py | <module>]: Pulling down tokens from database
+[LOG | Fri May 28 22:48:44 2021 | main.py | <module>]: Checking existing 659 tokens in the database
+[SEVERE | Fri May 28 22:49:05 2021 | main.py | <module>]: *** print_tb:
+  File "main.py", line 124, in <module>
+    sniffer_check = scrape_poc.getSniffer(token, token["contract_hash"])
+[SEVERE | Fri May 28 22:49:05 2021 | main.py | <module>]: *** print_exception:
+Traceback (most recent call last):
+  File "Z:\Python\lib\site-packages\urllib3\connection.py", line 160, in _new_conn
+    (self._dns_host, self.port), self.timeout, **extra_kw
+  File "Z:\Python\lib\site-packages\urllib3\util\connection.py", line 84, in create_connection
+    raise err
+TimeoutError: [WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "Z:\Python\lib\site-packages\urllib3\connectionpool.py", line 667, in urlopen
+    self._prepare_proxy(conn)
+  File "Z:\Python\lib\site-packages\urllib3\connectionpool.py", line 932, in _prepare_proxy
+    conn.connect()
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPSConnection object at 0x03C01A90>: Failed to establish a new connection: [WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "Z:\Python\lib\site-packages\requests\adapters.py", line 449, in send
+    timeout=timeout
+  File "Z:\Python\lib\site-packages\urllib3\connectionpool.py", line 727, in urlopen
+    method, url, error=e, _pool=self, _stacktrace=sys.exc_info()[2]
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='tokensniffer.com', port=443): Max retries exceeded with url: /token/0xe3b163d0b9bab2e43195189927cb5641e34f8e41 (Caused by ProxyError('Cannot connect to proxy.', NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x03C01A90>: Failed to establish a new connection: [WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond')))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "main.py", line 124, in <module>
+    sniffer_check = scrape_poc.getSniffer(token, token["contract_hash"])
+  File "Z:\Repos\cryptovesting\pyFiles\scrape_poc.py", line 65, in getSniffer
+    page = requests.get(snifferUrl, headers=headers, verify=False, proxies=proxies)
+requests.exceptions.ProxyError: HTTPSConnectionPool(host='tokensniffer.com', port=443): Max retries exceeded with url: /token/0xe3b163d0b9bab2e43195189927cb5641e34f8e41 (Caused by ProxyError('Cannot connect to proxy.', NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x03C01A90>: Failed to establish a new connection: [WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond')))
+[COMPLETE | Fri May 28 22:49:05 2021 | main.py | <module>]: Total Coins added to database: 0
+[COMPLETE | Fri May 28 22:49:05 2021 | main.py | <module>]: Total Number of Similar coins added to database: 0
+[COMPLETE | Fri May 28 22:49:05 2021 | main.py | <module>]: Checked a total of: 0
+[COMPLETE | Fri May 28 22:49:05 2021 | main.py | <module>]: Total Number of Coins added not on TokenSniffer: 0
