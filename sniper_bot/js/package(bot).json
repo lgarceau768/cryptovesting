@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Sniper Bot for CryptoVesting Work",
   "main": "bot.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -13,9 +14,7 @@
   "author": "Luke Garceau",
   "license": "ISC",
   "dependencies": {
-    "bip39": "^3.0.4",
     "chalk": "^4.1.1",
-    "ethereumjs-wallet": "^1.0.1",
     "ethers": "^5.3.1",
     "express": "^4.17.1",
     "fs": "0.0.1-security",
