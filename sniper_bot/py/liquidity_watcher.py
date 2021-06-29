@@ -2,9 +2,12 @@ import json, asyncio, sys, time
 from web3 import Web3
 from datetime import datetime
 
-# Constants and Objects
+# Market Links
 BSCSCAN_SEED_LINK = 'https://bsc-dataseed.binance.org/'
 BSCSCAN_TESTNET_LINK = 'https://data-seed-prebsc-1-s1.binance.org:8545'
+INFURA_TESTNET = "https://mainnet.infura.io/v3/9386f65aacd343d5bb29b35188dff702"
+
+# Constants and Objects
 web3 = Web3(Web3.HTTPProvider(BSCSCAN_TESTNET_LINK))
 WBNB_ADDRESS = "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c"
 BNB_ADDRESS = "0x0000000000000000000000000000000000000000"
@@ -46,14 +49,14 @@ def sendBNB(buyToken, amount):
     # build the transaction
     token_path = [WBNB_ADDRESS, buyToken]
     min_amount = 0x0005;
+    address = web3.toChecksumAddress(my_account._address)
 
     txn = contract.functions.swapExactTokensForTokens(
-        amount, min_amount, token_path, PERSONAL_WALLET, (int(time.time()) + 1000) ) 
+        amount, min_amount, token_path, address, (int(time.time()) + 1000) ) 
     txn.buildTransaction({
         'chainId': 56, 
         'gas': 100000,
         'gasPrice': web3.toWei('10', 'gwei'),
-        'nonce': web3.eth.getTransactionCount(my_account._address)
     })
     print(txn)
 
