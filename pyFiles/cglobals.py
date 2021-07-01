@@ -14,8 +14,8 @@ headers = {
 }
 
 proxies = {
-    'http': "http://luke:YjVhZmRhMWMwYWU5YTY4YzZkNzRhMDEz@192.168.1.140:3128",
-    'https': "https://luke:YjVhZmRhMWMwYWU5YTY4YzZkNzRhMDEz@192.168.1.140:3128",
+    # 'http': "http://luke:YjVhZmRhMWMwYWU5YTY4YzZkNzRhMDEz@192.168.1.140:3128",
+    # 'https': "https://luke:YjVhZmRhMWMwYWU5YTY4YzZkNzRhMDEz@192.168.1.140:3128",
 }
 
 def getExeception(logger, info):    

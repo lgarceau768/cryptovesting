@@ -9,7 +9,8 @@ class CryptoSQL:
             host="localhost", 
             user="root",
             password="Spook524*",
-            database="cryptovesting"
+            database="cryptovesting",
+            auth_plugin='mysql_native_password'
         )
         self.logger = logger
         self.tokens_added_dict = {}

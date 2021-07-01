@@ -12,12 +12,13 @@ import requests
 # urls for fomo and sniffer
 fomoUrl = "https://tokenfomo.io/"
 snifferUrl = "https://tokensniffer.com/"
-path = 'A:\repos\cryptovesting\pyFiles\chromedriver_win32\chromedriver.exe'
-prox = Proxy()
-prox.proxy_type = ProxyType.MANUAL
-prox.http_proxy = "192.168.1.140:3128"
-capabilities = webdriver.DesiredCapabilities.CHROME
-prox.add_to_capabilities(capabilities)
+path = '/home/fullsend/cryptovesting/pyFiles/chromedriver_ubuntu/chromedriver'
+
+# prox = Proxy()
+# prox.proxy_type = ProxyType.MANUAL
+# prox.http_proxy = "192.168.1.140:3128"
+# capabilities = webdriver.DesiredCapabilities.CHROME
+# prox.add_to_capabilities(capabilities)
 logger = None
 
 # init() function
@@ -29,7 +30,8 @@ def init():
     global path, capabilities
     # change the path to your driver here
     # init the headless browser (CHANGE PATH HERE)
-    driver = webdriver.Chrome("pyFiles\chromedriver_win32\chromedriver.exe", desired_capabilities=capabilities)
+    # driver = webdriver.Chrome("/usr/bin/chromedriver", desired_capabilities=capabilities)
+    driver = webdriver.Chrome("/home/fullsend/cryptovesting/pyFiles/chromedriver_ubuntu/chromedriver")
     
     return driver
 
