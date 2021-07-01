@@ -1,0 +1,20 @@
+Scrape started on: 01:14:31
+[STARTUP | Thu Jul  1 01:14:31 2021 | main.py | <module>]: Init Database
+[STARTUP | Thu Jul  1 01:14:32 2021 | main.py | <module>]: Running Controlled Chome to get TokenFomo.io full list
+[STARTUP | Thu Jul  1 01:14:34 2021 | main.py | <module>]: Selinum Scrape Done Closing
+[LOG | Thu Jul  1 01:14:34 2021 | /home/fullsend/cryptovesting/pyFiles/scrape_poc.py | parseFomo]: coin: TIGER Sanctuary Protocol Token failed eth check
+[LOG | Thu Jul  1 01:14:34 2021 | /home/fullsend/cryptovesting/pyFiles/scrape_poc.py | parseFomo]: coin: Cryptovoxels Swapper v1 failed eth check
+[LOG | Thu Jul  1 01:14:34 2021 | /home/fullsend/cryptovesting/pyFiles/scrape_poc.py | parseFomo]: coin: KIGGAL failed eth check
+[LOG | Thu Jul  1 01:14:34 2021 | /home/fullsend/cryptovesting/pyFiles/scrape_poc.py | parseFomo]: coin: BUNE Protocol Secondary Token failed eth check
+[LOG | Thu Jul  1 01:14:34 2021 | /home/fullsend/cryptovesting/pyFiles/scrape_poc.py | parseFomo]: coin: BigMoon failed eth check
+[LOG | Thu Jul  1 01:14:34 2021 | /home/fullsend/cryptovesting/pyFiles/scrape_poc.py | parseFomo]: coin: NFT Public Profile failed eth check
+[STARTUP | Thu Jul  1 01:14:34 2021 | main.py | <module>]: Parse the Fomo HTML
+[STARTUP | Thu Jul  1 01:14:34 2021 | main.py | <module>]: Beginning Coin Loop
+[SCRAPE | Thu Jul  1 01:14:35 2021 | /home/fullsend/cryptovesting/pyFiles/scrape_poc.py | getSniffer]: token: McDONALDS not found on sniffer
+[SCRAPE | Thu Jul  1 01:14:35 2021 | /home/fullsend/cryptovesting/pyFiles/scrape_poc.py | getSniffer]: token: Sadqah not found on sniffer
+[SCRAPE | Thu Jul  1 01:14:35 2021 | /home/fullsend/cryptovesting/pyFiles/scrape_poc.py | getSniffer]: token: BitZyon Finance not found on sniffer
+[SCRAPE | Thu Jul  1 01:14:36 2021 | /home/fullsend/cryptovesting/pyFiles/scrape_poc.py | getSniffer]: token: Argano Dollar token not found on sniffer
+[SCRAPE | Thu Jul  1 01:14:36 2021 | /home/fullsend/cryptovesting/pyFiles/scrape_poc.py | getSniffer]: token: China Panda Sleep not found on sniffer
+[SCRAPE | Thu Jul  1 01:14:37 2021 | /home/fullsend/cryptovesting/pyFiles/scrape_poc.py | getSniffer]: token: BabyShibbyInu not found on sniffer
+[SCRAPE | Thu Jul  1 01:14:37 2021 | /home/fullsend/cryptovesting/pyFiles/scrape_poc.py | getSniffer]: token: BlueBalls BTC v2 not found on sniffer
+[SCRAPE | Thu Jul  1 01:14:38 2021 | /home/fullsend/cryptovesting/pyFiles/scrape_poc.py | getSniffer]: token: StellarMission not found on sniffer

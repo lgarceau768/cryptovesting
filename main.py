@@ -63,6 +63,7 @@ if sequence == 'sfrs':
 
     # now use bs4 to parse the fullSoup
     tokens = scrape_poc.parseFomo(fullSoup)
+    print(len(tokens))
     #tokens = []
     
     logger.log("Parse the Fomo HTML", level="STARTUP")
@@ -79,8 +80,6 @@ if sequence == 'sfrs':
     logger.log("Beginning Coin Loop", level="STARTUP")
     try:
         for i in range(len(tokens)):
-            if i > 15:
-                raise Exception("Debug only 15 coins")
             contract_check = scrape_poc.getSniffer(tokens[i], tokens[i]["contract_hash"])
             
             # check the result of the contract check
@@ -93,7 +92,6 @@ if sequence == 'sfrs':
 
                 else:
                     # add result to simtokens
-                    print("adding pre sniff")
                     result = database.addTokensPreSniff([tokens[i]])
             except:
                 pass

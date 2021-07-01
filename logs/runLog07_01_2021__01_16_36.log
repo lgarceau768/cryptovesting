@@ -1,0 +1,3 @@
+Scrape started on: 01:16:36
+[STARTUP | Thu Jul  1 01:16:36 2021 | main.py | <module>]: Init Database
+[STARTUP | Thu Jul  1 01:16:37 2021 | main.py | <module>]: Running Controlled Chome to get TokenFomo.io full list

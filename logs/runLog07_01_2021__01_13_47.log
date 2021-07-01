@@ -1,0 +1,46 @@
+Scrape started on: 01:13:47
+[STARTUP | Thu Jul  1 01:13:47 2021 | main.py | <module>]: Init Database
+[STARTUP | Thu Jul  1 01:13:48 2021 | main.py | <module>]: Running Controlled Chome to get TokenFomo.io full list
+[STARTUP | Thu Jul  1 01:13:50 2021 | main.py | <module>]: Selinum Scrape Done Closing
+[LOG | Thu Jul  1 01:13:50 2021 | /home/fullsend/cryptovesting/pyFiles/scrape_poc.py | parseFomo]: coin: TIGER Sanctuary Protocol Token failed eth check
+[LOG | Thu Jul  1 01:13:50 2021 | /home/fullsend/cryptovesting/pyFiles/scrape_poc.py | parseFomo]: coin: Cryptovoxels Swapper v1 failed eth check
+[LOG | Thu Jul  1 01:13:50 2021 | /home/fullsend/cryptovesting/pyFiles/scrape_poc.py | parseFomo]: coin: KIGGAL failed eth check
+[LOG | Thu Jul  1 01:13:50 2021 | /home/fullsend/cryptovesting/pyFiles/scrape_poc.py | parseFomo]: coin: BUNE Protocol Secondary Token failed eth check
+[LOG | Thu Jul  1 01:13:50 2021 | /home/fullsend/cryptovesting/pyFiles/scrape_poc.py | parseFomo]: coin: BigMoon failed eth check
+[LOG | Thu Jul  1 01:13:50 2021 | /home/fullsend/cryptovesting/pyFiles/scrape_poc.py | parseFomo]: coin: NFT Public Profile failed eth check
+[STARTUP | Thu Jul  1 01:13:50 2021 | main.py | <module>]: Parse the Fomo HTML
+[STARTUP | Thu Jul  1 01:13:50 2021 | main.py | <module>]: Beginning Coin Loop
+[SCRAPE | Thu Jul  1 01:13:51 2021 | /home/fullsend/cryptovesting/pyFiles/scrape_poc.py | getSniffer]: token: McDONALDS not found on sniffer
+[SCRAPE | Thu Jul  1 01:13:51 2021 | /home/fullsend/cryptovesting/pyFiles/scrape_poc.py | getSniffer]: token: Sadqah not found on sniffer
+[SCRAPE | Thu Jul  1 01:13:51 2021 | /home/fullsend/cryptovesting/pyFiles/scrape_poc.py | getSniffer]: token: BitZyon Finance not found on sniffer
+[SCRAPE | Thu Jul  1 01:13:52 2021 | /home/fullsend/cryptovesting/pyFiles/scrape_poc.py | getSniffer]: token: Testing not found on sniffer
+[SCRAPE | Thu Jul  1 01:13:52 2021 | /home/fullsend/cryptovesting/pyFiles/scrape_poc.py | getSniffer]: token: Argano Dollar token not found on sniffer
+[SCRAPE | Thu Jul  1 01:13:52 2021 | /home/fullsend/cryptovesting/pyFiles/scrape_poc.py | getSniffer]: token: China Panda Sleep not found on sniffer
+[SCRAPE | Thu Jul  1 01:13:53 2021 | /home/fullsend/cryptovesting/pyFiles/scrape_poc.py | getSniffer]: token: BabyShibbyInu not found on sniffer
+[SCRAPE | Thu Jul  1 01:13:53 2021 | /home/fullsend/cryptovesting/pyFiles/scrape_poc.py | getSniffer]: token: BlueBalls BTC v2 not found on sniffer
+[SCRAPE | Thu Jul  1 01:13:54 2021 | /home/fullsend/cryptovesting/pyFiles/scrape_poc.py | getSniffer]: token: Shibainu.oficiall not found on sniffer
+[SCRAPE | Thu Jul  1 01:13:54 2021 | /home/fullsend/cryptovesting/pyFiles/scrape_poc.py | getSniffer]: token: samyar not found on sniffer
+[SCRAPE | Thu Jul  1 01:13:55 2021 | /home/fullsend/cryptovesting/pyFiles/scrape_poc.py | getSniffer]: token: StellarMission not found on sniffer
+[SCRAPE | Thu Jul  1 01:13:55 2021 | /home/fullsend/cryptovesting/pyFiles/scrape_poc.py | getSniffer]: token: Eris Network not found on sniffer
+[SCRAPE | Thu Jul  1 01:13:55 2021 | /home/fullsend/cryptovesting/pyFiles/scrape_poc.py | getSniffer]: token: PrideBSC not found on sniffer
+[SCRAPE | Thu Jul  1 01:13:56 2021 | /home/fullsend/cryptovesting/pyFiles/scrape_poc.py | getSniffer]: token: Little Gun not found on sniffer
+[SCRAPE | Thu Jul  1 01:13:56 2021 | /home/fullsend/cryptovesting/pyFiles/scrape_poc.py | getSniffer]: token: Alchemix not found on sniffer
+[SCRAPE | Thu Jul  1 01:13:57 2021 | /home/fullsend/cryptovesting/pyFiles/scrape_poc.py | getSniffer]: token: Argano not found on sniffer
+[SCRAPE | Thu Jul  1 01:13:57 2021 | /home/fullsend/cryptovesting/pyFiles/scrape_poc.py | getSniffer]: token: Argano not found on sniffer
+[SCRAPE | Thu Jul  1 01:13:57 2021 | /home/fullsend/cryptovesting/pyFiles/scrape_poc.py | getSniffer]: token: DitonMoonFinance not found on sniffer
+[SCRAPE | Thu Jul  1 01:13:58 2021 | /home/fullsend/cryptovesting/pyFiles/scrape_poc.py | getSniffer]: token: FudBear not found on sniffer
+[SCRAPE | Thu Jul  1 01:13:58 2021 | /home/fullsend/cryptovesting/pyFiles/scrape_poc.py | getSniffer]: token: savagestar not found on sniffer
+[SCRAPE | Thu Jul  1 01:13:59 2021 | /home/fullsend/cryptovesting/pyFiles/scrape_poc.py | getSniffer]: token: PUSSY not found on sniffer
+[SCRAPE | Thu Jul  1 01:13:59 2021 | /home/fullsend/cryptovesting/pyFiles/scrape_poc.py | getSniffer]: token: RRR not found on sniffer
+[SCRAPE | Thu Jul  1 01:13:59 2021 | /home/fullsend/cryptovesting/pyFiles/scrape_poc.py | getSniffer]: token: Legend not found on sniffer
+[SCRAPE | Thu Jul  1 01:14:00 2021 | /home/fullsend/cryptovesting/pyFiles/scrape_poc.py | getSniffer]: token: WINBET not found on sniffer
+[SCRAPE | Thu Jul  1 01:14:00 2021 | /home/fullsend/cryptovesting/pyFiles/scrape_poc.py | getSniffer]: token: PIZZA not found on sniffer
+[SCRAPE | Thu Jul  1 01:14:01 2021 | /home/fullsend/cryptovesting/pyFiles/scrape_poc.py | getSniffer]: token: SuperOlympus not found on sniffer
+[SCRAPE | Thu Jul  1 01:14:01 2021 | /home/fullsend/cryptovesting/pyFiles/scrape_poc.py | getSniffer]: token: Yoyo.Finance not found on sniffer
+[SCRAPE | Thu Jul  1 01:14:01 2021 | /home/fullsend/cryptovesting/pyFiles/scrape_poc.py | getSniffer]: token: MONKCoinSwap not found on sniffer
+[SCRAPE | Thu Jul  1 01:14:02 2021 | /home/fullsend/cryptovesting/pyFiles/scrape_poc.py | getSniffer]: token: Chick Token not found on sniffer
+[SCRAPE | Thu Jul  1 01:14:02 2021 | /home/fullsend/cryptovesting/pyFiles/scrape_poc.py | getSniffer]: token: DitonMoonFinance not found on sniffer
+[SCRAPE | Thu Jul  1 01:14:03 2021 | /home/fullsend/cryptovesting/pyFiles/scrape_poc.py | getSniffer]: token: DitonMoon not found on sniffer
+[SCRAPE | Thu Jul  1 01:14:03 2021 | /home/fullsend/cryptovesting/pyFiles/scrape_poc.py | getSniffer]: token: AK_Dividend_Tracker not found on sniffer
+[SCRAPE | Thu Jul  1 01:14:03 2021 | /home/fullsend/cryptovesting/pyFiles/scrape_poc.py | getSniffer]: token: NotRealDigitalAsset not found on sniffer
+[COMPLETED | Thu Jul  1 01:14:03 2021 | main.py | <module>]: {'addTokens': 33, 'addTokensPreSniff': 33}

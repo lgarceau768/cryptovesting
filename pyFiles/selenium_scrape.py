@@ -50,7 +50,7 @@ def setLogger(log):
 def expand_list(driver):    
     # click the expand button
     driver.get(fomoUrl)
-    expand_button = driver.find_element_by_xpath('//tfoot')
+    expand_button = driver.find_element_by_xpath("//*[contains(text(),'Show all')]")
     expand_button.click()
 
 # now pull all the inner html into a soup
