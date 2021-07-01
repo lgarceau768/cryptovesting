@@ -6,9 +6,9 @@ var Common = require('ethereumjs-common').default;
 var bip39 = require("bip39");
 var { hdkey } = require('ethereumjs-wallet');
 
-// INFO Variables
-var web3 = new Web3(new Web3.providers.HttpProvider('https://data-seed-prebsc-1-s1.binance.org:8545/'))
-var BSC_FORK = Common.forCustomChain(
+// INFO Constants
+const web3 = new Web3(new Web3.providers.HttpProvider('https://data-seed-prebsc-1-s1.binance.org:8545/'))
+const BSC_FORK = Common.forCustomChain(
     'mainnet',
     {
         name: 'Binance Smart Chain Mainnet',
@@ -18,7 +18,7 @@ var BSC_FORK = Common.forCustomChain(
     },
     'istanbul'
 );
-var BSC_TESTNET_FORK = Common.forCustomChain(
+const BSC_TESTNET_FORK = Common.forCustomChain(
     'mainnet',
     {
         name: 'Binance Smart Chain Testnet',
@@ -28,9 +28,11 @@ var BSC_TESTNET_FORK = Common.forCustomChain(
     },
     'istanbul'
 )
-var originalAmountToBuyWith = '0.02' + Math.random().toString().slice(2,7);
-var bnbAmount = web3.utils.toWei(originalAmountToBuyWith, 'gwei');
-console.log(bnbAmount)
+const WBNBAddress = '0xae13d989daC2f0dEbFf460aC112a837C89BAa7cd'; // WBNB token address
+const pancakeSwapRouterAddress = '0x9Ac64Cc6e4415144C455BD8E4837Fea55603e5c3';
+const routerAbi = JSON.parse(fs.readFileSync('pancakeswap_router_abi.json', 'utf-8'));
+const GAS_AMOUNT = 1500000
+
 // INFO Functions
 // get account balance
 const _bal = async () => {
@@ -54,30 +56,19 @@ async function _gas() {
         "gas": 0,
     }
     gasVals["gasPrice"] = await web3.eth.getGasPrice() * 2
-    //gasVals["gasPrice"] = web3.utils.toHex(10e9)
-    let block = await web3.eth.getBlock("latest")
-    gasVals["gasLimit"] = block.gasLimit
     return gasVals
 }
 
-// buy function with given account
-const buyOnlyone = async (targetAccount, amount) => {
-
+// buy function with given account and tokenAddress
+const buyTokenWithBNB = async (targetAccount, amount, tokenAddress) => {
+    // convert amount to buy with
     var amountToBuyWith = web3.utils.toHex(amount);
-    var privateKey = Buffer.from(targetAccount.privateKey.slice(2), 'hex')  ;
-   // var abiArray = JSON.parse(JSON.parse(fs.readFileSync('onlyone-abi.json','utf-8')));
-    var tokenAddress = '0x924f5d80b38af3cb88897c5210a58c307cc7376b'; // ONLYONE contract address
-    var WBNBAddress = '0xae13d989daC2f0dEbFf460aC112a837C89BAa7cd'; // WBNB token address
-
-    // var onlyOneWbnbCakePairAddress = '0xd22fa770dad9520924217b51bf7433c4a26067c2';
-    // var pairAbi = JSON.parse(fs.readFileSync('cake-pair-onlyone-bnb-abi.json', 'utf-8'));
-    // var pairContract = new web3.eth.Contract(pairAbi, onlyOneWbnbCakePairAddress/*, {from: targetAccount.address}*/);
     var amountOutMin = '1' + Math.random().toString().slice(2,6) + "e3";
-    //var pancakeSwapRouterAddress = '0x10ed43c718714eb63d5aa57b78b54704e256024e';
-    var pancakeSwapRouterAddress = '0x9Ac64Cc6e4415144C455BD8E4837Fea55603e5c3';
 
-    var routerAbi = JSON.parse(fs.readFileSync('pancakeswap_router_abi.json', 'utf-8'))["abi"];
+    // parse the contract of pancakeSwapRouter
     var contract = new web3.eth.Contract(routerAbi, pancakeSwapRouterAddress, {from: targetAccount.address});
+
+    // execute the contract function swapExactETHForTokens
     console.log(`Contract Params ${_jstr({
         buy: amountToBuyWith,
         amount: web3.utils.toHex(amountOutMin),
@@ -92,25 +83,24 @@ const buyOnlyone = async (targetAccount, amount) => {
         targetAccount.address,
         web3.utils.toHex(Math.round(Date.now()/1000)+60*20),
     );
+
+    // pull down the info for the transaction
     let gas = await _gas()
-    var count = await web3.eth.getTransactionCount(targetAccount.address);
-    //console.log(`Total cost: ${gas["gasPrice"] * amtGas + amountToBuyWith}`)
     var rawTransaction = {
         "from":targetAccount.address,
         "gasPrice": gas["gasPrice"],
-        "gasLimit":web3.utils.toHex(gas["gasLimit"]),
         "to":pancakeSwapRouterAddress,
         "value":web3.utils.toHex(amountToBuyWith),
-        //"value":web3.utils.toWei('1', 'wei'),
-        //"gas": amtGas,
-        "data":data.encodeABI(),
-        "nonce":web3.utils.toHex(count)
+        "gas": GAS_AMOUNT,
+        "data": data.encodeABI(),
     };
+
+    // sign the transaction and send it to the chain
     console.log(`Raw transaction ${_jstr(rawTransaction)}`)
     var transaction = new Tx(rawTransaction, { 'common': BSC_TESTNET_FORK });
     transaction = await web3.eth.accounts.signTransaction(rawTransaction, my_pk)
     console.log(`Transaction After Singing  ${_jstr(transaction)}`)
-    var result = web3.eth.sendSignedTransaction(transaction["rawTransaction"])
+    web3.eth.sendSignedTransaction(transaction["rawTransaction"])
         .on('trasnactionHash', (hash) => {
             console.log("Hash: "+str(hash))
         })
@@ -142,9 +132,12 @@ var targetAccount = web3.eth.accounts.privateKeyToAccount(my_pk)
 
 // INFO Porgram Start
 async function run() {
-    await _bal()
+    await _bal()    
+    var amountToBuyWithDecimal = 0.02 // need to multiply by 100000
+    var originalAmountToBuyWith = (amountToBuyWithDecimal * 100000).toString() + Math.random().toString().slice(2,7);
+    var bnbAmount = web3.utils.toWei(originalAmountToBuyWith, 'gwei');
     console.log(`Buying ONLYONE for ${originalAmountToBuyWith} BNB from pancakeswap for address ${targetAccount.address}`);
-    buyOnlyone(targetAccount, bnbAmount)
+    buyTokenWithBNB(targetAccount, bnbAmount, tokenAddress)
 }
 
 run()
