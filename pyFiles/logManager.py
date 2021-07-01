@@ -4,8 +4,8 @@ from datetime import datetime
 
 class LogManager:
 
-    def __init__(self, dir="logs"):
-        self.fileName = os.path.join(os.getcwd(), dir, "runLog" + datetime.now().strftime("%m_%d_%Y__%H_%M_%S") + ".log")
+    def __init__(self, sequence, dir="logs"):
+        self.fileName = os.path.join(os.getcwd(), dir, "runSeq_" + sequence + "_Log_" + datetime.now().strftime("%m_%d_%Y__%H_%M_%S") + ".log")
         with open(self.fileName, "w") as file:
             file.write("Scrape started on: "+datetime.now().strftime("%X") + "\n")
             file.close()
@@ -36,6 +36,25 @@ class LogManager:
             u"\u01b0"
             u"\u0131"
             u"\u1ec7"
+            u"\xF0\x9F\x90\x9D"
+            u"\xF0\x9F\xA4\xB2\xF0\x9F"
+            u"\xF0\x9F\xA6\x8FRh"
+            u"\xF0\x9F\x97\xBF"
+            u"\xF0\x9F\x92\xA0Pl"
+            u"\xF0\x9F\x9A\x80Ro"
+            u"\xF0\x9F\x8C\x95Mo"
+            u"\xF0\x9F\xA6\x8D"
+            u"\xF0\x9F\x8C\x9FEv"
+            u"\xF0\x9F\x90\x96PI"
+            u"\xF0\x9F\x92\xB2up"
+            u"\xF0\x9F\x94\x85Ev"
+            u"\xF0\x9F\x92\xA0Ti"
+            u"\xF0\x9F\x92\xA9"
+            u"\xF0\x9F\x8C\x90Sa"
+            u"\xF0\x9F\x8C\x95Mo"
+            u"\xF0\x9F\x94\xB1Po"
+            u"\xF0\x9F\x92\xA5Bo"
+            u"\xF0\x9F\x92\xAECa"
         "]+", flags=re.UNICODE)
         return emoji_pattern.sub(r'', string)
 

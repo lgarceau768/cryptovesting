@@ -68,6 +68,7 @@ class CryptoSQL:
             for idVal in ids:
                 command += '"'+idVal['uuid']+'",'
             command += ")"
+            command = command[0:len(command)-2] + ")"
             cursor.execute(command)
             records = cursor.fetchall()
             cursor.close()

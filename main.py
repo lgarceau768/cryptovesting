@@ -34,13 +34,14 @@ elif str(args).find('-s') != -1:
 
 
 # init the logger and set logger
-logger = logManager.LogManager()
+logger = logManager.LogManager(sequence)
 scrape_poc.setLogManager(logger)
 selenium_scrape.setLogger(logger)
 
 # init the database
 database = sql_connector.CryptoSQL(logger)
 logger.log("Init Database", level="STARTUP")
+logger.log("Sequence Selected: "+sequence, level="INFO")
 
 # Main Program
 if sequence == 'sfrs':
