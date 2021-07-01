@@ -1,6 +1,7 @@
 from selenium import webdriver
 import selenium
 from selenium.webdriver.common.proxy import Proxy, ProxyType
+from selenium.webdriver.chrome.options import Options
 from bs4 import BeautifulSoup
 from pyFiles import selenium_scrape
 from pyFiles import cglobals
@@ -28,10 +29,15 @@ logger = None
 # return driver
 def init():
     global path, capabilities
+    
+    options = Options()
+    options.add_argument('--no-sandbox')
     # change the path to your driver here
     # init the headless browser (CHANGE PATH HERE)
     # driver = webdriver.Chrome("/usr/bin/chromedriver", desired_capabilities=capabilities)
-    driver = webdriver.Chrome("/home/fullsend/cryptovesting/pyFiles/chromedriver_ubuntu/chromedriver")
+    driver = webdriver.Chrome("/home/fullsend/cryptovesting/pyFiles/chromedriver_ubuntu/chromedriver",
+        chrome_options=options
+    )
     
     return driver
 

@@ -7,7 +7,7 @@
 - requests
 - selenium
 - Charles Proxy Server  
-- Chrome Selenium Driver
+- Chrome Selenium Driver - driver must match chrome install version using version 91
 
 ## Charles  
 The proxy server is used to reroute our http requests through our machine and mask them to bypass  scraping policies etc.  

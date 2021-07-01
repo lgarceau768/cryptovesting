@@ -79,6 +79,8 @@ if sequence == 'sfrs':
     logger.log("Beginning Coin Loop", level="STARTUP")
     try:
         for i in range(len(tokens)):
+            if i > 15:
+                raise Exception("Debug only 15 coins")
             contract_check = scrape_poc.getSniffer(tokens[i], tokens[i]["contract_hash"])
             
             # check the result of the contract check
