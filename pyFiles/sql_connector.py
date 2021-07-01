@@ -30,7 +30,7 @@ class CryptoSQL:
             return records
         except: 
             info = sys.exc_info()
-            cglobals.getExeception(self.logger, info)
+            cglobals.getException(self.logger, info)
 
     def getAllQuery(self, table):
         try:
@@ -59,7 +59,7 @@ class CryptoSQL:
             return (tokens, count)
         except: 
             info = sys.exc_info()
-            cglobals.getExeception(self.logger, info)
+            cglobals.getException(self.logger, info)
 
     def pullTokensWithIds(self, ids):
         try:
@@ -84,6 +84,7 @@ class CryptoSQL:
             return (tokens, count)
         except:
             info = sys.exc_info()
+            cglobals.getException(self.logger, info)
 
     def addTokens(self, tokens):
         count = 0  
@@ -100,6 +101,7 @@ class CryptoSQL:
                 cursor.close()
             except: 
                 info = sys.exc_info()
+                cglobals.getException(self.logger, info)
         self.updateList("addTokens", count)
         return True, count, "addTokens"
 
@@ -110,12 +112,13 @@ class CryptoSQL:
             try:
                 cursor = self.db.cursor()
 
-                insQuery = "insert into tokens_pre_sniff (token_uuid) values (%s)"              
-                cursor.execute(insQuery, (token['uuid'],))
+                insQuery = "insert into tokens_pre_sniff (token_uuid) values (\""+token["uuid"]+"\")"              
+                cursor.execute(insQuery)
                 self.db.commit()
                 cursor.close()
             except: 
                 info = sys.exc_info()
+                cglobals.getException(self.logger, info)
         self.updateList("addTokensPreSniff", count)
         return True, count, "addTokensPreSniff"
 
@@ -126,12 +129,13 @@ class CryptoSQL:
             try:
                 cursor = self.db.cursor()
 
-                insQuery = "insert into tokens_post_sniff (token_uuid) values (%s)"                
-                cursor.execute(insQuery, (token['uuid'],))
+                insQuery = "insert into tokens_post_sniff (token_uuid) values (\""+token["uuid"]+"\")" 
+                cursor.execute(insQuery)
                 self.db.commit()
                 cursor.close()
             except: 
                 info = sys.exc_info()
+                cglobals.getException(self.logger, info)
         self.updateList("addTokensPostSniff", count)
         return True, count, "addTokensPostSniff"
 
@@ -143,8 +147,8 @@ class CryptoSQL:
             try:
                 cursor = self.db.cursor()
 
-                insQuery = "insert into tokens_pre_sniff (token_uuid) values (%s)"                
-                cursor.execute(insQuery,  (token['uuid'],))
+                insQuery = "insert into tokens_pre_sniff (token_uuid) values (\""+token["uuid"]+"\")"                
+                cursor.execute(insQuery)
                 self.db.commit()
                 cursor.close()
             except Exception as ex: 
@@ -165,6 +169,7 @@ class CryptoSQL:
                 cursor.close()
             except Exception as ex: 
                 info = sys.exc_info()
+                cglobals.getException(self.logger, info)
         self.updateList("addTokensFailSniff", count)
         return True, count, "addTokensLPStatus"
 
@@ -181,6 +186,7 @@ class CryptoSQL:
                 cursor.close()
             except Exception as ex: 
                 info = sys.exc_info()
+                cglobals.getException(self.logger, info)
         self.updateList("addTokensLPLocked", count)
         return True, count, "addTokensLPLocked"
 
@@ -198,6 +204,7 @@ class CryptoSQL:
                 cursor.close()
             except Exception as ex: 
                 info = sys.exc_info()
+                cglobals.getException(self.logger, info)
         self.updateList("addTokensLpTopHolders", count)
         return True, count, "addTokensLpTopHolders"
 
@@ -215,6 +222,7 @@ class CryptoSQL:
                 cursor.close()
             except Exception as ex: 
                 info = sys.exc_info()
+                cglobals.getException(self.logger, info)
         self.updateList("addSimilarToken", count)
         return True, count, "addSimilarToken"
 
@@ -237,4 +245,5 @@ class CryptoSQL:
             return True
         except Exception as ex: 
             info = sys.exc_info()
+            cglobals.getException(self.logger, info)
         return False

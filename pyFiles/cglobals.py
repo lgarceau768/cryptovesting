@@ -14,11 +14,11 @@ headers = {
 }
 
 proxies = {
-    # 'http': "http://luke:YjVhZmRhMWMwYWU5YTY4YzZkNzRhMDEz@192.168.1.140:3128",
-    # 'https': "https://luke:YjVhZmRhMWMwYWU5YTY4YzZkNzRhMDEz@192.168.1.140:3128",
+     'http': "http://192.168.0.116:3128",
+     'https': "https://192.168.0.116:3128",
 }
 
-def getExeception(logger, info):    
+def getException(logger, info):    
     exc_type, exc_value, exc_traceback = info
     logger.log("*** print_tb:", level="SEVERE")
     traceback.print_tb(exc_traceback, limit=1, file=open(logger.fileName, 'a'))

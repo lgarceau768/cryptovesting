@@ -78,3 +78,6 @@ refactor the scraping too loop through proxies
   -H "Cookie: _ga=GA1.1.619271479.1623880502; _ga_J17WPTD7PL=GS1.1.1623880502.1.1.1623881917.0" ^
   --compressed ^
   --insecure`
+
+# Known Issues  
+- need to use a headless browser because the chrome controller does not work without a vnc session producing a vdesktop

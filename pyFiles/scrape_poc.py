@@ -25,7 +25,7 @@ def getFomo():
     # going to run into an issue here with amount of requests
     global fomoUrl, proxies
     #page = requests.get(fomoUrl, headers=cglobals.headers, verify=False, proxies=cglobals.proxies)
-    page = requests.get(fomoUrl, headers=cglobals.headers, verify=False)
+    page = requests.get(fomoUrl, headers=cglobals.headers, verify=False, proxies=cglobals.proxies)
     try: 
         soup = BeautifulSoup(page.text, 'html.parser')
         # bs4Rep OBJ / will probably not use the request, mainly just the soup

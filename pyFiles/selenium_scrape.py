@@ -15,11 +15,11 @@ fomoUrl = "https://tokenfomo.io/"
 snifferUrl = "https://tokensniffer.com/"
 path = '/home/fullsend/cryptovesting/pyFiles/chromedriver_ubuntu/chromedriver'
 
-# prox = Proxy()
-# prox.proxy_type = ProxyType.MANUAL
-# prox.http_proxy = "192.168.1.140:3128"
-# capabilities = webdriver.DesiredCapabilities.CHROME
-# prox.add_to_capabilities(capabilities)
+prox = Proxy()
+prox.proxy_type = ProxyType.MANUAL
+prox.http_proxy = "192.168.0.116:3128"
+capabilities = webdriver.DesiredCapabilities.CHROME
+prox.add_to_capabilities(capabilities)
 logger = None
 
 # init() function
@@ -34,9 +34,9 @@ def init():
     options.add_argument('--no-sandbox')
     # change the path to your driver here
     # init the headless browser (CHANGE PATH HERE)
-    # driver = webdriver.Chrome("/usr/bin/chromedriver", desired_capabilities=capabilities)
     driver = webdriver.Chrome("/home/fullsend/cryptovesting/pyFiles/chromedriver_ubuntu/chromedriver",
-        chrome_options=options
+        chrome_options=options,
+        desired_capabilities=capabilities
     )
     
     return driver
@@ -134,5 +134,5 @@ def lpCheck(driver, token):
         # now grab the table with the holders info
     except:
         info = sys.exc_info()
-        cglobals.getExeception(logger, info)
+        cglobals.getException(logger, info)
 

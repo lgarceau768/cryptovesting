@@ -67,7 +67,7 @@ if sequence == 'sfrs':
     
     logger.log("Parse the Fomo HTML", level="STARTUP")
 
-    # test coin that gets added
+    #test coin that gets added
     # tokens.append({
     #     "uuid": uuid.uuid4().hex, 
     #     "token_name": "TEST COIN",
@@ -88,12 +88,12 @@ if sequence == 'sfrs':
                 result = database.addTokens([tokens[i]])
                 if(contract_check['success']):
                     result = database.addTokensPostSniff([tokens[i]])
-                    
                     # add similar tokens
                     resultSim = database.addSimilarTokens(contract_check['sim_tokens'])
 
                 else:
                     # add result to simtokens
+                    print("adding pre sniff")
                     result = database.addTokensPreSniff([tokens[i]])
             except:
                 pass
@@ -137,7 +137,7 @@ elif sequence == 'sc':
         logger.log("SQL Result: "+str(result), level="COMPLETE")
     except Exception:
         info = sys.exc_info()
-        cglobals.getExeception(logger, info)
+        cglobals.getException(logger, info)
     finally:
         logger.log(database.tokens_added_dict, level="COMPLETE")
 elif sequence == 'lp':
@@ -209,6 +209,6 @@ elif sequence == 'lp':
         database.addTokensLpTopHolders(tokensForDb)
     except Exception:
         info = sys.exc_info()
-        cglobals.getExeception(logger, info)
+        cglobals.getException(logger, info)
     finally:
         logger.log(database.tokens_added_dict, level="COMPLETE")
