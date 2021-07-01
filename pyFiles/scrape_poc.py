@@ -153,9 +153,9 @@ def parseFomo(rawHtml):
     for row in table.findAll('tr')[1:rowCount]:
         # need to check if it is on ethIcon or not        
         try:
-            ethIcon = row.find('img', attrs={"src": ["eth-logo.png"]})
+            bscIcon = row.find('img', attrs={"src": ["bsc-logo.png"]})
 
-            if ethIcon != None:
+            if bscIcon == None:
                 raise Exception 
 
             col = row.findAll('td')
