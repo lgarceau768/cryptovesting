@@ -9,16 +9,20 @@ INFURA_TESTNET = "https://mainnet.infura.io/v3/9386f65aacd343d5bb29b35188dff702"
 
 # Constants and Objects
 web3 = Web3(Web3.HTTPProvider(BSCSCAN_SEED_LINK))
-WBNB_ADDRESS = "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c"
-BNB_ADDRESS = "0x0000000000000000000000000000000000000000"
-PANCAKE_ROUTER = '0x10ED43C718714eb63d5aA57B78B54704E256024E'
-PANCAKE_FACTORY = '0xcA143Ce32Fe78f1f7019d7d551a6402fC5350c73'
+WBNB_ADDRESS = web3.toChecksumAddress("0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c")
+BNB_ADDRESS = web3.toChecksumAddress("0x0000000000000000000000000000000000000000")
+# PANCAKE_ROUTER = '0x10ED43C718714eb63d5aA57B78B54704E256024E'
+PANCAKE_ROUTER = web3.toChecksumAddress('0x9Ac64Cc6e4415144C455BD8E4837Fea55603e5c3')
+PANCAKE_FACTORY = web3.toChecksumAddress('0xcA143Ce32Fe78f1f7019d7d551a6402fC5350c73')
 abiFile = open("sniper_bot\py\pancakeswap_router_abi.json")
 PANCAKE_FACTORY_ABI = json.load(abiFile)["abi"]
 abiFile.close()
 contract = web3.eth.contract(address=PANCAKE_FACTORY, abi=PANCAKE_FACTORY_ABI)
 PRIVATE_KEY = "6212aa6e4d2609a815d85f8afa7bc56264ffe337755ee2699caa2ebc2f6792d1"
-my_account = web3.eth.account.privateKeyToAccount('0x' + PRIVATE_KEY)
+PRIVATE_KEY_CRYPTO = "6bc903e72066ad849c06c4e28e34294934f216d71eb3c93b9135290c0c02a62d"
+# my_account = web3.eth.account.privateKeyToAccount('0x' + PRIVATE_KEY)
+my_account = web3.eth.account.privateKeyToAccount('0x' + PRIVATE_KEY_CRYPTO)
+web3.eth.defaultAccount = my_account
 
 # Buy constants
 MIN_AMOUNT_RATIO = 0.25
@@ -50,15 +54,24 @@ def sendBNB(buyToken, amount):
     token_path = [WBNB_ADDRESS, buyToken]
     min_amount = 0x0005;
     address = web3.toChecksumAddress(my_account._address)
+    balance = web3.eth.getBalance(address)
+    count = web3.eth.getTransactionCount(address);
 
+    print("Balance: " + str(balance))
+    
     txn = contract.functions.swapExactTokensForTokens(
-        amount, min_amount, token_path, address, (int(time.time()) + 1000) ) 
-    txn.buildTransaction({
-        'chainId': 56, 
-        'gas': 100000,
-        'gasPrice': web3.toWei('10', 'gwei'),
+        amount, 
+        min_amount, 
+        token_path, 
+        address, 
+        (int(time.time()) + 1000)).buildTransaction({
+            "from": address,
+            "gasPrice":web3.toWei('1', 'gwei'),
+            "gas": 70000,
+            "nonce": web3.toHex(count)
     })
-    print(txn)
+    signed_tx = web3.eth.account.signTransaction(txn, private_key=PRIVATE_KEY_CRYPTO)
+    web3.eth.sendRawTransaction(signed_tx.rawTransaction)
 
 
 def watchLiquidity():
