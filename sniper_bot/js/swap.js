@@ -30,7 +30,7 @@ const BSC_TESTNET_FORK = Common.forCustomChain(
 )
 const WBNBAddress = '0xae13d989daC2f0dEbFf460aC112a837C89BAa7cd'; // WBNB token address
 const pancakeSwapRouterAddress = '0x9Ac64Cc6e4415144C455BD8E4837Fea55603e5c3';
-const routerAbi = JSON.parse(fs.readFileSync('pancakeswap_router_abi.json', 'utf-8'));
+const routerAbi = JSON.parse(fs.readFileSync('sniper_bot/js/pancakeswap_router_abi.json', 'utf-8'));
 const GAS_AMOUNT = 1500000
 
 // INFO Functions
@@ -133,11 +133,12 @@ var targetAccount = web3.eth.accounts.privateKeyToAccount(my_pk)
 // INFO Porgram Start
 async function run() {
     await _bal()    
-    var amountToBuyWithDecimal = 0.02 // need to multiply by 100000
+    var happyDadToke = "0x924f5d80b38af3cb88897c5210a58c307cc7376b"
+    var amountToBuyWithDecimal = 0.003 // need to multiply by 100000
     var originalAmountToBuyWith = (amountToBuyWithDecimal * 100000).toString() + Math.random().toString().slice(2,7);
     var bnbAmount = web3.utils.toWei(originalAmountToBuyWith, 'gwei');
     console.log(`Buying ONLYONE for ${originalAmountToBuyWith} BNB from pancakeswap for address ${targetAccount.address}`);
-    buyTokenWithBNB(targetAccount, bnbAmount, tokenAddress)
+    buyTokenWithBNB(targetAccount, bnbAmount, happyDadToke)
 }
 
 run()

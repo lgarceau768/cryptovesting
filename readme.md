@@ -29,16 +29,6 @@ Folder contianing exports of the raw html of the specific html elements we are p
 - [demoVideos](/demoVideos)  
 Contains demo videos when a milestone is reached  
 
-
-# Noticed Blockers  
-- going to need to use a headless browser for scraping from tokenfomo  
-due to the fact that there (protection) from scraping is not populating 
-the entire html table with all the coins from the past 24 hours until  
-the user clicks 
-- with a headless browser and driver (Chromium with Python Selenium)  
-we are able to programmitically click the button and then retrieve  
-the information  
-
 # Info  
 This is how the process essentially works.  
 1. A controller chrome instance is opened (must change path in [selenium_scrape](/pyFiles/selenium_scrape.py))   
@@ -54,17 +44,8 @@ This is how the process essentially works.
 10. If they pass each check then they are added to the corresponding table in the database  
 
 # Todo  
-fix the database insert double check  
-refactor the scraping too loop through proxies  
-
-# Proxy Setup: Ubuntu 20.06  
-- Running a virtual machine on VM Workstation 16 with Ubuntu 20.06  
-- using squid to setup multiple proxies with a secure login
-- pwd: YjVhZmRhMWMwYWU5YTY4YzZkNzRhMDEz  
-- [proxy setup](https://elixirnode.com/help/how-to-set-up-multiple-proxy-servers-on-ubuntu-20-04-vps/)]  
-- working proxy on port 3128 / 8080 ip 192.168.1.140 (local)  
-
-# TODO
+- fix the database insert double check  
+- refactor the scraping too loop through proxies   
 - need to rotate ip to get past the bscscan request limit  
 - fix coins being added to the token_fail_sniff table with description of why  
 - bscheck.eu uses an api for checking contract, should be pretty simple to mimic  
@@ -77,7 +58,10 @@ refactor the scraping too loop through proxies
   -H "Accept-Language: en-US,en;q=0.9" ^
   -H "Cookie: _ga=GA1.1.619271479.1623880502; _ga_J17WPTD7PL=GS1.1.1623880502.1.1.1623881917.0" ^
   --compressed ^
-  --insecure`
-
-# Known Issues  
-- need to use a headless browser because the chrome controller does not work without a vnc session producing a vdesktop
+  --insecure`  
+# Proxy Setup: Ubuntu 20.06  
+- Running a virtual machine on VM Workstation 16 with Ubuntu 20.06  
+- using squid to setup multiple proxies with a secure login
+- pwd: YjVhZmRhMWMwYWU5YTY4YzZkNzRhMDEz  
+- [proxy setup](https://elixirnode.com/help/how-to-set-up-multiple-proxy-servers-on-ubuntu-20-04-vps/)]  
+- working proxy on port 3128 / 8080 ip 192.168.1.140 (local)  

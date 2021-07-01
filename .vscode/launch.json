@@ -5,6 +5,15 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "Buy Token",
+      "program": "${workspaceFolder}/sniper_bot/js/swap.js",
+      "request": "launch",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "type": "pwa-node"
+    },
+    {
       "name": "Liquidity Watcher",
       "type": "python",
       "request": "launch",
@@ -12,14 +21,7 @@
       "args": ["-t", "0x8320b40a0b7176a7fbac3d405451229579ddebd3"],
       "console": "integratedTerminal"
     },
-    {
-      "name": "Buy Token Test",
-      "type": "python",
-      "request": "launch",
-      "program": "Z:\\Repos\\cryptovesting\\sniper_bot\\py\\liquidity_watcher.py",
-      "args": ["-b", "0x8320b40a0b7176a7fbac3d405451229579ddebd3"],
-      "console": "integratedTerminal"
-    },
+    
   {"name":"Python: Current File","type":"python","request":"launch","program":"${file}","console":"integratedTerminal"},
     {
       "name": "Liquidity Pool Check",
