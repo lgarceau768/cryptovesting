@@ -62,6 +62,5 @@ This is how the process essentially works.
 # Proxy Setup: Ubuntu 20.06  
 - Running a virtual machine on VM Workstation 16 with Ubuntu 20.06  
 - using squid to setup multiple proxies with a secure login
-- pwd: YjVhZmRhMWMwYWU5YTY4YzZkNzRhMDEz  
 - [proxy setup](https://elixirnode.com/help/how-to-set-up-multiple-proxy-servers-on-ubuntu-20-04-vps/)]  
-- working proxy on port 3128 / 8080 ip 192.168.1.140 (local)  
+- working proxy on port 3128 / 8080 ip 192.168.0.116 (local)  
