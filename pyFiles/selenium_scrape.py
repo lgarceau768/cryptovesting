@@ -31,7 +31,12 @@ def init():
     global path, capabilities
     
     options = Options()
-    options.add_argument('--no-sandbox')
+    options.add_argument("--disable-dev-shm-usage")
+    options.add_argument("start-maximized")
+    options.add_argument("--no-sandbox")
+    options.add_argument("--headless")
+    options.add_argument("user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36")
+   # options.binary_location = "/usr/bin/google-chrome-stable"
     # change the path to your driver here
     # init the headless browser (CHANGE PATH HERE)
     driver = webdriver.Chrome("/home/fullsend/cryptovesting/pyFiles/chromedriver_ubuntu/chromedriver",
@@ -50,6 +55,7 @@ def setLogger(log):
 def expand_list(driver):    
     # click the expand button
     driver.get(fomoUrl)
+    driver.implicitly_wait(10)
     expand_button = driver.find_element_by_xpath("//*[contains(text(),'Show all')]")
     expand_button.click()
 

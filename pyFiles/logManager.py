@@ -66,7 +66,7 @@ class LogManager:
             with open(self.fileName, 'a+') as file:
                 calledBy = inspect.stack()[1].function
                 fileName = inspect.stack()[1].filename
-                line = "[%s | %s | %s | %s]: %s\n" % (level, self.getTime(), fileName, calledBy, self.remove_emoji(str(data)))
+                line = "[%s | %s | %s | %s]: %s\n" % (level, self.getTime(), fileName.replace("/home/fullsend/cryptovesting/pyFiles/", ""), calledBy, self.remove_emoji(str(data)))
                 file.write(line)
                 file.close()
         except:
