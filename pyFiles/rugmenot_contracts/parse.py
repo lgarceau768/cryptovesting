@@ -67,7 +67,12 @@ def parseMessage(rawMessage):
     if "!rmn" in innerText:
         # address
         coinContractAddress = innerText.split("!rmn")[1]
-        coinContractAddress = coinContractAddress.replace("\n", "").replace(" ", "")
+        coinContractAddress = coinContractAddress.replace("\n", "").replace(" ", "").replace("(edited)", "")
+        if len(coinContractAddress) != len("0x3B8674F9CD879E0f557B3df9700D9B639a2eeA17"):
+            if "https://" in coinContractAddress:
+                coinContractAddress = coinContractAddress[len("https://bscscan.com/address/"):len("0x3B8674F9CD879E0f557B3df9700D9B639a2eeA17")]
+            else:
+                return
         lastCoinIndex = len(addresses) - 1
         addresses.append(coinContractAddress)
     elif "RugMeNot scan results for" in innerText:
