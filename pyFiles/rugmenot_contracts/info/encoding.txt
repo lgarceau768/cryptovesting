@@ -1,0 +1,15 @@
+structures
+word
+-> (words, operators, function)
+-> will interpret the contract line in question accordingly
+--->  words (simple noncase biased search)
+--->  functions ([inputWord].[function]())
+--->  operators [inputWord] [operator]
+--->  exist tag (T/F) if exist add score
+--->  score - score to be added if exists
+-----> file will be used as a defintion check against contracts
+
+idea of functionality
+go through line of contract and search for keys of the WOI (words_of_interest.json)
+and then if they find a word, create the other search strings to search the line
+the word is on. then add to the total score and report if something is triggered

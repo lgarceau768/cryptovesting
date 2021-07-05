@@ -1,0 +1,69 @@
+{
+    "mint": {
+        "exists": true,
+        "score": 0.3
+    },
+    "totalSupply": {
+        "operators": {
+            "=": 0.3
+        },
+        "functions": {
+            "add": 0.7,
+            "sub": 0.1
+        },
+        "exists": false
+    },
+    "lock": {
+        "words": {
+            "transaction": 0.5,
+            "time": 0.5
+        },
+        "exists": false
+    },
+    "owner": {
+        "words": {
+            "from": 0.1,
+            "0x": 0.3,
+            "receiver": 0.9
+        },
+        "exists": true,
+        "score": 0.1
+    },
+    "newun": {
+        "exists": true,
+        "score": 1
+    },
+    "undefined": {
+        "exists": true,
+        "score": 1
+    },
+    "0x": {
+        "exists": true,
+        "score": 0.3
+    },
+    "setStakingAddress": {
+        "words" : {
+            "0x": 0.3
+        }
+    },
+    "address": {
+        "exists": true,
+        "score": 0.3
+    },
+    "account": {
+        "exists": true,
+        "score": 0.3
+    },
+    "liquidity": {
+        "exists": true,
+        "score": 0.5
+    },
+    "block": {
+        "exists": true,
+        "score": 0.5
+    },
+    "liquify": {
+        "exists": true,
+        "score": 0.3
+    }
+}
