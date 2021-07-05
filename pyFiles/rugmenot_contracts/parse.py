@@ -18,7 +18,7 @@ text_of_interest = {} # dictionairy with point values
 lastCoinIndex = 0
 
 # INFO setup logger
-_l = logManager.LogManager("", dir="pyFiles\\rugmenot_contracts\\logs")
+_l = logManager.LogManager("rugMeNotParse", dir="pyFiles\\rugmenot_contracts\\logs")
 
 # INFO json pretty print function
 def _jStr(jObj):

@@ -3,8 +3,6 @@ word
 -> (words, operators, function)
 -> will interpret the contract line in question accordingly
 --->  words (simple noncase biased search)
---->  functions ([inputWord].[function]())
---->  operators [inputWord] [operator]
 --->  exist tag (T/F) if exist add score
 --->  score - score to be added if exists
 -----> file will be used as a defintion check against contracts

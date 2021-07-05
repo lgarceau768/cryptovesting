@@ -1,0 +1,23 @@
+{
+    "poi": {
+        "function balanceOf(address tokenOwner) public view returns (uint balance);": 0.1,
+        "function allowance(address tokenOwner, address spender) public view returns (uint remaining);": 0.1,
+        "function transfer(address to, uint tokens) public returns (bool success);": 0.3,
+        "function approve(address spender, uint tokens) public returns (bool success);": 0.3,
+        "function transferFrom(address from, address to, uint tokens) public returns (bool success);": 0.3,
+        "event Transfer(address indexed from, address indexed to, uint tokens);": 0.3,
+        "event Approval(address indexed tokenOwner, address indexed spender, uint tokens);": 0.1,
+        "mapping(address => uint) balances;": 0.3,
+        "mapping(address => mapping(address => uint)) allowed;": 0.3,
+        "emit Transfer(address(0), msg.sender, _totalSupply);": 0.3,
+        "return _totalSupply  - balances[address(0)];": 0.3,
+        "function balanceOf(address tokenOwner) public view returns (uint balance) {": 0.1,
+        "return balances[tokenOwner];": 0.1,
+        "function allowance(address tokenOwner, address spender) public view returns (uint remaining) {": 0.1,
+        "return allowed[tokenOwner][spender];": 0.1,
+        "function approve(address spender, uint tokens) public returns (bool success) {": 0.3,
+        "function transfer(address to, uint tokens) public returns (bool success) {": 0.3,
+        "function transferFrom(address from, address to, uint tokens) public returns (bool success) {": 0.3
+    },
+    "totalScore": 3.9
+}

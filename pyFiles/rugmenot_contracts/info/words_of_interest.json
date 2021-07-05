@@ -4,10 +4,8 @@
         "score": 0.3
     },
     "totalSupply": {
-        "operators": {
-            "=": 0.3
-        },
-        "functions": {
+        "words": {
+            "=": 0.3,
             "add": 0.7,
             "sub": 0.1
         },
@@ -40,11 +38,6 @@
     "0x": {
         "exists": true,
         "score": 0.3
-    },
-    "setStakingAddress": {
-        "words" : {
-            "0x": 0.3
-        }
     },
     "address": {
         "exists": true,
