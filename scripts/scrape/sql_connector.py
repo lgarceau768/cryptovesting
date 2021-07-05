@@ -1,6 +1,6 @@
 import mysql.connector
 import traceback, sys, base64, uuid
-from pyFiles import cglobals
+from scripts import cglobals
 
 class CryptoSQL:
 

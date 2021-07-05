@@ -18,7 +18,7 @@ text_of_interest = {} # dictionairy with point values
 lastCoinIndex = 0
 
 # INFO setup logger
-_l = logManager.LogManager("rugMeNotParse", dir="pyFiles\\rugmenot_contracts\\logs")
+_l = logManager.LogManager("rugMeNotParse", dir="scripts\\rugmenot_contracts\\logs")
 
 # INFO json pretty print function
 def _jStr(jObj):
@@ -28,10 +28,10 @@ def _jStr(jObj):
 def _o():
     global text_of_interest, addresses, count
     print("Added "+str(count)+" points of interest")
-    with open("pyFiles\\rugmenot_contracts\\output\\addresses_checked.json", "w") as f:
+    with open("scripts\\rugmenot_contracts\\out\\addresses_checked.json", "w") as f:
         json.dump(addresses, f, indent=4)
         f.close()
-    with open("pyFiles\\rugmenot_contracts\\output\\texts_of_interest.json", "w") as f:
+    with open("scripts\\rugmenot_contracts\\out\\texts_of_interest.json", "w") as f:
         json.dump(text_of_interest, f, indent=4)
         f.close()
     _l.log("Parsed "+str(count)+" points of interest", level="COMPLETE")
@@ -106,16 +106,17 @@ def parseMessage(rawMessage):
                 }
                 _l.log("Added a new response for "+address+" with a poi of "+poi, level="SUCCESS")
 
+# INFO making the module callable
+def _():
+    # INFO main program
+    with open("scripts\\rugmenot_contracts\\html\\raw_html.html", 'r', encoding="utf-8") as file:
+        webpage = file.read()
+        file.close()
 
-# INFO main program
-with open("pyFiles\\rugmenot_contracts\\raw_html.html", 'r', encoding="utf-8") as file:
-    webpage = file.read()
-    file.close()
+    soup = BeautifulSoup(webpage)
 
-soup = BeautifulSoup(webpage)
-
-for node in soup.find_all('div', attrs={'class': ['chatlog__message-group']}):
-    rawInnerText = node.text
-    parseMessage(rawInnerText)
-_a()
-_o()
+    for node in soup.find_all('div', attrs={'class': ['chatlog__message-group']}):
+        rawInnerText = node.text
+        parseMessage(rawInnerText)
+    _a()
+    _o()

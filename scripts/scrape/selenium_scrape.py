@@ -3,8 +3,8 @@ import selenium
 from selenium.webdriver.common.proxy import Proxy, ProxyType
 from selenium.webdriver.chrome.options import Options
 from bs4 import BeautifulSoup
-from pyFiles import selenium_scrape
-from pyFiles import cglobals
+from scripts import selenium_scrape
+from scripts import cglobals
 import sys
 import requests
 
@@ -13,7 +13,7 @@ import requests
 # urls for fomo and sniffer
 fomoUrl = "https://tokenfomo.io/"
 snifferUrl = "https://tokensniffer.com/"
-path = '/home/fullsend/cryptovesting/pyFiles/chromedriver_ubuntu/chromedriver'
+path = '/home/fullsend/cryptovesting/scripts/scrape/chromedriver_ubuntu/chromedriver'
 
 prox = Proxy()
 prox.proxy_type = ProxyType.MANUAL
@@ -39,7 +39,7 @@ def init():
    # options.binary_location = "/usr/bin/google-chrome-stable"
     # change the path to your driver here
     # init the headless browser (CHANGE PATH HERE)
-    driver = webdriver.Chrome("/home/fullsend/cryptovesting/pyFiles/chromedriver_ubuntu/chromedriver",
+    driver = webdriver.Chrome("/home/fullsend/cryptovesting/scripts/chromedriver_ubuntu/chromedriver",
         chrome_options=options,
         desired_capabilities=capabilities
     )

@@ -1,7 +1,7 @@
 # Author Luke Garceau
 # Date 5/24/21
 from bs4 import BeautifulSoup
-from pyFiles import cglobals
+from scripts import cglobals
 from datetime import datetime
 import requests, uuid, traceback, sys
 

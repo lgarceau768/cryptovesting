@@ -5,10 +5,18 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "Pull Contract",
+      "type": "python",
+      "request": "launch",
+      "program": "Z:\\Repos\\cryptovesting\\scripts\\rugmenot_contracts\\pull_contract.py",
+      "args": ["0x5afef8567414f29f0f927a0f2787b188624c10e2"],
+      "console": "integratedTerminal"
+    },
+    {
       "name": "Contract Check",
       "type": "python",
       "request": "launch",
-      "program": "Z:\\Repos\\cryptovesting\\pyFiles\\rugmenot_contracts\\contract_check.py",
+      "program": "Z:\\Repos\\cryptovesting\\scripts\\rugmenot_contracts\\contract_check.py",
       "args": ["safematic.sol"],
       "console": "integratedTerminal"
     },
@@ -30,8 +38,6 @@
       "args": ["-t", "0xf1e35511e8a599bca9385f6e0a02bdd203290bda"],
       "console": "integratedTerminal"
     },
-    
-  {"name":"Python: Current File","type":"python","request":"launch","program":"${file}","console":"integratedTerminal"},
     {
       "name": "Liquidity Pool Check",
       "type": "python",

@@ -2,8 +2,8 @@ import json, sys, logManager
 from datetime import datetime
 
 # INFO constants
-WOI_OBJ = json.load(open("pyFiles\\rugmenot_contracts\info\words_of_interest.json"))
-SOLPATH = "pyFiles\\rugmenot_contracts\\contracts\\sol files\\"
+WOI_OBJ = json.load(open("scripts\\rugmenot_contracts\info\words_of_interest.json"))
+SOLPATH = "scripts\\rugmenot_contracts\\contracts\\sol files\\"
 SOLPATH = SOLPATH + sys.argv[1]
 WOI_KEYS = []
 comment = False
@@ -13,7 +13,7 @@ words = {}
 # INFO variables
 path = SOLPATH.split("\\")
 path = path[len(path) - 1].replace(".sol", "_")
-_l = logManager.LogManager(path + "_contractCheck", dir="pyFiles\\rugmenot_contracts\logs")
+_l = logManager.LogManager(path + "_contractCheck", dir="scripts\\rugmenot_contracts\logs")
 for key in WOI_OBJ:
     WOI_KEYS.append(key)
     words[key] = 0
@@ -63,41 +63,43 @@ def _o(poi, path):
     global words
     name = path + "_contract_check_result.json"
     name2 = path + "_contract_check_words.json"
-    with open("pyFiles\\rugmenot_contracts\\contracts\\json\\"+name, 'w') as f:
+    with open("scripts\\rugmenot_contracts\\contracts\\json\\"+name, 'w') as f:
         json.dump(poi, f, indent=4)
         f.close()
-    with open("pyFiles\\rugmenot_contracts\\contracts\\json\\"+name2, 'w') as f:
+    with open("scripts\\rugmenot_contracts\\contracts\\json\\"+name2, 'w') as f:
         json.dump(words, f, indent=4)
         f.close()
 
-# INFO main script
-contract_txt = getContract(SOLPATH)
-contract_score = 0.0
-points_of_interest = { "poi": {}}
-for line in contract_txt:    
-    baseLine = line.replace("\n", "").strip()
-    if baseLine.startswith("//"): continue
-    if baseLine.startswith("*/"): 
-        comment = False
-        continue    
-    if baseLine.startswith("*"): continue
-    if baseLine.startswith("/**"): 
-        comment = True
-        continue
-    if comment: continue
-    checkLine = line
-    check = checkForWord(checkLine)
-    if(check != False):
-        _l.log("Word found: "+check, level="POINT")
-        score = scoreLine(checkLine, check)
-        if score != 0.0:            
-            words[check] += 1 
-            _l.log("Scored "+str(score), level="SCORE")
-            points_of_interest["poi"][baseLine] = score        
-totalScore = 0.0
-for key in points_of_interest["poi"]:
-    totalScore += points_of_interest["poi"][key]
-points_of_interest["totalScore"] = float(str(totalScore)[:3])
-_l.log("Total Score: "+str(totalScore)[:3], level="DONE")
-_o(points_of_interest, path)
+# INFO making the module callable
+def _():
+    # INFO main script
+    contract_txt = getContract(SOLPATH)
+    contract_score = 0.0
+    points_of_interest = { "poi": {}}
+    for line in contract_txt:    
+        baseLine = line.replace("\n", "").strip()
+        if baseLine.startswith("//"): continue
+        if baseLine.startswith("*/"): 
+            comment = False
+            continue    
+        if baseLine.startswith("*"): continue
+        if baseLine.startswith("/**"): 
+            comment = True
+            continue
+        if comment: continue
+        checkLine = line
+        check = checkForWord(checkLine)
+        if(check != False):
+            _l.log("Word found: "+check, level="POINT")
+            score = scoreLine(checkLine, check)
+            if score != 0.0:            
+                words[check] += 1 
+                _l.log("Scored "+str(score), level="SCORE")
+                points_of_interest["poi"][baseLine] = score        
+    totalScore = 0.0
+    for key in points_of_interest["poi"]:
+        totalScore += points_of_interest["poi"][key]
+    points_of_interest["totalScore"] = float(str(totalScore)[:3])
+    _l.log("Total Score: "+str(totalScore)[:3], level="DONE")
+    _o(points_of_interest, path)
 

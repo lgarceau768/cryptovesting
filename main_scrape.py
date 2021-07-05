@@ -1,11 +1,11 @@
 # Author Luke Garceau
 # Date 5/24/21
 import json
-from pyFiles import scrape_poc
-from pyFiles import selenium_scrape
-from pyFiles import sql_connector
-from pyFiles import logManager
-from pyFiles import cglobals
+from scripts.scrape import scrape_poc
+from scripts.scrape import selenium_scrape
+from scripts.scrape import sql_connector
+from scripts.scrape import logManager
+from scripts.scrape import cglobals
 import time, uuid, sys, traceback
 
 # TODO
