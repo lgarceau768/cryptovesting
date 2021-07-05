@@ -1,0 +1,13 @@
+{
+    "poi": {
+        "return (codehash != accountHash && codehash != 0x0);": 0.3,
+        "function lock(uint256 time) public virtual onlyOwner {": 0.5,
+        "_lockTime = now + time;": 0.5,
+        "function mint(address to) external returns (uint liquidity);": 0.3,
+        "IUniswapV2Router02 _uniswapV2Router = IUniswapV2Router02(0x05fF2B0DB69458A0750badebc4f9e13aDd608C7F);": 0.3,
+        "block.timestamp": 0.5,
+        "require(owner != address(0), \"ERC20: approve from the zero address\");": 0.1,
+        "if(from != owner() && to != owner())": 0.1
+    },
+    "totalScore": 2.6
+}

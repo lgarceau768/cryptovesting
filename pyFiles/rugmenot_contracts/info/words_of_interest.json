@@ -24,7 +24,7 @@
             "0x": 0.3,
             "receiver": 0.9
         },
-        "exists": true,
+        "exists": false,
         "score": 0.1
     },
     "newun": {
@@ -39,16 +39,19 @@
         "exists": true,
         "score": 0.3
     },
-    "address": {
+    "_address": {
         "exists": true,
         "score": 0.3
     },
-    "account": {
+    "_account": {
         "exists": true,
         "score": 0.3
     },
     "liquidity": {
-        "exists": true,
+        "words": {
+            "lock": 0.1
+        },
+        "exists": false,
         "score": 0.5
     },
     "block": {

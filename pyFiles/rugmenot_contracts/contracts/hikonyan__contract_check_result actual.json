@@ -1,0 +1,10 @@
+{
+    "poi": {
+        "function mint" : 0.7,
+        "function geUnlockTime" : 0.5,
+        "function lock" : 0.5,
+        "function unlock" : 0.5,
+        "from != owner()" : 0.1
+    },
+    "totalScore": 2.4
+}

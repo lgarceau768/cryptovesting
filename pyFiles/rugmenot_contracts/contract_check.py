@@ -3,8 +3,11 @@ from datetime import datetime
 
 # INFO constants
 WOI_OBJ = json.load(open("pyFiles\\rugmenot_contracts\info\words_of_interest.json"))
-SOLPATH = "pyFiles\\rugmenot_contracts\contracts\mag.sol"
+SOLPATH = "pyFiles\\rugmenot_contracts\\contracts\\"
+SOLPATH = SOLPATH + sys.argv[1]
 WOI_KEYS = []
+comment = False
+words = {}
 
 
 # INFO variables
@@ -13,6 +16,7 @@ path = path[len(path) - 1].replace(".sol", "_")
 _l = logManager.LogManager(path + "_contractCheck", dir="pyFiles\\rugmenot_contracts\logs")
 for key in WOI_OBJ:
     WOI_KEYS.append(key)
+    words[key] = 0
 
 # INFO function to read contract
 def getContract(path):
@@ -21,7 +25,24 @@ def getContract(path):
 
 # INFO function to get against keys
 def checkForWord(line):
-    global WOI_OBJ
+    global WOI_OBJ, comment
+    line = line.strip()
+    
+    # INFO variables
+    if line.startswith("bytes32"): return False
+    if line.startswith("uint"): return False
+    if line.startswith("uint256"): return False
+
+    # INFO comments
+    if "//" in line: return False
+    if "*/" in line: comment = False
+    if comment: return False
+    if not comment:
+        if "/**" in line:
+            comment = True
+            return False
+
+    # INFO WOI
     for key in WOI_KEYS:
         if key in line:
             return key
@@ -34,18 +55,23 @@ def scoreLine(line, word):
         return wordInfo["score"]
     else:
         wordsToCheck = wordInfo["words"]
-        score = 0.1
-        for word in wordsToCheck:
-            if word in line:
-                if wordInfo[word]["score"] >= score:
-                    score = wordInfo[word]["score"]
+        score = 0.0
+        for word_additional in wordsToCheck:
+            if word_additional in line:
+                if wordsToCheck[word_additional] >= score:
+                    score = wordsToCheck[word_additional]
         return score
 
 # INFO output file
 def _o(poi, path): 
+    global words
     name = path + "_contract_check_result.json"
+    name2 = path + "_contract_check_words.json"
     with open("pyFiles\\rugmenot_contracts\\contracts\\"+name, 'w') as f:
         json.dump(poi, f, indent=4)
+        f.close()
+    with open("pyFiles\\rugmenot_contracts\\contracts\\"+name2, 'w') as f:
+        json.dump(words, f, indent=4)
         f.close()
 
 # INFO main script
@@ -54,13 +80,15 @@ contract_score = 0.0
 points_of_interest = { "poi": {}}
 for line in contract_txt:
     baseLine = line.replace("\n", "").strip()
-    checkLine = line.lower()
+    checkLine = line
     check = checkForWord(checkLine)
     if(check != False):
         _l.log("Word found: "+check, level="POINT")
         score = scoreLine(checkLine, check)
-        _l.log("Scored "+str(score), level="SCORE")
-        points_of_interest["poi"][baseLine] = score        
+        if score != 0.0:            
+            words[check] += 1 
+            _l.log("Scored "+str(score), level="SCORE")
+            points_of_interest["poi"][baseLine] = score        
 totalScore = 0.0
 for key in points_of_interest["poi"]:
     totalScore += points_of_interest["poi"][key]

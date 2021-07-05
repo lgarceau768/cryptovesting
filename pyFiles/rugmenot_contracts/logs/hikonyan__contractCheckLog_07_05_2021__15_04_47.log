@@ -1,0 +1,72 @@
+Scrape started on: 15:04:47
+[POINT | Mon Jul  5 15:04:47 2021 | Z:\Repos\cryptovesting\pyFiles\rugmenot_contracts\contract_check.py | <module>]: Word found: totalSupply
+[POINT | Mon Jul  5 15:04:47 2021 | Z:\Repos\cryptovesting\pyFiles\rugmenot_contracts\contract_check.py | <module>]: Word found: owner
+[POINT | Mon Jul  5 15:04:47 2021 | Z:\Repos\cryptovesting\pyFiles\rugmenot_contracts\contract_check.py | <module>]: Word found: owner
+[POINT | Mon Jul  5 15:04:47 2021 | Z:\Repos\cryptovesting\pyFiles\rugmenot_contracts\contract_check.py | <module>]: Word found: 0x
+[SCORE | Mon Jul  5 15:04:47 2021 | Z:\Repos\cryptovesting\pyFiles\rugmenot_contracts\contract_check.py | <module>]: Scored 0.3
+[POINT | Mon Jul  5 15:04:47 2021 | Z:\Repos\cryptovesting\pyFiles\rugmenot_contracts\contract_check.py | <module>]: Word found: 0x
+[SCORE | Mon Jul  5 15:04:47 2021 | Z:\Repos\cryptovesting\pyFiles\rugmenot_contracts\contract_check.py | <module>]: Scored 0.3
+[POINT | Mon Jul  5 15:04:47 2021 | Z:\Repos\cryptovesting\pyFiles\rugmenot_contracts\contract_check.py | <module>]: Word found: owner
+[POINT | Mon Jul  5 15:04:47 2021 | Z:\Repos\cryptovesting\pyFiles\rugmenot_contracts\contract_check.py | <module>]: Word found: owner
+[POINT | Mon Jul  5 15:04:47 2021 | Z:\Repos\cryptovesting\pyFiles\rugmenot_contracts\contract_check.py | <module>]: Word found: owner
+[POINT | Mon Jul  5 15:04:47 2021 | Z:\Repos\cryptovesting\pyFiles\rugmenot_contracts\contract_check.py | <module>]: Word found: owner
+[POINT | Mon Jul  5 15:04:47 2021 | Z:\Repos\cryptovesting\pyFiles\rugmenot_contracts\contract_check.py | <module>]: Word found: owner
+[POINT | Mon Jul  5 15:04:47 2021 | Z:\Repos\cryptovesting\pyFiles\rugmenot_contracts\contract_check.py | <module>]: Word found: owner
+[POINT | Mon Jul  5 15:04:47 2021 | Z:\Repos\cryptovesting\pyFiles\rugmenot_contracts\contract_check.py | <module>]: Word found: owner
+[POINT | Mon Jul  5 15:04:47 2021 | Z:\Repos\cryptovesting\pyFiles\rugmenot_contracts\contract_check.py | <module>]: Word found: owner
+[SCORE | Mon Jul  5 15:04:47 2021 | Z:\Repos\cryptovesting\pyFiles\rugmenot_contracts\contract_check.py | <module>]: Scored 0.1
+[POINT | Mon Jul  5 15:04:47 2021 | Z:\Repos\cryptovesting\pyFiles\rugmenot_contracts\contract_check.py | <module>]: Word found: owner
+[POINT | Mon Jul  5 15:04:47 2021 | Z:\Repos\cryptovesting\pyFiles\rugmenot_contracts\contract_check.py | <module>]: Word found: owner
+[POINT | Mon Jul  5 15:04:47 2021 | Z:\Repos\cryptovesting\pyFiles\rugmenot_contracts\contract_check.py | <module>]: Word found: lock
+[POINT | Mon Jul  5 15:04:47 2021 | Z:\Repos\cryptovesting\pyFiles\rugmenot_contracts\contract_check.py | <module>]: Word found: lock
+[POINT | Mon Jul  5 15:04:47 2021 | Z:\Repos\cryptovesting\pyFiles\rugmenot_contracts\contract_check.py | <module>]: Word found: lock
+[SCORE | Mon Jul  5 15:04:47 2021 | Z:\Repos\cryptovesting\pyFiles\rugmenot_contracts\contract_check.py | <module>]: Scored 0.5
+[POINT | Mon Jul  5 15:04:47 2021 | Z:\Repos\cryptovesting\pyFiles\rugmenot_contracts\contract_check.py | <module>]: Word found: owner
+[POINT | Mon Jul  5 15:04:47 2021 | Z:\Repos\cryptovesting\pyFiles\rugmenot_contracts\contract_check.py | <module>]: Word found: owner
+[POINT | Mon Jul  5 15:04:47 2021 | Z:\Repos\cryptovesting\pyFiles\rugmenot_contracts\contract_check.py | <module>]: Word found: lock
+[SCORE | Mon Jul  5 15:04:47 2021 | Z:\Repos\cryptovesting\pyFiles\rugmenot_contracts\contract_check.py | <module>]: Scored 0.5
+[POINT | Mon Jul  5 15:04:47 2021 | Z:\Repos\cryptovesting\pyFiles\rugmenot_contracts\contract_check.py | <module>]: Word found: owner
+[POINT | Mon Jul  5 15:04:47 2021 | Z:\Repos\cryptovesting\pyFiles\rugmenot_contracts\contract_check.py | <module>]: Word found: lock
+[POINT | Mon Jul  5 15:04:47 2021 | Z:\Repos\cryptovesting\pyFiles\rugmenot_contracts\contract_check.py | <module>]: Word found: lock
+[POINT | Mon Jul  5 15:04:47 2021 | Z:\Repos\cryptovesting\pyFiles\rugmenot_contracts\contract_check.py | <module>]: Word found: lock
+[POINT | Mon Jul  5 15:04:47 2021 | Z:\Repos\cryptovesting\pyFiles\rugmenot_contracts\contract_check.py | <module>]: Word found: owner
+[POINT | Mon Jul  5 15:04:47 2021 | Z:\Repos\cryptovesting\pyFiles\rugmenot_contracts\contract_check.py | <module>]: Word found: owner
+[POINT | Mon Jul  5 15:04:47 2021 | Z:\Repos\cryptovesting\pyFiles\rugmenot_contracts\contract_check.py | <module>]: Word found: owner
+[POINT | Mon Jul  5 15:04:47 2021 | Z:\Repos\cryptovesting\pyFiles\rugmenot_contracts\contract_check.py | <module>]: Word found: totalSupply
+[POINT | Mon Jul  5 15:04:47 2021 | Z:\Repos\cryptovesting\pyFiles\rugmenot_contracts\contract_check.py | <module>]: Word found: owner
+[POINT | Mon Jul  5 15:04:47 2021 | Z:\Repos\cryptovesting\pyFiles\rugmenot_contracts\contract_check.py | <module>]: Word found: owner
+[POINT | Mon Jul  5 15:04:47 2021 | Z:\Repos\cryptovesting\pyFiles\rugmenot_contracts\contract_check.py | <module>]: Word found: owner
+[POINT | Mon Jul  5 15:04:47 2021 | Z:\Repos\cryptovesting\pyFiles\rugmenot_contracts\contract_check.py | <module>]: Word found: owner
+[POINT | Mon Jul  5 15:04:47 2021 | Z:\Repos\cryptovesting\pyFiles\rugmenot_contracts\contract_check.py | <module>]: Word found: lock
+[POINT | Mon Jul  5 15:04:47 2021 | Z:\Repos\cryptovesting\pyFiles\rugmenot_contracts\contract_check.py | <module>]: Word found: mint
+[SCORE | Mon Jul  5 15:04:47 2021 | Z:\Repos\cryptovesting\pyFiles\rugmenot_contracts\contract_check.py | <module>]: Scored 0.3
+[POINT | Mon Jul  5 15:04:47 2021 | Z:\Repos\cryptovesting\pyFiles\rugmenot_contracts\contract_check.py | <module>]: Word found: liquidity
+[POINT | Mon Jul  5 15:04:47 2021 | Z:\Repos\cryptovesting\pyFiles\rugmenot_contracts\contract_check.py | <module>]: Word found: liquidity
+[POINT | Mon Jul  5 15:04:47 2021 | Z:\Repos\cryptovesting\pyFiles\rugmenot_contracts\contract_check.py | <module>]: Word found: lock
+[POINT | Mon Jul  5 15:04:47 2021 | Z:\Repos\cryptovesting\pyFiles\rugmenot_contracts\contract_check.py | <module>]: Word found: 0x
+[SCORE | Mon Jul  5 15:04:47 2021 | Z:\Repos\cryptovesting\pyFiles\rugmenot_contracts\contract_check.py | <module>]: Scored 0.3
+[POINT | Mon Jul  5 15:04:47 2021 | Z:\Repos\cryptovesting\pyFiles\rugmenot_contracts\contract_check.py | <module>]: Word found: owner
+[POINT | Mon Jul  5 15:04:47 2021 | Z:\Repos\cryptovesting\pyFiles\rugmenot_contracts\contract_check.py | <module>]: Word found: totalSupply
+[POINT | Mon Jul  5 15:04:47 2021 | Z:\Repos\cryptovesting\pyFiles\rugmenot_contracts\contract_check.py | <module>]: Word found: owner
+[POINT | Mon Jul  5 15:04:47 2021 | Z:\Repos\cryptovesting\pyFiles\rugmenot_contracts\contract_check.py | <module>]: Word found: owner
+[POINT | Mon Jul  5 15:04:47 2021 | Z:\Repos\cryptovesting\pyFiles\rugmenot_contracts\contract_check.py | <module>]: Word found: liquidity
+[POINT | Mon Jul  5 15:04:47 2021 | Z:\Repos\cryptovesting\pyFiles\rugmenot_contracts\contract_check.py | <module>]: Word found: liquidity
+[POINT | Mon Jul  5 15:04:47 2021 | Z:\Repos\cryptovesting\pyFiles\rugmenot_contracts\contract_check.py | <module>]: Word found: liquidity
+[POINT | Mon Jul  5 15:04:47 2021 | Z:\Repos\cryptovesting\pyFiles\rugmenot_contracts\contract_check.py | <module>]: Word found: liquidity
+[POINT | Mon Jul  5 15:04:47 2021 | Z:\Repos\cryptovesting\pyFiles\rugmenot_contracts\contract_check.py | <module>]: Word found: liquidity
+[POINT | Mon Jul  5 15:04:48 2021 | Z:\Repos\cryptovesting\pyFiles\rugmenot_contracts\contract_check.py | <module>]: Word found: liquidity
+[POINT | Mon Jul  5 15:04:48 2021 | Z:\Repos\cryptovesting\pyFiles\rugmenot_contracts\contract_check.py | <module>]: Word found: liquidity
+[POINT | Mon Jul  5 15:04:48 2021 | Z:\Repos\cryptovesting\pyFiles\rugmenot_contracts\contract_check.py | <module>]: Word found: lock
+[SCORE | Mon Jul  5 15:04:48 2021 | Z:\Repos\cryptovesting\pyFiles\rugmenot_contracts\contract_check.py | <module>]: Scored 0.5
+[POINT | Mon Jul  5 15:04:48 2021 | Z:\Repos\cryptovesting\pyFiles\rugmenot_contracts\contract_check.py | <module>]: Word found: owner
+[POINT | Mon Jul  5 15:04:48 2021 | Z:\Repos\cryptovesting\pyFiles\rugmenot_contracts\contract_check.py | <module>]: Word found: owner
+[SCORE | Mon Jul  5 15:04:48 2021 | Z:\Repos\cryptovesting\pyFiles\rugmenot_contracts\contract_check.py | <module>]: Scored 0.1
+[POINT | Mon Jul  5 15:04:48 2021 | Z:\Repos\cryptovesting\pyFiles\rugmenot_contracts\contract_check.py | <module>]: Word found: owner
+[POINT | Mon Jul  5 15:04:48 2021 | Z:\Repos\cryptovesting\pyFiles\rugmenot_contracts\contract_check.py | <module>]: Word found: owner
+[POINT | Mon Jul  5 15:04:48 2021 | Z:\Repos\cryptovesting\pyFiles\rugmenot_contracts\contract_check.py | <module>]: Word found: owner
+[POINT | Mon Jul  5 15:04:48 2021 | Z:\Repos\cryptovesting\pyFiles\rugmenot_contracts\contract_check.py | <module>]: Word found: lock
+[SCORE | Mon Jul  5 15:04:48 2021 | Z:\Repos\cryptovesting\pyFiles\rugmenot_contracts\contract_check.py | <module>]: Scored 0.5
+[POINT | Mon Jul  5 15:04:48 2021 | Z:\Repos\cryptovesting\pyFiles\rugmenot_contracts\contract_check.py | <module>]: Word found: owner
+[SCORE | Mon Jul  5 15:04:48 2021 | Z:\Repos\cryptovesting\pyFiles\rugmenot_contracts\contract_check.py | <module>]: Scored 0.1
+[POINT | Mon Jul  5 15:04:48 2021 | Z:\Repos\cryptovesting\pyFiles\rugmenot_contracts\contract_check.py | <module>]: Word found: lock
+[DONE | Mon Jul  5 15:04:48 2021 | Z:\Repos\cryptovesting\pyFiles\rugmenot_contracts\contract_check.py | <module>]: Total Score: 3.0
