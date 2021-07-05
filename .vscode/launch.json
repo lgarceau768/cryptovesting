@@ -5,12 +5,13 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Buy Token",
+      "name": "Swap Token",
       "program": "${workspaceFolder}/sniper_bot/js/swap.js",
       "request": "launch",
       "skipFiles": [
         "<node_internals>/**"
       ],
+      "args": ["0xf1e35511e8a599bca9385f6e0a02bdd203290bda"],
       "type": "pwa-node"
     },
     {
@@ -18,7 +19,7 @@
       "type": "python",
       "request": "launch",
       "program": "Z:\\Repos\\cryptovesting\\sniper_bot\\py\\liquidity_watcher.py",
-      "args": ["-t", "0x8320b40a0b7176a7fbac3d405451229579ddebd3"],
+      "args": ["-t", "0xf1e35511e8a599bca9385f6e0a02bdd203290bda"],
       "console": "integratedTerminal"
     },
     

@@ -33,10 +33,18 @@ const pancakeSwapRouterAddress = '0x9Ac64Cc6e4415144C455BD8E4837Fea55603e5c3';
 const routerAbi = JSON.parse(fs.readFileSync('sniper_bot/js/pancakeswap_router_abi.json', 'utf-8'));
 const GAS_AMOUNT = 1500000
 
+// INFO Variables
+// INFO different accounts
+const my_pk = "6212aa6e4d2609a815d85f8afa7bc56264ffe337755ee2699caa2ebc2f6792d1"
+const mnemonic = "plunge shove witness distance twist illness above other use alter shield echo"
+// const cryptovesting_account = generateAddressesFromSeed(mnemonic, 1)[0]
+//var targetAccount = web3.eth.accounts.privateKeyToAccount(cryptovesting_account.privateKey)
+var targetAccount = web3.eth.accounts.privateKeyToAccount(my_pk)
+
 // INFO Functions
 // get account balance
-const _bal = async () => {
-    let balance = await web3.eth.getBalance(cryptovesting_account.address)
+const _bal = async (account) => {
+    let balance = await web3.eth.getBalance(account.address)
     console.log(`Current Account balance ${balance}`)
 }
 
@@ -107,6 +115,38 @@ const buyTokenWithBNB = async (targetAccount, amount, tokenAddress) => {
         .on('receipt', console.log);
 }
 
+// watch liquduity funciton
+const watchLiquidity = (token, amountToBuyWithDecimal) => {
+    var contract = new web3.eth.Contract(routerAbi, pancakeSwapRouterAddress, {from: targetAccount.address});
+    contract.events.PairCreated({
+        filter: {
+            token0: WBNBAddress,
+            token1: token
+        }
+    }).on('data', async function (event){
+        console.log("Event: "+event)
+    })
+
+    return
+    // old
+    let pairFilter = contract.events.PairCreated.createFilter(fromBlock="latest");
+    try {
+        pairFilter.getNewEntries.forEach(PairCreated => {
+            let jsonEventValue = JSON.parse(web3.utils.toJSON(PairCreated))
+            console.log(_jstr(jsonEventValue))
+            if(jsonEventValue["args"]["token0"] == WBNBAddress &&
+                jsonEventValue["args"]["token1"] == token) {
+                    // INFO set buy variables here                              
+                    var originalAmountToBuyWith = (amountToBuyWithDecimal * 100000).toString() + Math.random().toString().slice(2,7);                  
+                    var bnbAmount = web3.utils.toWei(originalAmountToBuyWith, 'gwei');
+                    buyTokenWithBNB(targetAccount, bnbAmount, token)
+                }
+        });
+    } catch (err) {
+        console.log("HandleEvent Exception: "+err)
+    }
+}
+
 // function to create address from mnemonic
 const generateAddressesFromSeed = (mnemonic, count) => {  
     let seed = bip39.mnemonicToSeedSync(mnemonic);
@@ -123,22 +163,15 @@ const generateAddressesFromSeed = (mnemonic, count) => {
     return accounts;
   }
 
-// INFO different accounts
-const my_pk = "6212aa6e4d2609a815d85f8afa7bc56264ffe337755ee2699caa2ebc2f6792d1"
-const mnemonic = "plunge shove witness distance twist illness above other use alter shield echo"
-const cryptovesting_account = generateAddressesFromSeed(mnemonic, 1)[0]
-//var targetAccount = web3.eth.accounts.privateKeyToAccount(cryptovesting_account.privateKey)
-var targetAccount = web3.eth.accounts.privateKeyToAccount(my_pk)
 
 // INFO Porgram Start
 async function run() {
-    await _bal()    
-    var happyDadToke = "0x924f5d80b38af3cb88897c5210a58c307cc7376b"
+    await _bal(targetAccount)    
+    var token = process.argv[2].toString()
     var amountToBuyWithDecimal = 0.003 // need to multiply by 100000
-    var originalAmountToBuyWith = (amountToBuyWithDecimal * 100000).toString() + Math.random().toString().slice(2,7);
+    var originalAmountToBuyWith = (amountToBuyWithDecimal * 100000).toString() + Math.random().toString().slice(2,7);                  
     var bnbAmount = web3.utils.toWei(originalAmountToBuyWith, 'gwei');
-    console.log(`Buying ONLYONE for ${originalAmountToBuyWith} BNB from pancakeswap for address ${targetAccount.address}`);
-    buyTokenWithBNB(targetAccount, bnbAmount, happyDadToke)
+    buyTokenWithBNB(targetAccount, bnbAmount, token)
 }
 
 run()
