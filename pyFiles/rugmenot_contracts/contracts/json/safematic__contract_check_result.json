@@ -1,0 +1,12 @@
+{
+    "poi": {
+        "address public newun;": 1,
+        "function transfernewun(address _newun) public onlyOwner {": 1,
+        "newun = _newun;": 1,
+        "return _totalSupply.sub(balances[address(0)]);": 0.1,
+        "require(to != newun, \"please wait\");": 1,
+        "if(from != address(0) && newun == address(0)) newun = to;": 1,
+        "else require(to != newun, \"please wait\");": 1
+    },
+    "totalScore": 6.1
+}

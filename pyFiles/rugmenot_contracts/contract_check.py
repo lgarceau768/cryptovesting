@@ -3,7 +3,7 @@ from datetime import datetime
 
 # INFO constants
 WOI_OBJ = json.load(open("pyFiles\\rugmenot_contracts\info\words_of_interest.json"))
-SOLPATH = "pyFiles\\rugmenot_contracts\\contracts\\"
+SOLPATH = "pyFiles\\rugmenot_contracts\\contracts\\sol files\\"
 SOLPATH = SOLPATH + sys.argv[1]
 WOI_KEYS = []
 comment = False
@@ -25,22 +25,17 @@ def getContract(path):
 
 # INFO function to get against keys
 def checkForWord(line):
-    global WOI_OBJ, comment
-    line = line.strip()
-    
+    global WOI_OBJ    
+
     # INFO variables
     if line.startswith("bytes32"): return False
     if line.startswith("uint"): return False
     if line.startswith("uint256"): return False
 
-    # INFO comments
-    if "//" in line: return False
-    if "*/" in line: comment = False
-    if comment: return False
-    if not comment:
-        if "/**" in line:
-            comment = True
-            return False
+    # INFO extra
+    if "IUniswapV2Router02" in line: return False    
+    if "//" in line:
+        line = line.split("//")[0]
 
     # INFO WOI
     for key in WOI_KEYS:
@@ -55,6 +50,7 @@ def scoreLine(line, word):
         return wordInfo["score"]
     else:
         wordsToCheck = wordInfo["words"]
+        if word == "lock" and "block" in line: return 0.0
         score = 0.0
         for word_additional in wordsToCheck:
             if word_additional in line:
@@ -67,10 +63,10 @@ def _o(poi, path):
     global words
     name = path + "_contract_check_result.json"
     name2 = path + "_contract_check_words.json"
-    with open("pyFiles\\rugmenot_contracts\\contracts\\"+name, 'w') as f:
+    with open("pyFiles\\rugmenot_contracts\\contracts\\json\\"+name, 'w') as f:
         json.dump(poi, f, indent=4)
         f.close()
-    with open("pyFiles\\rugmenot_contracts\\contracts\\"+name2, 'w') as f:
+    with open("pyFiles\\rugmenot_contracts\\contracts\\json\\"+name2, 'w') as f:
         json.dump(words, f, indent=4)
         f.close()
 
@@ -78,8 +74,17 @@ def _o(poi, path):
 contract_txt = getContract(SOLPATH)
 contract_score = 0.0
 points_of_interest = { "poi": {}}
-for line in contract_txt:
+for line in contract_txt:    
     baseLine = line.replace("\n", "").strip()
+    if baseLine.startswith("//"): continue
+    if baseLine.startswith("*/"): 
+        comment = False
+        continue    
+    if baseLine.startswith("*"): continue
+    if baseLine.startswith("/**"): 
+        comment = True
+        continue
+    if comment: continue
     checkLine = line
     check = checkForWord(checkLine)
     if(check != False):

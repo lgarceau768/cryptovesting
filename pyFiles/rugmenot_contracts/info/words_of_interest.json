@@ -5,22 +5,20 @@
     },
     "totalSupply": {
         "words": {
-            "=": 0.3,
-            "add": 0.7,
-            "sub": 0.1
+            ".add": 0.7,
+            ".sub": 0.1
         },
         "exists": false
     },
     "lock": {
         "words": {
-            "transaction": 0.5,
-            "time": 0.5
+            "function": 0.5
         },
         "exists": false
     },
     "owner": {
         "words": {
-            "from": 0.1,
+            "from !=": 0.1,
             "0x": 0.3,
             "receiver": 0.9
         },
@@ -34,14 +32,6 @@
     "undefined": {
         "exists": true,
         "score": 1
-    },
-    "0x": {
-        "exists": true,
-        "score": 0.3
-    },
-    "_address": {
-        "exists": true,
-        "score": 0.3
     },
     "_account": {
         "exists": true,

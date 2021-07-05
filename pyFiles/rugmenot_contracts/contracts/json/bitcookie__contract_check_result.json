@@ -1,0 +1,13 @@
+{
+    "poi": {
+        "function setTransactionlockTime(uint256 transactiontime) public onlyOwner() {": 0.5,
+        "function getTransactionlockTime() public view returns (uint256){": 0.5,
+        "function setIsExcludedFromTransactionlock(address excludeAddress) public onlyOwner(){": 0.5,
+        "function getIsExcludedFromTransactionlock(address excludeAddress) public view returns (bool){": 0.5,
+        "function geUnlockTime() public view returns (uint256) {": 0.5,
+        "function lock(uint256 time) public virtual onlyOwner {": 0.5,
+        "function unlock() public virtual {": 0.5,
+        "function swapAndLiquify(uint256 contractTokenBalance) private lockTheSwap {": 0.5
+    },
+    "totalScore": 4.0
+}

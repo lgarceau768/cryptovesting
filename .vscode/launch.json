@@ -9,7 +9,7 @@
       "type": "python",
       "request": "launch",
       "program": "Z:\\Repos\\cryptovesting\\pyFiles\\rugmenot_contracts\\contract_check.py",
-      "args": ["hikonyan.sol"],
+      "args": ["safematic.sol"],
       "console": "integratedTerminal"
     },
     {
