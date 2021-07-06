@@ -1,9 +1,9 @@
-import json, sys, logManager, cglobals
+import json, sys, logManager, cglobals, os
 from datetime import datetime
 
 # INFO constants
-WOI_OBJ = json.load(open("scripts\\rugmenot_contracts\info\words_of_interest.json"))
-SOLPATH = "scripts\\rugmenot_contracts\\contracts\\sol files\\"
+WOI_OBJ = json.load(open(os.path.join("scripts", "rugmenot_contracts", "info", "words_of_interest.json")))
+SOLPATH = os.path.join("scripts", "rugmenot_contracts", "contracts", "sol files")
 SOLPATH = SOLPATH + sys.argv[1]
 WOI_KEYS = []
 comment = False
@@ -13,7 +13,7 @@ words = {}
 # INFO variables
 path = SOLPATH.split("\\")
 path = path[len(path) - 1].replace(".sol", "_")
-_l = logManager.LogManager(path + "_contractCheck", dir="scripts\\rugmenot_contracts\logs")
+_l = logManager.LogManager(path + "_contractCheck", dir=os.path.join("scripts", "rugmenot_contracts", "logs"))
 for key in WOI_OBJ:
     WOI_KEYS.append(key)
     words[key] = 0
@@ -63,10 +63,10 @@ def _o(poi, path):
     global words
     name = path + "_contract_check_result.json"
     name2 = path + "_contract_check_words.json"
-    with open("scripts\\rugmenot_contracts\\contracts\\json\\"+name, 'w') as f:
+    with open(os.path.join("scripts", "rugmenot_contracts", "json", name), 'w') as f:
         json.dump(poi, f, indent=4)
         f.close()
-    with open("scripts\\rugmenot_contracts\\contracts\\json\\"+name2, 'w') as f:
+    with open(os.path.join("scripts", "rugmenot_contracts", "json", name2), 'w') as f:
         json.dump(words, f, indent=4)
         f.close()
     return name
