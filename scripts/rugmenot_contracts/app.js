@@ -118,7 +118,8 @@ const program = async () => {
         name: "Token Added",
         expression: '*.tokens',
         statement: "INSERT",
-        onEvent: async (event) => {
+        onEvent: (event) => {
+            _l("Token Seen")
             let token = event["affectedRows"][0]["after"]
             getContractSource(token["contract_hash"]).then( (contractDict) => {
                 let filePath = outputContractSource(token["token_name"], contractDict)
