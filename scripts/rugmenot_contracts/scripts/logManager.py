@@ -4,9 +4,10 @@ from datetime import datetime
 
 class LogManager:
 
-    def __init__(self, basename, dir="logs"):
-        self.fileName = os.path.join(os.getcwd(), dir, basename +  "Log_" + datetime.now().strftime("%m_%d_%Y__%H_%M_%S") + ".log")
-        print(self.fileName)
+    def __init__(self, basename, dirName="logs"):
+        start = os.path.join("home", "fullsend", "cryptovesting", dirName)
+        print(start)
+        self.fileName = os.path.join(start, basename +  "Log_" + datetime.now().strftime("%m_%d_%Y__%H_%M_%S") + ".log")
         with open(self.fileName, "w") as file:
             file.write("Scrape started on: "+datetime.now().strftime("%X") + "\n")
             file.close()
