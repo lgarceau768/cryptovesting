@@ -156,10 +156,4 @@ const program = async () => {
 }
 
 program()
-while (true) {
-    console.log(token_events.length)
-    if (token_events.length != 0){
-        
-    }
-}
 
