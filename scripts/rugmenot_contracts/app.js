@@ -1,4 +1,4 @@
-const { EVM } = require('evm')
+const { EVM, events } = require('evm')
 const fs = require('fs')
 const { spawn } = require('child_process')
 const mysql = require('mysql')
@@ -18,6 +18,7 @@ const sqlData = {
 }
 const connection = mysql.createConnection(sqlData)
 connection.connect()
+const events = []
 
 // INFO function to output the contract source to a file before calling the python script
 function outputContractSource(tokenName, contractDict){
@@ -136,12 +137,7 @@ const program = async () => {
         expression: 'cryptovesting.tokens',
         statement: "INSERT",
         onEvent: (event) => {
-            let token = event["affectedRows"][0]["after"]
-            getContractSource(token["contract_hash"]).then( (contractDict) => {
-                let filePath = outputContractSource(token["token_name"], contractDict)
-                runContractCheck(filePath, token)
-            })
-            
+            events.push(event)            
         }
     })
 
@@ -149,3 +145,19 @@ const program = async () => {
 }
 
 program()
+while (true) {
+    if (events.length != 0){
+        try {
+            let event = events.pop()
+            let token = event["affectedRows"][0]["after"]
+            getContractSource(token["contract_hash"]).then( (contractDict) => {
+                let filePath = outputContractSource(token["token_name"], contractDict)
+                runContractCheck(filePath, token)
+            })
+
+        } catch (err) {
+            console.log("Script Error")
+        }
+    }
+}
+
