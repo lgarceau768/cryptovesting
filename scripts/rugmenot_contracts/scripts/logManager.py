@@ -8,7 +8,7 @@ class LogManager:
         start = os.path.join("home", "fullsend", "cryptovesting", dirName)
     
         self.fileName = os.path.join(start, basename +  "Log_" + datetime.now().strftime("%m_%d_%Y__%H_%M_%S") + ".log")
-        print(self.fileName)
+        print(os.path.join(start, basename +  "Log_" + datetime.now().strftime("%m_%d_%Y__%H_%M_%S") + ".log"))
         with open(self.fileName, "w") as file:
             file.write("Scrape started on: "+datetime.now().strftime("%X") + "\n")
             file.close()
