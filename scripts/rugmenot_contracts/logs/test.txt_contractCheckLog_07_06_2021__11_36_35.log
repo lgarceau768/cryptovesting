@@ -1,0 +1,5 @@
+Scrape started on: 11:36:35
+[POINT | Tue Jul  6 11:36:35 2021 | scripts\rugmenot_contracts\scripts\contract_check.py | <module>]: Word found: mint
+[SCORE | Tue Jul  6 11:36:35 2021 | scripts\rugmenot_contracts\scripts\contract_check.py | <module>]: Scored 0.3
+[POINT | Tue Jul  6 11:36:35 2021 | scripts\rugmenot_contracts\scripts\contract_check.py | <module>]: Word found: totalSupply
+[DONE | Tue Jul  6 11:36:35 2021 | scripts\rugmenot_contracts\scripts\contract_check.py | <module>]: Total Score: 0.3

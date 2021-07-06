@@ -6,6 +6,7 @@ const path = require('path')
 const Web3 = require('web3')
 const mysqlEvents = require('@rodrigogs/mysql-events')
 const web3 = new Web3(new Web3.providers.HttpProvider("https://bsc-dataseed.binance.org/"))
+const SCORE_TO_PASS = 4
 
 // INFO setup mysql
 const sqlData = {
@@ -36,6 +37,26 @@ function outputContractSource(tokenName, contractDict){
     return tokenName+".txt"
 }
 
+// INFO function to add token to respective database
+async function addToken(token, score, jsonPath) {
+    let insertRow = {
+        uuid: token["uuid"],
+        jsonPath: jsonPath
+    }
+    // INFO default failed contract check
+    let tableToPutIn = "tokens_failed_contract_check"
+    if(score <= SCORE_TO_PASS) {
+        // INFO passed contract check send to sniffer
+        tableToPutIn = tableToPutIn.replace("failed", "passed")
+    } 
+    try {
+        let query = await connection.query("insert into "+tableToPutIn+" set ?", insertRow)
+        _l(query.sql, level="DEBUG")
+    } catch (err) {
+        _l('Error adding token: '+token, level="ERROR")
+    }
+}
+
 // INFO function to get the contract source using web3
 async function getContractSource(tokenAddress) {
     try {
@@ -47,18 +68,18 @@ async function getContractSource(tokenAddress) {
         try {
             decompiled = evm.decompile()
         } catch (err) {
-            console.log("Could not get source code of "+ tokenAddress + "due to "+err)
+            _l("Could not get source code of "+ tokenAddress + "due to "+err, level="ERROR")
         }
         return {
             functions, events, decompiled
         }
     } catch (err) {
-        console.log("Error getting "+tokenAddress+" source code")
+        _l("Error getting "+tokenAddress+" source code", level="ERROR")
     }
 }
 
 // INFO function to run the python contract check script
-function runContractCheck(filePath){
+function runContractCheck(filePath, token){
     const contractCheckProcess = spawn('python', ["scripts\\rugmenot_contracts\\scripts\\contract_check.py", filePath])
     contractCheckProcess.stdout.on('data', (data) => {
         let stringVal = data.toString().trim()
@@ -67,9 +88,19 @@ function runContractCheck(filePath){
             let resultPath = stringVal.split("Name=")[1]
             // TODO add function to add this coin to a new table which is the static coin check pass table
             let fileData = fs.readFileSync(path.join("scripts\\rugmenot_contracts\\contracts\\json", resultPath))
-            console.log("Result data: "+JSON.stringify(fileData.toString().trim(), null, 4))
+            let jsonData = JSON.parse(fileData)
+            addToken(token, jsonData["totalScore"], resultPath)
         }
     })
+}
+
+// INFO init logger
+filePath = "scripts\\rugmenot_contracts\\logs"
+fileName = path.join(filePath, "tokenListenerLog_" + new Date().toISOString() + ".txt")
+console.log("[ START "+ new Date().toISOString() + " ] Starting app.js to listen to the sql and run contract checks")
+_l = (data, level="LOG") => {
+    let line = "[ " + level + " " + new Date().toISOString() + " ] " + data;
+    console.log(line)
 }
 
 // INFO main program
@@ -81,7 +112,7 @@ const program = async () => {
         }
     })
 
-    await instance.start()
+    await instance.start() 
 
     instance.addTrigger({
         name: "Token Added",
@@ -91,7 +122,7 @@ const program = async () => {
             let token = event["affectedRows"][0]["after"]
             let contractDict = await getContractSource(token["contract_hash"])
             let filePath = outputContractSource(token["token_name"], contractDict)
-            runContractCheck(filePath)
+            runContractCheck(filePath, token)
         }
     })
 }
