@@ -39,7 +39,7 @@ def init():
    # options.binary_location = "/usr/bin/google-chrome-stable"
     # change the path to your driver here
     # init the headless browser (CHANGE PATH HERE)
-    driver = webdriver.Chrome("/home/fullsend/cryptovesting/scripts/chromedriver_ubuntu/chromedriver",
+    driver = webdriver.Chrome(path,
         chrome_options=options,
         desired_capabilities=capabilities
     )
