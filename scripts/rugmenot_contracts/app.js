@@ -129,7 +129,7 @@ const program = async () => {
 
     instance.addTrigger({
         name: "Token Added",
-        expression: '*.tokens',
+        expression: 'cryptovesting.tokens',
         statement: "INSERT",
         onEvent: (event) => {
             let token = event["affectedRows"][0]["after"]
@@ -141,6 +141,8 @@ const program = async () => {
             
         }
     })
+
+    instance.on(mysqlEvents.EVENTS.CONNECTION_ERROR, console.error);
 }
 
 program()
