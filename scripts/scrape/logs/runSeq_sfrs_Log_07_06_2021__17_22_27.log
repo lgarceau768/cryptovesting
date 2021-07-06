@@ -1,0 +1,5 @@
+Scrape started on: 17:22:27
+[STARTUP | Tue Jul  6 17:22:27 2021 | main_scrape.py | <module>]: Init Database
+[INFO | Tue Jul  6 17:22:27 2021 | main_scrape.py | <module>]: Sequence Selected: sfrs
+[STARTUP | Tue Jul  6 17:22:28 2021 | main_scrape.py | <module>]: Running Controlled Chome to get TokenFomo.io full list
+[STARTUP | Tue Jul  6 17:22:32 2021 | main_scrape.py | <module>]: Selinum Scrape Done Closing

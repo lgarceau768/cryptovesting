@@ -1,0 +1,43 @@
+Unpause()
+Transfer(address,address,uint256)
+OwnershipTransferred(address,address)
+Pause()
+Approval(address,address,uint256)
+unlock()
+transfer(address,uint256)
+lock(uint256)
+allowance(address,address)
+transferOwnership(address)
+pause()
+getOwner()
+owner()
+symbol()
+decreaseAllowance(address,uint256)
+increaseAllowance(address,uint256)
+unpause()
+mint(address,uint256)
+paused()
+balanceOf(address)
+renounceOwnership()
+name()
+approve(address,uint256)
+totalSupply()
+transferFrom(address,address,uint256)
+decimals()
+event Unpause()
+event Transfer(address indexed _arg0, address indexed _arg1, uint256 _arg2)
+event OwnershipTransferred(address indexed _arg0, address indexed _arg1)
+event Pause()
+event Approval(address indexed _arg0, address indexed _arg1, uint256 _arg2)
+
+mapping (unknown => unknown) mapping1;
+mapping (unknown => mapping (unknown => unknown)) mapping2;
+
+unknown var1;
+unknown var2;
+unknown var3;
+unknown var4;
+unknown var5;
+unknown var6;
+
+require((msg.value == 0));

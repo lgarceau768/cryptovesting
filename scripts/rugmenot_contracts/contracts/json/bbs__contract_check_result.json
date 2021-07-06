@@ -1,0 +1,13 @@
+{
+    "poi": {
+        "function mint(address to) external returns (uint liquidity);": 0.3,
+        "_totalSupply = _totalSupply.sub(50e18);": 0.1,
+        "_totalSupply = _totalSupply.sub(50e18);*/": 0.1,
+        "function _mint(address account, uint256 amount) internal virtual {": 0.3,
+        "require(account != address(0), \"ERC20: mint to the zero address\");": 0.3,
+        "_totalSupply = _totalSupply.add(amount);": 0.7,
+        "_totalSupply = _totalSupply.sub(amount);": 0.1,
+        "_mint(msg.sender, 1000000000e18);": 0.3
+    },
+    "totalScore": 2.2
+}

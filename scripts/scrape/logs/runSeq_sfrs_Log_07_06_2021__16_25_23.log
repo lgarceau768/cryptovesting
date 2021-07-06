@@ -1,0 +1,4 @@
+Scrape started on: 16:25:23
+[STARTUP | Tue Jul  6 16:25:23 2021 | main_scrape.py | <module>]: Init Database
+[INFO | Tue Jul  6 16:25:23 2021 | main_scrape.py | <module>]: Sequence Selected: sfrs
+[STARTUP | Tue Jul  6 16:25:24 2021 | main_scrape.py | <module>]: Running Controlled Chome to get TokenFomo.io full list
