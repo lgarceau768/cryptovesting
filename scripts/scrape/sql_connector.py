@@ -1,6 +1,6 @@
 import mysql.connector
 import traceback, sys, base64, uuid
-from scripts import cglobals
+from scrips.scrapeimport cglobals
 
 class CryptoSQL:
 

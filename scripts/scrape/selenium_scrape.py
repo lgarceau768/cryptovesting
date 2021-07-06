@@ -3,8 +3,8 @@ import selenium
 from selenium.webdriver.common.proxy import Proxy, ProxyType
 from selenium.webdriver.chrome.options import Options
 from bs4 import BeautifulSoup
-from scripts import selenium_scrape
-from scripts import cglobals
+from scrips.scrapeimport selenium_scrape
+from scrips.scrapeimport cglobals
 import sys
 import requests
 
