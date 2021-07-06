@@ -129,8 +129,8 @@ const program = async () => {
         statement: "INSERT",
         onEvent: (event) => {
             let token = event["affectedRows"][0]["after"]
+            _l(token["token_name"]+ " running contract check", level="INFO")
             getContractSource(token["contract_hash"]).then( (contractDict) => {
-                _l(token+ " running contract check", level="INFO")
                 let filePath = outputContractSource(token["token_name"], contractDict)
                 runContractCheck(filePath, token)
             })
