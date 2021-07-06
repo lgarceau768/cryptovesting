@@ -21,7 +21,7 @@ connection.connect()
 
 // INFO function to output the contract source to a file before calling the python script
 function outputContractSource(tokenName, contractDict){
-    let dir = "scripts\\rugmenot_contracts\\contracts\\sol files"
+    let dir = path.join("scripts", "rugmenot_contracts", "contracts", "sol files")
     let filePath = path.join(dir, tokenName+".txt")
     let fileData = ""
     for(let i = 0; i < contractDict.events.length; i++){
@@ -95,7 +95,7 @@ function runContractCheck(filePath, token){
 }
 
 // INFO init logger
-filePath = "scripts\\rugmenot_contracts\\logs"
+filePath = path.join("scripts", "rugmenot_contracts", "logs")
 fileName = path.join(filePath, "tokenListenerLog_" + new Date().toISOString() + ".txt")
 console.log("[ START "+ new Date().toISOString() + " ] Starting app.js to listen to the sql and run contract checks")
 _l = (data, level="LOG") => {
