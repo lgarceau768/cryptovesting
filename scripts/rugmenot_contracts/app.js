@@ -130,6 +130,7 @@ const program = async () => {
         onEvent: (event) => {
             let token = event["affectedRows"][0]["after"]
             getContractSource(token["contract_hash"]).then( (contractDict) => {
+                _l(token+ " running contract check", level="INFO")
                 let filePath = outputContractSource(token["token_name"], contractDict)
                 runContractCheck(filePath, token)
             })
