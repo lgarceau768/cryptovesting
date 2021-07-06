@@ -81,19 +81,19 @@ if sequence == 'sfrs':
     logger.log("Beginning Coin Loop", level="STARTUP")
     try:
         for i in range(len(tokens)):
-            contract_check = scrape_poc.getSniffer(tokens[i], tokens[i]["contract_hash"])
+            #contract_check = scrape_poc.getSniffer(tokens[i], tokens[i]["contract_hash"])
             
             # check the result of the contract check
             try:
                 result = database.addTokens([tokens[i]])
-                if(contract_check['success']):
-                    result = database.addTokensPostSniff([tokens[i]])
-                    # add similar tokens
-                    resultSim = database.addSimilarTokens(contract_check['sim_tokens'])
+                # if(contract_check['success']):
+                #     result = database.addTokensPostSniff([tokens[i]])
+                #     # add similar tokens
+                #     resultSim = database.addSimilarTokens(contract_check['sim_tokens'])
 
-                else:
-                    # add result to simtokens
-                    result = database.addTokensPreSniff([tokens[i]])
+                # else:
+                #     # add result to simtokens
+                #     result = database.addTokensPreSniff([tokens[i]])
             except:
                 pass
     except Exception:
