@@ -4,7 +4,7 @@ from datetime import datetime
 # INFO constants
 WOI_OBJ = json.load(open(os.path.join("scripts", "rugmenot_contracts", "info", "words_of_interest.json")))
 SOLPATH = os.path.join("scripts", "rugmenot_contracts", "contracts", "sol files")
-SOLPATH = SOLPATH + sys.argv[1]
+SOLPATH = os.path.join(SOLPATH ,sys.argv[1])
 WOI_KEYS = []
 comment = False
 words = {}
