@@ -75,36 +75,33 @@ def _o(poi, path):
 contract_txt = getContract(SOLPATH)
 contract_score = 0.0
 points_of_interest = { "poi": {}}
-try:
-    for line in contract_txt:  
-        baseLine = line.replace("\n", "").strip()
-        if baseLine.startswith("//"): continue
-        if baseLine.startswith("*/"): 
-            comment = False
-            continue    
-        if baseLine.startswith("*"): continue
-        if baseLine.startswith("/**"): 
-            comment = True
-            continue
-        if comment: continue
-        checkLine = line
-        check = checkForWord(checkLine)
-        if(check != False):
-            _l.log("Word found: "+check, level="POINT")
-            score = scoreLine(checkLine, check)
-            if score != 0.0:            
-                words[check] += 1 
-                _l.log("Scored "+str(score), level="SCORE")
-                points_of_interest["poi"][baseLine] = score        
-    totalScore = 0.0000
-    for key in points_of_interest["poi"]:
-        totalScore += points_of_interest["poi"][key]
-    points_of_interest["totalScore"] = float(str(totalScore)[:3])
-    _l.log("Total Score: "+str(totalScore)[:3], level="DONE")
-    name = _o(points_of_interest, path)
-    print("Name="+name)
-except:
-    info = sys.exc_info()
-    cglobals.getException(_l, info)
+for line in contract_txt:  
+    baseLine = line.replace("\n", "").strip()
+    if baseLine.startswith("//"): continue
+    if baseLine.startswith("*/"): 
+        comment = False
+        continue    
+    if baseLine.startswith("*"): continue
+    if baseLine.startswith("/**"): 
+        comment = True
+        continue
+    if comment: continue
+    checkLine = line
+    check = checkForWord(checkLine)
+    if(check != False):
+        _l.log("Word found: "+check, level="POINT")
+        score = scoreLine(checkLine, check)
+        if score != 0.0:            
+            words[check] += 1 
+            _l.log("Scored "+str(score), level="SCORE")
+            points_of_interest["poi"][baseLine] = score        
+totalScore = 0.0000
+for key in points_of_interest["poi"]:
+    totalScore += points_of_interest["poi"][key]
+points_of_interest["totalScore"] = float(str(totalScore)[:3])
+_l.log("Total Score: "+str(totalScore)[:3], level="DONE")
+name = _o(points_of_interest, path)
+print("Name="+name)
+
 
 
