@@ -137,7 +137,18 @@ const program = async () => {
         expression: 'cryptovesting.tokens',
         statement: "INSERT",
         onEvent: (event) => {
-            token_events.push(event)            
+            token_events.push(event) 
+            try {
+                let event = token_events.pop()
+                let token = event["affectedRows"][0]["after"]
+                getContractSource(token["contract_hash"]).then( (contractDict) => {
+                    let filePath = outputContractSource(token["token_name"], contractDict)
+                    runContractCheck(filePath, token)
+                })
+    
+            } catch (err) {
+                console.log("Script Error")
+            }           
         }
     })
 
@@ -148,17 +159,7 @@ program()
 while (true) {
     console.log(token_events.length)
     if (token_events.length != 0){
-        try {
-            let event = token_events.pop()
-            let token = event["affectedRows"][0]["after"]
-            getContractSource(token["contract_hash"]).then( (contractDict) => {
-                let filePath = outputContractSource(token["token_name"], contractDict)
-                runContractCheck(filePath, token)
-            })
-
-        } catch (err) {
-            console.log("Script Error")
-        }
+        
     }
 }
 
