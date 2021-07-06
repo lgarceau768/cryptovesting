@@ -20,7 +20,7 @@ for key in WOI_OBJ:
 
 # INFO function to read contract
 def getContract(path):
-    with open(path, 'r', encoding='utf-8') as f:
+    with open(path, 'r') as f:
         return f.readlines()
 
 # INFO function to get against keys
