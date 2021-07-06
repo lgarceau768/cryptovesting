@@ -5,7 +5,7 @@ from datetime import datetime
 class LogManager:
 
     def __init__(self, sequence, dir="logs"):
-        self.fileName = os.path.join(os.getcwd(), "scrape", dir, "runSeq_" + sequence + "_Log_" + datetime.now().strftime("%m_%d_%Y__%H_%M_%S") + ".log")
+        self.fileName = os.path.join(os.getcwd(), "scripts", "scrape", dir, "runSeq_" + sequence + "_Log_" + datetime.now().strftime("%m_%d_%Y__%H_%M_%S") + ".log")
         with open(self.fileName, "w") as file:
             file.write("Scrape started on: "+datetime.now().strftime("%X") + "\n")
             file.close()
