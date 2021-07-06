@@ -61,12 +61,15 @@ def scoreLine(line, word):
 # INFO output file
 def _o(poi, path): 
     global words
+    basePath = "/home/fullsend/cryptovesting/scripts/rugmenot_contracts/json/"
     name = path + "_contract_check_result.json"
     name2 = path + "_contract_check_words.json"
-    with open(os.path.join("scripts", "rugmenot_contracts", "json", name), 'w') as f:
+    path1 = basePath + name
+    path2 = basePath + name2
+    with open(path1, 'w') as f:
         json.dump(poi, f, indent=4)
         f.close()
-    with open(os.path.join("scripts", "rugmenot_contracts", "json", name2), 'w') as f:
+    with open(path2, 'w') as f:
         json.dump(words, f, indent=4)
         f.close()
     return name
