@@ -6,6 +6,7 @@ class LogManager:
 
     def __init__(self, basename, dir="logs"):
         self.fileName = os.path.join(os.getcwd(), dir, basename +  "Log_" + datetime.now().strftime("%m_%d_%Y__%H_%M_%S") + ".log")
+        print(self.fileName)
         with open(self.fileName, "w") as file:
             file.write("Scrape started on: "+datetime.now().strftime("%X") + "\n")
             file.close()
