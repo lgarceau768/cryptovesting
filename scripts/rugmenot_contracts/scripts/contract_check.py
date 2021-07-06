@@ -61,7 +61,7 @@ def scoreLine(line, word):
 # INFO output file
 def _o(poi, path): 
     global words
-    basePath = "/home/fullsend/cryptovesting/scripts/rugmenot_contracts/json/"
+    basePath = "/home/fullsend/cryptovesting/scripts/rugmenot_contracts/json"
     name = path + "_contract_check_result.json"
     name2 = path + "_contract_check_words.json"
     path1 = basePath + name
