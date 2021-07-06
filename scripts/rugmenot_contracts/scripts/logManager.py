@@ -65,7 +65,7 @@ class LogManager:
 
     def log(self, data, level="LOG"):
         with open(self.fileName, 'a+') as file:
-            line = "[%s | %s | %s | %s]: %s\n" % (level, self.getTime(), self.remove_emoji(str(data)))
+            line = "[%s %s]: %s\n" % (level, self.getTime(), self.remove_emoji(str(data)))
             file.write(line)
             file.close()
         
