@@ -120,9 +120,11 @@ const program = async () => {
         statement: "INSERT",
         onEvent: async (event) => {
             let token = event["affectedRows"][0]["after"]
-            let contractDict = await getContractSource(token["contract_hash"])
-            let filePath = outputContractSource(token["token_name"], contractDict)
-            runContractCheck(filePath, token)
+            getContractSource(token["contract_hash"]).then( (contractDict) => {
+                let filePath = outputContractSource(token["token_name"], contractDict)
+                runContractCheck(filePath, token)
+            })
+            
         }
     })
 }
