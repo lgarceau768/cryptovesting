@@ -21,20 +21,24 @@ connection.connect()
 
 // INFO function to output the contract source to a file before calling the python script
 function outputContractSource(tokenName, contractDict){
-    let dir = path.join("scripts", "rugmenot_contracts", "contracts", "sol files")
-    let filePath = path.join(dir, tokenName+".txt")
-    let fileData = ""
-    for(let i = 0; i < contractDict.events.length; i++){
-        let event = contractDict.events[i]
-        fileData += event + "\n"
-    }   
-    for(let i = 0; i < contractDict.functions.length; i++){
-        let functionStr = contractDict.functions[i]
-        fileData += functionStr + "\n"
-    }
-    fileData += contractDict.decompiled
-    fs.writeFileSync(filePath, fileData)
-    return tokenName+".txt"
+    try {
+        let dir = path.join("scripts", "rugmenot_contracts", "contracts", "sol files")
+        let filePath = path.join(dir, tokenName+".txt")
+        let fileData = ""
+        for(let i = 0; i < contractDict.events.length; i++){
+            let event = contractDict.events[i]
+            fileData += event + "\n"
+        }   
+        for(let i = 0; i < contractDict.functions.length; i++){
+            let functionStr = contractDict.functions[i]
+            fileData += functionStr + "\n"
+        }
+        fileData += contractDict.decompiled
+        fs.writeFileSync(filePath, fileData)
+        return tokenName+".txt"
+    } catch (err) {
+        _l(err, level="ERROR")
+    }    
 }
 
 // INFO function to add token to respective database
