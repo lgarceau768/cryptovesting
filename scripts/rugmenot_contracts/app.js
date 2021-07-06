@@ -18,7 +18,7 @@ const sqlData = {
 }
 const connection = mysql.createConnection(sqlData)
 connection.connect()
-const events = []
+const token_events = []
 
 // INFO function to output the contract source to a file before calling the python script
 function outputContractSource(tokenName, contractDict){
@@ -146,9 +146,9 @@ const program = async () => {
 
 program()
 while (true) {
-    if (events.length != 0){
+    if (token_events.length != 0){
         try {
-            let event = events.pop()
+            let event = token_events.pop()
             let token = event["affectedRows"][0]["after"]
             getContractSource(token["contract_hash"]).then( (contractDict) => {
                 let filePath = outputContractSource(token["token_name"], contractDict)
