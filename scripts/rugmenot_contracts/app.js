@@ -84,7 +84,7 @@ async function getContractSource(tokenAddress) {
 
 // INFO function to run the python contract check script
 function runContractCheck(filePath, token){
-    const contractCheckProcess = spawn('python', ["scripts\\rugmenot_contracts\\scripts\\contract_check.py", filePath])
+    const contractCheckProcess = spawn('python', [path.join("scripts", "rugmenot_contracts", "scripts", "contract_check.py"), filePath])
     contractCheckProcess.stdout.on('data', (data) => {
         let stringVal = data.toString().trim()
         let index = stringVal.indexOf("Name=")
