@@ -1,0 +1,19 @@
+{
+  "name": "contract_puller",
+  "version": "1.0.0",
+  "description": "will loop through the database pulling down tokens from it then it will make requests to web3 for their respective contracts and then run them through the contract check and then put them back into the database if they pass",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Luke Garceau",
+  "license": "ISC",
+  "dependencies": {
+    "@rodrigogs/mysql-events": "^0.6.0",
+    "evm": "^0.2.0",
+    "json": "^11.0.0",
+    "mysql": "^2.18.1",
+    "mysql-events": "0.0.11",
+    "web3": "^1.4.0"
+  }
+}

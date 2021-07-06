@@ -1,5 +1,8 @@
 # Byte-compiled / optimized / DLL files
-sniper_bot/js/node_modules/
+sniper_bot/js/node_modules/*
+scripts/rugmenot_contracts/node_modules/*
+*.ps1
+*.cmd
 decryption files/
 __pycache__/
 sniping/

@@ -1,4 +1,4 @@
-import json, sys, logManager
+import json, sys, logManager, cglobals
 from datetime import datetime
 
 # INFO constants
@@ -69,14 +69,14 @@ def _o(poi, path):
     with open("scripts\\rugmenot_contracts\\contracts\\json\\"+name2, 'w') as f:
         json.dump(words, f, indent=4)
         f.close()
+    return name
 
-# INFO making the module callable
-def _():
-    # INFO main script
-    contract_txt = getContract(SOLPATH)
-    contract_score = 0.0
-    points_of_interest = { "poi": {}}
-    for line in contract_txt:    
+# INFO main script
+contract_txt = getContract(SOLPATH)
+contract_score = 0.0
+points_of_interest = { "poi": {}}
+try:
+    for line in contract_txt:  
         baseLine = line.replace("\n", "").strip()
         if baseLine.startswith("//"): continue
         if baseLine.startswith("*/"): 
@@ -96,10 +96,15 @@ def _():
                 words[check] += 1 
                 _l.log("Scored "+str(score), level="SCORE")
                 points_of_interest["poi"][baseLine] = score        
-    totalScore = 0.0
+    totalScore = 0.0000
     for key in points_of_interest["poi"]:
         totalScore += points_of_interest["poi"][key]
     points_of_interest["totalScore"] = float(str(totalScore)[:3])
     _l.log("Total Score: "+str(totalScore)[:3], level="DONE")
-    _o(points_of_interest, path)
+    name = _o(points_of_interest, path)
+    print("Name="+name)
+except:
+    info = sys.exc_info()
+    cglobals.getException(_l, info)
+
 
