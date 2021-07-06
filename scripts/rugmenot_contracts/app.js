@@ -35,6 +35,7 @@ function outputContractSource(tokenName, contractDict){
         }
         fileData += contractDict.decompiled
         fs.writeFileSync(filePath, fileData)
+        _l("outputContractSource "+ filePath, level="DEBUG")
         return tokenName+".txt"
     } catch (err) {
         _l(err, level="ERROR")
@@ -55,7 +56,7 @@ async function addToken(token, score, jsonPath) {
     } 
     try {
         let query = await connection.query("insert into "+tableToPutIn+" set ?", insertRow)
-        _l(query.sql, level="DEBUG")
+        _l("addToken "+ query.sql, level="DEBUG")
     } catch (err) {
         _l('Error adding token: '+token, level="ERROR")
     }
@@ -69,6 +70,7 @@ async function getContractSource(tokenAddress) {
         let functions = evm.getFunctions()
         let events = evm.getEvents()
         let decompiled = ""
+        _l("getContractSource "+tokenAddress, level="DEBUG")
         try {
             decompiled = evm.decompile()
         } catch (err) {
@@ -77,6 +79,7 @@ async function getContractSource(tokenAddress) {
         return {
             functions, events, decompiled
         }
+        _l("getContractSource "+tokenAddress, level="DEBUG")
     } catch (err) {
         _l("Error getting "+tokenAddress+" source code", level="ERROR")
     }
@@ -85,6 +88,7 @@ async function getContractSource(tokenAddress) {
 // INFO function to run the python contract check script
 function runContractCheck(filePath, token){    
     try {
+        _l("runContractCheck "+filePath, level="DEBUG")
         const contractCheckProcess = spawn('python', [path.join("scripts", "rugmenot_contracts", "scripts", "contract_check.py"), filePath])
         contractCheckProcess.stdout.on('data', (data) => {
             let stringVal = data.toString().trim()
