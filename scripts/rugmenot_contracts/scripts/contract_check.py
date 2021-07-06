@@ -11,7 +11,7 @@ words = {}
 
 
 # INFO variables
-path = SOLPATH.split("\\sol files")
+path = SOLPATH.split("sol files")
 path = path[len(path) - 1].replace(".sol", "_")
 _l = logManager.LogManager(path + "_contractCheck", dir=os.path.join("scripts", "rugmenot_contracts", "logs"))
 for key in WOI_OBJ:
