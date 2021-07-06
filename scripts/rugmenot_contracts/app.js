@@ -137,7 +137,7 @@ const program = async () => {
         expression: 'cryptovesting.tokens',
         statement: "INSERT",
         onEvent: (event) => {
-            events.push(event)            
+            token_events.push(event)            
         }
     })
 
