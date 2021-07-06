@@ -43,7 +43,7 @@ function outputContractSource(tokenName, contractDict){
 }
 
 // INFO function to add token to respective database
-async function addToken(token, score, jsonPath) {
+function addToken(token, score, jsonPath) {
     let insertRow = {
         uuid: token["uuid"],
         json_path: jsonPath
@@ -54,12 +54,15 @@ async function addToken(token, score, jsonPath) {
         // INFO passed contract check send to sniffer
         tableToPutIn = tableToPutIn.replace("failed", "passed")
     } 
-    try {
-        let query = await connection.query("insert into "+tableToPutIn+" set ?", insertRow)
-        _l("addToken "+ query.sql, level="DEBUG")
-    } catch (err) {
-        _l('Error adding token: '+token, level="ERROR")
-    }
+    connection.query("insert into "+tableToPutIn+" set ?", insertRow, function (err, result) {
+        if(err){
+            _l(err, level="ERROR")
+        } else {
+            _l(token["token_name"]+ " added", level="SUCCESS")
+        }
+    });
+     
+    
 }
 
 // INFO function to get the contract source using web3
