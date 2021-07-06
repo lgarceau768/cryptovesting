@@ -64,20 +64,11 @@ class LogManager:
         return datetime.now().strftime("%c")
 
     def log(self, data, level="LOG"):
-        try:
-            with open(self.fileName, 'a+') as file:
-                calledBy = inspect.stack()[1].function
-                fileName = inspect.stack()[1].filename
-                line = "[%s | %s | %s | %s]: %s\n" % (level, self.getTime(), fileName.replace("/home/fullsend/cryptovesting/scripts/", ""), calledBy, self.remove_emoji(str(data)))
-                file.write(line)
-                file.close()
-        except:
-            print('logmanager fail')            
-            exc_type, exc_value, exc_traceback = sys.exc_info()
-            print("*** print_tb:")
-            traceback.print_tb(exc_traceback, limit=1, file=sys.stdout)
-            print("*** print_exception:")
-            # exc_type below is ignored on 3.5 and later
-            traceback.print_exception(exc_type, exc_value, exc_traceback,
-                                    limit=2, file=sys.stdout)
+        with open(self.fileName, 'a+') as file:
+            calledBy = inspect.stack()[1].function
+            fileName = inspect.stack()[1].filename
+            line = "[%s | %s | %s | %s]: %s\n" % (level, self.getTime(), fileName.replace("/home/fullsend/cryptovesting/scripts/", ""), calledBy, self.remove_emoji(str(data)))
+            file.write(line)
+            file.close()
+        
         
