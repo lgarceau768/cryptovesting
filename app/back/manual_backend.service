@@ -2,6 +2,7 @@
 Description=Token Manual Entry Backend
 
 [Service]
+User=fullsend
 ExecStart=/home/fullsend/cryptovesting/app/back/start_back.sh
 
 [Install]

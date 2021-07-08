@@ -1,18 +1,9 @@
-<<<<<<< HEAD
 [Unit]
 Description=Tokens Listener (Static Contract Check)
 
 [Service]
+User=fullsend
 ExecStart=/home/fullsend/cryptovesting/scripts/rugmenot_contracts/service/start_tokens_listener.sh
 
 [Install]
-=======
-[Unit]
-Description=Tokens Listener (Static Contract Check)
-
-[Service]
-ExecStart=/home/fullsend/cryptovesting/scripts/rugmenot_contracts/service/start_tokens_listener.sh
-
-[Install]
->>>>>>> 1e3863f015956128c6e5f2af8081280410a04cc7
 WantedBy=multi-user.target
