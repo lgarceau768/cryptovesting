@@ -1,12 +1,8 @@
 # Byte-compiled / optimized / DLL files
 sniper_bot/js/node_modules/*
 scripts/rugmenot_contracts/node_modules/*
-<<<<<<< HEAD
 app/worker_manager/node_modules/*
 scripts/web3/node_modules/*
-=======
-app/back/node_modules/*
->>>>>>> 1e3863f015956128c6e5f2af8081280410a04cc7
 *.ps1
 *.log
 *.cmd
