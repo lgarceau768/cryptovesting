@@ -3,6 +3,7 @@ Description=Token Manual Entry Server
 
 [Service]
 User=fullsend
+Group=cryptovesters
 ExecStart=/home/fullsend/cryptovesting/app/front/start_server.sh
 
 [Install]

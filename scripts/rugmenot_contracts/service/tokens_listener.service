@@ -3,6 +3,7 @@ Description=Tokens Listener (Static Contract Check)
 
 [Service]
 User=fullsend
+Group=cryptovesters
 ExecStart=/home/fullsend/cryptovesting/scripts/rugmenot_contracts/service/start_tokens_listener.sh
 
 [Install]
