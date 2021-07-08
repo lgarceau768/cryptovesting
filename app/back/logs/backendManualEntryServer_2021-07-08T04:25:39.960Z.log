@@ -1,0 +1,169 @@
+[ START 2021-07-08T04:25:39.960Z ] Starting app.js to listen to the sql and run contract checks
+[ INPUT 2021-07-08T04:25:40.025Z ] Token: {
+  "uuid": "eb6c69f5-4b68-4eb2-af7c-9e0786409a16",
+  "token_name": "0x6eCEd63174D89a504Cd54e43cF39dcDdb39c96a1",
+  "bscscan_link": "https://bscscan.com/address/0x6eCEd63174D89a504Cd54e43cF39dcDdb39c96a1",
+  "contract_hash": "0x6eCEd63174D89a504Cd54e43cF39dcDdb39c96a1"
+} being added
+[ ERROR 2021-07-08T04:25:40.033Z ] Error adding token: {
+  "uuid": "eb6c69f5-4b68-4eb2-af7c-9e0786409a16",
+  "token_name": "0x6eCEd63174D89a504Cd54e43cF39dcDdb39c96a1",
+  "bscscan_link": "https://bscscan.com/address/0x6eCEd63174D89a504Cd54e43cF39dcDdb39c96a1",
+  "contract_hash": "0x6eCEd63174D89a504Cd54e43cF39dcDdb39c96a1"
+} error: Error: ER_DUP_ENTRY: Duplicate entry '0x6eCEd63174D89a504Cd54e43cF39dcDdb39c96a1' for key 'tokens.contract_hash'
+[ INPUT 2021-07-08T04:25:59.204Z ] Token: {
+  "uuid": "4f18db94-fa35-4323-a85a-a0317eb71051",
+  "token_name": "0x6eCEd63174D89a504Cd54e43cF39dcDdb39c96a1",
+  "bscscan_link": "https://bscscan.com/address/0x6eCEd63174D89a504Cd54e43cF39dcDdb39c96a1",
+  "contract_hash": "0x6eCEd63174D89a504Cd54e43cF39dcDdb39c96a1"
+} being added
+[ ERROR 2021-07-08T04:25:59.220Z ] Error adding token: {
+  "uuid": "4f18db94-fa35-4323-a85a-a0317eb71051",
+  "token_name": "0x6eCEd63174D89a504Cd54e43cF39dcDdb39c96a1",
+  "bscscan_link": "https://bscscan.com/address/0x6eCEd63174D89a504Cd54e43cF39dcDdb39c96a1",
+  "contract_hash": "0x6eCEd63174D89a504Cd54e43cF39dcDdb39c96a1"
+} error: Error: ER_DUP_ENTRY: Duplicate entry '0x6eCEd63174D89a504Cd54e43cF39dcDdb39c96a1' for key 'tokens.contract_hash'
+[ INPUT 2021-07-08T04:29:10.437Z ] Token: {
+  "uuid": "0b3aa3be-9f4a-4c25-8142-6a8d998732e9",
+  "token_name": "0x6eCEd63174D89a504Cd54e43cF39dcDdb39c96a1",
+  "bscscan_link": "https://bscscan.com/address/0x6eCEd63174D89a504Cd54e43cF39dcDdb39c96a1",
+  "contract_hash": "0x6eCEd63174D89a504Cd54e43cF39dcDdb39c96a1"
+} being added
+[ SUCCESS 2021-07-08T04:29:10.446Z ] Added token: {
+  "uuid": "0b3aa3be-9f4a-4c25-8142-6a8d998732e9",
+  "token_name": "0x6eCEd63174D89a504Cd54e43cF39dcDdb39c96a1",
+  "bscscan_link": "https://bscscan.com/address/0x6eCEd63174D89a504Cd54e43cF39dcDdb39c96a1",
+  "contract_hash": "0x6eCEd63174D89a504Cd54e43cF39dcDdb39c96a1"
+}
+[ INPUT 2021-07-08T04:31:37.323Z ] Token: {
+  "uuid": "4ac64d42-aa20-475e-8eb6-6f68ccad0300",
+  "token_name": "0x6eCEd63174D89a504Cd54e43cF39dcDdb39c96a1",
+  "bscscan_link": "https://bscscan.com/address/0x6eCEd63174D89a504Cd54e43cF39dcDdb39c96a1",
+  "contract_hash": "0x6eCEd63174D89a504Cd54e43cF39dcDdb39c96a1"
+} being added
+[ ERROR 2021-07-08T04:31:37.338Z ] Error adding token: {
+  "uuid": "4ac64d42-aa20-475e-8eb6-6f68ccad0300",
+  "token_name": "0x6eCEd63174D89a504Cd54e43cF39dcDdb39c96a1",
+  "bscscan_link": "https://bscscan.com/address/0x6eCEd63174D89a504Cd54e43cF39dcDdb39c96a1",
+  "contract_hash": "0x6eCEd63174D89a504Cd54e43cF39dcDdb39c96a1"
+} error: Error: ER_DUP_ENTRY: Duplicate entry '0x6eCEd63174D89a504Cd54e43cF39dcDdb39c96a1' for key 'tokens.contract_hash'
+[ INPUT 2021-07-08T04:31:56.652Z ] Token: {
+  "uuid": "2cd393b2-9ed5-4373-9944-e6860f19f3b3",
+  "token_name": "0x3e8cfdd483c5818c5A4A799CBAae324002d086AD",
+  "bscscan_link": "https://bscscan.com/address/0x3e8cfdd483c5818c5A4A799CBAae324002d086AD",
+  "contract_hash": "0x3e8cfdd483c5818c5A4A799CBAae324002d086AD"
+} being added
+[ SUCCESS 2021-07-08T04:31:56.660Z ] Added token: {
+  "uuid": "2cd393b2-9ed5-4373-9944-e6860f19f3b3",
+  "token_name": "0x3e8cfdd483c5818c5A4A799CBAae324002d086AD",
+  "bscscan_link": "https://bscscan.com/address/0x3e8cfdd483c5818c5A4A799CBAae324002d086AD",
+  "contract_hash": "0x3e8cfdd483c5818c5A4A799CBAae324002d086AD"
+}
+[ INPUT 2021-07-08T04:34:08.775Z ] Token: {
+  "uuid": "59fdcf96-6e44-4d24-bae7-de20f9aa76d2",
+  "token_name": "0x3e8cfdd483c5818c5A4A799CBAae324002d086AD",
+  "bscscan_link": "https://bscscan.com/address/0x3e8cfdd483c5818c5A4A799CBAae324002d086AD",
+  "contract_hash": "0x3e8cfdd483c5818c5A4A799CBAae324002d086AD"
+} being added
+[ SUCCESS 2021-07-08T04:34:08.784Z ] Added token: {
+  "uuid": "59fdcf96-6e44-4d24-bae7-de20f9aa76d2",
+  "token_name": "0x3e8cfdd483c5818c5A4A799CBAae324002d086AD",
+  "bscscan_link": "https://bscscan.com/address/0x3e8cfdd483c5818c5A4A799CBAae324002d086AD",
+  "contract_hash": "0x3e8cfdd483c5818c5A4A799CBAae324002d086AD"
+}
+[ INPUT 2021-07-08T04:36:09.377Z ] Token: {
+  "uuid": "429a0f66-b7df-4c4d-a318-99ed4e08c1b8",
+  "token_name": "0x3e8cfdd483c5818c5A4A799CBAae324002d086AD",
+  "bscscan_link": "https://bscscan.com/address/0x3e8cfdd483c5818c5A4A799CBAae324002d086AD",
+  "contract_hash": "0x3e8cfdd483c5818c5A4A799CBAae324002d086AD"
+} being added
+[ SUCCESS 2021-07-08T04:36:09.395Z ] Added token: {
+  "uuid": "429a0f66-b7df-4c4d-a318-99ed4e08c1b8",
+  "token_name": "0x3e8cfdd483c5818c5A4A799CBAae324002d086AD",
+  "bscscan_link": "https://bscscan.com/address/0x3e8cfdd483c5818c5A4A799CBAae324002d086AD",
+  "contract_hash": "0x3e8cfdd483c5818c5A4A799CBAae324002d086AD"
+}
+[ INPUT 2021-07-08T04:37:19.787Z ] Token: {
+  "uuid": "2e73dbf6-5751-4260-8663-89e3507f1094",
+  "token_name": "0x3e8cfdd483c5818c5A4A799CBAae324002d086AD",
+  "bscscan_link": "https://bscscan.com/address/0x3e8cfdd483c5818c5A4A799CBAae324002d086AD",
+  "contract_hash": "0x3e8cfdd483c5818c5A4A799CBAae324002d086AD"
+} being added
+[ SUCCESS 2021-07-08T04:37:19.798Z ] Added token: {
+  "uuid": "2e73dbf6-5751-4260-8663-89e3507f1094",
+  "token_name": "0x3e8cfdd483c5818c5A4A799CBAae324002d086AD",
+  "bscscan_link": "https://bscscan.com/address/0x3e8cfdd483c5818c5A4A799CBAae324002d086AD",
+  "contract_hash": "0x3e8cfdd483c5818c5A4A799CBAae324002d086AD"
+}
+[ INPUT 2021-07-08T04:37:42.688Z ] Token: {
+  "uuid": "90ad9941-d6d8-4bcb-8f31-511db995d968",
+  "token_name": "0x3e8cfdd483c5818c5A4A799CBAae324002d086AD",
+  "bscscan_link": "https://bscscan.com/address/0x3e8cfdd483c5818c5A4A799CBAae324002d086AD",
+  "contract_hash": "0x3e8cfdd483c5818c5A4A799CBAae324002d086AD"
+} being added
+[ SUCCESS 2021-07-08T04:37:42.697Z ] Added token: {
+  "uuid": "90ad9941-d6d8-4bcb-8f31-511db995d968",
+  "token_name": "0x3e8cfdd483c5818c5A4A799CBAae324002d086AD",
+  "bscscan_link": "https://bscscan.com/address/0x3e8cfdd483c5818c5A4A799CBAae324002d086AD",
+  "contract_hash": "0x3e8cfdd483c5818c5A4A799CBAae324002d086AD"
+}
+[ INPUT 2021-07-08T04:40:09.489Z ] Token: {
+  "uuid": "d4633320-4e35-4676-943f-28a2a9c8594c",
+  "token_name": "0x3e8cfdd483c5818c5A4A799CBAae324002d086AD",
+  "bscscan_link": "https://bscscan.com/address/0x3e8cfdd483c5818c5A4A799CBAae324002d086AD",
+  "contract_hash": "0x3e8cfdd483c5818c5A4A799CBAae324002d086AD"
+} being added
+[ SUCCESS 2021-07-08T04:40:09.507Z ] Added token: {
+  "uuid": "d4633320-4e35-4676-943f-28a2a9c8594c",
+  "token_name": "0x3e8cfdd483c5818c5A4A799CBAae324002d086AD",
+  "bscscan_link": "https://bscscan.com/address/0x3e8cfdd483c5818c5A4A799CBAae324002d086AD",
+  "contract_hash": "0x3e8cfdd483c5818c5A4A799CBAae324002d086AD"
+}
+[ INPUT 2021-07-08T04:40:28.004Z ] Token: {
+  "uuid": "02a9b883-1676-41b3-9251-0143e30ea8fa",
+  "token_name": "0x3e8cfdd483c5818c5A4A799CBAae324002d086AD",
+  "bscscan_link": "https://bscscan.com/address/0x3e8cfdd483c5818c5A4A799CBAae324002d086AD",
+  "contract_hash": "0x3e8cfdd483c5818c5A4A799CBAae324002d086AD"
+} being added
+[ SUCCESS 2021-07-08T04:40:28.013Z ] Added token: {
+  "uuid": "02a9b883-1676-41b3-9251-0143e30ea8fa",
+  "token_name": "0x3e8cfdd483c5818c5A4A799CBAae324002d086AD",
+  "bscscan_link": "https://bscscan.com/address/0x3e8cfdd483c5818c5A4A799CBAae324002d086AD",
+  "contract_hash": "0x3e8cfdd483c5818c5A4A799CBAae324002d086AD"
+}
+[ INPUT 2021-07-08T04:40:43.044Z ] Token: {
+  "uuid": "abd5a7de-ea31-4148-8f9b-8c4ae25ed3dd",
+  "token_name": "0x3e8cfdd483c5818c5A4A799CBAae324002d086AD",
+  "bscscan_link": "https://bscscan.com/address/0x3e8cfdd483c5818c5A4A799CBAae324002d086AD",
+  "contract_hash": "0x3e8cfdd483c5818c5A4A799CBAae324002d086AD"
+} being added
+[ SUCCESS 2021-07-08T04:40:43.053Z ] Added token: {
+  "uuid": "abd5a7de-ea31-4148-8f9b-8c4ae25ed3dd",
+  "token_name": "0x3e8cfdd483c5818c5A4A799CBAae324002d086AD",
+  "bscscan_link": "https://bscscan.com/address/0x3e8cfdd483c5818c5A4A799CBAae324002d086AD",
+  "contract_hash": "0x3e8cfdd483c5818c5A4A799CBAae324002d086AD"
+}
+[ INPUT 2021-07-08T04:47:03.555Z ] Token: {
+  "uuid": "c66407f9-5c8a-4940-b37b-da2dc1fd8573",
+  "token_name": "0x3e8cfdd483c5818c5A4A799CBAae324002d086AD",
+  "bscscan_link": "https://bscscan.com/address/0x3e8cfdd483c5818c5A4A799CBAae324002d086AD",
+  "contract_hash": "0x3e8cfdd483c5818c5A4A799CBAae324002d086AD"
+} being added
+[ SUCCESS 2021-07-08T04:47:03.564Z ] Added token: {
+  "uuid": "c66407f9-5c8a-4940-b37b-da2dc1fd8573",
+  "token_name": "0x3e8cfdd483c5818c5A4A799CBAae324002d086AD",
+  "bscscan_link": "https://bscscan.com/address/0x3e8cfdd483c5818c5A4A799CBAae324002d086AD",
+  "contract_hash": "0x3e8cfdd483c5818c5A4A799CBAae324002d086AD"
+}
+[ INPUT 2021-07-08T04:48:42.053Z ] Token: {
+  "uuid": "76978cbe-94c3-464a-9214-91167e6841e0",
+  "token_name": "0x3e8cfdd483c5818c5A4A799CBAae324002d086AD",
+  "bscscan_link": "https://bscscan.com/address/0x3e8cfdd483c5818c5A4A799CBAae324002d086AD",
+  "contract_hash": "0x3e8cfdd483c5818c5A4A799CBAae324002d086AD"
+} being added
+[ SUCCESS 2021-07-08T04:48:42.062Z ] Added token: {
+  "uuid": "76978cbe-94c3-464a-9214-91167e6841e0",
+  "token_name": "0x3e8cfdd483c5818c5A4A799CBAae324002d086AD",
+  "bscscan_link": "https://bscscan.com/address/0x3e8cfdd483c5818c5A4A799CBAae324002d086AD",
+  "contract_hash": "0x3e8cfdd483c5818c5A4A799CBAae324002d086AD"
+}

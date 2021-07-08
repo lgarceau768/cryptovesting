@@ -1,1 +1,37 @@
 [ START 2021-07-08T04:11:42.211Z ] Starting app.js to listen to the sql and run contract checks
+[ INPUT 2021-07-08T04:22:45.669Z ] Token: {
+  "uuid": "2fea39c1-44fc-4c4d-a483-8b11b84009d1",
+  "token_name": "0x60684A1F27876aab7022Da66909Dd234f9CC9E3C",
+  "bscscan_link": "https://bscscan.com/address/0x60684A1F27876aab7022Da66909Dd234f9CC9E3C",
+  "contract_hash": "0x60684A1F27876aab7022Da66909Dd234f9CC9E3C"
+} being added
+[ ERROR 2021-07-08T04:22:45.674Z ] Error adding token: {
+  "uuid": "2fea39c1-44fc-4c4d-a483-8b11b84009d1",
+  "token_name": "0x60684A1F27876aab7022Da66909Dd234f9CC9E3C",
+  "bscscan_link": "https://bscscan.com/address/0x60684A1F27876aab7022Da66909Dd234f9CC9E3C",
+  "contract_hash": "0x60684A1F27876aab7022Da66909Dd234f9CC9E3C"
+} error: Error: ER_DUP_ENTRY: Duplicate entry '0x60684A1F27876aab7022Da66909Dd234f9CC9E3C' for key 'tokens.contract_hash'
+[ INPUT 2021-07-08T04:23:25.727Z ] Token: {
+  "uuid": "af68dd7c-7d9a-4613-877f-9d40d4da1719",
+  "token_name": "0x60684A1F27876aab7022Da66909Dd234f9CC9E3C",
+  "bscscan_link": "https://bscscan.com/address/0x60684A1F27876aab7022Da66909Dd234f9CC9E3C",
+  "contract_hash": "0x60684A1F27876aab7022Da66909Dd234f9CC9E3C"
+} being added
+[ SUCCESS 2021-07-08T04:23:25.746Z ] Added token: {
+  "uuid": "af68dd7c-7d9a-4613-877f-9d40d4da1719",
+  "token_name": "0x60684A1F27876aab7022Da66909Dd234f9CC9E3C",
+  "bscscan_link": "https://bscscan.com/address/0x60684A1F27876aab7022Da66909Dd234f9CC9E3C",
+  "contract_hash": "0x60684A1F27876aab7022Da66909Dd234f9CC9E3C"
+}
+[ INPUT 2021-07-08T04:23:48.301Z ] Token: {
+  "uuid": "7509c648-3833-43ae-b797-7faa952b5db7",
+  "token_name": "0x6eCEd63174D89a504Cd54e43cF39dcDdb39c96a1",
+  "bscscan_link": "https://bscscan.com/address/0x6eCEd63174D89a504Cd54e43cF39dcDdb39c96a1",
+  "contract_hash": "0x6eCEd63174D89a504Cd54e43cF39dcDdb39c96a1"
+} being added
+[ SUCCESS 2021-07-08T04:23:48.319Z ] Added token: {
+  "uuid": "7509c648-3833-43ae-b797-7faa952b5db7",
+  "token_name": "0x6eCEd63174D89a504Cd54e43cF39dcDdb39c96a1",
+  "bscscan_link": "https://bscscan.com/address/0x6eCEd63174D89a504Cd54e43cF39dcDdb39c96a1",
+  "contract_hash": "0x6eCEd63174D89a504Cd54e43cF39dcDdb39c96a1"
+}

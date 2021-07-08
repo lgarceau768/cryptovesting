@@ -26,6 +26,7 @@ _l = logger._l
 
 // INFO function to create the worker for doing the coin contract check work
 function spawnWorker(event) {
+    _l("Event: "+JSON.stringify(event, undefined, 4), level="DEBUG")
     const worker = new Worker("/home/fullsend/cryptovesting/scripts/rugmenot_contracts/worker.js", {
         workerData: event
     });
@@ -33,6 +34,13 @@ function spawnWorker(event) {
         let level = strResponse.indexOf("error") == -1 ? "SUCCESS": "ERROR";
         _l(strResponse, level)
     })
+    worker.on('error', (error) => {
+        _l(error, level="ERROR")
+    })
+    worker.on('exit', (code) => {
+        _l(code, level="EXIT")
+    })
+    _l("Worker callback set", level="DEBUG")
 }
 
 // INFO main program

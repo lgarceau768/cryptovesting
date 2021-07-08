@@ -6,6 +6,7 @@ const mysql = require('mysql')
 const Web3 = require('web3')
 const web3 = new Web3(new Web3.providers.HttpProvider("https://bsc-dataseed.binance.org/"))
 const SCORE_TO_PASS = 4.0
+const logger = require('./logger.js')
 
 
 // INFO setup mysql
@@ -20,11 +21,20 @@ const connection = mysql.createConnection(sqlData)
 connection.connect()
 
 // INFO init
-console.log("[ START "+ new Date().toISOString() + " ] Starting app.js to listen to the sql and run contract checks")
-_l = (data, level="LOG") => {
-    let line = "[ " + level + " " + new Date().toISOString() + " ] " + data;
-    console.log(line)
+// INFO init
+let isoString = new Date()
+let logFilePath = "/home/fullsend/cryptovesting/scripts/rugmenot_contracts/logs/workerToken" + "_"+ isoString.toISOString() + ".log"
+logger.init(logFilePath)
+const event = workerData
+let token = {
+    "token_name": process.argv[2],
+    "contract_hash": process.argv[2]
 }
+if (event != null) {
+    token = event["affectedRows"][0]["after"]
+}
+_l = logger._l
+_l("Worker For Token: "+token["token_name"], level="START")
 
 // INFO function to output the contract source to a file before calling the python script
 function outputContractSource(tokenName, contractDict){
@@ -66,10 +76,15 @@ function addToken(token, score, jsonPath) {
             _l(err, level="ERROR")
         } else {
             _l(token["token_name"]+ " added", level="SUCCESS")
+            try {
+                parentPort.postMessage("Contract Check complete on "+token["token_name"])
+            } catch {
+                _l("Contract Check complete on "+token["token_name"], level="SUCCESS")
+            }
+            process.exit()
         }
-    });
-     
-    
+        
+    });   
 }
 
 // INFO function to get the contract source using web3
@@ -99,7 +114,7 @@ async function getContractSource(tokenAddress) {
 function runContractCheck(filePath, token){    
     try {
         _l("runContractCheck "+filePath, level="DEBUG")
-        const contractCheckProcess = spawn('python3', ["/home/fullsend/cryptovesting/scripts/rugmenot_contracts/scripts/contract_check.py", filePath])
+        const contractCheckProcess = spawn('python3', ["/home/fullsend/cryptovesting/scripts/rugmenot_contracts/scripts/contract_check.py "+filePath])
         contractCheckProcess.stdout.on('data', (data) => {
             let stringVal = data.toString().trim()
             let index = stringVal.indexOf("Name=")
@@ -117,15 +132,21 @@ function runContractCheck(filePath, token){
     }    
 }
 
-const event = workerData
-let token = event["affectedRows"][0]["after"]
+
 try {
+    try {
+        parentPort.postMessage("Starting Check")
+    } catch {
+        _l("Starting Check", level="START")
+    }
     getContractSource(token["contract_hash"]).then( (contractDict) => {
         let filePath = outputContractSource(token["token_name"], contractDict)
-        runContractCheck(filePath, token)
-    })
-    parentPort.postMessage("Contract Check Successful on "+token["token_name"])
+        runContractCheck(filePath, token)        
+    })    
 } catch (err) {
-    parentPort.postMessage("Script error on "+token["token_name"])
+    try {
+        parentPort.postMessage("Contract Check failed on "+token["token_name"])
+    } catch {
+        _l("Contract Check failed on "+token["token_name"], level="FAIL")
+    }
 }     
-process.exit()

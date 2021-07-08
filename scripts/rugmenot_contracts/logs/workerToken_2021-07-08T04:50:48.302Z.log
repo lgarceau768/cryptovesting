@@ -1,0 +1,6 @@
+[ START 2021-07-08T04:50:48.302Z ] Starting app.js to listen to the sql and run contract checks
+[ START 2021-07-08T04:50:48.302Z ] Worker For Token: 0x3e8cfdd483c5818c5A4A799CBAae324002d086AD
+[ START 2021-07-08T04:50:48.302Z ] Starting Check
+[ DEBUG 2021-07-08T04:50:48.716Z ] getContractSource 0x3e8cfdd483c5818c5A4A799CBAae324002d086AD
+[ ERROR 2021-07-08T04:50:48.805Z ] Error: EACCES: permission denied, open '/home/fullsend/cryptovesting/scripts/rugmenot_contracts/contracts/sol files/0x3e8cfdd483c5818c5A4A799CBAae324002d086AD.txt'
+[ DEBUG 2021-07-08T04:50:48.805Z ] runContractCheck undefined

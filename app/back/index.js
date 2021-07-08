@@ -74,8 +74,10 @@ app.post('/upload_token', (req, res) => {
     connection.query(sql, token, function (err, result) {
         if(err) {
             _l("Error adding token: "+_jstr(token) + " error: "+err, level="ERROR")
+            res.send({"res": 'Error probably duplicate: '+err})
         } else {
             _l("Added token: "+_jstr(token), level="SUCCESS")
+            res.send({"res": 'OK'})
         }
     })
 })
