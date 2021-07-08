@@ -1,0 +1,8 @@
+[Unit]
+Description=Token Manual Entry Server
+
+[Service]
+ExecStart=/home/fullsend/cryptovesting/app/front/start_server.sh
+
+[Install]
+WantedBy=multi-user.target
