@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 [Unit]
 Description=Token Manual Entry Backend
 
@@ -5,4 +6,13 @@ Description=Token Manual Entry Backend
 ExecStart=/home/fullsend/cryptovesting/app/back/start_back.sh
 
 [Install]
+=======
+[Unit]
+Description=Token Manual Entry Backend
+
+[Service]
+ExecStart=/home/fullsend/cryptovesting/app/back/start_back.sh
+
+[Install]
+>>>>>>> 1e3863f015956128c6e5f2af8081280410a04cc7
 WantedBy=multi-user.target
