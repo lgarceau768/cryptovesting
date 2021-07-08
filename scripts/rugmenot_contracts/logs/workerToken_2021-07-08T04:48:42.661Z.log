@@ -1,5 +1,0 @@
-[ START 2021-07-08T04:48:42.661Z ] Starting app.js to listen to the sql and run contract checks
-[ START 2021-07-08T04:48:42.662Z ] Worker For Token: 0x3e8cfdd483c5818c5A4A799CBAae324002d086AD
-[ DEBUG 2021-07-08T04:48:43.063Z ] getContractSource 0x3e8cfdd483c5818c5A4A799CBAae324002d086AD
-[ DEBUG 2021-07-08T04:48:43.156Z ] outputContractSource /home/fullsend/cryptovesting/scripts/rugmenot_contracts/contracts/sol files/0x3e8cfdd483c5818c5A4A799CBAae324002d086AD.txt
-[ DEBUG 2021-07-08T04:48:43.156Z ] runContractCheck /home/fullsend/cryptovesting/scripts/rugmenot_contracts/contracts/sol files/0x3e8cfdd483c5818c5A4A799CBAae324002d086AD.txt
