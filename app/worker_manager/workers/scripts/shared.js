@@ -1,5 +1,7 @@
 const Web3 = require('web3')
 const Common = require('ethereumjs-common').default;
+var bip39 = require("bip39");
+var { hdkey } = require('ethereumjs-wallet');
 
 // INFO Constants
 this.web3 = new Web3(new Web3.providers.HttpProvider('https://data-seed-prebsc-1-s1.binance.org:8545/'))
@@ -60,6 +62,30 @@ this._gas = () => {
     }
     gasVals["gasPrice"] = await web3.eth.getGasPrice() * 2
     return gasVals
+}
+
+// function to create address from mnemonic
+this.generateAddressesFromSeed = (mnemonic, count) => {  
+    let seed = bip39.mnemonicToSeedSync(mnemonic);
+    let hdwallet = hdkey.fromMasterSeed(seed);
+    let wallet_hdpath = "m/44'/60'/0'/0/";
+    
+    let accounts = [];
+    for (let i = 0; i < count; i++) {
+      let wallet = hdwallet.derivePath(wallet_hdpath + i).getWallet();
+      let address = "0x" + wallet.getAddress().toString("hex");
+      let privateKey = wallet.getPrivateKey().toString("hex");
+      accounts.push({ address: address, privateKey: privateKey });
+    }
+    return accounts;
+  }
+
+this.sendMessage = (data, _l, parentPort=null) => {
+    if(parentPort == null){
+        _l(data)
+    } else {
+        parentPort.sendMessage(data)
+    }
 }
 
 module.exports = {

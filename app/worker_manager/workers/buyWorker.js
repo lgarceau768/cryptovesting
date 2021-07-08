@@ -1,8 +1,5 @@
 // INFO Requires
-var fs = require('fs')
 var Tx = require('ethereumjs-tx').Transaction;
-var bip39 = require("bip39");
-var { hdkey } = require('ethereumjs-wallet');
 var { workerData, parentPort } = require('worker_threads')
 
 let token = workerData
@@ -22,7 +19,16 @@ var {
     WBNBAddress,
     BSC_TESTNET_FORK,
     BSC_FORK,
-    web3
+    web3,
+    sendMessage
+} = require('./scripts/shared.js')
+var { _ll, init } = require('./scripts/logger.js')
+let date = new Date()
+let path = "/home/fullsend/app/worker_manager/logs/buyWorker_" + token +"_ "+ date.toISOString() + ".log"
+init(path)
+
+_l = (data) => {
+    sendMessage(data, _ll, parentPort)
 }
 
 // buy function with given account and tokenAddress
@@ -35,7 +41,7 @@ const buyTokenWithBNB = async (targetAccount, amount, tokenAddress) => {
     var contract = new web3.eth.Contract(routerAbi, pancakeSwapRouterAddress, {from: targetAccount.address});
 
     // execute the contract function swapExactETHForTokens
-    console.log(`Contract Params ${_jstr({
+    _l(`Contract Params ${_jstr({
         buy: amountToBuyWith,
         amount: web3.utils.toHex(amountOutMin),
         pair: [WBNBAddress,
@@ -62,15 +68,15 @@ const buyTokenWithBNB = async (targetAccount, amount, tokenAddress) => {
     };
 
     // sign the transaction and send it to the chain
-    console.log(`Raw transaction ${_jstr(rawTransaction)}`)
+    _l(`Raw transaction ${_jstr(rawTransaction)}`)
     var transaction = new Tx(rawTransaction, { 'common': BSC_TESTNET_FORK });
     transaction = await web3.eth.accounts.signTransaction(rawTransaction, my_pk)
-    console.log(`Transaction After Singing  ${_jstr(transaction)}`)
+    _l(`Transaction After Singing  ${_jstr(transaction)}`)
     web3.eth.sendSignedTransaction(transaction["rawTransaction"])
         .on('trasnactionHash', (hash) => {
-            console.log("Hash: "+str(hash))
+            _l("Hash: "+str(hash))
         })
-        .on('receipt', console.log);
+        .on('receipt', _l);
 }
 
 // watch liquduity funciton
@@ -82,7 +88,9 @@ const watchLiquidity = (token, amountToBuyWithDecimal) => {
             token1: token
         }
     }).on('data', async function (event){
-        console.log("Event: "+event)
+        _l("Pair Created: "+event)
+        buyTokenWithBNB(targetAccount, bnbAmount, token)
+
     })
 
     return
@@ -91,7 +99,7 @@ const watchLiquidity = (token, amountToBuyWithDecimal) => {
     try {
         pairFilter.getNewEntries.forEach(PairCreated => {
             let jsonEventValue = JSON.parse(web3.utils.toJSON(PairCreated))
-            console.log(_jstr(jsonEventValue))
+            _l(_jstr(jsonEventValue))
             if(jsonEventValue["args"]["token0"] == WBNBAddress &&
                 jsonEventValue["args"]["token1"] == token) {
                     // INFO set buy variables here                              
@@ -101,25 +109,11 @@ const watchLiquidity = (token, amountToBuyWithDecimal) => {
                 }
         });
     } catch (err) {
-        console.log("HandleEvent Exception: "+err)
+        _l("HandleEvent Exception: "+err)
     }
 }
 
-// function to create address from mnemonic
-const generateAddressesFromSeed = (mnemonic, count) => {  
-    let seed = bip39.mnemonicToSeedSync(mnemonic);
-    let hdwallet = hdkey.fromMasterSeed(seed);
-    let wallet_hdpath = "m/44'/60'/0'/0/";
-    
-    let accounts = [];
-    for (let i = 0; i < count; i++) {
-      let wallet = hdwallet.derivePath(wallet_hdpath + i).getWallet();
-      let address = "0x" + wallet.getAddress().toString("hex");
-      let privateKey = wallet.getPrivateKey().toString("hex");
-      accounts.push({ address: address, privateKey: privateKey });
-    }
-    return accounts;
-  }
+
 
 
 // INFO Porgram Start
@@ -128,7 +122,7 @@ async function run() {
     var amountToBuyWithDecimal = 0.003 // need to multiply by 100000
     var originalAmountToBuyWith = (amountToBuyWithDecimal * 100000).toString() + Math.random().toString().slice(2,7);                  
     var bnbAmount = web3.utils.toWei(originalAmountToBuyWith, 'gwei');
-    buyTokenWithBNB(targetAccount, bnbAmount, token)
+    watchLiquidity(token, amountToBuyWithDecimal)
 }
 
 run()
