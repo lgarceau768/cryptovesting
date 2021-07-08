@@ -4,6 +4,7 @@ scripts/rugmenot_contracts/node_modules/*
 app/worker_manager/node_modules/*
 scripts/web3/node_modules/*
 *.ps1
+*.log
 *.cmd
 decryption files/
 __pycache__/
