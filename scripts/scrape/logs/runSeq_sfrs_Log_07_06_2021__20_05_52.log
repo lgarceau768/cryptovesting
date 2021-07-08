@@ -1,0 +1,914 @@
+Scrape started on: 20:05:52
+[STARTUP | Tue Jul  6 20:05:52 2021 | main_scrape.py | <module>]: Init Database
+[INFO | Tue Jul  6 20:05:52 2021 | main_scrape.py | <module>]: Sequence Selected: sfrs
+[STARTUP | Tue Jul  6 20:05:53 2021 | main_scrape.py | <module>]: Running Controlled Chome to get TokenFomo.io full list
+[STARTUP | Tue Jul  6 20:05:57 2021 | main_scrape.py | <module>]: Selinum Scrape Done Closing
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: Jermcoin failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: Jermcoin failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: Jermcoin failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: minimatic failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: Poi Puppy Colony - Lei failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: Name failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: minimatic failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: ATOKEN_IMPL failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: DEBTTOKEN_IMPL failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: DEBTTOKEN_IMPL failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: Test Token failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: Douglas Adams failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: Squirt Inu  failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: ATOKEN_IMPL failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: DEBTTOKEN_IMPL failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: DEBTTOKEN_IMPL failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: ARABLEFI failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: Cluster failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: Test failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: Pixsale failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: CatDog Coin (t.me/catdogcoin) failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: Sna failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: Jordan Pump Coin failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: ShiteToken failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: Test Token failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: ShiteToken failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: pbfUNI-V2 failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: BigSur failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: PolyBruh failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: Rude Banana failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: Valencoin failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: BAI XDAO failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: DalaiLamaInu | t.me/DalaiLamaInu failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: BAI XBID failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: fangqile failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: PIMP ELON | t.me/PIMPELON failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: FSHIB failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: Allan failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: Five Doge Coin failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: GoerL2 (London Mainnet) failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: StarMax failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: Polynx Finance failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: DalaiLamaInu | t.me/DalaiLamaInu failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: GöerL2 (London Mainnet) failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: TestToken failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: Hello Cat failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: MASTERCHEFDUMMY failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: Five Doge Coin failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: MaiShiranui failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: Dreams of Dreamist failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: Euro Ballz Token failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: MINITIKI failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: shib failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: O2MinerMiningToken failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: TestToken failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: Euro Ballz Token failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: Hola Token failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: PolyNEWINU failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: POBA Assets failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: Radio Token failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: abc failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: 11 PolyRoll ROLL-MATIC SLP failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: Euro Ballz Token failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: Euro Ballz Token failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: MASTERCHEFDUMMY failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: PolyWhiskey failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: Crypto Maniac failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: Anonymous failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: haha failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: FSHIB_Dividend_Tracker failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: ZombieInu failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: Micro Shiba Inu failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: Liberty failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: PolyRiseDOGE failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: PolyRiseDOGE failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: Show Rooms Media failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: The President Doge failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: The Divine Order Of the Zodiac failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: The Divine Order Of the Zodiac failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: Create Tokens @ TokenKickoff.com failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: Polycat failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: EnormousDoge failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: Radio Token failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: PolyNEWINU failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: Se7en failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: PolyGoldDoge failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: CRUN_V5 failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: POlyNEWINU failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: DaddyGoge failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: India Token failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: BABYKISHU INU failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: PolyRiseDOGE failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: Don-pool failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: Polycat failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: pfUniV3_UST_USDT failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: G doge failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: Test failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: G doge failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: Aelysir failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: Lambo Token failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: Grandpa doge failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: PolyFeg failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: MiniElonDoge failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: CryptoDog failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: TanGood failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: Wisp Protocol failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: TanGood failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: CryptoDog failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: Dojo Polygon failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: maticbabyq failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: TanGood failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: CryptoDog failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: Dojo Token failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: Polypapadoge failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: Baby King Doge failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: PolyRiseDOG failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: PolyRiseDOG failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: TEST failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: PolyFlokiDoge failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: BoredHashGalleries failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: PolyRiseDOGE failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: TanGood failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: TanGood_Dividend_Tracker failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: PloyDdog failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: GrandpaDogee failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: DojoFarm failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: POLYAK failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: PolyRiseDOGE failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: PlatinumFinance Token failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: MyToken failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: DojoFarm finance failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: DEBTTOKEN_IMPL failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: RiseMoney  t.me/risemoneycoin failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: DEBTTOKEN_IMPL failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: DEBTTOKEN_IMPL failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: DEBTTOKEN_IMPL failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: DEBTTOKEN_IMPL failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: DEBTTOKEN_IMPL failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: Glamour GIA 2021 Covers failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: NDPunks failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: Dojo Token failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: DEBTTOKEN_IMPL failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: BLURP Token failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: ForeverUp3 failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: SpiderDoge | t.me/spiderdogeofficial failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: Flash failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: Dojofarm finance failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: DojoFarm Finance failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: NFMATIC failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: ATOKEN_IMPL failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: RealityCards failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: KXDOG failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: GrandpaDogee failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: AMPLIFY MATIC failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: DogeFOMO failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: SpadeA failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: SpadeA_Dividend_Tracker failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: BoredHashGalleries failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: RabbitSwap Token failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: PAPR failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: DojoFarm Finance failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: RektSwap failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: MINISHIB failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: RektSwap failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: lsp failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: PolyFlokiDoge failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: MaticDina failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: GrandpaDogee failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: lsp failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: Testtest failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: Cabbage Token failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: AMPLIFY DAI failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: AntiWhale failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: AMPLIFY USDC failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: AMPLIFY USDT failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: DOJOFARM FINANCE failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: POLY Lucky Pig failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: StarToken failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: lsp failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: AMPLIFY ETH failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: Shiba inu failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: PolyFlokiDoge failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: PolyBake Token failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: Space Shiba failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: lsp failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: 36 BLOCKS OF FUJI failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: ATOKEN_IMPL failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: DEBTTOKEN_IMPL failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: DEBTTOKEN_IMPL failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: Bone ShibaSwap failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: ATOKEN_IMPL failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: DEBTTOKEN_IMPL failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: DEBTTOKEN_IMPL failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: Wine Test 1.0 failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: Happy Doge coin failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: ATOKEN_IMPL failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: DEBTTOKEN_IMPL failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: DEBTTOKEN_IMPL failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: Fortune Cookies failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: BMW failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: PolyMew Finance failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: SyrupBar Token failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: PolyNEWINU failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: ATOKEN_IMPL failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: DEBTTOKEN_IMPL failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: DEBTTOKEN_IMPL failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: PKWhale failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: TestUSDCoin failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: TaalSwap Token failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: Dolphin Inu | t.me/dolphininutoken failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: NFTTicket failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: CrastalToken failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: Wine Test 1.0 failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: TGR Coin failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: PolyGirl failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: PolyGoldDoge failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: PolyGoldDoge failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin:  MaticLuckydoge  failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: NZXT failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: TEST failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: Testtest failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: AlphaXiKappa failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: PolyTry failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: PolyGoldDoge failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: Polygon Tiger failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: Polycloud Yield Farming failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: Apple Wrapped amWMATIC failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: SpaceXINU failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: Apple Wrapped amWBTC failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: Gluing Coin failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: PolyDaddyFeg failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: PolyCake failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: Poly DADDY FLOKI failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: Apple Wrapped amWETH failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: Poly DADDY FLOKI failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: iceCREAM failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: Moo BoneSwapQuick BONE-USDC failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: Poly DADDY FLOKI failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: Ken-Inu failed eth check
+[LOG | Tue Jul  6 20:06:10 2021 | scrape/scrape_poc.py | parseFomo]: coin: Element Wrapped Yearn Curve TriCrypto failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Moo BoneSwapApe BONE-WMATIC failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Brox Token failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: 1 failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Moo BoneSwapSushi BONE-WMATIC failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: FANDOM failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: PolyNEWINU failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Bible Token failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: x100Defi failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: KCS failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: MadMan failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: C failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: FamilyDoge failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: GoldFarm Token failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: PolyFlokiDoge failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: PolyFlokiDoge failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: PolyWynaut Token failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: TEST failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: PolyKingKong failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: MadMan failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Adddd failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: TEST failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: test failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: TEST failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: MadMan failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: TEST failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Moo BoneSwapQuick BONE-WMATIC failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Moo BoneSwapQuick BONE-WMATIC failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: PolyNEWINU failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Adaaa failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: ETHYFI failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: MadMan failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: TwoHoursChill failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: starspock.com | t.me/starspock | @starspock failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: test failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: HolySHIBA failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: AstronautBrother failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: minibabydoge failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: TEST failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: IronSwap Gorvenance Token failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: PolyRebase Community failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: IronSwap Token failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: HSHIB failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: PolyBake failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: PolyBake failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Interest Bearing MATIC failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: debtibMATIC failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Poly Bake Swap failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: XRP Token failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Ethereum Token failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: BTCB Token failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: MountainToad failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Cardano Token failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: POLYSHIBA INU failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: fxICHI failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: XShib Moon failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: GM Holding failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Interest Bearing MATIC failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: debtibMATIC failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: BUSD Token failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: PolyBakeSwap Token failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: StarToken failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: MATICMOON failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: debtibMATIC failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: PolyDick failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: 1INCH Token failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Galaxy Space Doge failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: asdasd failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: debtibMATIC failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: MaticLuckyDoge failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Chellit failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: ETHYFI failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Burner Token failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: ETHYFI failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: FLASHDOGE failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Million Vault failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: LuckyBull failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: New Shiba failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: FLASHDOGE failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: TIKI failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Interest Bearing MATIC failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: debtibMATIC failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Interest Bearing MATIC failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: debtibMATIC failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Wasabi Community Token failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Cheese Cake Swap failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: NFTFlower failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: FLASHDOGE failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: FineGarments failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: PolyLaunchpad failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: FineGarments failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: NFTFlower failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: StakeToken failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: NFTFlower failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: TestToken failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: FSHIB failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: FineGarments failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: LuckyDog failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: KuCoin failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: PolyHare failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Poly MaMa Doge failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Poly MaMa Doge failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: LuckyDog failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: xiaowei failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Shiba Inu Bone failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: PolySparrow failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: MINITIKI failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Money Token failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Cack Token failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Whack Token failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: POLYGOD of DEFI failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: FineGarments failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: FineGarments failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: MIXING SWAP failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: FLASHDOGE failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: NFTFlower failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: FLASHDOGE failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: NFTFlower failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: MATICRibbit failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: MiniPig failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Angel dog failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: NFTFlower failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: TestToken failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: DiscoDoge failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Little Shiba failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Discodoge failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: test2 failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Kucoin Community Chain failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: howdy failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Gold failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Angel dog failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: CMATIC failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: test nft mintage failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: MiniDoge failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: COOLPUG | t.me/coolpug failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: NEXO failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Ryoshi failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: GodRUGV5 failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: FAVOR USD StableCoin failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: MIXING SWAP failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: test failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: FlyingApsaras Dog failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: dcncf token failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: test failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: test failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: BCP Coin failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: KOASLiquid failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Bikini Inu failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Meridian token failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Taobao Token failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Baby EverDoge failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: test failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: FSHIB failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Moma Protocol Token failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: FAANG Token failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: tESTO Token failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: tESTO Token failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Astro Inu failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: TopDogBeachClub failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: test failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: DaddyDoge failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: BabySpaceDog failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: PolyKingKong failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: SHIBAMINER_Dividend_Tracker failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: FlokiAkita failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: BabyDoge failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: BabyDoge failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: test failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: ElonAkita failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: GodRUGToken failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: MiniPig failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: ChaingeToken failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: FleetToken failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: FlyingApsaras Dog failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: BabyWolfy failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Cold Brew failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: FSHIB failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: GodRUGToken failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: test failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Baby StarLink failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: WRAP-IOU failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: GodRUGToken failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: LINE coin failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Dvision Network failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: PolyRebase Fission Limited failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: test failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Carlyle failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Covalent failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: BabyShiba failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Lion One failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Line coin failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Line coin failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Xdoge Moon failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: PloyBaby failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: PolyDaddyFeg failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Poly DADDY FLOKI failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Poly DADDY FLOKI failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: GOD failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Line coin failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: BitKeep Token failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: BabyKishu failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: PolyNEWINU failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: BabyAkita failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: DEVIL's COLLECTION failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: DEVIL's COLLECTION failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Sas failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: ShibaSwap failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Sas failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: PolyHorn failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: SPIDER DOGE Token failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: PolyRebase Fission Genesis failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Sas failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: artysworld.com failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Peri Finance Token failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: HINAINUrealhinainu.com failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Sas failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: PolyDaddyFEG failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Peri Finance Token failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: UltimaArts failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: AstroTiger failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Muskthereum failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin:  MaticLuckydoge  failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Opulous Token failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: PolyPorn failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Mumuswap failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: DaddyDoge failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: DaddyDoge failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: PolyFloki failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: PolyFlyPig failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: PolyMoonDoge failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: PentaDragon Farm failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: PolyMoonDoge failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: IPRToken failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: hyde.ai failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: META failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: WHT failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: FEGexV2 failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Polybaby failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Txns failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: PACK failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Loans failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: PolySuperCattle failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Poly123 failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: BAI Stablecoin failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Polybaby failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: PloyNEWINU failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: ATOKEN_IMPL failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: DEBTTOKEN_IMPL failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: DEBTTOKEN_IMPL failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: PolySuperCattle failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: ATOKEN_IMPL failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: DEBTTOKEN_IMPL failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: DEBTTOKEN_IMPL failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Kucoin Community Chain failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: MaticBoneSwapvault failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: USDCBoneSwapvault failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: PolyCorn failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: PolySuperCattle failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: BoneMaticvault failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: PolyDead failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: BondShopHats failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: PolyBridge failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: DEBTTOKEN_IMPL failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Voting Escrow Wasabi Token failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: PolyTurn failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: PolyYearn failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Wrapped ERC20 Test Token 3 failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: ERC20 Test Token 3 failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Flying Dog failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Wrapped ERC20 Test Token 2 failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: ERC20 Test Token 2 failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: poly baby failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Wrapped ERC20 Test Token 1 failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: ERC20 Test Token 1 failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Wrapped ERC20 Test Token 3 failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: ERC20 Test Token 3 failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Wrapped ERC20 Test Token 2 failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: ERC20 Test Token 2 failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Wrapped ERC20 Test Token 1 failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: ERC20 Test Token 1 failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: ATOKEN_IMPL failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: DEBTTOKEN_IMPL failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: DEBTTOKEN_IMPL failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: HINAINUrealhinainu.com failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Inumaki failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: 11 failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Poly Pig Token failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Wasabi Innovation Zone Token failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: 2 failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: 1 failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: TINGPACK failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Wasabi Vault Ventures Token failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Poker Face failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: MASK failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: KODA failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: PESC failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: LUCK failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: ERC20DESTORY failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Shiba Foody Swap Exchange failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Scrooge McDuck Finance failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: PineappleCoin failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: DaddyDoge failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: PolydaddyDoge failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Our Floki failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: xShib Staked Shiba Inu failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: xLeash Staked Leash failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: tBone Staked Bone ShibaSwap failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Wasasbi Internal Team Token failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: BONE SHIBASWAP failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: POLYSHIBA INU failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Guild Pointz for PMBTC failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Polygon Mineable Bitcoin failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Polygon Mineable Bitcoin failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Seo SangHyuk Token failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: MuskDoge failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Found On Internet failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: SCC76 failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: BondShopHats failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Expl failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Italien failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Xoloitzcuintle failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: SLV+ failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: BMW3 failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: ATOKEN_IMPL failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: DEBTTOKEN_IMPL failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: DEBTTOKEN_IMPL failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: AUD failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: INFINITI failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Tea Coin One failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: RareCandy failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: ML.DASH.33 failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Daddy Feg Token failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: BENZ failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: OsJapan failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: NFTweak Collection failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: MTTest failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Insta failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: AND failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: MTTest failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Tumb failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: OsJapan failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Jimmy Buffett failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Testing failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: G-SBRW-D failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: PolyGorilla failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: G-SBRW-D failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: ATOKEN_IMPL failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: DEBTTOKEN_IMPL failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: DEBTTOKEN_IMPL failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Skylark failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: ANDRHODESIAN RIDGEBACK failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: PolyInu failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Jimmy Buffet failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Jimmy Buffer failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: PolyInu failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: ATOKEN_IMPL failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Warren Buffett Inu failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: DEBTTOKEN_IMPL failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: DEBTTOKEN_IMPL failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: G-SBRW-D failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: FarmerDAO failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Devious Demon Dudes failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: SCCMatic failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: FarmerDAO failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: ATOKEN_IMPL failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: dollar&Tether failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: VoxHoundz failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: PolyRebase Community failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: PolyInu failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: DEBTTOKEN_IMPL failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: DEBTTOKEN_IMPL failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Young failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: OnlyFarms failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Xoloitzcuintle failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: find fast failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: MONEYCATE failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Wasabi failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: PolyInu failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Blue Light Collective failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Snowball Collection NFT failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Skylark Token failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Free Britney Inu failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: PolyDogeKing failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: hsbc   usd failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: 2pi (PoS) Wrapped BTC failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Warren Buffett Finance Advise failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: MyToken failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: BabyWhaleFall failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: BabyWhaleFall_Dividend_Tracker failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Test50000B failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Warren Buffett Token failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Warren Buffet Token failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: G-SBRW-D failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Buffett Inu failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Warren Buffet failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Buffet Doge failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: OnlyFarms failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Alchemy Commitment Offers failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Found on Internet failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: FoundOnInternet failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Warren Buffett x Elon Musk failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Warren Buffett failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Test4 failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Longevity failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Warren Buffet Token failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Alchemy Commitment Offers failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: PolyInu failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Alchemy Remix Token failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Alchemy Remix Token failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: My NFT failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: My NFT failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Test3 failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: ATOKEN_IMPL failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: DEBTTOKEN_IMPL failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: DEBTTOKEN_IMPL failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: CRYPTO PHOENIX failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: asduyt failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: DaddyDoge failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: SHIBAMINER Token failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Skylark Token failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Raku Doge failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: MostExpensive :: Daniil Medvedev failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: PolyInu failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: SHIBAMINER_Dividend_Tracker failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Michiba failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Test failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Art failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: SHIBAMINER failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Vectorscapes failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: G-SBRW-D failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Donocoin failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Hongkong Banking failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: G-BEE-FTM-D failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: ElonKing failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: PolyShib failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: G-BEE-FTM-D failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: G-SBR-USD-D failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: G-SBR-FTM-D failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: PolyDoge failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Roadster Max failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Olde Roadster failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: SecondSun failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: PolyDoge failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: BarnBridge (POS) failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Safu HODL failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Mumuswap failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: test2 failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: RSF failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: test2 failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: SATRL failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: test2 failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: ATOKEN_IMPL failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: DEBTTOKEN_IMPL failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: DEBTTOKEN_IMPL failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: no failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: MINITIKI failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Apple Baby failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Chuck Norris 2024 failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: mRNA Vaccines failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: michiba failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: ATOKEN_IMPL failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: DEBTTOKEN_IMPL failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: DEBTTOKEN_IMPL failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: mRNA Vaccines failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Mushroom Wojak failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: ElonMax failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: ZZZ failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Top Dog Beach Club failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Moonstar failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Tiramisu failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: MostExpensive :: Physical Asset failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: MINITIKI failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: ATOKEN_IMPL failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: DEBTTOKEN_IMPL failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: DEBTTOKEN_IMPL failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: MINITIKI failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: MINITIKI_Dividend_Tracker failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: IRON Titanium Token failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: ATOKEN_IMPL failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: DEBTTOKEN_IMPL failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: DEBTTOKEN_IMPL failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: LAST failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: TokiTalk failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: BabyCat failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: miniDoge failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Guild Pointz for PMBTC failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Polygon Mineable Bitcoin - Multi Token Mining failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: john wick failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: MoneyDoge failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: SolarMoon failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Polygon Mineable Bitcoin - Multi Token Mining failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: spider failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: MENAI failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: TTIAN failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Spectrum failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: ATOKEN_IMPL failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: DEBTTOKEN_IMPL failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: DEBTTOKEN_IMPL failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: TIKI failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: ATOKEN_IMPL failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: LittleApe6 failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: DEBTTOKEN_IMPL failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: DEBTTOKEN_IMPL failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: PloyMiniDOGE failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Tranchess.com | Queen Token failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Stampede failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Micro Inu | t.me/MicroInu failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Moon Token failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Freda The Farmer failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: MiniDoge failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: CRYPTO PHOENIX failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Freda The Farmer failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: EtherpoemsSpokenWord failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: TARATOKEN failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: TIKI failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Whitecherry Token failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Bookie failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: DogeBOSS failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Iron Doge failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Delta Swap failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: BLOCKCHAIN COLLECTION failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: FSHIB failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: WHINS failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: PolyHamster failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Gluing Coin failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: SMUDGE failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: My Token failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Fath failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: BP Coin failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Floki Inu failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Fath failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: CJB5 failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Sniper Token failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: LittleApe5 failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Metaverse Coin failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: MiniFloki failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: polkaplay.io failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Clientele Coin failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: PolyFrenchie Token failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: PolyFrenchie Token failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Hanzoo failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Run failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Musashi failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: t.me/w1ldshiba failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Mystery Swap failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Limecat failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: reeee failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: BikiniInu failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: PolyGaj Token failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: PRO Trade | t.me/She1t3rInu failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: PolyGaj Token failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: polytrade.finance failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Glee failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: https://t.me/Pyraminu failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: BOBO Inu failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Metaverse Coin failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: PokeInu failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: StarFish.Cash failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Clientele Coin failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: komodo-SBV21 failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Brrrrrrrr failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Grey Token failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: komodo-KCU21 failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: komodo-CTZ21 failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Evelyn failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Shrek Coin failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: RedRocket failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: TradeStars F-NFT failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Tree Network failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: UFO INU failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Rabbie Exchange Swap failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: AI Cuminu failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Spce Ghost failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Grey Token failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: komodo-HEQ21 failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: PolyGamer Token failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: komodo-GFQ21 failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: LİON COİN failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Name failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: ClienteleCoin.com failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: komodo-SIU21 failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: WrappedUSDT failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: komodo-GCQ21 failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Eternal Swap failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: MillionDoge failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Beer Coin failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Floki One failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: MINITIKI_Dividend_Tracker failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: TradeStars f-NFT failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: LittleApe4 failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: MINITIKI failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: PEKBI failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: MINITIKI_Dividend_Tracker failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: BEACHPARROT | https://t.me/beachparrot failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: komodo-ZRU21 failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Immortal Doge failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: CaShu Inu failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Looper failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: FIDA INU failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: LittleApe3 failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Looper failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Hourglass USD Pool Token failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: MINITIKI_Dividend_Tracker failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: buni.finance failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Blackhole failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: Fucking Shelby failed eth check
+[LOG | Tue Jul  6 20:06:11 2021 | scrape/scrape_poc.py | parseFomo]: coin: AI Moon failed eth check
+[STARTUP | Tue Jul  6 20:06:11 2021 | main_scrape.py | <module>]: Parse the Fomo HTML
+[STARTUP | Tue Jul  6 20:06:11 2021 | main_scrape.py | <module>]: Beginning Coin Loop
+[SEVERE | Tue Jul  6 20:06:17 2021 | scrape/cglobals.py | getException]: *** print_tb:
+  File "/home/fullsend/cryptovesting/scripts/scrape/sql_connector.py", line 100, in addTokens
+    cursor.execute(insQuery, insObject)
+[SEVERE | Tue Jul  6 20:06:17 2021 | scrape/cglobals.py | getException]: *** print_exception:
+Traceback (most recent call last):
+  File "/home/fullsend/cryptovesting/scripts/scrape/sql_connector.py", line 100, in addTokens
+    cursor.execute(insQuery, insObject)
+  File "/home/fullsend/.local/lib/python3.8/site-packages/mysql/connector/cursor.py", line 551, in execute
+    self._handle_result(self._connection.cmd_query(stmt))
+mysql.connector.errors.DatabaseError: 1366 (HY000): Incorrect string value: '\xF0\x9F\x92\x8E' for column 'token_name' at row 1
+[SEVERE | Tue Jul  6 20:06:21 2021 | scrape/cglobals.py | getException]: *** print_tb:
+  File "/home/fullsend/cryptovesting/scripts/scrape/sql_connector.py", line 100, in addTokens
+    cursor.execute(insQuery, insObject)
+[SEVERE | Tue Jul  6 20:06:21 2021 | scrape/cglobals.py | getException]: *** print_exception:
+Traceback (most recent call last):
+  File "/home/fullsend/cryptovesting/scripts/scrape/sql_connector.py", line 100, in addTokens
+    cursor.execute(insQuery, insObject)
+  File "/home/fullsend/.local/lib/python3.8/site-packages/mysql/connector/cursor.py", line 551, in execute
+    self._handle_result(self._connection.cmd_query(stmt))
+mysql.connector.errors.DatabaseError: 1366 (HY000): Incorrect string value: '\xF0\x9F\xA6\x82' for column 'token_name' at row 1
+[SEVERE | Tue Jul  6 20:06:23 2021 | scrape/cglobals.py | getException]: *** print_tb:
+  File "/home/fullsend/cryptovesting/scripts/scrape/sql_connector.py", line 100, in addTokens
+    cursor.execute(insQuery, insObject)
+[SEVERE | Tue Jul  6 20:06:23 2021 | scrape/cglobals.py | getException]: *** print_exception:
+Traceback (most recent call last):
+  File "/home/fullsend/cryptovesting/scripts/scrape/sql_connector.py", line 100, in addTokens
+    cursor.execute(insQuery, insObject)
+  File "/home/fullsend/.local/lib/python3.8/site-packages/mysql/connector/cursor.py", line 551, in execute
+    self._handle_result(self._connection.cmd_query(stmt))
+mysql.connector.errors.DatabaseError: 1366 (HY000): Incorrect string value: '\xF0\x9F\xA6\x95 S...' for column 'token_name' at row 1
+[SEVERE | Tue Jul  6 20:06:26 2021 | scrape/cglobals.py | getException]: *** print_tb:
+  File "/home/fullsend/cryptovesting/scripts/scrape/sql_connector.py", line 100, in addTokens
+    cursor.execute(insQuery, insObject)
+[SEVERE | Tue Jul  6 20:06:26 2021 | scrape/cglobals.py | getException]: *** print_exception:
+Traceback (most recent call last):
+  File "/home/fullsend/cryptovesting/scripts/scrape/sql_connector.py", line 100, in addTokens
+    cursor.execute(insQuery, insObject)
+  File "/home/fullsend/.local/lib/python3.8/site-packages/mysql/connector/cursor.py", line 551, in execute
+    self._handle_result(self._connection.cmd_query(stmt))
+mysql.connector.errors.DatabaseError: 1366 (HY000): Incorrect string value: '\xF0\x9F\x90\x9DHo...' for column 'token_name' at row 1
+[SEVERE | Tue Jul  6 20:06:28 2021 | scrape/cglobals.py | getException]: *** print_tb:
+  File "/home/fullsend/cryptovesting/scripts/scrape/sql_connector.py", line 100, in addTokens
+    cursor.execute(insQuery, insObject)
+[SEVERE | Tue Jul  6 20:06:28 2021 | scrape/cglobals.py | getException]: *** print_exception:
+Traceback (most recent call last):
+  File "/home/fullsend/cryptovesting/scripts/scrape/sql_connector.py", line 100, in addTokens
+    cursor.execute(insQuery, insObject)
+  File "/home/fullsend/.local/lib/python3.8/site-packages/mysql/connector/cursor.py", line 551, in execute
+    self._handle_result(self._connection.cmd_query(stmt))
+mysql.connector.errors.DatabaseError: 1366 (HY000): Incorrect string value: '\xF0\x9F\xA6\x8EPa...' for column 'token_name' at row 1
+[SEVERE | Tue Jul  6 20:06:31 2021 | scrape/cglobals.py | getException]: *** print_tb:
+  File "/home/fullsend/cryptovesting/scripts/scrape/sql_connector.py", line 100, in addTokens
+    cursor.execute(insQuery, insObject)
+[SEVERE | Tue Jul  6 20:06:31 2021 | scrape/cglobals.py | getException]: *** print_exception:
+Traceback (most recent call last):
+  File "/home/fullsend/cryptovesting/scripts/scrape/sql_connector.py", line 100, in addTokens
+    cursor.execute(insQuery, insObject)
+  File "/home/fullsend/.local/lib/python3.8/site-packages/mysql/connector/cursor.py", line 551, in execute
+    self._handle_result(self._connection.cmd_query(stmt))
+mysql.connector.errors.DatabaseError: 1366 (HY000): Incorrect string value: '\xF0\x9F\x90\x9E' for column 'token_name' at row 1
+[COMPLETED | Tue Jul  6 20:06:32 2021 | main_scrape.py | <module>]: {'addTokens': 4088}

@@ -63,7 +63,7 @@ async function _gas() {
         "gasPrice": 0,
         "gas": 0,
     }
-    gasVals["gasPrice"] = await web3.eth.getGasPrice() * 2
+    gasVals["gasPrice"] = await web3.eth.getGasPrice() * 1.4
     return gasVals
 }
 
@@ -161,7 +161,7 @@ const generateAddressesFromSeed = (mnemonic, count) => {
       accounts.push({ address: address, privateKey: privateKey });
     }
     return accounts;
-  }
+}
 
 
 // INFO Porgram Start

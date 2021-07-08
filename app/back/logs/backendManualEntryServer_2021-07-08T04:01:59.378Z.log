@@ -1,0 +1,49 @@
+[ START 2021-07-08T04:01:59.378Z ] Starting app.js to listen to the sql and run contract checks
+[ INPUT 2021-07-08T04:02:02.708Z ] Token: {
+  "uuid": "08887aec-1948-46aa-a4fc-676b391e0767",
+  "token_name": "0x60684A1F27876aab7022Da66909Dd234f9CC9E3C",
+  "bscscan_link": "https://bscscan.com/address/0x60684A1F27876aab7022Da66909Dd234f9CC9E3C",
+  "contract_hash": "0x60684A1F27876aab7022Da66909Dd234f9CC9E3C"
+} being added
+[ SUCCESS 2021-07-08T04:02:02.733Z ] Added token: {
+  "uuid": "08887aec-1948-46aa-a4fc-676b391e0767",
+  "token_name": "0x60684A1F27876aab7022Da66909Dd234f9CC9E3C",
+  "bscscan_link": "https://bscscan.com/address/0x60684A1F27876aab7022Da66909Dd234f9CC9E3C",
+  "contract_hash": "0x60684A1F27876aab7022Da66909Dd234f9CC9E3C"
+}
+[ INPUT 2021-07-08T04:02:07.042Z ] Token: {
+  "uuid": "4736b6e7-0923-43b7-bc74-4607446f18a4",
+  "token_name": "0x60684A1F27876aab7022Da66909Dd234f9CC9E3C",
+  "bscscan_link": "https://bscscan.com/address/0x60684A1F27876aab7022Da66909Dd234f9CC9E3C",
+  "contract_hash": "0x60684A1F27876aab7022Da66909Dd234f9CC9E3C"
+} being added
+[ SUCCESS 2021-07-08T04:02:07.050Z ] Added token: {
+  "uuid": "4736b6e7-0923-43b7-bc74-4607446f18a4",
+  "token_name": "0x60684A1F27876aab7022Da66909Dd234f9CC9E3C",
+  "bscscan_link": "https://bscscan.com/address/0x60684A1F27876aab7022Da66909Dd234f9CC9E3C",
+  "contract_hash": "0x60684A1F27876aab7022Da66909Dd234f9CC9E3C"
+}
+[ INPUT 2021-07-08T04:04:43.906Z ] Token: {
+  "uuid": "f617400f-afdc-4886-83a5-90e4386ddb9e",
+  "token_name": "0x60684A1F27876aab7022Da66909Dd234f9CC9E3C",
+  "bscscan_link": "https://bscscan.com/address/0x60684A1F27876aab7022Da66909Dd234f9CC9E3C",
+  "contract_hash": "0x60684A1F27876aab7022Da66909Dd234f9CC9E3C"
+} being added
+[ SUCCESS 2021-07-08T04:04:43.924Z ] Added token: {
+  "uuid": "f617400f-afdc-4886-83a5-90e4386ddb9e",
+  "token_name": "0x60684A1F27876aab7022Da66909Dd234f9CC9E3C",
+  "bscscan_link": "https://bscscan.com/address/0x60684A1F27876aab7022Da66909Dd234f9CC9E3C",
+  "contract_hash": "0x60684A1F27876aab7022Da66909Dd234f9CC9E3C"
+}
+[ INPUT 2021-07-08T04:04:47.268Z ] Token: {
+  "uuid": "314f1b26-0ff1-40e0-8a3f-d2bd1c9be93c",
+  "token_name": "0x60684A1F27876aab7022Da66909Dd234f9CC9E3C",
+  "bscscan_link": "https://bscscan.com/address/0x60684A1F27876aab7022Da66909Dd234f9CC9E3C",
+  "contract_hash": "0x60684A1F27876aab7022Da66909Dd234f9CC9E3C"
+} being added
+[ ERROR 2021-07-08T04:04:47.272Z ] Error adding token: {
+  "uuid": "314f1b26-0ff1-40e0-8a3f-d2bd1c9be93c",
+  "token_name": "0x60684A1F27876aab7022Da66909Dd234f9CC9E3C",
+  "bscscan_link": "https://bscscan.com/address/0x60684A1F27876aab7022Da66909Dd234f9CC9E3C",
+  "contract_hash": "0x60684A1F27876aab7022Da66909Dd234f9CC9E3C"
+} error: Error: ER_DUP_ENTRY: Duplicate entry '0x60684A1F27876aab7022Da66909Dd234f9CC9E3C' for key 'tokens.contract_hash'

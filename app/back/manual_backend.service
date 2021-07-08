@@ -1,0 +1,8 @@
+[Unit]
+Description=Token Manual Entry Backend
+
+[Service]
+ExecStart=/home/fullsend/cryptovesting/app/back/start_back.sh
+
+[Install]
+WantedBy=multi-user.target

@@ -1,6 +1,7 @@
 # Byte-compiled / optimized / DLL files
 sniper_bot/js/node_modules/*
 scripts/rugmenot_contracts/node_modules/*
+app/back/node_modules/*
 *.ps1
 *.cmd
 decryption files/
