@@ -1,6 +1,7 @@
 const Web3 = require('web3')
 const Common = require('ethereumjs-common').default;
 var bip39 = require("bip39");
+const fs = require('fs')
 var { hdkey } = require('ethereumjs-wallet');
 
 // INFO Constants
