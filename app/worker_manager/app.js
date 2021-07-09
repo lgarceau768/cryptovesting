@@ -57,6 +57,7 @@ const program = async () => {
         expression: 'cryptovesting.tokens',
         statement: "INSERT",
         onEvent: (event) => {
+            console.log('triggered')
             spawnWorker({
                 workerData: event,
                 worker: 'contractCheckWorker.js'
@@ -64,3 +65,5 @@ const program = async () => {
         }
     })
 }
+
+program()
