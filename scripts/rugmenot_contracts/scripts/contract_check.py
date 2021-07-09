@@ -104,7 +104,7 @@ for key in points_of_interest["poi"]:
 points_of_interest["totalScore"] = float(str(totalScore)[:3])
 _l.log("Total Score: "+str(totalScore)[:3], level="DONE")
 name = _o(points_of_interest, path)
-print("Name="+name)
+sys.stdout.write("Name="+name)
 
 
 
