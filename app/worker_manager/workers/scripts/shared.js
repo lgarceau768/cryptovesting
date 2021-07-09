@@ -84,7 +84,6 @@ this.generateAddressesFromSeed = (mnemonic, count) => {
 
 this.sendMessage = (data, _l, parentPort=null) => {
     if(parentPort == null){
-        console.log("not parentPort")
         _l(data)
     } else {
         parentPort.postMessage(data)
