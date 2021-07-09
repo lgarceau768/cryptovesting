@@ -64,6 +64,7 @@ this._gas = () => {
     return gasVals
 }
 
+
 // function to create address from mnemonic
 this.generateAddressesFromSeed = (mnemonic, count) => {  
     let seed = bip39.mnemonicToSeedSync(mnemonic);
@@ -86,6 +87,22 @@ this.sendMessage = (data, _l, parentPort=null) => {
     } else {
         parentPort.sendMessage(data)
     }
+}
+
+this.getWorkerData = (workerData, process) => {
+    if(workerData == null){
+        return process.argv[2]
+    } else {
+        return workerData
+    }
+}
+
+this.sqlData = {
+    host: "localhost",
+    user: "root",
+    password: "Spook524*",
+    database: "cryptovesting",
+    insecureAuth: true
 }
 
 module.exports = {

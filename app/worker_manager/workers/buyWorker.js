@@ -22,7 +22,7 @@ var {
     web3,
     sendMessage
 } = require('./scripts/shared.js')
-var { _ll, init } = require('./scripts/logger.js')
+var { _l: _ll, init } = require('./scripts/logger.js')
 let date = new Date()
 let path = "/home/fullsend/app/worker_manager/logs/buyWorker_" + token +"_ "+ date.toISOString() + ".log"
 init(path)

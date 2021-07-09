@@ -3,37 +3,32 @@ const { parentPort, workerData } = require('worker_threads')
 const fs = require('fs')
 const { spawn } = require('child_process')
 const mysql = require('mysql')
-const Web3 = require('web3')
-const web3 = new Web3(new Web3.providers.HttpProvider("https://bsc-dataseed.binance.org/"))
 const SCORE_TO_PASS = 4.0
-const logger = require('./logger.js')
-
+const {init, _ll } = require('./scripts/logger.js')
+const {
+    sendMessage,
+    getWorkerData,
+    web3,
+    sqlData,
+    web3
+} = require('./scripts/shared')
 
 // INFO setup mysql
-const sqlData = {
-    host: "localhost",
-    user: "root",
-    password: "Spook524*",
-    database: "cryptovesting",
-    insecureAuth: true
-}
 const connection = mysql.createConnection(sqlData)
 connection.connect()
 
 // INFO init
-// INFO init
 let isoString = new Date()
 let logFilePath = "/home/fullsend/cryptovesting/app/worker_manager/logs/contractCheckWorker" + "_"+ isoString.toISOString() + ".log"
-logger.init(logFilePath)
-const event = workerData
-let token = {
-    "token_name": process.argv[2],
-    "contract_hash": process.argv[2]
+init(logFilePath)
+
+// INFO pull start data
+const event = getWorkerData(workerData)
+
+// INFO override log function
+_l = (data) => {
+    sendMessage(data, _ll, parentPort)
 }
-if (event != null) {
-    token = event["affectedRows"][0]["after"]
-}
-_l = logger._l
 _l("Worker For Token: "+token["token_name"], level="START")
 
 // INFO function to output the contract source to a file before calling the python script
@@ -76,11 +71,7 @@ function addToken(token, score, jsonPath) {
             _l(err, level="ERROR")
         } else {
             _l(token["token_name"]+ " added", level="SUCCESS")
-            try {
-                parentPort.postMessage("Contract Check complete on "+token["token_name"])
-            } catch {
-                _l("Contract Check complete on "+token["token_name"], level="SUCCESS")
-            }
+            _l("Contract Check complete on "+token["token_name"], level="SUCCESS")
             process.exit()
         }
         
@@ -104,7 +95,6 @@ async function getContractSource(tokenAddress) {
         return {
             functions, events, decompiled
         }
-        _l("getContractSource "+tokenAddress, level="DEBUG")
     } catch (err) {
         _l("Error getting "+tokenAddress+" source code", level="ERROR")
     }
@@ -132,21 +122,15 @@ function runContractCheck(filePath, token){
     }    
 }
 
-
+// INFO program
 try {
-    try {
-        parentPort.postMessage("Starting Check")
-    } catch {
-        _l("Starting Check", level="START")
-    }
+    let token = event["affectedRows"][0]["after"]
+    _l("Starting Check", level="START")    
     getContractSource(token["contract_hash"]).then( (contractDict) => {
         let filePath = outputContractSource(token["token_name"], contractDict)
         runContractCheck(filePath, token)        
     })    
 } catch (err) {
-    try {
-        parentPort.postMessage("Contract Check failed on "+token["token_name"])
-    } catch {
-        _l("Contract Check failed on "+token["token_name"], level="FAIL")
-    }
+    _l("Contract Check failed on "+token["token_name"], level="FAIL")
+    
 }     
