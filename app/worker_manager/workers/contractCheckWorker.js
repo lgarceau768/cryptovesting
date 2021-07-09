@@ -118,6 +118,7 @@ function runContractCheck(filePath, token){
                 addToken(token, jsonData["totalScore"], resultPath)
             }
         })
+        contractCheckProcess.stderr.on('data', (data) => console.log('error: '+data))
         contractCheckProcess.on('error', () => console.log('failed to start'))
     } catch (err) {
         _l(err, level="ERROR")
