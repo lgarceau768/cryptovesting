@@ -28,7 +28,7 @@ this.BSC_TESTNET_FORK = Common.forCustomChain(
 )
 this.WBNBAddress = '0xae13d989daC2f0dEbFf460aC112a837C89BAa7cd'; // WBNB token address
 this.pancakeSwapRouterAddress = '0x9Ac64Cc6e4415144C455BD8E4837Fea55603e5c3';
-this.routerAbi = JSON.parse(fs.readFileSync('sniper_bot/js/pancakeswap_router_abi.json', 'utf-8'));
+this.routerAbi = JSON.parse(fs.readFileSync('/home/fullsend/cryptovesting/sniper_bot/js/pancakeswap_router_abi.json', 'utf-8'));
 this.GAS_AMOUNT = 1500000
 
 // INFO Variables
