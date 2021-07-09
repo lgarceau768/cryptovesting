@@ -58,7 +58,7 @@ function outputContractSource(tokenName, contractDict){
 // INFO function to add token to respective database
 function addToken(token, score, jsonPath) {
     let insertRow = {
-        uuid: token["uuid"],
+        uuid: token,
         json_path: jsonPath
     }
     // INFO default failed contract check
@@ -71,8 +71,8 @@ function addToken(token, score, jsonPath) {
         if(err){
             _l(err, level="ERROR")
         } else {
-            _l(token["token_name"]+ " added", level="SUCCESS")
-            _l("Contract Check complete on "+token["token_name"], level="SUCCESS")
+            _l(token+ " added", level="SUCCESS")
+            _l("Contract Check complete on "+token, level="SUCCESS")
             process.exit()
         }
         
