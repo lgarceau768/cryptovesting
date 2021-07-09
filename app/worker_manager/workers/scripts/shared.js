@@ -55,7 +55,7 @@ this._gethash = async (signed_tx) => {
 this._jstr = (json_dict) => JSON.stringify(json_dict, null, 2)
 
 // get gas vars
-this._gas = () => {
+this._gas = async () => {
     let gasVals = {
         "gasPrice": 0,
         "gas": 0,
