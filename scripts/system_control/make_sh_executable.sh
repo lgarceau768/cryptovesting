@@ -2,3 +2,8 @@
 chmod 777 /home/fullsend/cryptovesting/app/front/start_server.sh
 chmod 777 /home/fullsend/cryptovesting/app/back/start_back.sh
 chmod 777 /home/fullsend/cryptovesting/scripts/rugmenot_contracts/service/start_tokens_listener.sh
+chmod 777 /home/fullsend/cryptovesting/scripts/system_control/replace_services.sh
+chmod 777 /home/fullsend/cryptovesting/scripts/system_control/start_all.sh
+chmod 777 /home/fullsend/cryptovesting/scripts/system_control/restart_all.sh
+chmod 777 /home/fullsend/cryptovesting/scripts/system_control/status_all.sh
+chmod 777 /home/fullsend/cryptovesting/scripts/system_control/stop_all.sh
