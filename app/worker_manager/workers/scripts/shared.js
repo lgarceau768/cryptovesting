@@ -94,7 +94,7 @@ this.getWorkerData = (workerData, process) => {
     if(workerData == null){
         return process.argv[2]
     } else {
-        return workerData
+        return workerData["affectedRows"][0]["after"]
     }
 }
 
