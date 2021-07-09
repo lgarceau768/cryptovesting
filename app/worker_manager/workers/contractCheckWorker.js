@@ -23,7 +23,7 @@ init(logFilePath)
 
 // INFO pull start data
 const event = getWorkerData(workerData, process)
-let token = event["affectedRows"][0]["after"]
+let token = event
 
 // INFO override log function
 _l = (data) => {
