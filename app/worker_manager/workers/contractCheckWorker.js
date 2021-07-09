@@ -107,6 +107,7 @@ function runContractCheck(filePath, token){
         _l("runContractCheck "+filePath, level="DEBUG")
         const contractCheckProcess = spawn('python3', ["/home/fullsend/cryptovesting/scripts/rugmenot_contracts/scripts/contract_check.py "+filePath])
         contractCheckProcess.stdout.on('data', (data) => {
+            console.log('got data: '+data)
             let stringVal = data.toString().trim()
             let index = stringVal.indexOf("Name=")
             if(index != -1){
