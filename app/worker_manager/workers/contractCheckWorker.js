@@ -4,7 +4,7 @@ const fs = require('fs')
 const { spawn } = require('child_process')
 const mysql = require('mysql')
 const SCORE_TO_PASS = 4.0
-const {init, _ll } = require('./scripts/logger.js')
+const {init, _l: _ll } = require('./scripts/logger.js')
 const {
     sendMessage,
     getWorkerData,
