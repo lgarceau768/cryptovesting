@@ -39,7 +39,7 @@ _l("Worker For Token: "+token["token_name"], level="START")
 // INFO function to output the contract source to a file before calling the python script
 function outputContractSource(tokenName, contractDict){
     try {
-        let dir = "/home/fullsend/cryptovesting/scripts/rugmenot_contracts/contracts/sol\ files/"
+        let dir = "/home/fullsend/cryptovesting/scripts/rugmenot_contracts/contracts/sol_files/"
         let filePath = dir + tokenName + ".txt"
         let fileData = ""
         for(let i = 0; i < contractDict.events.length; i++){

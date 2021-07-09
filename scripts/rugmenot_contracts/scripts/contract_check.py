@@ -3,7 +3,7 @@ from datetime import datetime
 
 # INFO constants
 WOI_OBJ = json.load(open("/home/fullsend/cryptovesting/scripts/rugmenot_contracts/info/words_of_interest.json"))
-SOLPATH = "/home/fullsend/cryptovesting/scripts/rugmenot_contracts/contracts/sol\ files/"
+SOLPATH = "/home/fullsend/cryptovesting/scripts/rugmenot_contracts/contracts/sol_files/"
 SOLPATH = sys.argv[1]
 WOI_KEYS = []
 comment = False
@@ -104,7 +104,7 @@ for key in points_of_interest["poi"]:
 points_of_interest["totalScore"] = float(str(totalScore)[:3])
 _l.log("Total Score: "+str(totalScore)[:3], level="DONE")
 name = _o(points_of_interest, path)
-sys.stdout.write("Name="+name)
+print("Name="+name)
 
 
 
