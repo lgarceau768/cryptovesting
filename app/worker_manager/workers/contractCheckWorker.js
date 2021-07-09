@@ -30,7 +30,7 @@ _l = (data) => {
     console.log(data)
     sendMessage(data, _ll, parentPort)
 }
-_l("Worker For Token: "+token["token_name"], level="START")
+_l("Worker For Token: "+token, level="START")
 
 // INFO function to output the contract source to a file before calling the python script
 function outputContractSource(tokenName, contractDict){
@@ -126,11 +126,11 @@ function runContractCheck(filePath, token){
 // INFO program
 try {
     _l("Starting Check", level="START")    
-    getContractSource(token["contract_hash"]).then( (contractDict) => {
-        let filePath = outputContractSource(token["token_name"], contractDict)
+    getContractSource(token).then( (contractDict) => {
+        let filePath = outputContractSource(token, contractDict)
         runContractCheck(filePath, token)        
     })    
 } catch (err) {
-    _l("Contract Check failed on "+token["token_name"], level="FAIL")
+    _l("Contract Check failed on "+token, level="FAIL")
     
 }     

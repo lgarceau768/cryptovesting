@@ -28,7 +28,7 @@ function spawnWorker(workerInfo, onMessage) {
     let workerData = workerInfo["workerData"]
     _l("Worker Spawned: "+workerName+ " with data: "+_jstr(workerData), level="SPAWN")
     const worker = new Worker(workerPath, {
-        workerData: workerData["affectedRows"][0]["after"]
+        workerData: workerData["affectedRows"][0]["after"]["contract_hash"]
     })
     worker.once('message', (strResponse) => {
         onMessage(strResponse)
