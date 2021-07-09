@@ -37,7 +37,7 @@ this.my_pk = "6212aa6e4d2609a815d85f8afa7bc56264ffe337755ee2699caa2ebc2f6792d1"
 this.mnemonic = "plunge shove witness distance twist illness above other use alter shield echo"
 // const cryptovesting_account = generateAddressesFromSeed(mnemonic, 1)[0]
 //var targetAccount = web3.eth.accounts.privateKeyToAccount(cryptovesting_account.privateKey)
-this.targetAccount = web3.eth.accounts.privateKeyToAccount(my_pk)
+this.targetAccount = this.web3.eth.accounts.privateKeyToAccount(my_pk)
 
 // INFO Functions
 // get account balance
