@@ -10,7 +10,6 @@ const {
     getWorkerData,
     web3,
     sqlData,
-    web3
 } = require('./scripts/shared')
 
 // INFO setup mysql
