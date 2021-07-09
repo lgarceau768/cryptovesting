@@ -22,8 +22,8 @@ let logFilePath = "/home/fullsend/cryptovesting/app/worker_manager/logs/contract
 init(logFilePath)
 
 // INFO pull start data
-console.log(workerData)
 const event = getWorkerData(workerData, process)
+let token = event["affectedRows"][0]["after"]
 
 // INFO override log function
 _l = (data) => {
@@ -124,7 +124,6 @@ function runContractCheck(filePath, token){
 
 // INFO program
 try {
-    let token = event["affectedRows"][0]["after"]
     _l("Starting Check", level="START")    
     getContractSource(token["contract_hash"]).then( (contractDict) => {
         let filePath = outputContractSource(token["token_name"], contractDict)
