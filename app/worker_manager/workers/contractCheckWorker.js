@@ -27,6 +27,7 @@ let token = event
 
 // INFO override log function
 _l = (data) => {
+    console.log(data)
     sendMessage(data, _ll, parentPort)
 }
 _l("Worker For Token: "+token["token_name"], level="START")
