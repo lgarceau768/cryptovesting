@@ -26,7 +26,6 @@ function spawnWorker(workerInfo, onMessage) {
     let workerName = workerInfo["worker"]
     let workerPath = workerBasePath+workerName
     let workerData = workerInfo["workerData"]
-    _l("Worker Spawned: "+workerName+ " with data: "+_jstr(workerData), level="SPAWN")
     switch (workerName) {
         case 'contractCheckWorker.js':
             workerData = workerData["affectedRows"][0]["after"]["contract_hash"]
@@ -35,6 +34,7 @@ function spawnWorker(workerInfo, onMessage) {
         default:
             break;
     }
+    _l("Worker Spawned: "+workerName+ " with data: "+_jstr(workerData), level="SPAWN")
     const worker = new Worker(workerPath, {
         workerData: workerData
     })
