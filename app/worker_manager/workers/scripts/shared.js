@@ -42,13 +42,13 @@ this.targetAccount = web3.eth.accounts.privateKeyToAccount(my_pk)
 // INFO Functions
 // get account balance
 this._bal = async (account) => {
-    let balance = await web3.eth.getBalance(account.address)
+    let balance = await this.web3.eth.getBalance(account.address)
     console.log(`Current Account balance ${balance}`)
 }
 
 // get transaction hash
 this._gethash = async (signed_tx) => {
-    var hash = await web3.utils.sha3(signed_tx, { encoding: "hex"})
+    var hash = await this.web3.utils.sha3(signed_tx, { encoding: "hex"})
     console.log(`Transaction hash ${hash}`)
 } 
 
@@ -61,7 +61,7 @@ this._gas = async () => {
         "gasPrice": 0,
         "gas": 0,
     }
-    gasVals["gasPrice"] = await web3.eth.getGasPrice() * 2
+    gasVals["gasPrice"] = await this.web3.eth.getGasPrice() * 2
     return gasVals
 }
 
