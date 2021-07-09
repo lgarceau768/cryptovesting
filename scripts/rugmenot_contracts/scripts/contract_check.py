@@ -4,8 +4,7 @@ from datetime import datetime
 # INFO constants
 WOI_OBJ = json.load(open("/home/fullsend/cryptovesting/scripts/rugmenot_contracts/info/words_of_interest.json"))
 SOLPATH = "/home/fullsend/cryptovesting/scripts/rugmenot_contracts/contracts/sol\ files/"
-print(sys.argv)
-SOLPATH = SOLPATH + sys.argv[2]
+SOLPATH = SOLPATH + sys.argv[1]
 WOI_KEYS = []
 comment = False
 words = {}
