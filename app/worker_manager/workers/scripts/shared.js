@@ -4,6 +4,10 @@ var bip39 = require("bip39");
 const fs = require('fs')
 var { hdkey } = require('ethereumjs-wallet');
 
+this.setLog = (_l) =>{
+    this._l = _l
+}
+
 // INFO Constants
 this.web3 = new Web3(new Web3.providers.HttpProvider('https://data-seed-prebsc-1-s1.binance.org:8545/'))
 this.BSC_FORK = Common.forCustomChain(

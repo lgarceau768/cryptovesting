@@ -7,7 +7,8 @@ const {
 const mysqlEvents = require('@rodrigogs/mysql-events')
 const {
     sqlData,
-    _jstr
+    _jstr,
+    setLog
 } = require('./workers/scripts/shared')
 
 // INFO setup mysql
@@ -18,6 +19,7 @@ connection.connect()
 let isoString = new Date()
 let logFilePath = "/home/fullsend/cryptovesting/app/worker_manager/logs/workerManagerLog_" + isoString.toISOString() + ".log"
 init(logFilePath)
+setLog(_l)
 
 // INFO function to spawn worker
 function spawnWorker(workerInfo, onMessage) {
