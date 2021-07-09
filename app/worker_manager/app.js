@@ -38,7 +38,7 @@ function spawnWorker(workerInfo, onMessage) {
     const worker = new Worker(workerPath, {
         workerData: workerData
     })
-    worker.on('data', (strResponse) => {
+    worker.once('message', (strResponse) => {
         onMessage(strResponse)
     })
     worker.on('error', (error) => _l("Worker: "+_jstr(workerInfo) +" has error: " +error, level="ERROR"))

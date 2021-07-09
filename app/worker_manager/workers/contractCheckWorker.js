@@ -131,6 +131,5 @@ try {
         runContractCheck(filePath, token)        
     })    
 } catch (err) {
-    _l("Contract Check failed on "+token, level="FAIL")
-    
+    _l("Contract Check failed on "+token, level="FAIL")    
 }     
