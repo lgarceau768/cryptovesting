@@ -105,7 +105,7 @@ async function getContractSource(tokenAddress) {
 function runContractCheck(filePath, token){    
     try {
         _l("runContractCheck "+filePath, level="DEBUG")
-        const contractCheckProcess = spawn('python3', ["/home/fullsend/cryptovesting/scripts/rugmenot_contracts/scripts/contract_check.py "+filePath])
+        const contractCheckProcess = spawn('python3', ["/home/fullsend/cryptovesting/scripts/rugmenot_contracts/scripts/contract_check.py", filePath])
         contractCheckProcess.stdout.on('data', (data) => {
             console.log('got data: '+data)
             let stringVal = data.toString().trim()
