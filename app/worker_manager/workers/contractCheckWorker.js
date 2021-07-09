@@ -22,6 +22,7 @@ let logFilePath = "/home/fullsend/cryptovesting/app/worker_manager/logs/contract
 init(logFilePath)
 
 // INFO pull start data
+console.log(workerData)
 const event = getWorkerData(workerData, process)
 
 // INFO override log function
