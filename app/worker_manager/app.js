@@ -35,6 +35,7 @@ function spawnWorker(workerInfo, onMessage) {
             break;
     }
     _l("Worker Spawned: "+workerName+ " with data: "+_jstr(workerData)+ " and base info: "+_jstr(workerInfo), level="SPAWN")
+    console.log(workerPath)
     const worker = new Worker(workerPath, {
         workerData: workerData
     })
