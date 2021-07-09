@@ -2,18 +2,18 @@ import json, sys, logManager, cglobals, os
 from datetime import datetime
 
 # INFO constants
-WOI_OBJ = json.load(open(os.path.join("scripts", "rugmenot_contracts", "info", "words_of_interest.json")))
-SOLPATH = os.path.join("scripts", "rugmenot_contracts", "contracts", "sol files")
-SOLPATH = os.path.join(SOLPATH ,sys.argv[1])
+WOI_OBJ = json.load(open("/home/fullsend/cryptovesting/scripts/rugmenot_contracts/info/words_of_interest.json"))
+SOLPATH = "/home/fullsend/cryptovesting/scripts/rugmenot_contracts/contracts/sol\ files/"
+SOLPATH = SOLPATH + sys.argv[2]
 WOI_KEYS = []
 comment = False
 words = {}
 
 
 # INFO variables
-path = SOLPATH.split("sol files")
+path = SOLPATH.split("/")
 path = path[len(path) - 1].replace(".sol", "_")
-_l = logManager.LogManager(path + "_contractCheck", dirName=os.path.join("scripts", "rugmenot_contracts", "logs"))
+_l = logManager.LogManager(path + "_contractCheck")
 for key in WOI_OBJ:
     WOI_KEYS.append(key)
     words[key] = 0
