@@ -22,11 +22,11 @@ let logFilePath = "/home/fullsend/cryptovesting/app/worker_manager/workers/logs/
 init(logFilePath)
 
 // INFO pull start data
-const event = getWorkerData(workerData, process)
+const event = getWorkerData(workerData, process, isMainThread)
 let token = event
 
 // INFO override log function
-_l = (data) => {
+const _l = (data) => {
     sendMessage(data, _ll, parentPort)
 }
 _l("Worker For Token: "+token, level="START")

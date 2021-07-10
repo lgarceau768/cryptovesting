@@ -42,8 +42,8 @@ function spawnWorker(workerInfo, onMessage) {
     worker.once('message', (strResponse) => {
         onMessage(strResponse)
     })
-    worker.on('error', (error) => _l("Worker: "+_jstr(workerInfo) +" has error: " +error, level="ERROR"))
-    worker.on('exit', (code) => _l("Worker: "+_jstr(workerInfo) +" exited with code: "+code, level="EXIT"))
+    worker.on('error', (error) => _l("ContractWorker: "+_jstr(workerInfo) +" has error: " +error, level="ERROR"))
+    worker.on('exit', (code) => _l("ContractWorker: "+_jstr(workerInfo) +" exited with code: "+code, level="EXIT"))
 }
 
 // INFO base log complete callback

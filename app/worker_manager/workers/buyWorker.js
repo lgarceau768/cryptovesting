@@ -42,9 +42,8 @@ try {
     path = "Z:\\Repos\\cryptovesting\\app\\worker_manager\\workers\\logs\\buyWorker_" + token + "_ "+ date.getTime() + ".log"
     init(path, "buyWorker.js")
 }
-_l = (data, level="DEBUG") => {
-    console.log(data)
-    sendMessage(data, _ll, parentPort, isMainThread, level)
+const _l = (data, level="DEBUG") => {
+    _ll(data, level)
 }
 
 // INFO setup contract
@@ -63,8 +62,8 @@ const run = async () => {
     _l("Starting buy with token: "+token+" amount of bnb: "+amountToBuy, level="STARTUP")
     let gasPrice = await _gas()
     let contract = new ethers.Contract(pancakeSwapRouterAddressTestNet, routerAbi, account)
-    let numberOfTokens = ethers.utils.parseUnits(amountToBuy, 16)
-    let amountMin = ethers.utils.parseUnits(amountToBuy, 16) 
+    let numberOfTokens = ethers.utils.parseUnits(amountToBuy, 18)
+    let amountMin = ethers.utils.parseUnits(amountToBuy, 18) 
     let balance = await provider.getBalance(my_acc_testnet)
     _l("Balance: "+balance, level="BALANCE")
     _l("Number of tokens: "+numberOfTokens, level="INFO")
@@ -85,6 +84,10 @@ const run = async () => {
         gasLimit: GAS_LIMIT,
     }).then((result) => {
         _l("Buy Result: "+_jstr(result), level="RESULT")
+        parentPort.postMessage("Result=success_"+result["hash"])
+    }).catch((err) => {
+        _l("Buy Error: "+_jstr(err), level="ERROR")
+        parentPort.postMessage("Error="+_jstr(err))
     })
 }
 

@@ -66,7 +66,7 @@ shared = () => {
     } 
 
     // set amount to buy with
-    this.amountToBuyWithDecimal = 0.03
+    this.AMOUNT_TO_BUY = 3
     this.GAS_LIMIT = 100000 
 
     // json shorthand pretty print
