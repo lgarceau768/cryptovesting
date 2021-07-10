@@ -1,9 +1,9 @@
 const fs = require('fs')
 let pathUse = ""
-function init(path) {
+function init(path, program) {
     pathUse = path
     let isoString = new Date();
-    fs.writeFileSync(path, "[ START "+ isoString.toISOString() + " ] Starting app.js to listen to the sql and run contract checks\n")
+    fs.writeFileSync(path, "[ START "+ isoString.toISOString() + " ] Starting " + program + "\n")
 }
 
 _l = (data, level="LOG") => {

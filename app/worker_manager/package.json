@@ -9,6 +9,10 @@
   "author": "Luke Garceau",
   "license": "ISC",
   "dependencies": {
+    "bip39": "^3.0.4",
+    "ethereumjs-tx": "^2.1.2",
+    "ethereumjs-wallet": "^1.0.1",
+    "ethers": "^5.4.1",
     "web3": "^1.4.0"
   }
 }
