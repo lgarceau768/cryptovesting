@@ -16,8 +16,7 @@ shared = () => {
             networkId: 56,
             chainId: 56,
             url: 'https://bsc-dataseed.binance.org/'
-        },
-        'istanbul'
+        }
     );
     this.BSC_TESTNET_FORK = Common.forCustomChain(
         'mainnet',
@@ -26,8 +25,7 @@ shared = () => {
             networkId: 97,
             chainId: 97,
             url: 'https://data-seed-prebsc-1-s1.binance.org:8545/'
-        },
-        'istanbul'
+        }
     )
     this.WBNBAddressMainNet = '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c'; // WBNB token address
     this.WBNBAddressTestNet = '0xae13d989dac2f0debff460ac112a837c89baa7cd'; // WBNB token address
@@ -42,7 +40,7 @@ shared = () => {
         this.routerAbi = JSON.parse(fs.readFileSync('Z:\\Repos\\cryptovesting\\sniper_bot\\js\\pancakeswap_router_abi.json', 'utf-8'));
         this.factoryAbi = JSON.parse(fs.readFileSync("Z:\\Repos\\cryptovesting\\app\\worker_manager\\workers\\contract_abis\\pancakeswap_factory_abi.json", "utf-8"))
     }
-    this.GAS_AMOUNT = 1500000
+    this.GAS_AMOUNT = 15000000
 
     // INFO Variables
     // INFO different accounts
@@ -67,7 +65,7 @@ shared = () => {
 
     // set amount to buy with
     this.AMOUNT_TO_BUY = 3
-    this.GAS_LIMIT = 100000 
+    this.GAS_LIMIT = 10000000
 
     // json shorthand pretty print
     this._jstr = (json_dict) => JSON.stringify(json_dict, null, 2)

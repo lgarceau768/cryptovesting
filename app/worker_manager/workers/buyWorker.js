@@ -2,11 +2,12 @@
 const Tx = require('ethereumjs-tx').Transaction;
 const { workerData, parentPort, isMainThread } = require('worker_threads')
 const { shared } = require('./scripts/shared')
-const { ethers } = require('ethers') 
+const { ethers, BigNumber } = require('ethers') 
 const {
     sendMessage,
     getWorkerData,
     BSC_MAINNET_URL,
+    web3,
     BSC_TESTNET_URL,
     my_pk,
     _jstr,
@@ -62,14 +63,14 @@ const run = async () => {
     _l("Starting buy with token: "+token+" amount of bnb: "+amountToBuy, level="STARTUP")
     let gasPrice = await _gas()
     let contract = new ethers.Contract(pancakeSwapRouterAddressTestNet, routerAbi, account)
-    let numberOfTokens = ethers.utils.parseUnits(amountToBuy, 18)
-    let amountMin = ethers.utils.parseUnits(amountToBuy, 18) 
+    let numberOfTokens = ethers.utils.parseEther(amountToBuy)
+    let amountMin = web3.utils.toHex('100') 
     let balance = await provider.getBalance(my_acc_testnet)
     _l("Balance: "+balance, level="BALANCE")
     _l("Number of tokens: "+numberOfTokens, level="INFO")
     let deadline = ethers.utils.hexlify(Math.round(Date.now()/1000)+60*2)
     let params = {
-        bnbAmount: numberOfTokens,
+        bnbAmount: amountToBuy,
         amountMin,
         path: [
             WBNBAddressTestNet,
@@ -79,9 +80,29 @@ const run = async () => {
         deadline,
     }
     _l("Buy Params: "+_jstr(params), level="PARAMS")
-    contract.swapExactETHForTokens(numberOfTokens, [WBNBAddressTestNet, token], my_acc_testnet, deadline, {
+    const tx = {
+        from: my_acc_testnet,
+        to: pancakeSwapRouterAddressTestNet,
+        value: numberOfTokens,
+        nonce: provider.getTransactionCount(my_acc_testnet, 'latest'),
+        gasLimit: GAS_LIMIT,
+        gasPrice: gasPrice
+    }
+    try {
+        account.sendTransaction(tx).then((txBack) => {
+            _l("Response TX: "+_jstr(txBack), level="RESULT")
+        }).catch((err) => {
+            _l("Send Transaction err: "+_jstr(err), level="ERROR")
+        })
+    } catch (err) {
+        _l("JS error: "+_jstr(err), level="CRITICAL")
+    }
+    /*
+    contract.swapExactETHForTokens(ethers.utils.hexlify(2630), [WBNBAddressTestNet, token], my_acc_testnet, deadline, {
         gasPrice,
         gasLimit: GAS_LIMIT,
+        value: numberOfTokens,
+        from: my_acc_testnet
     }).then((result) => {
         _l("Buy Result: "+_jstr(result), level="RESULT")
         parentPort.postMessage("Result=success_"+result["hash"])
@@ -89,6 +110,7 @@ const run = async () => {
         _l("Buy Error: "+_jstr(err), level="ERROR")
         parentPort.postMessage("Error="+_jstr(err))
     })
+    */
 }
 
 run()
