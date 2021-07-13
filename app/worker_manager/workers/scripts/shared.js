@@ -65,7 +65,7 @@ shared = () => {
 
     // set amount to buy with
     this.AMOUNT_TO_BUY = 3
-    this.GAS_LIMIT = 10000000
+    this.GAS_LIMIT = 60000000
 
     // json shorthand pretty print
     this._jstr = (json_dict) => JSON.stringify(json_dict, null, 2)

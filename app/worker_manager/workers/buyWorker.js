@@ -19,6 +19,8 @@ const {
     GAS_AMOUNT,
     GAS_LIMIT
 } = shared()
+
+// INFO constants
 const info = getWorkerData(workerData, process, isMainThread)
 let token, amountToBuy;
 try {
@@ -58,13 +60,23 @@ const _gas = async () => {
     return gasPrice
 }
 
+// INFO function to calc the correct coin out
+const getAmountOut = async (tokensAmt, token) => {
+    const routerContract = new ethers.Contract(pancakeSwapRouterAddressTestNet, [
+        'function getAmountOut(uint amountIn, uint reserveIn, uint reserveOut) external pure returns (uint amountOut)'
+    ] , account)
+    const price = await routerContract.getAmountOut(tokensAmt, WBNBAddressTestNet, token)
+    return price
+}
+
 // INFO main run script
 const run = async () => {
     _l("Starting buy with token: "+token+" amount of bnb: "+amountToBuy, level="STARTUP")
     let gasPrice = await _gas()
-    let contract = new ethers.Contract(pancakeSwapRouterAddressTestNet, routerAbi, account)
+    let gasLimit = await web3.eth.getBlock("latest")
+    gasLimit = gasLimit.gasLimit - 100
     let numberOfTokens = ethers.utils.parseEther(amountToBuy)
-    let amountMin = web3.utils.toHex('100') 
+    let amountMin = await getAmountOut(numberOfTokens, token)
     let balance = await provider.getBalance(my_acc_testnet)
     _l("Balance: "+balance, level="BALANCE")
     _l("Number of tokens: "+numberOfTokens, level="INFO")
@@ -80,28 +92,13 @@ const run = async () => {
         deadline,
     }
     _l("Buy Params: "+_jstr(params), level="PARAMS")
-    const tx = {
-        from: my_acc_testnet,
-        to: pancakeSwapRouterAddressTestNet,
-        value: numberOfTokens,
-        nonce: provider.getTransactionCount(my_acc_testnet, 'latest'),
-        gasLimit: GAS_LIMIT,
-        gasPrice: gasPrice
-    }
-    try {
-        account.sendTransaction(tx).then((txBack) => {
-            _l("Response TX: "+_jstr(txBack), level="RESULT")
-        }).catch((err) => {
-            _l("Send Transaction err: "+_jstr(err), level="ERROR")
-        })
-    } catch (err) {
-        _l("JS error: "+_jstr(err), level="CRITICAL")
-    }
-    /*
-    contract.swapExactETHForTokens(ethers.utils.hexlify(2630), [WBNBAddressTestNet, token], my_acc_testnet, deadline, {
+    
+    const contract = new ethers.Contract(pancakeSwapRouterAddressTestNet, routerAbi, account)
+    
+    contract.swapExactETHForTokens(amountMin, [WBNBAddressTestNet, token], my_acc_testnet, deadline, {
         gasPrice,
-        gasLimit: GAS_LIMIT,
-        value: numberOfTokens,
+        gasLimit: ethers.utils.hexlify(gasLimit),
+        value: numberOfTokens._hex,
         from: my_acc_testnet
     }).then((result) => {
         _l("Buy Result: "+_jstr(result), level="RESULT")
@@ -110,7 +107,6 @@ const run = async () => {
         _l("Buy Error: "+_jstr(err), level="ERROR")
         parentPort.postMessage("Error="+_jstr(err))
     })
-    */
 }
 
 run()
