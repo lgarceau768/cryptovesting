@@ -49,6 +49,7 @@ shared = () => {
     // const cryptovesting_account = generateAddressesFromSeed(mnemonic, 1)[0]
     //var targetAccount = web3.eth.accounts.privateKeyToAccount(cryptovesting_account.privateKey)
     this.targetAccount = this.web3.eth.accounts.privateKeyToAccount(this.my_pk)
+    this.web3.defaultAccount = this.targetAccount
 
     // INFO Functions
     // get account balance
