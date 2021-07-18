@@ -9,7 +9,7 @@
       "type": "python",
       "request": "launch",
       "program": "app\\worker_manager\\workers\\buyWorker.py",
-      "args": ["-t", "0xed24fc36d5ee211ea25a80239fb8c4cfd80f12ee", "-u", "test", "-a", "0.05"],
+      "args": ["-t", "0xed24fc36d5ee211ea25a80239fb8c4cfd80f12ee", "-u", "test", "-a", "0.05", "-s", "0.8"],
       "console": "integratedTerminal"
     },
 

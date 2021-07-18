@@ -1,4 +1,5 @@
 from web3 import Web3
+from scripts import logManager as Logger
 import sys, json, platform, time
 
 # INFO help function
@@ -15,7 +16,9 @@ if sys.argv[1].lower() not in ['-u', '-t', '-a'] or sys.argv[1].lower() == '-h':
 net = sys.argv[sys.argv.index('-u')+1]
 token = sys.argv[sys.argv.index('-t')+1]
 amount = sys.argv[sys.argv.index('-a')+1]
-print("Arguments %s, %s, %s" % (net, token, amount))
+slippage = float(sys.argv[sys.argv.index('-s')+1]) 
+logger = Logger.LogManager("buyWorker_"+token, dirName="app/worker_manager/workers/logs/")
+logger.log("Arguments %s, %s, %s, %s" % (net, token, amount, str(slippage)), "STARTUP")
 
 # INFO set variables based on net
 provider_url = ""
@@ -23,7 +26,6 @@ wbnb_address = ""
 pancakeswap_router_address = ""
 my_wallet_adr = "0xeB8ceace9be0e8E7fCF356a7dc523256d10dE8fC"
 my_pk = "6212aa6e4d2609a815d85f8afa7bc56264ffe337755ee2699caa2ebc2f6792d1"
-
 if net.lower() == 'main':
     provider_url = "https://bsc-dataseed.binance.org/"
     wbnb_address = "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c"
@@ -86,12 +88,25 @@ def _swap_exact_tokens_for_tokens(amt_WBNB, amt_token, token, contract):
         'gasPrice': gas_price,
         'nonce': nonce
     })
+    logger.log("Buying token: "+token, level="BUY")
+    logger.log("Amount Swapped BNB: "+str(amt_WBNB)+" TokenAmount: "+str(amt_token), level="BUY")
     signed_tx = account_obj.sign_transaction(swap_tx)
-    tx_token = w3.eth.sendRawTransaction(signed_tx.rawTransaction)
-    return tx_token
+    try:
+        tx_token = w3.eth.sendRawTransaction(signed_tx.rawTransaction)
+        return tx_token
+    except Exception as e:
+        logger.log("Exception at sendRawTransaction: "+str(e), level="BUY ISSUE")
+        print("Fail=Buy Issue Send Raw Transaction|"+str(e))
+        sys.exit(0)
+        
 
 # INFO main program
-amount_bnb, amount_tokens = _get_amounts_out(_e(amount), token, pancake_router_contract)
-new_amount = str(float(amount) * 0.8)[:4]
+try:
+    amount_bnb, amount_tokens = _get_amounts_out(_e(amount), token, pancake_router_contract)
+except Exception as e:
+    logger.log("Exception: "+str(e))
+
+# INFO SLIPPAGE HERE
+new_amount = str(float(amount) * slippage)[:4]
 tx_token = _h(_swap_exact_tokens_for_tokens(_e(new_amount), amount_tokens, token, pancake_router_contract))
-print(tx_token)
+print("Success="+tx_token)
