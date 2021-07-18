@@ -4,7 +4,7 @@ import sys, json, platform, time
 
 # INFO help function
 if sys.argv[1].lower() not in ['-u', '-t', '-a'] or sys.argv[1].lower() == '-h':
-    print('''
+    print('''Fail=
         Please enter the following information
         -u url (main / test)
         -t token address
@@ -35,7 +35,7 @@ elif net.lower() == "test":
     wbnb_address = "0xae13d989dac2f0debff460ac112a837c89baa7cd"
     pancakeswap_router_address = "0xD99D1c33F9fC3444f8101754aBC46c52416550D1"
 else:
-    print("Correct net not specified (needs to be main or test)")
+    print("Fail=Correct net not specified (needs to be main or test)")
     sys.exit(0)
 
 # INFO load web3

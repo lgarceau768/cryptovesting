@@ -1,6 +1,7 @@
 // INFO worker manager app.js
 // Author Luke Garceau
 const mysql = require('mysql')
+const { spawn } = require('child_process')
 const {
     _l, init
 } = require('./workers/scripts/logger')
@@ -30,7 +31,7 @@ function spawnWorker(workerInfo, onMessage) {
         case 'contractCheckWorker.js':
             workerData = workerData["affectedRows"][0]["after"]["contract_hash"]
             break;
-    
+
         default:
             break;
     }
@@ -74,6 +75,7 @@ const program = async () => {
             }, logCompleteCallback)
         }
     })
+
 }
 
 program()
