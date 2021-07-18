@@ -5,6 +5,15 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "Buy W3 Python",
+      "type": "python",
+      "request": "launch",
+      "program": "app\\worker_manager\\workers\\buyWorker.py",
+      "args": ["-t", "0xed24fc36d5ee211ea25a80239fb8c4cfd80f12ee", "-u", "test", "-a", "0.05", "-s", "0.8"],
+      "console": "integratedTerminal"
+    },
+
+    {
       "name": "Pull Contract",
       "type": "python",
       "request": "launch",
@@ -24,9 +33,7 @@
       "name": "Swap Token",
       "program": "${workspaceFolder}/sniper_bot/js/swap.js",
       "request": "launch",
-      "skipFiles": [
-        "<node_internals>/**"
-      ],
+      "skipFiles": ["<node_internals>/**"],
       "args": ["0xf1e35511e8a599bca9385f6e0a02bdd203290bda"],
       "type": "pwa-node"
     },
