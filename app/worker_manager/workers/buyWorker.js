@@ -15,8 +15,7 @@ const {
     routerAbi,
     WBNBAddressTestNet,
     my_acc_testnet,
-    GAS_AMOUNT,
-    GAS_LIMIT
+    targetAccount
 } = shared()
 const { _l: _ll, init } = require('./scripts/logger.js')
 
@@ -55,7 +54,7 @@ const account = wallet.connect(provider)
 // INFO get gas
 const _gas = async () => {
     let gasPrice = await provider.getGasPrice() * 1.4
-    return web3.utils.toHex(gasPrice)
+    return _hex(gasPrice)._hex
 }
 
 // INFO function to calc the correct coin out
@@ -63,45 +62,48 @@ const getAmountOut = async (tokensAmt, token) => {
     const routerContract = new ethers.Contract(pancakeSwapRouterAddressTestNet, [
         'function getAmountOut(uint amountIn, uint reserveIn, uint reserveOut) external pure returns (uint amountOut)'
     ] , account)
-    const price = await routerContract.getAmountOut(tokensAmt._hex, WBNBAddressTestNet, token)
+    const price = await routerContract.getAmountOut(_hex(tokensAmt), WBNBAddressTestNet, token)
     return price._hex
+}
+
+// INFO function to convert to wei
+const _wei = (amt) => {
+    return web3.utils.toWei(amt, 'wei')
+}
+
+// INFO function to convert to ether
+const _ether = (amt) => {
+    return ethers.utils.parseEther(amt)
+}
+
+// INFO function to convert to hex
+const _hex = (amt) => {
+    return ethers.utils.hexlify(amt)
 }
 
 // INFO main run script
 const run = async () => {
     try {
         _l("Starting buy with token: "+token+" amount of bnb: "+amountToBuy, level="STARTUP")
-        const routerContract = new web3.eth.Contract(routerAbi, pancakeSwapRouterAddressTestNet)
-        let bnbAmount = ethers.utils.parseEther(amountToBuy)
+        const routerContract = new ethers.Contract(pancakeSwapRouterAddressTestNet, routerAbi, account)
+        let bnbAmount = _hex(_ether(amountToBuy))
         let amountTokens = await getAmountOut(bnbAmount, token)
         const tokenPath = [
             WBNBAddressTestNet,
             token
         ]
-        const gasLimit = await web3.eth.getBlock('latest')
-        const deadline = web3.utils.toHex(Math.round(Date.now()/1000)+60*20)
-        const contractCall = routerContract.methods.swapExactETHForTokens(
+        const deadline = _hex(Math.round(Date.now()/1000)+60*20)
+
+        const gasLimit = await provider.getBlock('latest')
+        routerContract.swapTokensForExactTokens(
+            bnbAmount,
             amountTokens,
             tokenPath,
             my_acc_testnet,
-            deadline
-        )       
-        
-        const transaction = {
-            "from": my_acc_testnet,
-            "gasPrice": await _gas(),
-            "gas": web3.utils.toHex(await web3.eth.estimateGas({
-                from: my_acc_testnet,
-                to: my_acc_testnet,
-                amount: bnbAmount._hex        
-            }) * 1.5),
-            "gasLimit": web3.utils.toHex(gasLimit.gasLimit),
-            "value": bnbAmount._hex,
-            "data": contractCall.encodeABI(),
-        }
-        _l("Transaction: "+_jstr(transaction), level="TX")
-        const signed = await web3.eth.accounts.signTransaction(transaction, my_pk)
-        web3.eth.sendSignedTransaction(signed.rawTransaction)
+            deadline,{
+                gasLimit: gasLimit.gasLimit._hex,
+            }
+        )
         .then((res) => {
             _l("Buy Result: "+_jstr(res), level="RESULT")
         })
