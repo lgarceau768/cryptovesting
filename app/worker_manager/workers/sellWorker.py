@@ -17,7 +17,7 @@ net = sys.argv[sys.argv.index('-u')+1]
 token = sys.argv[sys.argv.index('-t')+1]
 amount = sys.argv[sys.argv.index('-a')+1]
 slippage = float(sys.argv[sys.argv.index('-s')+1]) 
-logger = Logger.LogManager("buyWorker_"+token, dirName="app/worker_manager/workers/logs/")
+logger = Logger.LogManager("sellWorker_"+token, dirName="app/worker_manager/workers/logs/")
 logger.log("Arguments %s, %s, %s, %s" % (net, token, amount, str(slippage)), "STARTUP")
 
 # INFO set variables based on net
@@ -67,15 +67,16 @@ def _w(amt):
 # INFO function to convert call getAmountsOut
 # 179746734697020058
 def _get_amounts_out(amt, token, contract):    
-    amount_bnb, amount_tokens =  contract.functions.getAmountsOut(amt, [_a(wbnb_address), _a(token)]).call()
-    return amount_bnb, int(amount_tokens * 0.8)
+    amount_tokens, amount_bnb =  contract.functions.getAmountsOut(amt, [_a(token), _a(wbnb_address)]).call()
+    return int(amount_bnb * slippage), amount_tokens
 
 # INFO function to make the swap
-def _swap_exact_tokens_for_tokens(amt_WBNB, amt_token, token, contract):
+def _swap_exact_tokens_for_eth(amt_WBNB, amt_token, token, contract):
     gas_price = w3.toWei('10', 'gwei')
-    swap_call = contract.functions.swapExactETHForTokens(
+    swap_call = contract.functions.swapExactTokensForETH(
         amt_token,
-        [ _a(wbnb_address), _a(token)],
+        amt_WBNB,
+        [ _a(token), _a(wbnb_address)],
         account,
         (int(time.time()) + 10000000)
     )
@@ -83,20 +84,20 @@ def _swap_exact_tokens_for_tokens(amt_WBNB, amt_token, token, contract):
     nonce = w3.eth.getTransactionCount(account)
     swap_tx = swap_call.buildTransaction({
         'from': account,
-        'value': amt_WBNB,
         'gas': gas,
+        'value': 0,
         'gasPrice': gas_price,
         'nonce': nonce
     })
-    logger.log("Buying token: "+token, level="BUY")
-    logger.log("Amount Swapped BNB: "+str(amt_WBNB)+" TokenAmount: "+str(amt_token), level="BUY")
+    logger.log("selling token: "+token, level="SELL")
+    logger.log("Amount Swapped BNB: "+str(amt_WBNB)+" TokenAmount: "+str(amt_token), level="SELL")
     signed_tx = account_obj.sign_transaction(swap_tx)
     try:
         tx_token = w3.eth.sendRawTransaction(signed_tx.rawTransaction)
         return tx_token
     except Exception as e:
-        logger.log("Exception at sendRawTransaction: "+str(e), level="BUY ISSUE")
-        print("Fail=Buy Issue Send Raw Transaction|"+str(e))
+        logger.log("Exception at sendRawTransaction: "+str(e), level="SELL ISSUE")
+        print("Fail=Sell Issue Send Raw Transaction|"+str(e))
         sys.exit(0)
         
 
@@ -107,7 +108,9 @@ except Exception as e:
     logger.log("Exception: "+str(e))
 
 # INFO SLIPPAGE HERE
-new_amount = str(float(amount) * slippage)[:4]
-tx_token = _h(_swap_exact_tokens_for_tokens(_e(amount), amount_tokens, token, pancake_router_contract))
+# FIXME may need to add an approve call here in order to approve the spend
+# 9678049674572440
+# 2758773565646017
+tx_token = _h(_swap_exact_tokens_for_eth(amount_bnb, amount_tokens, token, pancake_router_contract))
 print("Success="+tx_token)
 logger.log("Success="+tx_token, level="SUCCESS")
