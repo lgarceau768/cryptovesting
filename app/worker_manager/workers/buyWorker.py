@@ -106,10 +106,15 @@ def _swap_exact_tokens_for_tokens(amt_WBNB, amt_token, token, contract):
 # INFO main program
 try:
     amount_bnb, amount_tokens = _get_amounts_out(_e(amount), token, pancake_factory_contract)
+    # INFO SLIPPAGE HERE
+    tx_token = _h(_swap_exact_tokens_for_tokens(_e(amount), amount_tokens, token, pancake_factory_contract))
+    print("Success="+tx_token)
+    returnVal = {
+        'txHash': tx_token,
+        'initalAmount': amount_tokens
+    }
+    logger.log("Success="+json.dumps(returnVal), level="SUCCESS")
 except Exception as e:
     logger.log("Exception: "+str(e))
+    print("Fail="+str(e))
 
-# INFO SLIPPAGE HERE
-tx_token = _h(_swap_exact_tokens_for_tokens(_e(amount), amount_tokens, token, pancake_factory_contract))
-print("Success="+tx_token)
-logger.log("Success="+tx_token, level="SUCCESS")

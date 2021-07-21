@@ -1,0 +1,6 @@
+Scrape started on: 13:58:18
+[STARTUP Wed Jul 21 13:58:18 2021]: Arguments 0x4108BbbC90B991E41B7DeE69Bd91c8ad97e26CBF, 60688557149, 1.5, test, 48425002790017424
+[INFO Wed Jul 21 13:58:19 2021]: Initial BNB: 60688557149 | Target BNB: 91032835723.5
+[INFO Wed Jul 21 13:58:44 2021]: Current Ratio: 60688557149 pass?: False
+[INFO Wed Jul 21 13:58:51 2021]: Current Ratio: 121377107727 pass?: True
+[SUCCESS Wed Jul 21 13:58:53 2021]: Target ratio: 91032835723.5, hit with current ratio: 121377107727

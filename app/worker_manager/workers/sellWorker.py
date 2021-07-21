@@ -139,7 +139,12 @@ try:
     _approve(amount_tokens*10, token);
     tx_token = _h(_swap_exact_tokens_for_eth(amount_bnb, amount_tokens, token, pancake_factory_contract))
     print("Success="+tx_token)
-    logger.log("Success="+tx_token, level="SUCCESS")
+    returnVal = {
+        'txHash': tx_token,
+        'soldAmount': amount_tokens
+    }
+    logger.log("Success="+json.dumps(returnVal), level="SUCCESS")
 except Exception as e:
     logger.log("Exception: "+str(e))
+    print("Fail="+str(e))
 

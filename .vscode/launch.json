@@ -9,7 +9,12 @@
       "type": "python",
       "request": "launch",
       "program": "app\\worker_manager\\workers\\buyWorker.py",
-      "args": ["-t", "0xed24fc36d5ee211ea25a80239fb8c4cfd80f12ee", "-u", "test", "-a", "0.05", "-s", "0.8"],
+      "args": [
+        "-t", "0xed24fc36d5ee211ea25a80239fb8c4cfd80f12ee", 
+        "-u", "test", 
+        "-a", "0.05", 
+        "-s", "0.8"
+      ],
       "console": "integratedTerminal"
     },
     {
@@ -17,7 +22,13 @@
       "type": "python",
       "request": "launch",
       "program": "app\\worker_manager\\workers\\buyWorker.py",
-      "args": ["-t", "0x4108BbbC90B991E41B7DeE69Bd91c8ad97e26CBF", "-u", "test", "-a", "0.05", "-s", "0.8"],
+      "args": [
+        "-t", "0x4108BbbC90B991E41B7DeE69Bd91c8ad97e26CBF", 
+        "-u", 
+        "test", 
+        "-a", "0.05", 
+        "-s", "0.8"
+      ],
       "console": "integratedTerminal"
     },
     {
@@ -25,7 +36,12 @@
       "type": "python",
       "request": "launch",
       "program": "app\\worker_manager\\workers\\sellWorker.py",
-      "args": ["-t", "0xed24fc36d5ee211ea25a80239fb8c4cfd80f12ee", "-u", "test", "-a", "0.1", "-s", "0.8"],
+      "args": [
+        "-t", "0xed24fc36d5ee211ea25a80239fb8c4cfd80f12ee", 
+        "-u", "test", 
+        "-a", "0.1", 
+        "-s", "0.8"
+      ],
       "console": "integratedTerminal"
     },
     {
@@ -33,7 +49,26 @@
       "type": "python",
       "request": "launch",
       "program": "app\\worker_manager\\workers\\sellWorker.py",
-      "args": ["-t", "0x4108BbbC90B991E41B7DeE69Bd91c8ad97e26CBF", "-u", "test", "-a", "5000", "-s", "0.8"],
+      "args": [
+        "-t", "0x4108BbbC90B991E41B7DeE69Bd91c8ad97e26CBF", 
+        "-u", "test", 
+        "-a", "5000", 
+        "-s", "0.8"
+      ],
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "Watch FEC",
+      "type": "python",
+      "request": "launch",
+      "program": "app\\worker_manager\\workers\\tokenWatcherWorker.py",
+      "args": [
+        "-t", "0x4108BbbC90B991E41B7DeE69Bd91c8ad97e26CBF", 
+        "-u", "test", 
+        "-a", "48425002790017424", 
+        "-i", "60688557149", 
+        "-p", "1.5"
+      ],
       "console": "integratedTerminal"
     },
     {
