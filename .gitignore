@@ -2,6 +2,7 @@
 sniper_bot/js/node_modules/*
 scripts/rugmenot_contracts/node_modules/*
 app/worker_manager/node_modules/*
+app/back/node_modules/*
 scripts/web3/node_modules/*
 *.ps1
 *.log

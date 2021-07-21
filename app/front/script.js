@@ -1,4 +1,6 @@
+
 window.addEventListener('load', () => {
+    let IP = '192.168.1.224'//'25.89.250.119'
     let button = document.getElementById("uploadtoken")
     button.addEventListener('click', async () => {
         let link = document.getElementById("linkinput").value
@@ -10,7 +12,7 @@ window.addEventListener('load', () => {
             let address = link.split('bscscan.com')[1]
             address = address.substring(address.indexOf("0x"))
             try {
-                const response = await fetch('http://25.89.250.119:4041/upload_token', {
+                const response = await fetch('http://'+ IP +':4041/upload_token', {
                     method: 'post',
                     headers: {
                         'Accept': 'application/json',
@@ -33,9 +35,9 @@ window.addEventListener('load', () => {
         }
     })
 
-    let button = document.getElementById("uploadtokenByPass")
-    button.addEventListener('click', async () => {
-        let link = document.getElementById("linkinput").value
+    let button2 = document.getElementById("uploadtokenByPass")
+    button2.addEventListener('click', async () => {
+        let link = document.getElementById("linkinput2").value
         if(link == ""){
             alert('Please enter a url')
         } else if(link.split('bscscan.com/').length < 1){
@@ -44,7 +46,7 @@ window.addEventListener('load', () => {
             let address = link.split('bscscan.com')[1]
             address = address.substring(address.indexOf("0x"))
             try {
-                const response = await fetch('http://25.89.250.119:4041/upload_token_bypass', {
+                const response = await fetch('http://'+IP+':4041/upload_token_bypass', {
                     method: 'post',
                     headers: {
                         'Accept': 'application/json',

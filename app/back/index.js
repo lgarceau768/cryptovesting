@@ -15,13 +15,20 @@ const sqlData = {
     database: "cryptovesting",
     insecureAuth: true
 }
+const IP = '192.168.1.224'//'25.89.250.119'
 const connection = mysql.createConnection(sqlData)
 connection.connect()
 
 // INFO setup logger
 let date = new Date().toISOString()
-let path = "/home/fullsend/cryptovesting/app/back/logs/backendManualEntryServer_" + date + ".log"
-logger.init(path)
+let path = ""
+try {
+    path= "/home/fullsend/cryptovesting/app/back/logs/backendManualEntryServer_" + date + ".log"
+    logger.init(path)
+} catch {
+    path = 'logs/backendManualEntryServer_' + Date.now() + '.log'
+    logger.init(path)
+}
 _l = logger._l
 const options = {
     inflate: true,
@@ -85,8 +92,8 @@ app.post('/upload_token', (req, res) => {
 app.post('/upload_token_bypass', (req, res) => {
     let body = req.body;
     let token = {
-        "addedOn": Date.now().toISOString(),
-        "tokenHash": body["contract_hash"]
+        "addedOn": new Date().toISOString(),
+        "contractHash": body["contract_hash"]
     }
     _l("Token: "+_jstr(token) +" being added", level="INPUT")
     let sql = "insert into tokens_bypass_contract_check set ?"
@@ -102,6 +109,6 @@ app.post('/upload_token_bypass', (req, res) => {
 })
 
 // INFO run server
-app.listen(port, host="25.89.250.119", () => {
+app.listen(port, host=IP, () => {
     console.log(`Success! Your application is running on port ${port}`)
 })

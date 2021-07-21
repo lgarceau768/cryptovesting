@@ -6,11 +6,13 @@ const {
     _l, init
 } = require('./workers/scripts/logger')
 const mysqlEvents = require('@rodrigogs/mysql-events')
+const { shared } = require('./workers/scripts/shared')
 const {
     sqlData,
     _jstr,
     setLog
-} = require('./workers/scripts/shared')
+} = shared()
+const { Worker } = require('worker_threads')
 const BNB_AMT_ETHER = 50000000000000000;
 const BNB_AMT = 0.05;
 const SLIPPAGE = 0.8;
@@ -24,12 +26,18 @@ connection.connect()
 
 // INFO setup log
 let isoString = new Date()
-let logFilePath = "/home/fullsend/cryptovesting/app/worker_manager/logs/workerManagerLog_" + isoString.toISOString() + ".log"
-init(logFilePath)
+try {
+    let logFilePath = "/home/fullsend/cryptovesting/app/worker_manager/logs/workerManagerLog_" + isoString.toISOString() + ".log"
+    init(logFilePath, "workerManager")
+} catch {
+    let logFilePath = "app/worker_manager/logs/workerManagerLog_" + Date.now() + ".log"
+    init(logFilePath, "workerManager")
+}
 
 // INFO function to spawn worker
 function spawnWorker(workerInfo, onMessage) {
     let workerBasePath = "/home/fullsend/cryptovesting/app/worker_manager/workers/"
+    workerBasePath = "./app/worker_manager/workers/"
     let workerName = workerInfo["worker"]
     let workerPath = workerBasePath+workerName
     let workerData = workerInfo["workerData"]
@@ -38,7 +46,7 @@ function spawnWorker(workerInfo, onMessage) {
             workerData = workerData["affectedRows"][0]["after"]["contract_hash"]
             break;
         case 'sniperWorker.js':
-            workerData = workerData["affectedRows"][0]["after"]["uuid"]["contractHash"]
+            workerData = workerData["affectedRows"][0]["after"]["contractHash"]
             break;
         default:
             break;
@@ -67,8 +75,8 @@ function token_balances(token, amt="", op="add") {
             connection.commit()
             return;
         case "rem":
-            let query = 'delete from token_balances where contract_hash like "'+token+'"'
-            connection.query(query)
+            let query1 = 'delete from token_balances where contract_hash like "'+token+'"'
+            connection.query(query1)
             connection.commit()
             return;
         default:
@@ -93,7 +101,7 @@ function spawnSellWorker(token, amt) {
         "-t", constant_values.TOKEN,
         "-a", constant_values.AMOUNT
     ]
-    const path = "apps/worker_manager/workers/sellWorker.py"
+    const path = "./app/worker_manager/workers/sellWorker.py"
     const sellProcess = spawn('python3', [path, ...ARGS])
     _l("Sell worker spawned for token: "+token, level="SELL")
     sellProcess.stdout.on('data', (data) => {
@@ -129,7 +137,7 @@ function spawnTokenWatcher(token, amtBNB, amtToken) {
         "-a", constant_values.AMOUNT_TOKEN,
         "-p", constant_values.PERCENT
     ]
-    const path = "app/worker_manager/workers/tokenWatcherWorker.py"
+    const path = "./app/worker_manager/workers/tokenWatcherWorker.py"
     const watchProcess = spawn('python3', [path, ...ARGS])
     _l("Watcher worker spawned for token: "+token, level="WATCH");
     watchProcess.stdout.on('data', (data) => {
@@ -162,7 +170,7 @@ function spawnBuyPythonScript(token) {
         "-a", constant_values.AMOUNT,
         "-s", constant_values.SLIPPAGE
     ]
-    const path = "app/worker_manager/workers/buyWorker.py"
+    const path = "./app/worker_manager/workers/buyWorker.py"
     const buyProcess = spawn('python3', [path, ...ARGS])
     _l("Buy Worker Spawned with args: "+_jstr(ARGS), level="BUY")
     buyProcess.stdout.on('data', (data) => {
@@ -209,19 +217,24 @@ const program = async () => {
 
     instance.addTrigger({
         name: "Token Added for ByPass",
-        express: 'cryptovesting.tokens_bypass_contract_check',
+        expression: 'cryptovesting.tokens_bypass_contract_check',
         statement: "INSERT",
         onEvent: (event) => {
-            spawnWorker({
-                workerData: event,
-                worker: 'sniperWorker.js'
-            }, (reply) => {
-                if(reply.indexOf('Mint=') != -1){
-                    // token minted spawn buy script
-                    let token = reply.split('Mint=')[1]
-                    spawnBuyPythonScript(token)
-                }
-            })
+            try {
+                spawnWorker({
+                    workerData: event,
+                    worker: 'sniperWorker.js'
+                }, (reply) => {
+                    if(reply.indexOf('Mint=') != -1){
+                        // token minted spawn buy script
+                        let token = reply.split('Mint=')[1]
+                        spawnBuyPythonScript(token)
+                    }
+                })
+            } catch (err) {
+                _l("ByPass exception: "+err.toString(), level="CRITICAL")
+            }
+            
         }
     })
 
