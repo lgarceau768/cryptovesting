@@ -32,13 +32,13 @@ shared = () => {
     this.pancakeSwapRouterAddressMainNet = '0x10ED43C718714eb63d5aA57B78B54704E256024E';
     this.pancakeSwapRouterAddressTestNet = '0xD99D1c33F9fC3444f8101754aBC46c52416550D1';
     this.pancakeSwapFactoryAddressTestNet = "0x6725F303b657a9451d8BA641348b6761A6CC7a17"
-    this.pancakeSwapFactoryAddressMainNet = "0xcA143Ce32Fe78f1f7019d7d551a6402fC5350c73"
+    this.pancakeSwapFactoryAddressMainNet = "0x9Ac64Cc6e4415144C455BD8E4837Fea55603e5c3"
     try {
         this.routerAbi = JSON.parse(fs.readFileSync('/home/fullsend/cryptovesting/sniper_bot/js/pancakeswap_router_abi.json', 'utf-8'));
-        this.factoryAbi = JSON.parse(fs.readFileSync("/home/fullsend/cryptovesting/sniper_bot/js/pancakeswap_factory_abi.json", "utf-8"))
+        this.factoryAbi = JSON.parse(fs.readFileSync("/home/fullsend/cryptovesting/app/worker_manager/workers/contract_abis/pancakeswap_factory_abi.json", "utf-8"))
     } catch {
         this.routerAbi = JSON.parse(fs.readFileSync('Z:\\Repos\\cryptovesting\\sniper_bot\\js\\pancakeswap_router_abi.json', 'utf-8'));
-        this.factoryAbi = JSON.parse(fs.readFileSync("Z:\\Repos\\cryptovesting\\app\\worker_manager\\workers\\contract_abis\\pancakeswap_factory_abi.json", "utf-8"))
+        this.factoryAbi = JSON.parse(fs.readFileSync("Z:\\Repos\\cryptovesting\\app\\worker_manager\\workers\\contract_abis\\ps_factory.json", "utf-8"))
     }
     this.GAS_AMOUNT = 15000000
 
