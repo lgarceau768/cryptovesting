@@ -82,6 +82,27 @@ app.post('/upload_token', (req, res) => {
     })
 })
 
+app.post('/upload_token_bypass', (req, res) => {
+    let body = req.body;
+    let token = {
+        "uuid": uuidv4(),
+        "token_name": body["token_name"],
+        "bscscan_link": body["bscscan_link"],
+        "contract_hash": body["contract_hash"]
+    }
+    _l("Token: "+_jstr(token) +" being added", level="INPUT")
+    let sql = "insert into tokens_bypass_contract_check set ?"
+    connection.query(sql, token, function (err, result) {
+        if(err) {
+            _l("Error adding token: "+_jstr(token) + " error: "+err, level="ERROR")
+            res.send({"res": 'Error probably duplicate: '+err})
+        } else {
+            _l("Added token: "+_jstr(token), level="SUCCESS")
+            res.send({"res": 'OK'})
+        }
+    })
+})
+
 // INFO run server
 app.listen(port, host="25.89.250.119", () => {
     console.log(`Success! Your application is running on port ${port}`)
