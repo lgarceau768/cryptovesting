@@ -85,10 +85,8 @@ app.post('/upload_token', (req, res) => {
 app.post('/upload_token_bypass', (req, res) => {
     let body = req.body;
     let token = {
-        "uuid": uuidv4(),
-        "token_name": body["token_name"],
-        "bscscan_link": body["bscscan_link"],
-        "contract_hash": body["contract_hash"]
+        "addedOn": Date.now().toISOString(),
+        "tokenHash": body["contract_hash"]
     }
     _l("Token: "+_jstr(token) +" being added", level="INPUT")
     let sql = "insert into tokens_bypass_contract_check set ?"

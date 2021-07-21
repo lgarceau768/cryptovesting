@@ -21,8 +21,7 @@ try {
 
 // INFO setup logger
 const _l = (data, level="DEBUG") => {
-    console.log(data)
-    sendMessage(data, _ll, parentPort, isMainThread, level)
+    _ll(data, level);
 }
 
 // INFO setup contract 
@@ -37,40 +36,6 @@ const pairCreated = new ethers.Contract(
     account
 )
 
-// INFO buy token with bnb
-function spawnBuyPythonScript(token) {
-    const constant_values = {
-        SLIPPAGE: 0.8,
-        AMOUNT: 0.05,
-        NET: "test",
-        TOKEN: token
-    }
-    const ARGS = [
-        "-u", constant_values.NET,
-        "-t", constant_values.TOKEN,
-        "-a", constant_values.AMOUNT,
-        "-s", constant_values.SLIPPAGE
-    ]
-    const path = "app/worker_manager/workers/buyWorker.py"
-    const buyProcess = spawn('python3', [path, ...ARGS])
-    _l("Buy Worker Spawned with args: "+_jstr(ARGS), level="BUY")
-    buyProcess.stdout.on('data', (data) => {
-        _l("Reply from BuyWorker "+data, level="REPLY")
-        let stringVal = data.toString().trim()
-        let successIndex = stringVal.indexOf("Success=")
-        if(successIndex != -1){
-            let resultTxHash = stringVal.split("Success=")[1]
-            _l("Buy Success, transaction hash: "+resultTxHash, level="BUYSUCCESS")
-
-            // TODO add send to wallet manager table and spawn wallet listener to check price vs buy price
-        } else {
-            let failResult = stringVal.split("Fail=")
-            _l("Buy Failed: "+failResult, level="BUYFAIL")
-        }
-    })
-    buyProcess.stderr.on('data', (data) => _l("Buy Exception: "+data, level="CRITICAL"))
-    buyProcess.on('error', () => _l("Buy Error"+data, level="CRITICAL"))
-}
 
 const watchForMint = async (token, pair) => {
     const mint = new ethers.Contract(
@@ -88,7 +53,8 @@ const watchForMint = async (token, pair) => {
             initialLiquidity = true
             _l("Minted token: "+token+" info: "+_jstr({sender, amount0, amount1}), "MINT")
             // INFO now spawn a buyWorker
-            spawnBuyPythonScript(token)
+            sendMessage("Mint="+token, _ll, parentPort, isMainThread, level)
+            process.exit(0)
         }
     })
 }

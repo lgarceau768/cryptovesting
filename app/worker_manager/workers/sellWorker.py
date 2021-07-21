@@ -141,7 +141,8 @@ try:
     print("Success="+tx_token)
     returnVal = {
         'txHash': tx_token,
-        'soldAmount': amount_tokens
+        'soldAmount': amount_tokens,
+        'for': amount_bnb
     }
     logger.log("Success="+json.dumps(returnVal), level="SUCCESS")
 except Exception as e:
