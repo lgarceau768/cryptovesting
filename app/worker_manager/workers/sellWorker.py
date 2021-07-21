@@ -45,7 +45,7 @@ account_obj = w3.eth.account.privateKeyToAccount(my_pk)
 if platform.system() != "Linux":
     router_abi = json.load(open('app\worker_manager\workers\contract_abis\pancakeswap_factory_abi.json', 'r'))
 else:
-    router_abi = json.loads(open('app\worker_manager\workers\contract_abis\pancakeswap_factory_abi.json', 'r'))
+    router_abi = json.load(open('app\worker_manager\workers\contract_abis\pancakeswap_factory_abi.json', 'r'))
 pancake_router_contract = w3.eth.contract(address=pancakeswap_router_address, abi=router_abi)
 
 # INFO function to convert address
@@ -67,8 +67,34 @@ def _w(amt):
 # INFO function to convert call getAmountsOut
 # 179746734697020058
 def _get_amounts_out(amt, token, contract):    
-    amount_tokens, amount_bnb =  contract.functions.getAmountsOut(amt, [_a(token), _a(wbnb_address)]).call()
-    return int(amount_bnb * slippage), amount_tokens
+    amounts = contract.functions.getAmountsOut(amt, [_a(token), _a(wbnb_address)]).call()
+    amount_bnb = amounts[1]
+    amount_tokens = amounts[0]
+    return amount_bnb, amount_tokens
+
+# INFO function to approve
+def _approve(amount, address):
+    tokenContractBasic = w3.eth.contract(_a(address), abi=json.load(open('app\\worker_manager\\workers\\contract_abis\\sellabi.json', 'r')))
+
+    approve = tokenContractBasic.functions.approve(pancakeswap_router_address, amount)
+    nonce = w3.eth.getTransactionCount(account)
+    gas_price = w3.toWei('10', 'gwei')
+    gas = 1300000
+    tx = approve.buildTransaction({
+        'nonce': nonce, 
+        'gasPrice': gas_price,
+        'gas': gas,
+        'from': my_wallet_adr
+    })
+
+    sign_tx = account_obj.sign_transaction(tx)
+    try:
+        tx_token = _h(w3.eth.sendRawTransaction(sign_tx.rawTransaction))
+        logger.log("Success approve hash: "+tx_token, level="APPROVE")
+    except Exception as e:
+        logger.log("Exception at approve "+str(e), level="CRITICAL")
+    
+
 
 # INFO function to make the swap
 def _swap_exact_tokens_for_eth(amt_WBNB, amt_token, token, contract):
@@ -87,7 +113,7 @@ def _swap_exact_tokens_for_eth(amt_WBNB, amt_token, token, contract):
         'gas': gas,
         'value': 0,
         'gasPrice': gas_price,
-        'nonce': nonce
+        'nonce': nonce+1
     })
     logger.log("selling token: "+token, level="SELL")
     logger.log("Amount Swapped BNB: "+str(amt_WBNB)+" TokenAmount: "+str(amt_token), level="SELL")
@@ -109,8 +135,7 @@ except Exception as e:
 
 # INFO SLIPPAGE HERE
 # FIXME may need to add an approve call here in order to approve the spend
-# 9678049674572440
-# 2758773565646017
+_approve(amount_tokens, token);
 tx_token = _h(_swap_exact_tokens_for_eth(amount_bnb, amount_tokens, token, pancake_router_contract))
 print("Success="+tx_token)
 logger.log("Success="+tx_token, level="SUCCESS")

@@ -1,0 +1,5 @@
+Scrape started on: 23:34:18
+[STARTUP Sun Jul 18 23:34:18 2021]: Arguments test, 0xed24fc36d5ee211ea25a80239fb8c4cfd80f12ee, 0.05, 0.8
+[BUY Sun Jul 18 23:34:20 2021]: Buying token: 0xed24fc36d5ee211ea25a80239fb8c4cfd80f12ee
+[BUY Sun Jul 18 23:34:20 2021]: Amount Swapped BNB: 50000000000000000 TokenAmount: 48425002790017424
+[SUCCESS Sun Jul 18 23:34:20 2021]: Success=0x73cd34592bc3f22bd1c32149d8b0d3977abaf8b5d3c1a022e53d64539a886c66

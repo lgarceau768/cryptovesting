@@ -1,0 +1,7 @@
+Scrape started on: 11:23:19
+[STARTUP Wed Jul 21 11:23:19 2021]: Arguments test, 0xed24fc36d5ee211ea25a80239fb8c4cfd80f12ee, 0.01, 0.8
+[APPROVE Wed Jul 21 11:23:21 2021]: Success approve hash: 0xe2da9a1a10fd5539b84654a93a774a3082f449d0cc960719810e8a8b1d573b04
+[SELL Wed Jul 21 11:23:21 2021]: selling token: 0xed24fc36d5ee211ea25a80239fb8c4cfd80f12ee
+[SELL Wed Jul 21 11:23:21 2021]: Amount Swapped BNB: 4932174872787455 TokenAmount: 10000000000000000
+[SUCCESS Wed Jul 21 11:23:21 2021]: Success=0x7d87bbae4313a7e2ba6bf7b93bf54d61805a738d14a9595c49c7f0154c5dc7b0
+ 
