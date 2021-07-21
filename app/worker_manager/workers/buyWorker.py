@@ -30,10 +30,12 @@ if net.lower() == 'main':
     provider_url = "https://bsc-dataseed.binance.org/"
     wbnb_address = "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c"
     pancakeswap_router_address = "0x10ED43C718714eb63d5aA57B78B54704E256024E"
+    pancake_swap_factory_address = "0xcA143Ce32Fe78f1f7019d7d551a6402fC5350c73"
 elif net.lower() == "test":
     provider_url = "https://data-seed-prebsc-1-s1.binance.org:8545/"
     wbnb_address = "0xae13d989dac2f0debff460ac112a837c89baa7cd"
     pancakeswap_router_address = "0xD99D1c33F9fC3444f8101754aBC46c52416550D1"
+    pancake_swap_factory_address = "0x9Ac64Cc6e4415144C455BD8E4837Fea55603e5c3"
 else:
     print("Fail=Correct net not specified (needs to be main or test)")
     sys.exit(0)
@@ -47,6 +49,7 @@ if platform.system() != "Linux":
 else:
     router_abi = json.loads(open('app\worker_manager\workers\contract_abis\pancakeswap_factory_abi.json', 'r'))
 pancake_router_contract = w3.eth.contract(address=pancakeswap_router_address, abi=router_abi)
+pancake_factory_contract = w3.eth.contract(address=pancake_swap_factory_address, abi=router_abi)
 
 # INFO function to convert address
 def _a(adr):
@@ -102,12 +105,11 @@ def _swap_exact_tokens_for_tokens(amt_WBNB, amt_token, token, contract):
 
 # INFO main program
 try:
-    amount_bnb, amount_tokens = _get_amounts_out(_e(amount), token, pancake_router_contract)
+    amount_bnb, amount_tokens = _get_amounts_out(_e(amount), token, pancake_factory_contract)
 except Exception as e:
     logger.log("Exception: "+str(e))
 
 # INFO SLIPPAGE HERE
-new_amount = str(float(amount) * slippage)[:4]
-tx_token = _h(_swap_exact_tokens_for_tokens(_e(amount), amount_tokens, token, pancake_router_contract))
+tx_token = _h(_swap_exact_tokens_for_tokens(_e(amount), amount_tokens, token, pancake_factory_contract))
 print("Success="+tx_token)
 logger.log("Success="+tx_token, level="SUCCESS")
