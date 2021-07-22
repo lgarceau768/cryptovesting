@@ -28,14 +28,14 @@ shared = () => {
         }
     )
     this.WBNBAddressMainNet = '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c'; // WBNB token address
-    this.WBNBAddressTestNet = '0xae13d989dac2f0debff460ac112a837c89baa7cd'; // WBNB token address
+    this.WBNBAddressTestNet = '0xae13d989daC2f0dEbFf460aC112a837C89BAa7cd'; // WBNB token address
     this.pancakeSwapRouterAddressMainNet = '0x10ED43C718714eb63d5aA57B78B54704E256024E';
     this.pancakeSwapRouterAddressTestNet = '0xD99D1c33F9fC3444f8101754aBC46c52416550D1';
-    this.pancakeSwapFactoryAddressTestNet = "0x6725F303b657a9451d8BA641348b6761A6CC7a17"
+    this.pancakeSwapFactoryAddressTestNet = "0xB7926C0430Afb07AA7DEfDE6DA862aE0Bde767bc"
     this.pancakeSwapFactoryAddressMainNet = "0x9Ac64Cc6e4415144C455BD8E4837Fea55603e5c3"
     try {
         this.routerAbi = JSON.parse(fs.readFileSync('/home/fullsend/cryptovesting/sniper_bot/js/pancakeswap_router_abi.json', 'utf-8'));
-        this.factoryAbi = JSON.parse(fs.readFileSync("/home/fullsend/cryptovesting/app/worker_manager/workers/contract_abis/pancakeswap_factory_abi.json", "utf-8"))
+        this.factoryAbi = JSON.parse(fs.readFileSync("/home/fullsend/cryptovesting/app/worker_manager/workers/contract_abis/ps_factory.json", "utf-8"))
     } catch {
         this.routerAbi = JSON.parse(fs.readFileSync('Z:\\Repos\\cryptovesting\\sniper_bot\\js\\pancakeswap_router_abi.json', 'utf-8'));
         this.factoryAbi = JSON.parse(fs.readFileSync("Z:\\Repos\\cryptovesting\\app\\worker_manager\\workers\\contract_abis\\ps_factory.json", "utf-8"))

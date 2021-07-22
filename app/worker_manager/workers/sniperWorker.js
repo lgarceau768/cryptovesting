@@ -74,9 +74,9 @@ const watchForMint = async (token, pair) => {
 // INFO main worker code
 const run = async () => {
     _l("Starting with token: "+token, level="STARTUP")
-
     pairCreated.on('PairCreated', async(token0, token1, pair) => {
-        if(token1 == WBNBAddressTestNet && token0 == token) {
+        // FIXME may need to look at potentially checking for the token back to bnb pair as well
+        if(token1.toLowerCase() == token.toLowerCase() && token0.toLowerCase() == WBNBAddressTestNet.toLowerCase()) {
             _l("Pair found need to wait for mint: "+_jstr({token0, token1, pair}, level="PAIRCREATED"))
             watchForMint(token0, pair)
         }
