@@ -12,7 +12,7 @@ const logPath = path.join(__dirname, 'logs', 'discordBot_'+ Date.now() + '.log')
 init(logPath, 'Cryptovesting Discord Bot')
 
 // INFO need to transfer env.json manually
-const IP = '192.168.1.224'//'25.89.250.119'
+const IP = '25.89.250.119' //'192.168.1.224'
 const env = JSON.parse(fs.readFileSync(path.join(__dirname, 'env.json')))
 const IDENTIFIER = "%"
 
