@@ -1,0 +1,10 @@
+[Unit]
+Description=Cryptovesting Main Service
+
+[Service]
+User=fullsend
+Group=cryptovesters
+ExecStart=/home/fullsend/cryptovesting/app/worker_manager/start_cryptovesting.sh
+
+[Install]
+WantedBy=multi-user.target

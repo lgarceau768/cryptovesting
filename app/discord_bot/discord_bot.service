@@ -1,0 +1,10 @@
+[Unit]
+Description=Discord Bot Service
+
+[Service]
+User=fullsend
+Group=cryptovesters
+ExecStart=/home/fullsend/cryptovesting/app/discord_bot/start_dbot.sh
+
+[Install]
+WantedBy=multi-user.target
