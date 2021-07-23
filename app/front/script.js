@@ -1,6 +1,6 @@
 
 window.addEventListener('load', () => {
-    let IP = '192.168.1.224'//'25.89.250.119'
+    const IP = '25.89.250.119' //'192.168.1.224'
     let button = document.getElementById("uploadtoken")
     button.addEventListener('click', async () => {
         let link = document.getElementById("linkinput").value

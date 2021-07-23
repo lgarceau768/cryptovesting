@@ -24,7 +24,7 @@ const BINANCE_NET = "test"
 // INFO setup mysql
 const connection = mysql.createConnection(sqlData)
 connection.connect()
-const IP = '192.168.1.224'//'25.89.250.119'
+const IP = '25.89.250.119' //'192.168.1.224'
 
 // INFO setup log
 let isoString = new Date()

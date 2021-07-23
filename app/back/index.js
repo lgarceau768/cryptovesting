@@ -15,7 +15,7 @@ const sqlData = {
     database: "cryptovesting",
     insecureAuth: true
 }
-const IP = '192.168.1.224'//'25.89.250.119'
+const IP = '25.89.250.119' //'192.168.1.224'
 const connection = mysql.createConnection(sqlData)
 connection.connect()
 
