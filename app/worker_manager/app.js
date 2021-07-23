@@ -2,6 +2,7 @@
 // Author Luke Garceau
 const mysql = require('mysql')
 const { spawn } = require('child_process')
+const fetch = require('node-fetch')
 const {
     _l, init
 } = require('./workers/scripts/logger')
@@ -34,6 +35,33 @@ try {
     init(logFilePath, "workerManager")
 }
 
+// INFO function to send an event
+async function sendEvent(event) {
+    let data = {
+        host: 'http://'+IP+':4041',
+        path: '/pull_events',
+        method: 'GET'
+    }
+    event.timestamp = _t()
+    await fetch(data.host+data.path, {
+        method: 'POST',
+        data: JSON.stringify(event)
+    })
+    // event setup
+    /*
+    event {         
+        message,
+        category
+    }
+    */
+}
+
+// INFO function to get timestamp
+function _t() {
+    let date = new Date()
+    return date.toISOString()
+}
+
 // INFO function to spawn worker
 function spawnWorker(workerInfo, onMessage) {
     let workerBasePath = "/home/fullsend/cryptovesting/app/worker_manager/workers/"
@@ -52,6 +80,10 @@ function spawnWorker(workerInfo, onMessage) {
             break;
     }
     _l("Worker Spawned: "+workerName+ " with data: "+_jstr(workerData)+ " and base info: "+_jstr(workerInfo), level="SPAWN")
+    sendEvent({
+        message: workerName+" spawned on token " + workerData,
+        category: 'WORKER'
+    })
     console.log(workerPath)
     const worker = new Worker(workerPath, {
         workerData: workerData
@@ -59,8 +91,20 @@ function spawnWorker(workerInfo, onMessage) {
     worker.once('message', (strResponse) => {
         onMessage(strResponse)
     })
-    worker.on('error', (error) => _l("ContractWorker: "+_jstr(workerInfo) +" has error: " +error, level="ERROR"))
-    worker.on('exit', (code) => _l("ContractWorker: "+_jstr(workerInfo) +" exited with code: "+code, level="EXIT"))
+    worker.on('error', (error) => {
+        _l("ContractWorker: "+_jstr(workerInfo) +" has error: " +error, level="ERROR")
+        sendEvent({
+            message: 'ContractWorker Failed on '+workerData,
+            category: 'FAIL=CONTRACT'
+        })
+    })
+    worker.on('exit', (code) => {
+        _l("ContractWorker: "+_jstr(workerInfo) +" exited with code: "+code, level="EXIT")
+        sendEvent({
+            message: 'ContractWorker Exited on '+workerData,
+            category: 'EXIT=CONTRACT'
+        })
+    })
 }
 
 // INFO function to add / remove token from token_balances
@@ -73,11 +117,19 @@ function token_balances(token, amt="", op="add") {
                 "amount": amt.toString()
             })
             connection.commit()
+            sendEvent({
+                message: 'Token balance on ' + token + ' added, now: ' + amt,
+                category: 'BALANCE'
+            })
             return;
         case "rem":
             let query1 = 'delete from token_balances where contract_hash like "'+token+'"'
             connection.query(query1)
             connection.commit()
+            sendEvent({
+                message: 'Token balance remove ' + token,
+                category: 'BALANCE'
+            })
             return;
         default:
             return;
@@ -104,6 +156,10 @@ function spawnSellWorker(token, amt) {
     const path = "./app/worker_manager/workers/sellWorker.py"
     const sellProcess = spawn('python3', [path, ...ARGS])
     _l("Sell worker spawned for token: "+token, level="SELL")
+    sendEvent({
+        message: 'Spawning sell on '+token+ ' amount '+amt,
+        category: 'IMPT'
+    })
     sellProcess.stdout.on('data', (data) => {
         let stringVal = data.toString().trim()
         let successIndex = stringVal.indexOf('Success=')
@@ -112,6 +168,9 @@ function spawnSellWorker(token, amt) {
             let resultVal = JSON.parse(stringVal.split('Success=')[1])
             token_balances(token, op="rem")
             _l("Sell Reply: "+_jstr(resultVal), level="SOLD")
+            sendEvent({
+                message: 'Sold Token TX '+resultVal
+            })
         } else {
             let failResult = stringVal.split('Fail=')[1]
             _l("Sell failed "+failResult, level="SELLFAIL")

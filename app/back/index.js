@@ -45,7 +45,7 @@ const options = {
         }
     }
 };
-const events = []
+let events = []
 const _jstr = (json_dict) => JSON.stringify(json_dict, null, 2)
 app.use(bodyParser.json(options));
 app.use(bodyParser.urlencoded({extended: false}))
@@ -69,7 +69,7 @@ app.get('/pull_events', (req, res) => {
 })
 
 app.post('/upload_token', (req, res) => {
-    let body = req.body;
+    let body = JSON.parse(req.body);
     let token = {
         "uuid": uuidv4(),
         "token_name": body["token_name"],
