@@ -22,18 +22,43 @@ function createFailMessage(event) {
     let failee = event.category.split('=')[1].toLowerCase()
     let message = event.message
     let failureInfo = message.split('|')[1]
-    let message = new Discord.MessageEmbed()
+    let messageRet = new Discord.MessageEmbed()
         .setColor('#ff0026')
         .setTitle(failee+' failed')
         .setDescription(message)
         .addField('Timestamp', timestamp)
         .addField('Info', failureInfo)
-        .setImage('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.onlygfx.com%2Fwp-content%2Fuploads%2F2020%2F05%2Ffail-stamp-6.png&f=1&nofb=1')
         .setTimestamp()
-    return message
+    return messageRet
 }
 
+function createImptMessage(event) {
+    let timestamp = event.timestamp
+    let message = event.message.split('|')[0]
+    let data = event.message.split('|')[1]
+    let messageRet = new Discord.MessageEmbed()
+        .setColor('#4DFF4D')
+        .setTitle('Important')
+        .setDescription(message)
+        .addField('Timestamp', timestamp)
+        .addField('Data', data)
+        .setTimestamp()
+    return messageRet
+}
 
+function createBalanceMessage(event) {
+    let timestamp = event.timestamp
+    let message = event.message.split('|')[0]
+    let data = event.message.split('|')[1]
+    let messageRet = new Discord.MessageEmbed()
+        .setColor('#FFFF19')
+        .setTitle('Balance Update')
+        .setDescription(message)
+        .addField('Timestamp', timestamp)
+        .addField('Data', data)
+        .setTimestamp()
+    return messageRet
+}
 
 // INFO function to request events from backend
 const getEvents = async () => {
@@ -53,13 +78,21 @@ const getEvents = async () => {
     impt
     */
     for (const event of events) {
+        let message = undefined
         switch (event.category.toLowerCase()) {
             case 'impt': 
+                message = createImptMessage(event)
                 break
             case 'fail':
+                message = createFailMessage(event)
                 break
             case 'balance':
+                message = createBalanceMessage(event)
                 break
+        }
+        if (message != undefined) {
+            bot_updates_channel.send("@everyone")
+            bot_updates_channel.send(message)
         }
     }
 }   

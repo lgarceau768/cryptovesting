@@ -85,7 +85,7 @@ function spawnWorker(workerInfo, onMessage) {
     }
     _l("Worker Spawned: "+workerName+ " with data: "+_jstr(workerData)+ " and base info: "+_jstr(workerInfo), level="SPAWN")
     sendEvent({
-        message: workerName+" spawned on token " + workerData,
+        message: workerName+" spawned on token |" + workerData,
         category: 'IMPT'
     })
     console.log(workerPath)
@@ -122,7 +122,7 @@ function token_balances(token, amt="", op="add") {
             })
             connection.commit()
             sendEvent({
-                message: 'Token balance on ' + token + ' added, now: ' + amt,
+                message: 'Token balance on |'+_jstr({token, amt}),
                 category: 'BALANCE'
             })
             return;
@@ -131,7 +131,7 @@ function token_balances(token, amt="", op="add") {
             connection.query(query1)
             connection.commit()
             sendEvent({
-                message: 'Token balance remove ' + token,
+                message: 'Token balance remove |'+ token,
                 category: 'BALANCE'
             })
             return;
