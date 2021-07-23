@@ -24,6 +24,7 @@ const BINANCE_NET = "test"
 // INFO setup mysql
 const connection = mysql.createConnection(sqlData)
 connection.connect()
+const IP = '192.168.1.224'//'25.89.250.119'
 
 // INFO setup log
 let isoString = new Date()
@@ -39,14 +40,17 @@ try {
 async function sendEvent(event) {
     let data = {
         host: 'http://'+IP+':4041',
-        path: '/pull_events',
+        path: '/upload_event',
         method: 'GET'
     }
     event.timestamp = _t()
-    await fetch(data.host+data.path, {
+    let res = await fetch(data.host+data.path, {
         method: 'POST',
-        data: JSON.stringify(event)
+        headers: { 'Content-Type': 'application/json'},
+        body: JSON.stringify(event)
     })
+    let json = await res.json();
+    console.log(json)
     // event setup
     /*
     event {         
@@ -82,7 +86,7 @@ function spawnWorker(workerInfo, onMessage) {
     _l("Worker Spawned: "+workerName+ " with data: "+_jstr(workerData)+ " and base info: "+_jstr(workerInfo), level="SPAWN")
     sendEvent({
         message: workerName+" spawned on token " + workerData,
-        category: 'WORKER'
+        category: 'IMPT'
     })
     console.log(workerPath)
     const worker = new Worker(workerPath, {
@@ -94,15 +98,15 @@ function spawnWorker(workerInfo, onMessage) {
     worker.on('error', (error) => {
         _l("ContractWorker: "+_jstr(workerInfo) +" has error: " +error, level="ERROR")
         sendEvent({
-            message: 'ContractWorker Failed on '+workerData,
+            message: 'ContractWorker Failed on |'+workerData,
             category: 'FAIL=CONTRACT'
         })
     })
     worker.on('exit', (code) => {
         _l("ContractWorker: "+_jstr(workerInfo) +" exited with code: "+code, level="EXIT")
         sendEvent({
-            message: 'ContractWorker Exited on '+workerData,
-            category: 'EXIT=CONTRACT'
+            message: 'ContractWorker Exited on |'+workerData,
+            category: 'FAIL=CONTRACT'
         })
     })
 }
@@ -157,7 +161,7 @@ function spawnSellWorker(token, amt) {
     const sellProcess = spawn('python3', [path, ...ARGS])
     _l("Sell worker spawned for token: "+token, level="SELL")
     sendEvent({
-        message: 'Spawning sell on '+token+ ' amount '+amt,
+        message: 'Spawning sell on |'+_jstr({token, amt}),
         category: 'IMPT'
     })
     sellProcess.stdout.on('data', (data) => {
@@ -169,15 +173,32 @@ function spawnSellWorker(token, amt) {
             token_balances(token, op="rem")
             _l("Sell Reply: "+_jstr(resultVal), level="SOLD")
             sendEvent({
-                message: 'Sold Token TX '+resultVal
+                message: 'Sold Token TX |'+_jstr(resultVal), 
+                category: 'IMPT'
             })
         } else {
             let failResult = stringVal.split('Fail=')[1]
+            sendEvent({
+                message: 'Sold Token Failed |'+resultVal,
+                category: 'FAIL=SELL'
+            })
             _l("Sell failed "+failResult, level="SELLFAIL")
         }
     })    
-    sellProcess.stderr.on('data', (data) => _l("Sell Exception: "+data, level="CRITICAL"))
-    sellProcess.on('error', () => _l("Sell Error"+data, level="CRITICAL"))
+    sellProcess.stderr.on('data', (data) => {
+        _l("Sell Exception: "+data, level="CRITICAL")
+        sendEvent({
+            message: 'Sold Token Exception |'+data,
+            category: 'FAIL=SELL'
+        })
+    })
+    sellProcess.on('error', (err) => {
+        _l("Sell Error"+err, level="CRITICAL")
+        sendEvent({
+            message: 'Sold Token Error |0',
+            category: 'FAIL=SELL'
+        })
+    })
 }
 
 // INFO spawn token watcher
@@ -199,6 +220,10 @@ function spawnTokenWatcher(token, amtBNB, amtToken) {
     const path = "./app/worker_manager/workers/tokenWatcherWorker.py"
     const watchProcess = spawn('python3', [path, ...ARGS])
     _l("Watcher worker spawned for token: "+token, level="WATCH");
+    sendEvent({
+        message: 'Watching token |'+token, 
+        category: 'IMPT'
+    })
     watchProcess.stdout.on('data', (data) => {
         let stringVal = data.toString().trim()
         let successIndex = stringVal.indexOf('Success=')
@@ -207,11 +232,27 @@ function spawnTokenWatcher(token, amtBNB, amtToken) {
             spawnSellWorker(token, parseInt(amtToken * SELL_PERCENT))
         } else {
             let failResult = stringVal.split('Fail=')[1]
+            sendEvent({
+                message: 'Watching token failed |'+failResult, 
+                category: 'FAIL=WATCH'
+            })
             _l("Watch failed: "+failResult, level="WATCHFAIL")
         }
     });
-    watchProcess.stderr.on('data', (data) => _l("Watch Exception: "+data, level="CRITICAL"))
-    watchProcess.on('error', () => _l("Watch Error"+data, level="CRITICAL"))
+    watchProcess.stderr.on('data', (data) => {
+        _l("Watch Exception: "+data, level="CRITICAL")
+        sendEvent({
+            message: 'Watching token Exception |'+data, 
+            category: 'FAIL=WATCH'
+        })
+    })
+    watchProcess.on('error', () => {
+        _l("Watch Error", level="CRITICAL")
+        sendEvent({
+            message: 'Watching token Error |0', 
+            category: 'FAIL=WATCH'
+        })
+    })
 }
 
 // INFO buy token with bnb
@@ -232,6 +273,10 @@ function spawnBuyPythonScript(token) {
     const path = "./app/worker_manager/workers/buyWorker.py"
     const buyProcess = spawn('python3', [path, ...ARGS])
     _l("Buy Worker Spawned with args: "+_jstr(ARGS), level="BUY")
+    sendEvent({
+        message: 'Buying token |'+token, 
+        category: 'IMPT'
+    })
     buyProcess.stdout.on('data', (data) => {
         _l("Reply from BuyWorker "+data, level="REPLY")
         let stringVal = data.toString().trim()
@@ -243,11 +288,27 @@ function spawnBuyPythonScript(token) {
             token_balances(token, resultVal['initialAmount'])
         } else {
             let failResult = stringVal.split("Fail=")
+            sendEvent({
+                message: 'Buying token fail |'+failResult, 
+                category: 'FAIL=BUY'
+            })
             _l("Buy Failed: "+failResult, level="BUYFAIL")
         }
     })
-    buyProcess.stderr.on('data', (data) => _l("Buy Exception: "+data, level="CRITICAL"))
-    buyProcess.on('error', () => _l("Buy Error"+data, level="CRITICAL"))
+    buyProcess.stderr.on('data', (data) => {
+        _l("Buy Exception: "+data, level="CRITICAL")
+        sendEvent({
+            message: 'Buying token Exception |'+data, 
+            category: 'FAIL=BUY'
+        })
+    })
+    buyProcess.on('error', () => {
+        _l("Buy Error"+data, level="CRITICAL")
+        sendEvent({
+            message: 'Buying token Error |0', 
+            category: 'FAIL=BUY'
+        })
+    })
 }
 
 const program = async () => {

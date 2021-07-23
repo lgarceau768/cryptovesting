@@ -4,6 +4,7 @@ const { Worker, workerData, parentPort, isMainThread } = require('worker_threads
 const { ethers } = require('ethers')
 const { EVM } = require('evm') 
 const fs = require('fs')
+const path = require('path')
 
 // INFO setup shared
 const { 
@@ -22,13 +23,9 @@ const {
 const date = new Date()
 // INFO pull token from workerData or args
 const token = getWorkerData(workerData, process, isMainThread)
-try {
-    path = "/home/fullsend/app/worker_manager/logs/sniperWorker_" + token +"_ "+ date.getTime() + ".log"
-    init(path, "newSniperWorker.js")
-} catch {
-    path = "Z:\\Repos\\cryptovesting\\app\\worker_manager\\workers\\logs\\sniperWorker_" + token + "_ "+ date.getTime() + ".log"
-    init(path, "newSniperWorker.js")
-}
+let pathLog = ""
+pathLog = path.join('app', 'worker_manager', 'workers', 'logs', "sniperWorker_" + token + "_"+ Date.now() + ".log")
+init(pathLog, "newSniperWorker.js")
 
 
 // INFO setup logger

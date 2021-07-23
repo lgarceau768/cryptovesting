@@ -30,24 +30,9 @@ try {
     logger.init(path)
 }
 _l = logger._l
-const options = {
-    inflate: true,
-    limit: 1000,
-    reviver: (key, value) => {
-        if (key === 'age') {
-            if (value < 50) {
-                return 'young'
-            } else {
-                return 'old';
-            }
-        } else {
-            return value;
-        }
-    }
-};
 let events = []
 const _jstr = (json_dict) => JSON.stringify(json_dict, null, 2)
-app.use(bodyParser.json(options));
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(cors())
 // enable CORS without external module
@@ -58,7 +43,7 @@ app.use(function (req, res, next) {
 });
 
 app.post('/upload_event', (req, res) => {
-    let newEvent = req.body;
+    let newEvent = req.body
     events.push(newEvent)
     res.send({"res": "OK"})
 })
