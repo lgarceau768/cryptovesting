@@ -6,7 +6,7 @@ function init(path, program) {
     fs.writeFileSync(path, "[ START "+ isoString.toISOString() + " ] Starting " + program + "\n")
 }
 
-_l = (data, level="LOG") => {
+const _l = (data, level="LOG") => {
     let isoString = new Date();
     let line = "[ " + level + " " + isoString.toISOString() + " ] " + data + "\n";
     fs.appendFileSync(pathUse, line)
