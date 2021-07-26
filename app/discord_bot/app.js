@@ -128,35 +128,35 @@ client.on('message', msg => {
         try {
             let availableLogs = {
                 'backHTML' : {
-                    'path': 'app/back/logs',
+                    'path': './app/back/logs',
                     'name': 'backendManualEntryServer'
                 },
                 'discordBot' : {
-                    'path': 'app/discord_bot/logs',
+                    'path': './app/discord_bot/logs',
                     'name': 'discordBot'
                 },
                 'manager' : {
-                    'path': 'app/worker_manager/logs',
+                    'path': './app/worker_manager/logs',
                     'name': 'workerManagerLog'
                 },
                 'sellWorker' : {
-                    'path': 'app/worker_manager/workers/logs',
+                    'path': './app/worker_manager/workers/logs',
                     'name': 'sellWorker'
                 },
                 'buyWorker' : {
-                    'path': 'app/worker_manager/workers/logs',
+                    'path': './app/worker_manager/workers/logs',
                     'name': 'buyWorker'
                 },
                 'contractWorker' : {
-                    'path': 'app/worker_manager/workers/logs',
+                    'path': './app/worker_manager/workers/logs',
                     'name': 'contractCheckWorker'
                 },
                 'sniperWorker' : {
-                    'path': 'app/worker_manager/workers/logs',
+                    'path': './app/worker_manager/workers/logs',
                     'name': 'sniperWorker'
                 },
                 'tokenWatcherWorker': {
-                    'path': 'app/worker_manager/workers/logs',
+                    'path': './app/worker_manager/workers/logs',
                     'name': 'tokenWatcher'
                 }
             }
