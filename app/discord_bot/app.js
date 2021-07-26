@@ -3,6 +3,7 @@ const fetch = require('node-fetch')
 const { init, _l } = require('../worker_manager/workers/scripts/logger')
 const path = require('path')
 const fs = require('fs')
+const pastebin = require('pastebin-js')
 
 const client = new Discord.Client()
 let bot_updates_channel = undefined
@@ -12,7 +13,10 @@ init(logPath, 'Cryptovesting Discord Bot')
 // INFO need to transfer env.json manually
 const IP = '25.89.250.119' //'192.168.1.224'
 const env = JSON.parse(fs.readFileSync(path.join(__dirname, 'env.json')))
+const ps = new pastebin(env['PASTEBINKEY'])
 const IDENTIFIER = "%"
+
+const _jstr = (json_dict) => JSON.stringify(json_dict, null, 2)
 
 // INFO functions to create pretty messages
 function createFailMessage(event) {
@@ -68,7 +72,6 @@ const getEvents = async () => {
     const response = await fetch(data.host+data.path)
     const json = await response.json()
     const events = json['events']
-    console.log(events)
     // INFO event categories
     /*
     balance
@@ -95,6 +98,18 @@ const getEvents = async () => {
     }
 }   
 
+function uploadFileToPasteBin(basePath, filePath, message) {
+    ps.createPasteFromFile({
+        filename: path.join(basePath, filePath),
+        title: filePath,
+        format: null,
+        privacy: 1,
+        expiration: '10M'
+    }).then(res => {
+        message.channel.send('Uploaded paste to url: '+res)
+    })
+}
+
 // INFO setup function to loop for printing events to the channel
 setInterval(getEvents, 3000)
 
@@ -110,56 +125,89 @@ client.on('message', msg => {
         msg.reply('pong')
     } else if (msg.content.indexOf('log') == 0) {
         let content = msg.content.split(' ')
-        let availableLogs = {
-            'backHTML' : {
-                'path': 'app/back/logs',
-                'name': 'backendManualEntryServer'
-            },
-            'discordBot' : {
-                'path': 'app/discord_bot/logs',
-                'name': 'discordBot'
-            },
-            'manager' : {
-                'path': 'app/worker_manager/logs',
-                'name': 'workerManagerLog'
-            },
-            'sellWorker' : {
-                'path': 'app/worker_manager/workers/logs',
-                'name': 'sellWorker'
-            },
-            'buyWorker' : {
-                'path': 'app/worker_manager/workers/logs',
-                'name': 'buyWorker'
-            },
-            'contractWorker' : {
-                'path': 'app/worker_manager/workers/logs',
-                'name': 'contractCheckWorker'
-            },
-            'sniperWorker' : {
-                'path': 'app/worker_manager/workers/logs',
-                'name': 'sniperWorker'
-            },
-            'tokenWatcherWorker': {
-                'path': 'app/worker_manager/workers/logs',
-                'name': 'tokenWatcher'
-            }
-        }
-        let justKeys = Object.keys(availableLogs)    
-        if (content[1] == 'showAvailable') {
-            message.channel.send('Available logs to print')
-            message.channel.send(_jstr(justKeys))
-        } else if (content[1] == 'help') {
-            message.channel.send('To use the log command use it like so')
-            message.channel.send('% log {availableKey} {token} // (without token will return most recent)')
-        } else if (content[1] in justKeys) {
-            let {path, name} = availableLogs[content[1]]
-            let files = fs.readdir(path, (err, files) => {
-                if(err) {
-                    _l("Error reading dir "+path+" "+err, level="ERROR")
-                } else {
-                    console.log(files)
+        try {
+            let availableLogs = {
+                'backHTML' : {
+                    'path': 'app/back/logs',
+                    'name': 'backendManualEntryServer'
+                },
+                'discordBot' : {
+                    'path': 'app/discord_bot/logs',
+                    'name': 'discordBot'
+                },
+                'manager' : {
+                    'path': 'app/worker_manager/logs',
+                    'name': 'workerManagerLog'
+                },
+                'sellWorker' : {
+                    'path': 'app/worker_manager/workers/logs',
+                    'name': 'sellWorker'
+                },
+                'buyWorker' : {
+                    'path': 'app/worker_manager/workers/logs',
+                    'name': 'buyWorker'
+                },
+                'contractWorker' : {
+                    'path': 'app/worker_manager/workers/logs',
+                    'name': 'contractCheckWorker'
+                },
+                'sniperWorker' : {
+                    'path': 'app/worker_manager/workers/logs',
+                    'name': 'sniperWorker'
+                },
+                'tokenWatcherWorker': {
+                    'path': 'app/worker_manager/workers/logs',
+                    'name': 'tokenWatcher'
                 }
-            })
+            }
+            let justKeys = Object.keys(availableLogs)    
+            if (content[1] == 'showAvailable') {
+                msg.channel.send('Available logs to print')
+                msg.channel.send(_jstr(justKeys))
+            } else if (content[1] == 'help') {
+                msg.channel.send('To use the log command use it like so')
+                msg.channel.send('% log {availableKey} {token} // (without token will return most recent)')
+            } else if (justKeys.indexOf(content[1])) {
+                let {path, name} = availableLogs[content[1]]
+                let files = fs.readdir(path, (err, files) => {
+                    if(err) {
+                        _l("Error reading dir "+path+" "+err, level="ERROR")
+                    } else {
+                        // now find the oldest file
+                        if (content.length == 3) {
+                            files.forEach(file => {
+                                let split = file.split('_')
+                                if(split[1].replace('.log', '') == content[2]){
+                                    uploadFileToPasteBin(path, file, msg)
+                                    return
+                                }
+                            })
+                            msg.channel.send('Log file not found for '+content[1]+' and token '+content[2])
+                        } else {
+                            let oldestTime = parseInt(files[0].split('_')[1].replace('.log', ''))
+                            let oldestFile = files[0]
+                            files.forEach(file => {
+                                let split = file.split('_')
+                                if (parseInt(split[1].replace('.log', '')) >= oldestTime) {
+                                    oldestFile = file
+                                    oldestTime = parseInt(split[1].replace('.log', ''))
+                                }
+                            })
+                            // now read file
+                            uploadFileToPasteBin(path, oldestFile, msg)
+                            return
+                        }
+                    }
+                })
+            } else {
+                msg.channel.send('Subcommand '+content[1]+' not found')
+                msg.channel.send('To use the log command use it like so')
+                msg.channel.send('% log {availableKey} {token} // (without token will return most recent)')
+            }
+        } catch (err) {
+            msg.channel.send('Error using log '+err)
+            msg.channel.send('To use the log command use it like so')
+            msg.channel.send('% log {availableKey} {token} // (without token will return most recent)')
         }
     }
 })
