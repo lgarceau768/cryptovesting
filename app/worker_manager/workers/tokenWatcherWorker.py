@@ -92,7 +92,11 @@ while currentBNB <= targetBNB:
         logger.log("Current Ratio: %s pass?: %s" % (str(currentBNB), str(currentBNB >= targetBNB)), level="INFO")
         if currentBNB >= targetBNB:
             logger.log("Target ratio: %s, hit with current ratio: %s" % (str(targetBNB), str(currentBNB)), level="SUCCESS")
-            print("Success=sell_"+token)
+            print("Success=sell_at_gain_"+token)
+            sys.exit(0)
+        elif currentBNB <= (initialAmountBNB * 0.5):
+            logger.log("Stop loss hit %s amount out: %s" % (str(targetBNB), str(currentBNB)), level="SUCCESS")
+            print("Success=sell_at_loss_"+token)
             sys.exit(0)
         else:
             continue

@@ -51,7 +51,7 @@ window.addEventListener('load', () => {
                     headers: {
                         'Accept': 'application/json',
                         'Content-Type': 'application/json'
-                      },
+                    },
                     body: JSON.stringify({
                         token_name: address,
                         contract_hash: address,

@@ -18,7 +18,7 @@ connection.connect()
 
 // INFO init
 let isoString = new Date()
-let logFilePath = "/home/fullsend/cryptovesting/app/worker_manager/workers/logs/contractCheckWorker" + "_"+ isoString.toISOString() + ".log"
+let logFilePath = "/home/fullsend/cryptovesting/app/worker_manager/workers/logs/contractCheckWorker_" + Date.now() + ".log"
 init(logFilePath)
 
 // INFO pull start data

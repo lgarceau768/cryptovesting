@@ -1,7 +1,5 @@
 const Discord = require('discord.js')
-const http = require('http')
 const fetch = require('node-fetch')
-const { shared } = require('../worker_manager/workers/scripts/shared')
 const { init, _l } = require('../worker_manager/workers/scripts/logger')
 const path = require('path')
 const fs = require('fs')
@@ -110,6 +108,59 @@ client.on('message', msg => {
     else msg.content = msg.content.substr(1)
     if (msg.content === 'ping') {
         msg.reply('pong')
+    } else if (msg.content.indexOf('log') == 0) {
+        let content = msg.content.split(' ')
+        let availableLogs = {
+            'backHTML' : {
+                'path': 'app/back/logs',
+                'name': 'backendManualEntryServer'
+            },
+            'discordBot' : {
+                'path': 'app/discord_bot/logs',
+                'name': 'discordBot'
+            },
+            'manager' : {
+                'path': 'app/worker_manager/logs',
+                'name': 'workerManagerLog'
+            },
+            'sellWorker' : {
+                'path': 'app/worker_manager/workers/logs',
+                'name': 'sellWorker'
+            },
+            'buyWorker' : {
+                'path': 'app/worker_manager/workers/logs',
+                'name': 'buyWorker'
+            },
+            'contractWorker' : {
+                'path': 'app/worker_manager/workers/logs',
+                'name': 'contractCheckWorker'
+            },
+            'sniperWorker' : {
+                'path': 'app/worker_manager/workers/logs',
+                'name': 'sniperWorker'
+            },
+            'tokenWatcherWorker': {
+                'path': 'app/worker_manager/workers/logs',
+                'name': 'tokenWatcher'
+            }
+        }
+        let justKeys = Object.keys(availableLogs)    
+        if (content[1] == 'showAvailable') {
+            message.channel.send('Available logs to print')
+            message.channel.send(_jstr(justKeys))
+        } else if (content[1] == 'help') {
+            message.channel.send('To use the log command use it like so')
+            message.channel.send('% log {availableKey} {token} // (without token will return most recent)')
+        } else if (content[1] in justKeys) {
+            let {path, name} = availableLogs[content[1]]
+            let files = fs.readdir(path, (err, files) => {
+                if(err) {
+                    _l("Error reading dir "+path+" "+err, level="ERROR")
+                } else {
+                    console.log(files)
+                }
+            })
+        }
     }
 })
 
