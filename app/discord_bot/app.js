@@ -178,7 +178,9 @@ async function getAllLogs() {
         if (Object.hasOwnProperty.call(availableLogs, key)) {
             const el = availableLogs[key];
             const files = await fse.readdir(el['path'])
-            logs[key] = {files}
+            if(files.length > 0) {
+                logs[key] = {files}
+            }
         }
     }
     return logs
