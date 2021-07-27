@@ -69,7 +69,6 @@ function _t() {
 // INFO function to spawn worker
 function spawnWorker(workerInfo, onMessage) {
     let workerBasePath = "/home/fullsend/cryptovesting/app/worker_manager/workers/"
-    workerBasePath = "./app/worker_manager/workers/"
     let workerName = workerInfo["worker"]
     let workerPath = workerBasePath+workerName
     let workerData = workerInfo["workerData"]
@@ -98,16 +97,12 @@ function spawnWorker(workerInfo, onMessage) {
     worker.on('error', (error) => {
         _l("ContractWorker: "+_jstr(workerInfo) +" has error: " +error, level="ERROR")
         sendEvent({
-            message: 'ContractWorker Failed on |'+workerData,
-            category: 'FAIL=contract'
+            message: workerInfo['worker']+' Failed on |'+workerData,
+            category: 'FAIL=manager'
         })
     })
     worker.on('exit', (code) => {
         _l("ContractWorker: "+_jstr(workerInfo) +" exited with code: "+code, level="EXIT")
-        sendEvent({
-            message: 'ContractWorker Exited on |'+workerData,
-            category: 'FAIL=contract'
-        })
     })
 }
 
@@ -325,28 +320,27 @@ const program = async () => {
     instance.addTrigger({
         name: "Token Added",
         expression: 'cryptovesting.tokens',
-        statement: "INSERT",
+        statement: mysqlEvents.STATEMENTS.INSERT,
         onEvent: (event) => {
             console.log('triggered')
             try {
-
+                spawnWorker({
+                    workerData: event,
+                    worker: 'contractCheckWorker.js'
+                }, logCompleteCallback)
             } catch (e) {
                 sendEvent({
                     message: 'Contract check on '+event['affectedRows'][0]['after']['contract_hash']+' failed |'+e,
                     category: 'FAIL=contract'
                 })
             }
-            spawnWorker({
-                workerData: event,
-                worker: 'contractCheckWorker.js'
-            }, logCompleteCallback)
         }
     })
 
     instance.addTrigger({
         name: "Token Added for ByPass",
         expression: 'cryptovesting.tokens_bypass_contract_check',
-        statement: "INSERT",
+        statement: mysqlEvents.STATEMENTS.INSERT,
         onEvent: (event) => {
             try {
                 spawnWorker({
@@ -369,6 +363,9 @@ const program = async () => {
             
         }
     })
+
+    instance.on(mysqlEvents.EVENTS.CONNECTION_ERROR, (err) => _l(err, level="CONNECTION_ERROR"));
+    instance.on(mysqlEvents.EVENTS.ZONGJI_ERROR, (err) => _l(err, level="ZONGJI_ERROR"));
 
 }
 

@@ -48,101 +48,27 @@ init(logPath, 'Cryptovesting Discord Bot')
 // INFO need to transfer env.json manually
 const IP = '25.89.250.119' //'192.168.1.224'
 const env = JSON.parse(fs.readFileSync(path.join(__dirname, 'env.json')))
-const ps = new pastebin(env['PASTEBINKEY'])
 const IDENTIFIER = "%"
 
 const _jstr = (json_dict) => JSON.stringify(json_dict, null, 2)
 
-// INFO functions to create pretty messages
-function createFailMessage(event) {
-    let timestamp = evenet.timestamp
-    let failee = event.category.split('=')[1].toLowerCase()
-    let message = event.message
-    let failureInfo = message.split('|')[1]
-    let messageRet = new Discord.MessageEmbed()
-        .setColor('#ff0026')
-        .setTitle(failee+' failed')
-        .setDescription(message)
-        .addField('Timestamp', timestamp)
-        .addField('Info', failureInfo)
-        .setTimestamp()
-    
-    return messageRet
-}
-
-function createImptMessage(event) {
-    let timestamp = event.timestamp
-    let message = event.message.split('|')[0]
-    let data = event.message.split('|')[1]
-    let messageRet = new Discord.MessageEmbed()
-        .setColor('#4DFF4D')
-        .setTitle('Important')
-        .setDescription(message)
-        .addField('Timestamp', timestamp)
-        .addField('Data', data)
-        .setTimestamp()
-    return messageRet
-}
-
-function createBalanceMessage(event) {
-    let timestamp = event.timestamp
-    let message = event.message.split('|')[0]
-    let data = event.message.split('|')[1]
-    let messageRet = new Discord.MessageEmbed()
-        .setColor('#FFFF19')
-        .setTitle('Balance Update')
-        .setDescription(message)
-        .addField('Timestamp', timestamp)
-        .addField('Data', data)
-        .setTimestamp()
-    return messageRet
-}
-
-// INFO function to request events from backend
-const getEvents = async () => {
-    let data = {
-        host: 'http://'+IP+':4041',
-        path: '/pull_events',
-        method: 'GET'
-    }
-    const response = await fetch(data.host+data.path)
-    const json = await response.json()
-    const events = json['events']
-    // INFO event categories
-    /*
-    balance
-    fail={failee} (error with worker_threads calling it)
-    impt
-    */
-    for (const event of events) {
-        let message = undefined
-        switch (event.category.toLowerCase()) {
-            case 'impt': 
-                message = createImptMessage(event)
-                break
-            case 'fail':
-                message = createFailMessage(event)
-                break
-            case 'balance':
-                message = createBalanceMessage(event)
-                break
+async function uploadFileToPasteBin(basePath, filePath) {
+    let text = await fs.readFileSync(path.join(basePath, filePath), 'utf8')
+    console.log(text)
+    fetch('https://pastebin.com/api/api_post.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'x-www-form-encoded'
+            },
+            body: 'api_dev_key=j1LhJqqjhwBSN2bVto0Ucb4el96v84Lv&api_paste_code='+text+'&api_paste_name='+filePath+'&api_option=paste'
         }
-        if (message != undefined) {
-            bot_updates_channel.send("@everyone")
-            bot_updates_channel.send(message)
-        }
-    }
-}   
-
-function uploadFileToPasteBin(basePath, filePath, message) {
-    ps.createPasteFromFile({
-        filename: basePath + path.sep + filePath,
-        title: filePath,
-        format: null,
-        privacy: 1,
-        expiration: '10M'
-    }).then(res => {
-        message.channel.send('Uploaded paste to url: '+res)
+    ).then(async (res) => {
+        _l('Uploaded '+filePath+ ' to '+res)
+        let txt = await res.text()
+        bot_updates_channel.send('Uploaded '+filePath+' to url: '+txt)
+    }).catch((err) => {
+        _l('Error uploading '+filePath+' err '+err)
+        bot_updates_channel.send('Upload error')
     })
 }
 
@@ -158,6 +84,104 @@ function findNewestLog(files) {
     })
     return oldestFile
 }
+// INFO functions to create pretty messages
+function createFailMessage(event) {
+    let timestamp = event.timestamp
+    let failee = event.category.split('=')[1]
+    _l('Fail message stuff: '+ failee)
+    let message = event.message
+    let failureInfo = message.split('|')[1]
+    _l('Fail message stuff: '+ failureInfo)
+    
+    // now to upload the log file
+    fse.readdir(availableLogs[failee]['path'])
+    .then((files) => {
+        let file = findNewestLog(files)
+        console.log(file)
+        uploadFileToPasteBin(availableLogs[failee]['path'], file)
+    })    
+    let messageRet = new Discord.MessageEmbed()
+    .setColor('#ff0026')
+    .setTitle(failee+' failed')
+    .setDescription(message)
+    .addField('Timestamp', timestamp)
+    .addField('Info', failureInfo)
+    .setTimestamp(); 
+    return messageRet
+}
+
+function createImptMessage(event) {
+    let timestamp = event.timestamp
+    let message = event.message.split('|')[0]
+    let data = event.message.split('|')[1]
+    let messageRet = new Discord.MessageEmbed()
+        .setColor('#4DFF4D')
+        .setTitle('Important')
+        .setDescription(message)
+        .addField('Timestamp', timestamp)
+        .addField('Data', data)
+        .setTimestamp();
+    return messageRet
+}
+
+function createBalanceMessage(event) {
+    let timestamp = event.timestamp
+    let message = event.message.split('|')[0]
+    let data = event.message.split('|')[1]
+    let messageRet = new Discord.MessageEmbed()
+        .setColor('#FFFF19')
+        .setTitle('Balance Update')
+        .setDescription(message)
+        .addField('Timestamp', timestamp)
+        .addField('Data', data)
+        .setTimestamp();
+    return messageRet
+}
+
+// INFO function to request events from backend
+const getEvents = async () => {
+    let data = {
+        host: 'http://'+IP+':4041',
+        path: '/pull_events',
+        method: 'GET'
+    }
+    const response = await fetch(data.host+data.path)
+    const json = await response.json()
+    const events = json['events']
+    _l('Events: '+_jstr(events), level="EVENTS")
+    // INFO event categories
+    /*
+    balance
+    fail={failee} (error with worker_threads calling it)
+    impt
+    */
+    for (const event of events) {
+        let message = undefined        
+        switch (event.category.toLowerCase().split('=')[0]) {
+            case 'impt': 
+                _l("Sending message impt"+_jstr(event), level="SEND")
+                message = createImptMessage(event)
+                break
+            case 'fail':   
+                _l("Sending message fail", level="SEND")
+                message = createFailMessage(event)
+                break
+            case 'balance':
+                _l("Sending message balance"+_jstr(event), level="SEND")
+                message = createBalanceMessage(event)
+                break
+        }
+        if (message != undefined) {
+            try {
+                await bot_updates_channel.send(message)
+            } catch (err) {
+                _l("send embed issue: "+_jstr(err), level="senderr")
+            }
+        } else {
+            _l(event.category.toLowerCase().split('=')[0]+' did not return valid message'+ _jstr(event), level="FAILSEND")
+        }
+    }
+}   
 
 function findLogAgainstStr(files, str) {
     let retFile = undefined;
@@ -197,6 +221,7 @@ client.on('ready', async () => {
 client.on('message', async (msg) => {
     if (msg.content.charAt(0) != IDENTIFIER) return
     else msg.content = msg.content.substr(1)
+    _l('Message: '+msg.content, level="MESSAGE")
     if (msg.content === 'ping') {
         msg.reply('pong')
     } else if (msg.content.indexOf('log') == 0) {
@@ -272,8 +297,8 @@ client.on('message', async (msg) => {
                                 _l("Error reading dir "+pathFile+" "+err, level="ERROR")
                             } else {
                                 // now find the oldest file
-                                if (content.length == 3) {
-                                    let fileMatch = findLogAgainstToken(files, content[2])
+                                if (content.length == 4) {
+                                    let fileMatch = findLogAgainstStr(files, content[2])
                                     if (fileMatch != undefined) {
                                         uploadFileToPasteBin(pathFile, file, msg)
                                     } else {
@@ -282,7 +307,11 @@ client.on('message', async (msg) => {
                                 } else {
                                     let newestLog = findNewestLog(files)
                                     // now read file
-                                    uploadFileToPasteBin(pathFile, newestLog, msg)
+                                    if (newestLog != undefined) {
+                                        uploadFileToPasteBin(pathFile, newestLog, msg)
+                                    } else {
+                                        msg.channel.send('No matching log file not found for '+content[2]+' and str '+content[3])
+                                    }
                                     return
                                 }
                             }
