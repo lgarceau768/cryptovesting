@@ -4,6 +4,7 @@ const { init, _l } = require('../worker_manager/workers/scripts/logger')
 const path = require('path')
 const fs = require('fs')
 const pastebin = require('pastebin-js')
+const fse = require('fs-extra');
 
 const client = new Discord.Client()
 let bot_updates_channel = undefined
@@ -171,13 +172,16 @@ function findLogAgainstStr(files, str) {
 
 async function getAllLogs() {
     let logs = {}
-    Object.keys(availableLogs).forEach(async (key) => {
-        let path = availableLogs[key]['path']
-        let files = await fs.readdir(path)
-        logs[key] = {
-            files
+    const updateLogs = (key, files) => logs[key] = {files} 
+    let promises = []
+    for (const key in availableLogs) {
+        if (Object.hasOwnProperty.call(availableLogs, key)) {
+            const el = availableLogs[key];
+            const files = await fse.readdir(el['path'])
+            logs[key] = {files}
         }
-    })
+    }
+    console.log('done')
     return logs
 }
 
@@ -242,9 +246,13 @@ client.on('message', async (msg) => {
                     msg.channel.send(_jstr(justKeys))
                     break;
                 case 'getLogs':
-                    let logsString = _jstr(await getAllLogs())
-                    msg.channel.send('Available logs to view')
-                    msg.channel.send(logsString)
+                    getAllLogs()
+                    .then((logs) => {
+                        console.log(logs)
+                        let logsString = _jstr(logs)
+                        msg.channel.send('Available logs to view')
+                        msg.channel.send(logsString)
+                    })
                     break;
                 case 'upload':
                     if (justKeys.indexOf(content[2]) != -1) {

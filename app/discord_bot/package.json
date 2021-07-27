@@ -10,6 +10,8 @@
   "license": "ISC",
   "dependencies": {
     "discord.js": "^12.5.3",
+    "fs-extra": "^10.0.0",
+    "fs-readdir": "^0.0.3",
     "node-fetch": "^2.6.1",
     "pastebin-js": "^1.0.6"
   }
