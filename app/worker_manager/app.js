@@ -99,14 +99,14 @@ function spawnWorker(workerInfo, onMessage) {
         _l("ContractWorker: "+_jstr(workerInfo) +" has error: " +error, level="ERROR")
         sendEvent({
             message: 'ContractWorker Failed on |'+workerData,
-            category: 'FAIL=CONTRACT'
+            category: 'FAIL=contract'
         })
     })
     worker.on('exit', (code) => {
         _l("ContractWorker: "+_jstr(workerInfo) +" exited with code: "+code, level="EXIT")
         sendEvent({
             message: 'ContractWorker Exited on |'+workerData,
-            category: 'FAIL=CONTRACT'
+            category: 'FAIL=contract'
         })
     })
 }
@@ -180,7 +180,7 @@ function spawnSellWorker(token, amt) {
             let failResult = stringVal.split('Fail=')[1]
             sendEvent({
                 message: 'Sold Token Failed |'+resultVal,
-                category: 'FAIL=SELL'
+                category: 'FAIL=sell'
             })
             _l("Sell failed "+failResult, level="SELLFAIL")
         }
@@ -189,14 +189,14 @@ function spawnSellWorker(token, amt) {
         _l("Sell Exception: "+data, level="CRITICAL")
         sendEvent({
             message: 'Sold Token Exception |'+data,
-            category: 'FAIL=SELL'
+            category: 'FAIL=sell'
         })
     })
     sellProcess.on('error', (err) => {
         _l("Sell Error"+err, level="CRITICAL")
         sendEvent({
             message: 'Sold Token Error |0',
-            category: 'FAIL=SELL'
+            category: 'FAIL=sell'
         })
     })
 }
@@ -234,7 +234,7 @@ function spawnTokenWatcher(token, amtBNB, amtToken) {
             let failResult = stringVal.split('Fail=')[1]
             sendEvent({
                 message: 'Watching token failed |'+failResult, 
-                category: 'FAIL=WATCH'
+                category: 'FAIL=tokenWatcher'
             })
             _l("Watch failed: "+failResult, level="WATCHFAIL")
         }
@@ -243,14 +243,14 @@ function spawnTokenWatcher(token, amtBNB, amtToken) {
         _l("Watch Exception: "+data, level="CRITICAL")
         sendEvent({
             message: 'Watching token Exception |'+data, 
-            category: 'FAIL=WATCH'
+            category: 'FAIL=tokenWatcher'
         })
     })
     watchProcess.on('error', () => {
         _l("Watch Error", level="CRITICAL")
         sendEvent({
             message: 'Watching token Error |0', 
-            category: 'FAIL=WATCH'
+            category: 'FAIL=tokenWatcher'
         })
     })
 }
@@ -290,7 +290,7 @@ function spawnBuyPythonScript(token) {
             let failResult = stringVal.split("Fail=")
             sendEvent({
                 message: 'Buying token fail |'+failResult, 
-                category: 'FAIL=BUY'
+                category: 'FAIL=buy'
             })
             _l("Buy Failed: "+failResult, level="BUYFAIL")
         }
@@ -299,14 +299,14 @@ function spawnBuyPythonScript(token) {
         _l("Buy Exception: "+data, level="CRITICAL")
         sendEvent({
             message: 'Buying token Exception |'+data, 
-            category: 'FAIL=BUY'
+            category: 'FAIL=buy'
         })
     })
     buyProcess.on('error', () => {
         _l("Buy Error"+data, level="CRITICAL")
         sendEvent({
             message: 'Buying token Error |0', 
-            category: 'FAIL=BUY'
+            category: 'FAIL=buy'
         })
     })
 }
@@ -328,6 +328,14 @@ const program = async () => {
         statement: "INSERT",
         onEvent: (event) => {
             console.log('triggered')
+            try {
+
+            } catch (e) {
+                sendEvent({
+                    message: 'Contract check on '+event['affectedRows'][0]['after']['contract_hash']+' failed |'+e,
+                    category: 'FAIL=contract'
+                })
+            }
             spawnWorker({
                 workerData: event,
                 worker: 'contractCheckWorker.js'
@@ -352,6 +360,10 @@ const program = async () => {
                     }
                 })
             } catch (err) {
+                sendEvent({
+                    message: 'Sniping token '+event["affectedRows"][0]["after"]["contractHash"]+' error |'+err,
+                    category: 'FAIL=sniper'
+                })
                 _l("ByPass exception: "+err.toString(), level="CRITICAL")
             }
             

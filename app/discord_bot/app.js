@@ -65,6 +65,7 @@ function createFailMessage(event) {
         .addField('Timestamp', timestamp)
         .addField('Info', failureInfo)
         .setTimestamp()
+    
     return messageRet
 }
 
@@ -144,6 +145,42 @@ function uploadFileToPasteBin(basePath, filePath, message) {
     })
 }
 
+function findNewestLog(files) {
+    let oldestTime = parseInt(files[0].split('_')[1].replace('.log', ''))
+    let oldestFile = files[0]
+    files.forEach(file => {
+        let split = file.split('_')
+        if (parseInt(split[1].replace('.log', '')) >= oldestTime) {
+            oldestFile = file
+            oldestTime = parseInt(split[1].replace('.log', ''))
+        }
+    })
+    return oldestFile
+}
+
+function findLogAgainstStr(files, str) {
+    let retFile = undefined;
+    files.forEach(file => {
+        let split = file.split('_')
+        if(split[1].replace('.log', '') == str){
+            retFile = file            
+        }
+    })
+    return retFile
+}
+
+async function getAllLogs() {
+    let logs = {}
+    Object.keys(availableLogs).forEach(async (key) => {
+        let path = availableLogs[key]['path']
+        let files = await fs.readdir(path)
+        logs[key] = {
+            files
+        }
+    })
+    return logs
+}
+
 // INFO setup function to loop for printing events to the channel
 setInterval(getEvents, 3000)
 
@@ -152,7 +189,7 @@ client.on('ready', async () => {
     bot_updates_channel = await client.channels.fetch('867853712202792990')
 })
 
-client.on('message', msg => {
+client.on('message', async (msg) => {
     if (msg.content.charAt(0) != IDENTIFIER) return
     else msg.content = msg.content.substr(1)
     if (msg.content === 'ping') {
@@ -160,50 +197,87 @@ client.on('message', msg => {
     } else if (msg.content.indexOf('log') == 0) {
         let content = msg.content.split(' ')
         try {           
-            let justKeys = Object.keys(availableLogs)    
-            if (content[1] == 'showAvailable') {
-                msg.channel.send('Available logs to print')
-                msg.channel.send(_jstr(justKeys))
-            } else if (content[1] == 'help') {
-                msg.channel.send('To use the log command use it like so')
-                msg.channel.send('% log {availableKey} {token} // (without token will return most recent)')
-            } else if (justKeys.indexOf(content[1])) {
-                let log = availableLogs[content[1]]
-                let pathFile = log['path']
-                let files = fs.readdir(pathFile, (err, files) => {
-                    if(err) {
-                        _l("Error reading dir "+pathFile+" "+err, level="ERROR")
-                    } else {
-                        // now find the oldest file
-                        if (content.length == 3) {
-                            files.forEach(file => {
-                                let split = file.split('_')
-                                if(split[1].replace('.log', '') == content[2]){
-                                    uploadFileToPasteBin(pathFile, file, msg)
-                                    return
-                                }
-                            })
-                            msg.channel.send('Log file not found for '+content[1]+' and token '+content[2])
-                        } else {
-                            let oldestTime = parseInt(files[0].split('_')[1].replace('.log', ''))
-                            let oldestFile = files[0]
-                            files.forEach(file => {
-                                let split = file.split('_')
-                                if (parseInt(split[1].replace('.log', '')) >= oldestTime) {
-                                    oldestFile = file
-                                    oldestTime = parseInt(split[1].replace('.log', ''))
-                                }
-                            })
-                            // now read file
-                            uploadFileToPasteBin(pathFile, oldestFile, msg)
-                            return
+            let justKeys = Object.keys(availableLogs)  
+            let subCommand = content[1]            
+            switch (subCommand) {
+                case 'help': 
+                    msg.channel.send('To use the log command use it like so')
+                    let commands = {
+                        'commands': {
+                            'help': {
+                                'description': 'Show the help menu',
+                                'example': '%log help'
+                            },
+                            'showAvailable': {
+                                'description': 'Show the available log ids call to upload a single log to pastebin',
+                                'example': '%log showAvailable'
+                            },
+                            'getLogs': {
+                                'description': 'Get all the available logs of the ids in the system, will return a large list to use in the single upload',
+                                'example': '%log getLogs'
+                            },
+                            'upload': {
+                                'description': 'Will upload a log based on the id it is passed and will optionally check the name of the file against the uploaded string',
+                                'examples' : [
+                                    {
+                                        'command': '%log upload manager',
+                                        'description': 'Will upload the most recent manager log file' 
+                                    },
+                                    {
+                                        'command': '%log upload sniper 2021-07-10T02:29:25.282Z',
+                                        'description': 'Will upload the log file containing the given string'
+                                    },
+                                    {
+                                        'command': '%log upload buy 0x000000000000000000000',
+                                        'description': 'Will upload the log file containing the given token address aka string'
+                                    }
+                                ]
+                            }
                         }
                     }
-                })
-            } else {
-                msg.channel.send('Subcommand '+content[1]+' not found')
-                msg.channel.send('To use the log command use it like so')
-                msg.channel.send('% log {availableKey} {token} // (without token will return most recent)')
+                    msg.channel.send(_jstr(commands))                    
+                    break;
+                case 'showAvailable':
+                    msg.channel.send('Available logs ids to use')
+                    msg.channel.send(_jstr(justKeys))
+                    break;
+                case 'getLogs':
+                    let logsString = _jstr(await getAllLogs())
+                    msg.channel.send('Available logs to view')
+                    msg.channel.send(logsString)
+                    break;
+                case 'upload':
+                    if (justKeys.indexOf(content[2]) != -1) {
+                        let pathFile = availableLogs[content[2]]['path']
+                        let files = fs.readdir(pathFile, (err, files) => {
+                            if(err) {
+                                _l("Error reading dir "+pathFile+" "+err, level="ERROR")
+                            } else {
+                                // now find the oldest file
+                                if (content.length == 3) {
+                                    let fileMatch = findLogAgainstToken(files, content[2])
+                                    if (fileMatch != undefined) {
+                                        uploadFileToPasteBin(pathFile, file, msg)
+                                    } else {
+                                        msg.channel.send('No matching log file not found for '+content[2]+' and str '+content[3])
+                                    }
+                                } else {
+                                    let newestLog = findNewestLog(files)
+                                    // now read file
+                                    uploadFileToPasteBin(pathFile, newestLog, msg)
+                                    return
+                                }
+                            }
+                        })
+                    } else {
+                        msg.channel.send('ID '+content[2]+' not found in showAvailable')
+                    }
+                    break;
+                default:
+                    msg.channel.send('Subcommand '+content[1]+' not found')
+                    msg.channel.send('To use the log command use it like so')
+                    msg.channel.send('% log {availableKey} {token} // (without token will return most recent)')
+                    break;
             }
         } catch (err) {
             msg.channel.send('Error using log '+err)
