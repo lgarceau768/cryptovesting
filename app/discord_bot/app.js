@@ -181,7 +181,6 @@ async function getAllLogs() {
             logs[key] = {files}
         }
     }
-    console.log('done')
     return logs
 }
 
@@ -251,7 +250,16 @@ client.on('message', async (msg) => {
                         console.log(logs)
                         let logsString = _jstr(logs)
                         msg.channel.send('Available logs to view')
-                        msg.channel.send(logsString)
+                        if(logsString.length > 4000) {
+                            let amount = Math.ceil(logsString.length / 4000)
+                            let messageStr = logsString.substr(0, 4000)
+                            for(let i = 0; i < amount; i++) {
+                                msg.channel.send(messageStr)
+                                messageStr = logsString.substr((i + 1) * 4000, (i + 2) * 4000)                             
+                            }
+                        } else {
+                            msg.channel.send(logsString)
+                        }
                     })
                     break;
                 case 'upload':
