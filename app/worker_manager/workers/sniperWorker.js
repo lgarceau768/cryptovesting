@@ -40,7 +40,7 @@ const account = wallet.connect(provider)
 const pairCreated = new ethers.Contract(
     pancakeSwapFactoryAddressTestNet,
     [
-        'event PairCreated(address indexed token0, address indexed token1, address pair, uint);'
+        'event PairCreated(address indexed token0, address indexed token1, address pair, uint)'
     ],
     account
 )

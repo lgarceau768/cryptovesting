@@ -68,9 +68,9 @@ function _t() {
 
 // INFO function to spawn worker
 function spawnWorker(workerInfo, onMessage) {
-    let workerBasePath = "/home/fullsend/cryptovesting/app/worker_manager/workers/"
+    let workerBasePath = path.join(__dirname, "workers")
     let workerName = workerInfo["worker"]
-    let workerPath = workerBasePath+workerName
+    let workerPath = path.join(workerBasePath, workerName)
     let workerData = workerInfo["workerData"]
     switch (workerName) {
         case 'contractCheckWorker.js':
