@@ -3,6 +3,7 @@
 const mysql = require('mysql')
 const { spawn } = require('child_process')
 const fetch = require('node-fetch')
+const path = require('path')
 const {
     _l, init
 } = require('./workers/scripts/logger')

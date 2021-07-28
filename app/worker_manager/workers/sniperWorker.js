@@ -74,7 +74,8 @@ const run = async () => {
     try {
         pairCreated.on('PairCreated', async(token0, token1, pair) => {
             // FIXME may need to look at potentially checking for the token back to bnb pair as well
-            if(token1.toLowerCase() == token.toLowerCase() && token0.toLowerCase() == WBNBAddressTestNet.toLowerCase()) {
+            if((token1.toLowerCase() == token.toLowerCase() || token0.toLowerCase() == token.toLowerCase()) &&
+            (token1.toLowerCase() == WBNBAddressTestNet.toLowerCase() || token0.toLowerCase() == WBNBAddressTestNet.toLowerCase())) {
                 _l("Liquidity added for token token: "+token+" info: "+_jstr({token0, token1, pair}), "MINT")
                 // INFO now spawn a buyWorker
                 sendMessage("Mint="+token, _ll, parentPort, isMainThread)
