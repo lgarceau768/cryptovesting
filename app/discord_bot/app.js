@@ -55,12 +55,27 @@ const _jstr = (json_dict) => JSON.stringify(json_dict, null, 2)
 async function uploadFileToPasteBin(basePath, filePath) {
     let text = await fs.readFileSync(path.join(basePath, filePath), 'utf8')
     console.log(text)
+    let data = {
+        'api_dev_key': 'j1LhJqqjhwBSN2bVto0Ucb4el96v84Lv',
+        'api_paste_code': text,
+        'api_paste_name': filePath,
+        'api_option': 'paste',
+        'api_paste_private': '1'
+    }
+    var formBody = [];
+    for (var property in data) {
+        var encodedKey = encodeURIComponent(property);
+        var encodedValue = encodeURIComponent(data[property]);
+        formBody.push(encodedKey + "=" + encodedValue);
+    }
+    formBody = formBody.join("&");
+
     fetch('https://pastebin.com/api/api_post.php', {
             method: 'POST',
             headers: {
-                'Content-Type': 'x-www-form-encoded'
+                'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
             },
-            body: 'api_dev_key=j1LhJqqjhwBSN2bVto0Ucb4el96v84Lv&api_paste_code='+text+'&api_paste_name='+filePath+'&api_option=paste'
+            body: formBody
         }
     ).then(async (res) => {
         _l('Uploaded '+filePath+ ' to '+res)
@@ -148,7 +163,7 @@ const getEvents = async () => {
     const response = await fetch(data.host+data.path)
     const json = await response.json()
     const events = json['events']
-    _l('Events: '+_jstr(events), level="EVENTS")
+    if(events.length > 0) _l('Events: '+_jstr(events), level="EVENTS")
     // INFO event categories
     /*
     balance

@@ -71,7 +71,7 @@ function addToken(token, score, jsonPath) {
             _l(err, level="ERROR")
         } else {
             _l(token+ " added", level="SUCCESS")
-            _l("Contract Check complete on "+token, level="SUCCESS")
+            _l("Contract Check complete="+token, level="SUCCESS")
             process.exit()
         }
         
@@ -120,7 +120,7 @@ function runContractCheck(filePath, token){
         contractCheckProcess.stderr.on('data', (data) => console.log('error: '+data))
         contractCheckProcess.on('error', () => console.log('failed to start'))
     } catch (err) {
-        _l(err, level="ERROR")
+        _l("Error="+err, level="ERROR")
     }    
 }
 
@@ -132,5 +132,5 @@ try {
         runContractCheck(filePath, token)        
     })    
 } catch (err) {
-    _l("Contract Check failed on "+token, level="FAIL")    
+    _l("Contract Check failed="+token, level="FAIL")    
 }     

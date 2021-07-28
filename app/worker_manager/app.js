@@ -20,7 +20,7 @@ const SLIPPAGE = 0.8;
 const PERCENT_GAIN = 1.5;
 const SELL_PERCENT = 0.75
 const BINANCE_NET = "test"
-
+let running = false
 // INFO setup mysql
 const connection = mysql.createConnection(sqlData)
 connection.connect()
@@ -92,17 +92,18 @@ function spawnWorker(workerInfo, onMessage) {
         workerData: workerData
     })
     worker.once('message', (strResponse) => {
+        if (strResponse.indexOf('=') == -1) return
         onMessage(strResponse)
     })
     worker.on('error', (error) => {
-        _l("ContractWorker: "+_jstr(workerInfo) +" has error: " +error, level="ERROR")
+        _l(workerName+": "+_jstr(workerInfo) +" has error: " +error, level="ERROR")
         sendEvent({
             message: workerInfo['worker']+' Failed on |'+workerData,
             category: 'FAIL=manager'
         })
     })
     worker.on('exit', (code) => {
-        _l("ContractWorker: "+_jstr(workerInfo) +" exited with code: "+code, level="EXIT")
+        _l(workerName+": "+_jstr(workerInfo) +" exited with code: "+code, level="EXIT")
     })
 }
 
@@ -152,14 +153,15 @@ function spawnSellWorker(token, amt) {
         "-t", constant_values.TOKEN,
         "-a", constant_values.AMOUNT
     ]
-    const path = "./app/worker_manager/workers/sellWorker.py"
-    const sellProcess = spawn('python3', [path, ...ARGS])
+    const pathFile = path.join(__dirname, "workers/sellWorker.py")
+    const sellProcess = spawn('python3', [pathFile, ...ARGS])
     _l("Sell worker spawned for token: "+token, level="SELL")
     sendEvent({
         message: 'Spawning sell on |'+_jstr({token, amt}),
         category: 'IMPT'
     })
     sellProcess.stdout.on('data', (data) => {
+        if(data.indexOf('=') == -1) return
         let stringVal = data.toString().trim()
         let successIndex = stringVal.indexOf('Success=')
         if(successIndex != -1) {
@@ -212,14 +214,15 @@ function spawnTokenWatcher(token, amtBNB, amtToken) {
         "-a", constant_values.AMOUNT_TOKEN,
         "-p", constant_values.PERCENT
     ]
-    const path = "./app/worker_manager/workers/tokenWatcherWorker.py"
-    const watchProcess = spawn('python3', [path, ...ARGS])
+    const pathFile = path.join(__dirname, "workers/tokenWatcherWorker.py")
+    const watchProcess = spawn('python3', [pathFile, ...ARGS])
     _l("Watcher worker spawned for token: "+token, level="WATCH");
     sendEvent({
         message: 'Watching token |'+token, 
         category: 'IMPT'
     })
     watchProcess.stdout.on('data', (data) => {
+        if(data.indexOf('=') == -1) return
         let stringVal = data.toString().trim()
         let successIndex = stringVal.indexOf('Success=')
         if(successIndex != -1){
@@ -265,8 +268,8 @@ function spawnBuyPythonScript(token) {
         "-a", constant_values.AMOUNT,
         "-s", constant_values.SLIPPAGE
     ]
-    const path = "./app/worker_manager/workers/buyWorker.py"
-    const buyProcess = spawn('python3', [path, ...ARGS])
+    const pathFile = path.join(__dirname, "workers/buyWorker.py")
+    const buyProcess = spawn('python3', [pathFile, ...ARGS])
     _l("Buy Worker Spawned with args: "+_jstr(ARGS), level="BUY")
     sendEvent({
         message: 'Buying token |'+token, 
@@ -274,6 +277,7 @@ function spawnBuyPythonScript(token) {
     })
     buyProcess.stdout.on('data', (data) => {
         _l("Reply from BuyWorker "+data, level="REPLY")
+        if(data.indexOf('=') == -1) return
         let stringVal = data.toString().trim()
         let successIndex = stringVal.indexOf("Success=")
         if(successIndex != -1){
@@ -307,6 +311,7 @@ function spawnBuyPythonScript(token) {
 }
 
 const program = async () => {
+    running = true
     const instance = new mysqlEvents(connection, {
         startAtEnd: true,
         excludeSchemas: {
@@ -364,9 +369,21 @@ const program = async () => {
         }
     })
 
-    instance.on(mysqlEvents.EVENTS.CONNECTION_ERROR, (err) => _l(err, level="CONNECTION_ERROR"));
-    instance.on(mysqlEvents.EVENTS.ZONGJI_ERROR, (err) => _l(err, level="ZONGJI_ERROR"));
+    instance.on(mysqlEvents.EVENTS.CONNECTION_ERROR, (err) => {
+        running = false
+        _l(err, level="CONNECTION_ERROR")
+    });
+    instance.on(mysqlEvents.EVENTS.ZONGJI_ERROR, (err) => {
+        running = false
+        _l(err, level="ZONGJI_ERROR")
+    });
 
 }
 
 program()
+
+setInterval(() => {
+    if(!running){
+        program()
+    }
+}, 1000)

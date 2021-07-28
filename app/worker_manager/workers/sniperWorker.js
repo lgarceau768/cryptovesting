@@ -24,13 +24,13 @@ const date = new Date()
 // INFO pull token from workerData or args
 const token = getWorkerData(workerData, process, isMainThread)
 let pathLog = ""
-pathLog = path.join(__dirname, 'fail','logs', "sniperWorker_" + token + "_"+ Date.now() + ".log")
+pathLog = path.join(__dirname,'logs', "sniperWorker_" + token + "_"+ Date.now() + ".log")
 init(pathLog, "newSniperWorker.js")
 
 
 // INFO setup logger
 const _l = (data, level="DEBUG") => {
-    _ll(data, level);
+    _ll(data, level)
 }
 
 // INFO setup contract 
@@ -71,17 +71,20 @@ const watchForMint = async (token, pair) => {
 // INFO main worker code
 const run = async () => {
     _l("Starting with token: "+token, level="STARTUP")
-    pairCreated.on('PairCreated', async(token0, token1, pair) => {
-        // FIXME may need to look at potentially checking for the token back to bnb pair as well
-        if(token1.toLowerCase() == token.toLowerCase() && token0.toLowerCase() == WBNBAddressTestNet.toLowerCase()) {
-            _l("Liquidity added for token token: "+token+" info: "+_jstr({token0, token1, pair}), "MINT")
-            // INFO now spawn a buyWorker
-            sendMessage("Mint="+token, _ll, parentPort, isMainThread, level)
-            return
-            _l("Pair found need to wait for mint: "+_jstr({token0, token1, pair}, level="PAIRCREATED"))
-            watchForMint(token0, pair)
-        }
-    })
+    try {
+        pairCreated.on('PairCreated', async(token0, token1, pair) => {
+            // FIXME may need to look at potentially checking for the token back to bnb pair as well
+            if(token1.toLowerCase() == token.toLowerCase() && token0.toLowerCase() == WBNBAddressTestNet.toLowerCase()) {
+                _l("Liquidity added for token token: "+token+" info: "+_jstr({token0, token1, pair}), "MINT")
+                // INFO now spawn a buyWorker
+                sendMessage("Mint="+token, _ll, parentPort, isMainThread)
+            }
+        })
+    } catch (e) {
+        _l("Failed on "+_jstr(e), level="CRITICAL")
+        sendMessage("Fail="+e, _ll, parentPort, isMainThread)
+    }
+    
 }
 
 run()

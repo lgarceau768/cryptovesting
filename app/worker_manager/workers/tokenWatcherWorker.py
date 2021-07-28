@@ -90,6 +90,8 @@ while currentBNB <= targetBNB:
         ratioObj = _get_amounts_out(initialAmountToken, token, pancake_factory_contract)
         currentBNB = ratioObj['bnb']
         logger.log("Current Ratio: %s pass?: %s" % (str(currentBNB), str(currentBNB >= targetBNB)), level="INFO")
+        _l("JSUT FOR TESTING REMOVE LINE BELOW", level="CRITICAL")
+        targetBNB /= 10
         if currentBNB >= targetBNB:
             logger.log("Target ratio: %s, hit with current ratio: %s" % (str(targetBNB), str(currentBNB)), level="SUCCESS")
             print("Success=sell_at_gain_"+token)

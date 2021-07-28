@@ -100,7 +100,7 @@ shared = () => {
 
     this.my_acc_testnet = "0xeB8ceace9be0e8E7fCF356a7dc523256d10dE8fC"
 
-    this.sendMessage = (data, _l, parentPort, isMainThread, level) => {
+    this.sendMessage = (data, _l, parentPort, isMainThread, level="DEBUG") => {
         if(isMainThread){
             _l(data, level=level)
         } else {
