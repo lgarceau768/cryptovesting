@@ -52,13 +52,14 @@ async function sendEvent(event) {
     })
     let json = await res.json();
     console.log(json)
-    // event setup
-    /*
-    event {         
-        message,
-        category
+}
+
+async function tryWrap(funct, args) {
+    try {
+        funct(...args)
+    } catch (e) {
+        _l(funct.name+" error: "+e+"\n"+_jstr(e), level="ERROR")
     }
-    */
 }
 
 // INFO function to get timestamp
@@ -167,7 +168,7 @@ function spawnSellWorker(token, amt) {
         let successIndex = stringVal.indexOf('Success=')
         if(successIndex != -1) {
             // INFO remove token from balances tracking table      
-            let resultVal = JSON.parse(stringVal.split('Success=')[1])
+            let resultVal = JSON.parse(stringVal.split('=')[1])
             token_balances(token, op="rem")
             _l("Sell Reply: "+_jstr(resultVal), level="SOLD")
             sendEvent({
@@ -175,7 +176,7 @@ function spawnSellWorker(token, amt) {
                 category: 'IMPT'
             })
         } else {
-            let failResult = stringVal.split('Fail=')[1]
+            let failResult = stringVal.split('=')[1]
             sendEvent({
                 message: 'Sold Token Failed |'+resultVal,
                 category: 'FAIL=sell'
@@ -217,7 +218,7 @@ function spawnTokenWatcher(token, amtBNB, amtToken) {
     ]
     const pathFile = path.join(__dirname, "workers/tokenWatcherWorker.py")
     const watchProcess = spawn('python3', [pathFile, ...ARGS])
-    _l("Watcher worker spawned for token: "+token, level="WATCH");
+    _l("Watcher worker spawned for token: "+token+"\n"+_jstr(ARGS), level="WATCH");
     sendEvent({
         message: 'Watching token |'+token, 
         category: 'IMPT'
@@ -230,7 +231,7 @@ function spawnTokenWatcher(token, amtBNB, amtToken) {
             // FIXME (make constant) now sell token (currently sell 0.75 of token)
             spawnSellWorker(token, parseInt(amtToken * SELL_PERCENT))
         } else {
-            let failResult = stringVal.split('Fail=')[1]
+            let failResult = stringVal.split('=')[1]
             sendEvent({
                 message: 'Watching token failed |'+failResult, 
                 category: 'FAIL=tokenWatcher'
@@ -282,12 +283,16 @@ function spawnBuyPythonScript(token) {
         let stringVal = data.toString().trim()
         let successIndex = stringVal.indexOf("Success=")
         if(successIndex != -1){
-            let resultVal = JSON.parse(stringVal.split("Success=")[1])
+            let resultVal = JSON.parse(stringVal.split("=")[1])
             _l("Buy Success, resultVal: "+resultVal, level="BUYSUCCESS")
+            sendEvent({
+                message: 'Bought token '+token+' |'+resultVal['initialAmount'],
+                category: 'IMPT'
+            })
             spawnTokenWatcher(token, BNB_AMT_ETHER, resultVal['initalAmount'])
             token_balances(token, resultVal['initialAmount'])
         } else {
-            let failResult = stringVal.split("Fail=")
+            let failResult = stringVal.split("=")
             sendEvent({
                 message: 'Buying token fail |'+failResult, 
                 category: 'FAIL=buy'
@@ -347,26 +352,27 @@ const program = async () => {
         name: "Token Added for ByPass",
         expression: 'cryptovesting.tokens_bypass_contract_check',
         statement: mysqlEvents.STATEMENTS.INSERT,
-        onEvent: (event) => {
-            try {
-                spawnWorker({
-                    workerData: event,
-                    worker: 'sniperWorker.js'
-                }, (reply) => {
-                    if(reply.indexOf('Mint=') != -1){
-                        // token minted spawn buy script
-                        let token = reply.split('Mint=')[1]
-                        spawnBuyPythonScript(token)
-                    }
-                })
-            } catch (err) {
-                sendEvent({
-                    message: 'Sniping token '+event["affectedRows"][0]["after"]["contractHash"]+' error |'+err,
-                    category: 'FAIL=sniper'
-                })
-                _l("ByPass exception: "+err.toString(), level="CRITICAL")
-            }
-            
+        onEvent: (event) => {            
+            tryWrap(() => {
+                try {
+                    spawnWorker({
+                        workerData: event,
+                        worker: 'sniperWorker.js'
+                    }, (reply) => {
+                        if(reply.indexOf('Mint=') != -1){
+                            // token minted spawn buy script
+                            let token = reply.split('Mint=')[1]
+                            spawnBuyPythonScript(token)
+                        }
+                    })
+                } catch (err) {
+                    sendEvent({
+                        message: 'Sniping token '+event["affectedRows"][0]["after"]["contractHash"]+' error |'+err,
+                        category: 'FAIL=sniper'
+                    })
+                    _l("ByPass exception: "+err.toString(), level="CRITICAL")
+                }
+            }, [])                      
         }
     })
 
@@ -381,10 +387,10 @@ const program = async () => {
 
 }
 
-program()
+tryWrap(program, [])
 
 setInterval(() => {
     if(!running){
-        program()
+        tryWrap(program, [])
     }
 }, 1000)

@@ -14,13 +14,14 @@ if sys.argv[1].lower() not in ['-t', '-i', '-p', '-u', '-a'] or sys.argv[1].lowe
     ''')
     sys.exit(0)
 
+
 # INFO unpack args
 net = sys.argv[sys.argv.index('-u')+1]
 token = sys.argv[sys.argv.index('-t')+1]
-initialAmountBNB = int(sys.argv[sys.argv.index('-i')+1])
-initialAmountToken = int(sys.argv[sys.argv.index('-a')+1])
+initialAmountBNB = int(float(sys.argv[sys.argv.index('-i')+1]))
+initialAmountToken = int(float(sys.argv[sys.argv.index('-a')+1]))
 percent = float(sys.argv[sys.argv.index('-p')+1])
-logger = Logger.LogManager("tokenWatcher_"+token, dirName="app/worker_manager/workers/logs/")
+logger = Logger.LogManager("tokenWatcher_"+token, dirName="/home/fullsend/cryptovesting/app/worker_manager/workers/logs/")
 logger.log("Arguments %s, %s, %s, %s, %s" % (token, initialAmountBNB, percent, net, initialAmountToken), level="STARTUP")
 
 # INFO set variables based on net
@@ -49,9 +50,9 @@ w3 = Web3(Web3.HTTPProvider(provider_url))
 account = w3.toChecksumAddress(my_wallet_adr)
 account_obj = w3.eth.account.privateKeyToAccount(my_pk)
 if platform.system() != "Linux":
-    router_abi = json.load(open('app\worker_manager\workers\contract_abis\pancakeswap_factory_abi.json', 'r'))
+    router_abi = json.load(open('/home/fullsend/cryptovesting/app/worker_manager/workers/contract_abis/pancakeswap_factory_abi.json', 'r'))
 else:
-    router_abi = json.load(open('app\worker_manager\workers\contract_abis\pancakeswap_factory_abi.json', 'r'))
+    router_abi = json.load(open('/home/fullsend/cryptovesting/app/worker_manager/workers/contract_abis/pancakeswap_factory_abi.json', 'r'))
 pancake_router_contract = w3.eth.contract(address=pancakeswap_router_address, abi=router_abi)
 pancake_factory_contract = w3.eth.contract(address=pancake_swap_factory_address, abi=router_abi)
 

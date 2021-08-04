@@ -17,7 +17,7 @@ net = sys.argv[sys.argv.index('-u')+1]
 token = sys.argv[sys.argv.index('-t')+1]
 amount = sys.argv[sys.argv.index('-a')+1]
 slippage = float(sys.argv[sys.argv.index('-s')+1]) 
-logger = Logger.LogManager("sellWorker_"+token, dirName="app/worker_manager/workers/logs/")
+logger = Logger.LogManager("sellWorker_"+token, dirName="/home/fullsend/cryptovesting/app/worker_manager/workers/logs/")
 logger.log("Arguments %s, %s, %s, %s" % (net, token, amount, str(slippage)), "STARTUP")
 
 # INFO set variables based on net
@@ -46,9 +46,9 @@ w3 = Web3(Web3.HTTPProvider(provider_url))
 account = w3.toChecksumAddress(my_wallet_adr)
 account_obj = w3.eth.account.privateKeyToAccount(my_pk)
 if platform.system() != "Linux":
-    router_abi = json.load(open('app\worker_manager\workers\contract_abis\pancakeswap_factory_abi.json', 'r'))
+    router_abi = json.load(open('/home/fullsend/cryptovesting/app/worker_manager/workers/contract_abis/pancakeswap_factory_abi.json', 'r'))
 else:
-    router_abi = json.load(open('app\worker_manager\workers\contract_abis\pancakeswap_factory_abi.json', 'r'))
+    router_abi = json.load(open('/home/fullsend/cryptovesting/app/worker_manager/workers/contract_abis/pancakeswap_factory_abi.json', 'r'))
 pancake_router_contract = w3.eth.contract(address=pancakeswap_router_address, abi=router_abi)
 pancake_factory_contract = w3.eth.contract(address=pancake_swap_factory_address, abi=router_abi)
 

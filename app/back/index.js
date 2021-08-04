@@ -43,54 +43,70 @@ app.use(function (req, res, next) {
 });
 
 app.post('/upload_event', (req, res) => {
-    let newEvent = req.body
-    events.push(newEvent)
-    res.send({"res": "OK"})
+    try {
+        let newEvent = req.body
+        events.push(newEvent)
+        res.send({"res": "OK"})
+    } catch (e) {        
+        _l("Upload Event Error: "+e+" request\n"+_jstr(req), level="FAIL")
+    }
 })
 
 app.get('/pull_events', (req, res) => {
-    res.send({events})
-    events = []
+    try {
+        res.send({events})
+        events = []
+    } catch (e) {
+        _l("Pull Events Error: "+e+" request\n"+_jstr(req), level="FAIL")
+    }
 })
 
 app.post('/upload_token', (req, res) => {
-    let body = JSON.parse(req.body);
-    let token = {
-        "uuid": uuidv4(),
-        "token_name": body["token_name"],
-        "bscscan_link": body["bscscan_link"],
-        "contract_hash": body["contract_hash"]
-    }
-    _l("Token: "+_jstr(token) +" being added", level="INPUT")
-    let sql = "insert into tokens set ?"
-    connection.query(sql, token, function (err, result) {
-        if(err) {
-            _l("Error adding token: "+_jstr(token) + " error: "+err, level="ERROR")
-            res.send({"res": 'Error probably duplicate: '+err})
-        } else {
-            _l("Added token: "+_jstr(token), level="SUCCESS")
-            res.send({"res": 'OK'})
+    try {
+        let body = JSON.parse(req.body);
+        let token = {
+            "uuid": uuidv4(),
+            "token_name": body["token_name"],
+            "bscscan_link": body["bscscan_link"],
+            "contract_hash": body["contract_hash"]
         }
-    })
+        _l("Token: "+_jstr(token) +" being added", level="INPUT")
+        let sql = "insert into tokens set ?"
+        connection.query(sql, token, function (err, result) {
+            if(err) {
+                _l("Error adding token: "+_jstr(token) + " error: "+err, level="ERROR")
+                res.send({"res": 'Error probably duplicate: '+err})
+            } else {
+                _l("Added token: "+_jstr(token), level="SUCCESS")
+                res.send({"res": 'OK'})
+            }
+        })
+    } catch (e) {
+        _l("Upload Error: "+e+" request\n"+_jstr(req), level="FAIL")
+    }
 })
 
 app.post('/upload_token_bypass', (req, res) => {
-    let body = req.body;
-    let token = {
-        "addedOn": new Date().toISOString(),
-        "contractHash": body["contract_hash"],
-    }
-    _l("Token: "+_jstr(token) +" being added", level="INPUT")
-    let sql = "insert into tokens_bypass_contract_check set ?"
-    connection.query(sql, token, function (err, result) {
-        if(err) {
-            _l("Error adding token: "+_jstr(token) + " error: "+err, level="ERROR")
-            res.send({"res": 'Error probably duplicate: '+err})
-        } else {
-            _l("Added token: "+_jstr(token), level="SUCCESS")
-            res.send({"res": 'OK'})
+    try {
+        let body = req.body;
+        let token = {
+            "addedOn": new Date().toISOString(),
+            "contractHash": body["contract_hash"],
         }
-    })
+        _l("Token: "+_jstr(token) +" being added", level="INPUT")
+        let sql = "insert into tokens_bypass_contract_check set ?"
+        connection.query(sql, token, function (err, result) {
+            if(err) {
+                _l("Error adding token: "+_jstr(token) + " error: "+err, level="ERROR")
+                res.send({"res": 'Error probably duplicate: '+err})
+            } else {
+                _l("Added token: "+_jstr(token), level="SUCCESS")
+                res.send({"res": 'OK'})
+            }
+        })
+    } catch (e) {
+        _l("Upload Bypass Error: "+e+" request\n"+_jstr(req), level="FAIL")        
+    }
 })
 
 // INFO run server

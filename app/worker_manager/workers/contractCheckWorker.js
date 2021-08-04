@@ -31,7 +31,7 @@ const _l = (data) => {
 }
 _l("Worker For Token: "+token, level="START")
 
-// INFO function to output the contract source to a file before calling the python script
+// INFO function to output the contract source to a file before calling the python3 script
 function outputContractSource(tokenName, contractDict){
     try {
         let dir = "/home/fullsend/cryptovesting/scripts/rugmenot_contracts/contracts/sol_files/"
@@ -100,7 +100,7 @@ async function getContractSource(tokenAddress) {
     }
 }
 
-// INFO function to run the python contract check script
+// INFO function to run the python3 contract check script
 function runContractCheck(filePath, token){    
     try {
         _l("runContractCheck "+filePath, level="DEBUG")
