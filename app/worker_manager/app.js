@@ -110,13 +110,13 @@ function spawnWorker(workerInfo, onMessage) {
 }
 
 // INFO function to add / remove token from token_balances
-function token_balances(token, amt="", op="add") {
+function token_balances(token, amt, op="add") {
     switch (op) {
         case "add":
             let query = "insert into token_balances set ?"
             connection.query(query, {
                 "contract_hash": token,
-                "amount": amt.toString()
+                "amount": amt
             })
             connection.commit()
             sendEvent({
@@ -153,11 +153,12 @@ function spawnSellWorker(token, amt) {
     const ARGS = [
         "-u", constant_values.NET,
         "-t", constant_values.TOKEN,
-        "-a", constant_values.AMOUNT
+        "-a", constant_values.AMOUNT,
+        "-s", SLIPPAGE
     ]
     const pathFile = path.join(__dirname, "workers/sellWorker.py")
     const sellProcess = spawn('python3', [pathFile, ...ARGS])
-    _l("Sell worker spawned for token: "+token, level="SELL")
+    _l("Sell worker spawned for token: "+token+"\n"+_jstr(ARGS), level="SELL")
     sendEvent({
         message: 'Spawning sell on |'+_jstr({token, amt}),
         category: 'IMPT'
@@ -169,7 +170,7 @@ function spawnSellWorker(token, amt) {
         if(successIndex != -1) {
             // INFO remove token from balances tracking table      
             let resultVal = JSON.parse(stringVal.split('=')[1])
-            token_balances(token, op="rem")
+            token_balances(token, 0, op="rem")
             _l("Sell Reply: "+_jstr(resultVal), level="SOLD")
             sendEvent({
                 message: 'Sold Token TX |'+_jstr(resultVal), 
@@ -229,7 +230,8 @@ function spawnTokenWatcher(token, amtBNB, amtToken) {
         let successIndex = stringVal.indexOf('Success=')
         if(successIndex != -1){
             // FIXME (make constant) now sell token (currently sell 0.75 of token)
-            spawnSellWorker(token, parseInt(amtToken * SELL_PERCENT))
+            _l("Selling "+parseFloat(amtToken * SELL_PERCENT), "SLIPPAGE")
+            spawnSellWorker(token, parseFloat(amtToken * SELL_PERCENT))
         } else {
             let failResult = stringVal.split('=')[1]
             sendEvent({
@@ -284,13 +286,13 @@ function spawnBuyPythonScript(token) {
         let successIndex = stringVal.indexOf("Success=")
         if(successIndex != -1){
             let resultVal = JSON.parse(stringVal.split("=")[1])
-            _l("Buy Success, resultVal: "+resultVal, level="BUYSUCCESS")
+            _l("Buy Success, resultVal: "+_jstr(resultVal), level="BUYSUCCESS")
             sendEvent({
-                message: 'Bought token '+token+' |'+resultVal['initialAmount'],
+                message: 'Bought token '+token+' |'+resultVal['initalAmount'].toString(),
                 category: 'IMPT'
             })
             spawnTokenWatcher(token, BNB_AMT_ETHER, resultVal['initalAmount'])
-            token_balances(token, resultVal['initialAmount'])
+            token_balances(token, resultVal['initalAmount'])
         } else {
             let failResult = stringVal.split("=")
             sendEvent({
