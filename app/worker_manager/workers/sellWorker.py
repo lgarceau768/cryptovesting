@@ -78,7 +78,7 @@ def _get_amounts_out(amt, token, contract):
 
 # INFO function to approve
 def _approve(amount, address):
-    tokenContractBasic = w3.eth.contract(_a(address), abi=json.load(open('app\\worker_manager\\workers\\contract_abis\\sellabi.json', 'r')))
+    tokenContractBasic = w3.eth.contract(_a(address), abi=json.load(open('/home/fullsend/cryptovesting/app/worker_manager/workers/contract_abis/sellabi.json', 'r')))
 
     approve = tokenContractBasic.functions.approve(_a(pancake_swap_factory_address), amount)
     nonce = w3.eth.getTransactionCount(account)
@@ -138,12 +138,12 @@ try:
     # FIXME may need to add an approve call here in order to approve the spend
     _approve(amount_tokens*10, token);
     tx_token = _h(_swap_exact_tokens_for_eth(amount_bnb, amount_tokens, token, pancake_factory_contract))
-    print("Success="+tx_token)
     returnVal = {
         'txHash': tx_token,
         'soldAmount': amount_tokens,
         'for': amount_bnb
     }
+    print("Success="+json.dumps(returnVal))
     logger.log("Success="+json.dumps(returnVal), level="SUCCESS")
 except Exception as e:
     logger.log("Exception: "+str(e))
