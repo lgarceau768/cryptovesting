@@ -1,6 +1,0 @@
-https://zhiyan.blog/2021/05/23/how-to-create-a-pancakeswap-bot-using-python/
-
-https://cryptomarketpool.com/how-to-create-a-snipe-bot-to-monitor-liquidity-pairs-in-python/
-
-https://github.com/MrFatoni/pancakeswap-sniping-bot/blob/main/bot.js
-

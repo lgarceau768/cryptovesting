@@ -16,11 +16,11 @@ const {
 } = shared()
 const { Worker } = require('worker_threads')
 const BNB_AMT_ETHER = 50000000000000000;
-const BNB_AMT = 0.05;
+const BNB_AMT = 0.01;
 const SLIPPAGE = 0.8;
 const PERCENT_GAIN = 1.5;
 const SELL_PERCENT = 0.75
-const BINANCE_NET = "test"
+const BINANCE_NET = "main"
 let running = false
 // INFO setup mysql
 const connection = mysql.createConnection(sqlData)
@@ -79,7 +79,7 @@ function spawnWorker(workerInfo, onMessage) {
             workerData = workerData["affectedRows"][0]["after"]["contract_hash"]
             break;
         case 'sniperWorker.js':
-            workerData = workerData["affectedRows"][0]["after"]["contractHash"]
+            workerData = workerData["affectedRows"][0]["after"]["tokenHash"]
             break;
         default:
             break;
@@ -369,7 +369,7 @@ const program = async () => {
                     })
                 } catch (err) {
                     sendEvent({
-                        message: 'Sniping token '+event["affectedRows"][0]["after"]["contractHash"]+' error |'+err,
+                        message: 'Sniping token '+event["affectedRows"][0]["after"]["tokenHash"]+' error |'+err,
                         category: 'FAIL=sniper'
                     })
                     _l("ByPass exception: "+err.toString(), level="CRITICAL")
