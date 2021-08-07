@@ -15,7 +15,7 @@ const {
     setLog
 } = shared()
 const { Worker } = require('worker_threads')
-const BNB_AMT_ETHER = 50000000000000000;
+const BNB_AMT_ETHER = 10000000000000000;
 const BNB_AMT = 0.01;
 const SLIPPAGE = 0.8;
 const PERCENT_GAIN = 1.5;

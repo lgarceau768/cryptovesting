@@ -28,7 +28,7 @@ shared = () => {
         }
     )
     try {
-        this.routerAbi = JSON.parse(fs.readFileSync('/home/fullsend/cryptovesting/sniper_bot/js/pancakeswap_router_abi.json', 'utf-8'));
+        this.routerAbi = JSON.parse(fs.readFileSync('/home/fullsend/cryptovesting/app/worker_manager/workers/contract_abis/pancakeswap_router_abi.json', 'utf-8'));
         this.factoryAbi = JSON.parse(fs.readFileSync("/home/fullsend/cryptovesting/app/worker_manager/workers/contract_abis/ps_factory.json", "utf-8"))
     } catch {
         this.routerAbi = JSON.parse(fs.readFileSync('Z:\\Repos\\cryptovesting\\sniper_bot\\js\\pancakeswap_router_abi.json', 'utf-8'));
