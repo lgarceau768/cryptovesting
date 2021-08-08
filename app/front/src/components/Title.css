@@ -1,0 +1,11 @@
+.title {
+    font-family: Russo One;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 68px;
+    line-height: 82px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #F7F7FF;
+}

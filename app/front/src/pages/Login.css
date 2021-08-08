@@ -1,0 +1,13 @@
+.mainDiv {
+    background-image: url('../assets/init_bkg.gif');
+    background-size: contain;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    height: 100%;
+    width: 100%;
+}
+
+.mainTitle {
+    align-self: center;
+}
