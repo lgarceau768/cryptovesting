@@ -1,0 +1,28 @@
+.textinput {
+    height: 40px;
+    background-color: #515459;
+    color: var(--text-color);
+    font-size: 14px;
+    width: 500px;
+    border: none;
+    border-bottom: 2px solid var(--text-color);
+    padding: 8px 8px 8px 8px;
+}
+
+
+.textinput_container {
+    margin-top: 25px;
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: center;
+    width: 600px;
+    height: 70px;
+    background-color: #515459;
+    border-radius: 25px;
+}
+
+.textinput_icon {
+    color: var(--text-color);
+    font-size: 32px !important;
+    align-self: center;
+}
