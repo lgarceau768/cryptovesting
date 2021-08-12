@@ -1,0 +1,79 @@
+.twofapopup {
+    z-index: 2;
+    width: 326px;
+    height: 415px;
+    background: #F0F27E;
+    box-shadow: 2px 2px 4px rgba(251, 251, 251, 0.25);
+    border-radius: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+}
+
+.twofa_title {
+    font-family: Russo One;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 29px;
+    /* identical to box height */
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #000000;
+}
+
+.twofa_split {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.twofa_phone {
+    color: black;
+    font-size: 72px !important;
+}
+
+.twofa_message {
+    color: var(--select-color);
+    font-size: 24px !important;
+    position: relative;
+    left: 6px;
+    /* right: 59.02%; */
+    /* top: -34px; */
+    bottom: 58px;
+}
+
+.twofa_info {
+    font-family: Russo One;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 12px;
+    color: #000000;
+}
+
+.twofa_code {
+    text-align: center;
+    margin-bottom: 16px;
+    background-color: transparent;
+    width: 300px;
+    font-size: 48px;
+    color: var(--container-color);
+    border: none;
+    border-bottom: 2px solid var(--container-color);
+}
+
+.twofa_text {
+    margin-top: -16px;
+    width: 250px;
+    height: 60px;
+}
+
+.twofa_blue {
+    color: var(--select-color);
+}

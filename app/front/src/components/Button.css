@@ -10,7 +10,6 @@
 }
 
 .button_text {
-    color: var(--text-color);
     font-size: 24px;
     justify-self: center;
     font-weight: bold;

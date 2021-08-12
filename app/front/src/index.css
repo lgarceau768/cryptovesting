@@ -12,6 +12,23 @@ html {
   --notification-box-color: #0B67AC;
 }
 
+
+#overlay    {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 0;
+  filter: blur(5px);
+  -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  z-index: 1;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(100, 100, 100, 0.5);
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
