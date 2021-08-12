@@ -42,7 +42,7 @@ async function sendEvent(event) {
     let data = {
         host: 'http://'+IP+':4041',
         path: '/upload_event',
-        method: 'GET'
+        method: 'POST'
     }
     event.timestamp = _t()
     let res = await fetch(data.host+data.path, {
@@ -380,19 +380,32 @@ const program = async () => {
 
     instance.on(mysqlEvents.EVENTS.CONNECTION_ERROR, (err) => {
         running = false
+        console.log(err)
         _l(err, level="CONNECTION_ERROR")
     });
     instance.on(mysqlEvents.EVENTS.ZONGJI_ERROR, (err) => {
         running = false
+        console.log(err)
         _l(err, level="ZONGJI_ERROR")
     });
 
+    instance.
+
 }
 
-tryWrap(program, [])
+function run() {
+    runing = true
+    program()
+        .then(() => console.log("Cryptovesting Main Service Listener Started"))
+        .catch((err) => {
+            console.log(err)
+            running = false
+    })
+}
+
 
 setInterval(() => {
     if(!running){
-        tryWrap(program, [])
+        tryWrap(run, [])
     }
 }, 1000)

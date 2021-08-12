@@ -56,6 +56,11 @@ app.use(function (req, res, next) {
 app.post('/upload_event', (req, res) => {
     try {
         let newEvent = req.body
+        if(newEvent == null) {
+            _l("Upload event issue null value", level="INPUTERROR")
+            res.send({"res": "Fail", "error": "incorrect event posted"})
+            return
+        }
         events.push(newEvent)
         res.send({"res": "OK"})
     } catch (e) {        
@@ -72,6 +77,21 @@ app.get('/pull_events', (req, res) => {
     }
 })
 
+function checkAllNonNull(val) {
+    for (const key in val) {
+        if (Object.hasOwnProperty.call(val, key)) {
+            const element = val[key];
+            if(element == null) {
+                return false
+            }
+            if(element == "") {
+                return false
+            }
+        }
+    }
+    return true
+}
+
 app.post('/upload_token', (req, res) => {
     try {
         let body = JSON.parse(req.body);
@@ -80,6 +100,11 @@ app.post('/upload_token', (req, res) => {
             "token_name": body["token_name"],
             "bscscan_link": body["bscscan_link"],
             "contract_hash": body["contract_hash"]
+        }
+        if(checkAllNonNull(token)){
+            _l("Upload called with incorrect values: "+token, level="INPUTERROR")
+            res.send({"res": "fail", "error": "incorrect body values"})
+            return
         }
         _l("Token: "+token +" being added", level="INPUT")
         let sql = "insert into tokens set ?"
@@ -103,6 +128,11 @@ app.post('/upload_token_bypass', (req, res) => {
         let token = {
             "addedOn": new Date().toISOString(),
             "tokenHash": body["contract_hash"],
+        }
+        if(checkAllNonNull(token)){
+            _l("Upload called with incorrect values: "+token, level="INPUTERROR")
+            res.send({"res": "fail", "error": "incorrect body values"})
+            return
         }
         _l("Token: "+_jstr(token) +" being added", level="INPUT")
         let sql = "insert into tokens_bypass_contract_check set ?"
