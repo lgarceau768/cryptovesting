@@ -81,14 +81,14 @@ app.post('/upload_token', (req, res) => {
             "bscscan_link": body["bscscan_link"],
             "contract_hash": body["contract_hash"]
         }
-        _l("Token: "+_jstr(token) +" being added", level="INPUT")
+        _l("Token: "+token +" being added", level="INPUT")
         let sql = "insert into tokens set ?"
         connection.query(sql, token, function (err, result) {
             if(err) {
-                _l("Error adding token: "+_jstr(token) + " error: "+err, level="ERROR")
+                _l("Error adding token: "+token + " error: "+err, level="ERROR")
                 res.send({"res": 'Error probably duplicate: '+err})
             } else {
-                _l("Added token: "+_jstr(token), level="SUCCESS")
+                _l("Added token: "+token, level="SUCCESS")
                 res.send({"res": 'OK'})
             }
         })
