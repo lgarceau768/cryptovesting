@@ -16,8 +16,23 @@ const sqlData = {
     insecureAuth: true
 }
 const IP = '25.89.250.119' //'192.168.1.224'
-const connection = mysql.createConnection(sqlData)
-connection.connect()
+let connection = mysql.createConnection(sqlData)
+
+function connectSql() {    
+    connection = mysql.createConnection(sqlData)
+    connection.connect()
+}
+connectSql()
+
+
+// Handle SQL Issues
+connection.on('error', (err) => {
+    console.log(err)
+    console.log(_jstr(err))
+    _l('Connection Error: '+_jstr(err))
+    connection = null
+    connectSql()
+})
 
 // INFO setup logger
 let date = new Date().toISOString()
@@ -82,14 +97,14 @@ function checkAllNonNull(val) {
         if (Object.hasOwnProperty.call(val, key)) {
             const element = val[key];
             if(element == null) {
-                return false
+                return true
             }
             if(element == "") {
-                return false
+                return true
             }
         }
     }
-    return true
+    return false
 }
 
 app.post('/upload_token', (req, res) => {
@@ -102,7 +117,7 @@ app.post('/upload_token', (req, res) => {
             "contract_hash": body["contract_hash"]
         }
         if(checkAllNonNull(token)){
-            _l("Upload called with incorrect values: "+token, level="INPUTERROR")
+            _l("Upload called with incorrect values: "+_jstr(token), level="INPUTERROR")
             res.send({"res": "fail", "error": "incorrect body values"})
             return
         }
@@ -130,7 +145,7 @@ app.post('/upload_token_bypass', (req, res) => {
             "tokenHash": body["contract_hash"],
         }
         if(checkAllNonNull(token)){
-            _l("Upload called with incorrect values: "+token, level="INPUTERROR")
+            _l("Upload called with incorrect values: "+_jstr(token), level="INPUTERROR")
             res.send({"res": "fail", "error": "incorrect body values"})
             return
         }

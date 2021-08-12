@@ -1,0 +1,180 @@
+{
+  backHTML: {
+    files: [
+      'backendManualEntryServer_2021-08-12T23:05:46.496Z.log',
+      'backendManualEntryServer_2021-08-12T23:09:18.915Z.log'
+    ]
+  },
+  discordBot: {
+    files: [ 'discordBot_1628809546390.log', 'discordBot_1628809758823.log' ]
+  },
+  manager: {
+    files: [
+      'workerManagerLog_2021-08-12T23:05:46.591Z.log',
+      'workerManagerLog_2021-08-12T23:09:19.009Z.log'
+    ]
+  }
+}
+{
+  backHTML: {
+    files: [
+      'backendManualEntryServer_2021-08-12T23:05:46.496Z.log',
+      'backendManualEntryServer_2021-08-12T23:09:18.915Z.log',
+      'backendManualEntryServer_2021-08-12T23:13:14.596Z.log'
+    ]
+  },
+  discordBot: {
+    files: [
+      'discordBot_1628809546390.log',
+      'discordBot_1628809758823.log',
+      'discordBot_1628809994521.log'
+    ]
+  },
+  manager: {
+    files: [
+      'workerManagerLog_2021-08-12T23:05:46.591Z.log',
+      'workerManagerLog_2021-08-12T23:09:19.009Z.log',
+      'workerManagerLog_2021-08-12T23:13:14.770Z.log'
+    ]
+  }
+}
+No Logs
+backendManualEntryServer_2021-08-12T23:05:46.496Z.log
+backendManualEntryServer_2021-08-12T23:09:18.915Z.log
+backendManualEntryServer_2021-08-12T23:13:14.596Z.log
+backendManualEntryServer_2021-08-12T23:17:28.235Z.log
+backendManualEntryServer_2021-08-12T23:18:52.898Z.log
+
+discordBot_1628809546390.log
+discordBot_1628809758823.log
+discordBot_1628809994521.log
+discordBot_1628810093822.log
+discordBot_1628810142844.log
+discordBot_1628810182925.log
+discordBot_1628810206433.log
+discordBot_1628810248110.log
+discordBot_1628810266715.log
+discordBot_1628810293230.log
+discordBot_1628810305909.log
+discordBot_1628810332692.log
+workerManagerLog_2021-08-12T23:05:46.591Z.log
+workerManagerLog_2021-08-12T23:09:19.009Z.log
+workerManagerLog_2021-08-12T23:13:14.770Z.log
+workerManagerLog_2021-08-12T23:17:28.307Z.log
+workerManagerLog_2021-08-12T23:18:52.954Z.log
+
+backendManualEntryServer_2021-08-12T23:05:46.496Z.log
+backendManualEntryServer_2021-08-12T23:09:18.915Z.log
+backendManualEntryServer_2021-08-12T23:13:14.596Z.log
+backendManualEntryServer_2021-08-12T23:17:28.235Z.log
+backendManualEntryServer_2021-08-12T23:18:52.898Z.log
+backendManualEntryServer_2021-08-12T23:23:30.933Z.log
+
+discordBot_1628809546390.log
+discordBot_1628809758823.log
+discordBot_1628809994521.log
+discordBot_1628810093822.log
+discordBot_1628810142844.log
+discordBot_1628810182925.log
+discordBot_1628810206433.log
+discordBot_1628810248110.log
+discordBot_1628810266715.log
+discordBot_1628810293230.log
+discordBot_1628810305909.log
+discordBot_1628810332692.log
+discordBot_1628810610831.log
+workerManagerLog_2021-08-12T23:05:46.591Z.log
+workerManagerLog_2021-08-12T23:09:19.009Z.log
+workerManagerLog_2021-08-12T23:13:14.770Z.log
+workerManagerLog_2021-08-12T23:17:28.307Z.log
+workerManagerLog_2021-08-12T23:18:52.954Z.log
+workerManagerLog_2021-08-12T23:23:31.024Z.log
+
+[ START 2021-08-12T23:23:31.024Z ] Starting workerManager
+[ ERROR 2021-08-12T23:23:32.027Z ] run error: TypeError: Assignment to constant variable.
+{}
+[ ERROR 2021-08-12T23:23:33.028Z ] run error: TypeError: Assignment to constant variable.
+{}
+[ ERROR 2021-08-12T23:23:34.030Z ] run error: TypeError: Assignment to constant variable.
+{}
+[ ERROR 2021-08-12T23:23:35.031Z ] run error: TypeError: Assignment to constant variable.
+{}
+[ ERROR 2021-08-12T23:23:36.031Z ] run error: TypeError: Assignment to constant variable.
+{}
+[ ERROR 2021-08-12T23:23:37.033Z ] run error: TypeError: Assignment to constant variable.
+{}
+[ ERROR 2021-08-12T23:23:38.033Z ] run error: TypeError: Assignment to constant variable.
+{}
+[ ERROR 2021-08-12T23:23:39.035Z ] run error: TypeError: Assignment to constant variable.
+{}
+[ ERROR 2021-08-12T23:23:40.035Z ] run error: TypeError: Assignment to constant variable.
+{}
+[ ERROR 2021-08-12T23:23:41.035Z ] run error: TypeError: Assignment to constant variable.
+{}
+[ ERROR 2021-08-12T23:23:42.037Z ] run error: TypeError: Assignment to constant variable.
+{}
+[ ERROR 2021-08-12T23:23:43.038Z ] run error: TypeError: Assignment to constant variable.
+{}
+[ ERROR 2021-08-12T23:23:44.038Z ] run error: TypeError: Assignment to constant variable.
+{}
+[ ERROR 2021-08-12T23:23:45.040Z ] run error: TypeError: Assignment to constant variable.
+{}
+[ ERROR 2021-08-12T23:23:46.040Z ] run error: TypeError: Assignment to constant variable.
+{}
+[ ERROR 2021-08-12T23:23:47.042Z ] run error: TypeError: Assignment to constant variable.
+{}
+[ ERROR 2021-08-12T23:23:48.043Z ] run error: TypeError: Assignment to constant variable.
+{}
+[ ERROR 2021-08-12T23:23:49.043Z ] run error: TypeError: Assignment to constant variable.
+{}
+[ ERROR 2021-08-12T23:23:50.045Z ] run error: TypeError: Assignment to constant variable.
+{}
+[ ERROR 2021-08-12T23:23:51.045Z ] run error: TypeError: Assignment to constant variable.
+{}
+[ ERROR 2021-08-12T23:23:52.047Z ] run error: TypeError: Assignment to constant variable.
+{}
+[ ERROR 2021-08-12T23:23:53.048Z ] run error: TypeError: Assignment to constant variable.
+{}
+[ ERROR 2021-08-12T23:23:54.048Z ] run error: TypeError: Assignment to constant variable.
+{}
+[ ERROR 2021-08-12T23:23:55.050Z ] run error: TypeError: Assignment to constant variable.
+{}
+[ ERROR 2021-08-12T23:23:56.050Z ] run error: TypeError: Assignment to constant variable.
+{}
+[ ERROR 2021-08-12T23:23:57.052Z ] run error: TypeError: Assignment to constant variable.
+{}
+[ ERROR 2021-08-12T23:23:58.053Z ] run error: TypeError: Assignment to constant variable.
+{}
+[ ERROR 2021-08-12T23:23:59.054Z ] run error: TypeError: Assignment to constant variable.
+{}
+[ ERROR 2021-08-12T23:24:00.056Z ] run error: TypeError: Assignment to constant variable.
+{}
+[ ERROR 2021-08-12T23:24:01.056Z ] run error: TypeError: Assignment to constant variable.
+{}
+[ ERROR 2021-08-12T23:24:02.058Z ] run error: TypeError: Assignment to constant variable.
+{}
+[ ERROR 2021-08-12T23:24:03.058Z ] run error: TypeError: Assignment to constant variable.
+{}
+[ ERROR 2021-08-12T23:24:04.060Z ] run error: TypeError: Assignment to constant variable.
+{}
+[ ERROR 2021-08-12T23:24:05.061Z ] run error: TypeError: Assignment to constant variable.
+{}
+[ ERROR 2021-08-12T23:24:06.062Z ] run error: TypeError: Assignment to constant variable.
+{}
+[ ERROR 2021-08-12T23:24:07.062Z ] run error: TypeError: Assignment to constant variable.
+{}
+[ ERROR 2021-08-12T23:24:08.064Z ] run error: TypeError: Assignment to constant variable.
+{}
+[ ERROR 2021-08-12T23:24:09.064Z ] run error: TypeError: Assignment to constant variable.
+{}
+[ ERROR 2021-08-12T23:24:10.066Z ] run error: TypeError: Assignment to constant variable.
+{}
+[ ERROR 2021-08-12T23:24:11.066Z ] run error: TypeError: Assignment to constant variable.
+{}
+[ ERROR 2021-08-12T23:24:12.068Z ] run error: TypeError: Assignment to constant variable.
+{}
+[ ERROR 2021-08-12T23:24:13.069Z ] run error: TypeError: Assignment to constant variable.
+{}
+
+discordBot_1628810828927.log
+

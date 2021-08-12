@@ -23,10 +23,8 @@ const SELL_PERCENT = 0.75
 const BINANCE_NET = "main"
 let running = false
 // INFO setup mysql
-const connection = mysql.createConnection(sqlData)
-connection.connect()
+let connection = mysql.createConnection(sqlData)
 const IP = '25.89.250.119' //'192.168.1.224'
-
 // INFO setup log
 let isoString = new Date()
 try {
@@ -389,17 +387,33 @@ const program = async () => {
         _l(err, level="ZONGJI_ERROR")
     });
 
-    instance.
 
 }
 
+function connectSql() {    
+    connection = mysql.createConnection(sqlData)
+    connection.connect()
+}
+
+
+// Handle SQL Issues
+connection.on('error', (err) => {
+    console.log(err)
+    console.log(_jstr(err))
+    _l('Connection Error: '+_jstr(err))
+    connection = null
+    connectSql()
+})
+
 function run() {
     runing = true
+    connectSql()
     program()
         .then(() => console.log("Cryptovesting Main Service Listener Started"))
         .catch((err) => {
             console.log(err)
             running = false
+            connection = null
     })
 }
 

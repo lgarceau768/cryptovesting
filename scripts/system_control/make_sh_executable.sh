@@ -8,3 +8,5 @@ chmod 777 /home/fullsend/cryptovesting/scripts/system_control/start_all.sh
 chmod 777 /home/fullsend/cryptovesting/scripts/system_control/restart_all.sh
 chmod 777 /home/fullsend/cryptovesting/scripts/system_control/status_all.sh
 chmod 777 /home/fullsend/cryptovesting/scripts/system_control/stop_all.sh
+chmod 777 /home/fullsend/cryptovesting/scripts/system_control/del_logs.sh
+chmod 777 /home/fullsend/cryptovesting/scripts/system_control/list_logs.sh

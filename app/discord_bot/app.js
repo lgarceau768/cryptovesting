@@ -5,6 +5,7 @@ const path = require('path')
 const fs = require('fs')
 const pastebin = require('pastebin-js')
 const fse = require('fs-extra');
+const { spawn } = require('child_process')
 
 const client = new Discord.Client()
 let bot_updates_channel = undefined
@@ -287,21 +288,26 @@ client.on('message', async (msg) => {
                     msg.channel.send(_jstr(justKeys))
                     break;
                 case 'getLogs':
+                    const listLogs = spawn('sh' ,["/home/fullsend/cryptovesting/scripts/system_control/list_logs.sh"])
+                    listLogs.stdout.on('data', function (data) {
+                        console.log(data.toString())
+                        msg.channel.send(data.toString().replace(/.log/g, ''))
+                        clearTimeout(noTimeout)
+                    })
+                    const noTimeout = setTimeout(() => {
+                        console.log('No Logs')
+                        msg.channel.send('No Logs Found')
+                    }, 500)
+                    listLogs.stderr.on('data', function (data) {
+                        clearTimeout(noTimeout)
+                        msg.channel.send('Error getting logs')
+                        _l("Error getting logs: "+_jstr(data), level="ERROR")
+                    })
+                    return
                     getAllLogs()
                     .then((logs) => {
                         console.log(logs)
-                        let logsString = _jstr(logs)
-                        msg.channel.send('Available logs to view')
-                        if(logsString.length > 4000) {
-                            let amount = Math.ceil(logsString.length / 4000)
-                            let messageStr = logsString.substr(0, 4000)
-                            for(let i = 0; i < amount; i++) {
-                                msg.channel.send(messageStr)
-                                messageStr = logsString.substr((i + 1) * 4000, (i + 2) * 4000)                             
-                            }
-                        } else {
-                            msg.channel.send(logsString)
-                        }
+                        
                     })
                     break;
                 case 'upload':
@@ -313,9 +319,9 @@ client.on('message', async (msg) => {
                             } else {
                                 // now find the oldest file
                                 if (content.length == 4) {
-                                    let fileMatch = findLogAgainstStr(files, content[2])
+                                    let fileMatch = findLogAgainstStr(files, content[3])
                                     if (fileMatch != undefined) {
-                                        uploadFileToPasteBin(pathFile, file, msg)
+                                        uploadFileToPasteBin(pathFile, fileMatch)
                                     } else {
                                         msg.channel.send('No matching log file not found for '+content[2]+' and str '+content[3])
                                     }
