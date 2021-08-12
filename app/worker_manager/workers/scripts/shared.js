@@ -5,7 +5,7 @@ const fs = require('fs')
 var { hdkey } = require('ethereumjs-wallet');
 
 // INFO Constants
-shared = () => {
+shared = () => {    
     this.BSC_MAINNET_URL = 'https://bsc-dataseed.binance.org/'; //ankr or quiknode
     this.BSC_TESTNET_URL = "https://data-seed-prebsc-1-s1.binance.org:8545/"
     this.web3 = new Web3(new Web3.providers.HttpProvider(this.BSC_MAINNET_URL))
@@ -51,24 +51,54 @@ shared = () => {
     this.pancakeSwapRouterAddressTestNet = '0xD99D1c33F9fC3444f8101754aBC46c52416550D1';
     this.pancakeSwapFactoryAddressTestNet = "0xB7926C0430Afb07AA7DEfDE6DA862aE0Bde767bc"
     this.pancakeSwapFactoryAddressMainNet = "0xcA143Ce32Fe78f1f7019d7d551a6402fC5350c73"
-    this.targetAccount = this.web3.eth.accounts.privateKeyToAccount(this.my_pk)
+    try {
+        this.targetAccount = this.web3.eth.accounts.privateKeyToAccount(this.my_pk)
+    } catch (e) {
+        console.log('Fatal Error targetAccount not recognized')
+        console.log(e)
+        system.exit(0)
+    }
     this.web3.defaultAccount = this.targetAccount
 
     // INFO Functions
     // get account balance
     this._bal = async (account) => {
-        let balance = await this.web3.eth.getBalance(account.address)
-        console.log(`Current Account balance ${balance}`)
+        try {
+            let balance = await this.web3.eth.getBalance(account.address)
+            console.log(`Current Account balance ${balance}`)
+        } catch (e) {
+            console.log('Error='+e)
+            console.log('_bal')
+            return 0
+        }
     }
 
     // get transaction hash
     this._gethash = async (signed_tx) => {
-        var hash = await this.web3.utils.sha3(signed_tx, { encoding: "hex"})
-        console.log(`Transaction hash ${hash}`)
+        try {
+            var hash = await this.web3.utils.sha3(signed_tx, { encoding: "hex"})
+            console.log(`Transaction hash ${hash}`)
+            return hash
+        } catch (e) {
+            console.log('Error='+e)
+            console.log('getHash')
+            return null
+        }
     } 
 
     // json shorthand pretty print
-    this._jstr = (json_dict) => JSON.stringify(json_dict, null, 2)
+    this._jstr = (json_dict) => {
+        try {
+            return JSON.stringify(json_dict, null, 2)
+        } catch (e){
+            console.log("Error="+e)
+            console.log('_jstr')
+            if(json_dict != null){
+                return json_dict
+            }
+            return ""
+        }
+    }
 
     // get gas vars
     this._gas = async () => {
@@ -76,40 +106,62 @@ shared = () => {
             "gasPrice": 0,
             "gas": 0,
         }
-        gasVals["gasPrice"] = await this.web3.eth.getGasPrice() * 2
+        try {
+            gasVals["gasPrice"] = await this.web3.eth.getGasPrice() * 2
+        } catch (e){
+            console.log("Error="+e)
+            gasVals['gasPrice'] = 100000000
+        }
         return gasVals
     }
 
 
     // function to create address from mnemonic
     this.generateAddressesFromSeed = (mnemonic, count) => {  
-        let seed = bip39.mnemonicToSeedSync(mnemonic);
-        let hdwallet = hdkey.fromMasterSeed(seed);
-        let wallet_hdpath = "m/44'/60'/0'/0/";
-        
-        let accounts = [];
-        for (let i = 0; i < count; i++) {
-        let wallet = hdwallet.derivePath(wallet_hdpath + i).getWallet();
-        let address = "0x" + wallet.getAddress().toString("hex");
-        let privateKey = wallet.getPrivateKey().toString("hex");
-        accounts.push({ address: address, privateKey: privateKey });
+        try {
+            let seed = bip39.mnemonicToSeedSync(mnemonic);
+            let hdwallet = hdkey.fromMasterSeed(seed);
+            let wallet_hdpath = "m/44'/60'/0'/0/";
+            
+            let accounts = [];
+            for (let i = 0; i < count; i++) {
+            let wallet = hdwallet.derivePath(wallet_hdpath + i).getWallet();
+            let address = "0x" + wallet.getAddress().toString("hex");
+            let privateKey = wallet.getPrivateKey().toString("hex");
+            accounts.push({ address: address, privateKey: privateKey });
+            }
+            return accounts;
+        } catch (e) {
+            console.log("Error="+e)
+            return null
         }
-        return accounts;
     }
 
     this.sendMessage = (data, _l, parentPort, isMainThread, level="DEBUG") => {
-        if(isMainThread){
-            _l(data, level=level)
-        } else {
-            parentPort.postMessage(data)
+        try {
+            if(isMainThread){
+                _l(data, level=level)
+            } else {
+                parentPort.postMessage(data)
+            }
+        } catch (e) {
+            if (data != null) {
+                console.log(data)
+            } else {
+                console.log("Error="+e)
+            }
         }
     }
 
     this.getWorkerData = (workerData, process, isMainThread) => {
-        if(isMainThread){
-            return process.argv[2]
-        } else {
-            return workerData
+        try {
+            if(isMainThread){
+                return process.argv[2]
+            } else {
+                return workerData
+            }
+        } catch (e) {
+            return null
         }
     }
 

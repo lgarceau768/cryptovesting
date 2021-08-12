@@ -31,7 +31,18 @@ try {
 }
 _l = logger._l
 let events = []
-const _jstr = (json_dict) => JSON.stringify(json_dict, null, 2)
+const _jstr = (json_dict) => {
+    try {
+        return JSON.stringify(json_dict, null, 2)
+    } catch (e) {
+        _l("JSON Error "+json_dict+"\n"+e, level="JSON Parse Error")
+        if (e != null) {
+            return e
+        } else {
+            return ""
+        }
+    }
+} 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(cors())
