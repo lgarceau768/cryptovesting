@@ -1,6 +1,7 @@
 # Byte-compiled / optimized / DLL files
 sniper_bot/js/node_modules/*
 scripts/rugmenot_contracts/node_modules/*
+app/front/node_modules/*
 app/worker_manager/node_modules/*
 app/discord_bot/node_modules/*
 app/back/node_modules/*
