@@ -6,3 +6,7 @@ Cryptovesting Main Service Listener Started
 /home/fullsend/cryptovesting/app/worker_manager/workers/sniperWorker.js
 { res: 'OK' }
 Cryptovesting Main Service Listener Started
+/home/fullsend/cryptovesting/app/worker_manager/workers/sniperWorker.js
+{ res: 'OK' }
+/home/fullsend/cryptovesting/app/worker_manager/workers/sniperWorker.js
+{ res: 'OK' }
