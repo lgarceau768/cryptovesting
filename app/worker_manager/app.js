@@ -376,6 +376,18 @@ const program = async () => {
         }
     })
 
+    instance.addTrigger({
+        name: "Sell Token Amount",
+        expression: 'cryptovesting.tokens_to_sell',
+        statement: mysqlEvents.STATEMENTS.INSERT,
+        onEvent: (event) => {
+            tryWrap(function(event) {
+                let tokenData = event["affectedRows"][0]["after"]
+                spawnSellWorker(tokenData['token'], tokenData['amt'])
+            }, event)
+        }
+    })
+
     instance.on(mysqlEvents.EVENTS.CONNECTION_ERROR, (err) => {
         running = false
         console.log(err)
@@ -386,7 +398,6 @@ const program = async () => {
         console.log(err)
         _l(err, level="ZONGJI_ERROR")
     });
-
 
 }
 
