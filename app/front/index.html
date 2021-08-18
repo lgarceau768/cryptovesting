@@ -3,7 +3,9 @@
 <head>
 <title>Manual Sniper Bot Token Entry</title>
 <meta name="description" content="Manual Token Entry">
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.2.7-rc.0/web3.min.js"></script>
 <script type="text/javascript" src="script.js"></script>
+<script type="text/stylesheet" src="index.css"></script> 
 </head>
 <body>
     <div style='display:flex;flex-direction:column;'>
@@ -15,6 +17,13 @@
         <label for="linkinput2">BSCScanLink: </label>
         <input id="linkinput2" type="text" placeholder="https://bscscan.com/contract/0x00000000000000000000"/>
         <button id="uploadtokenByPass">Upload Token (BYPASS)</button>
+        <h1>Please input the amount and address of the token you would like to sell<h1>
+        <label for="sellInput">Token to sell</label>
+        <input id="sellInput" type="text" placeholder="0x000000000000000000000000000000" style="min-width:250px;"/>
+        <p id="amtAvailable" style="font-size:12px;font-family:sans-serif;">Checking amount..</p>
+        <label for="sellAmountInput">Sell Amount</label>
+        <input id="sellAmountInput" type="text" placeholder="999999999999"/>
+        <button id="sellButton">Sell Token</button>
     </div>
 </body>
 </html>
