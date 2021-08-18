@@ -1,5 +1,5 @@
 // TODO replace with the wallet address of crpytovesting
-let walletAddress = "0xeB8ceace9be0e8E7fCF356a7dc523256d10dE8fC";
+let walletAddress = "0x01420A7b545ac6c99F2b91e9f73464AA69C6E248";
 
 // The minimum ABI to get ERC20 Token balance
 let minABI = [
@@ -23,7 +23,7 @@ let minABI = [
 
 
 window.addEventListener('load', () => {
-    let web3 = new Web3('https://data-seed-prebsc-1-s1.binance.org:8545/') // https://bsc-dataseed.binance.org/
+    let web3 = new Web3('https://bsc-dataseed.binance.org/') // https://data-seed-prebsc-1-s1.binance.org:8545/
     const IP = '25.89.250.119' //'192.168.1.224'
 
     async function getBalance(tokenAddress) {
