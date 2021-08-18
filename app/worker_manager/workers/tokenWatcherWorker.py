@@ -1,5 +1,6 @@
 from web3 import Web3
 from scripts import logManager as Logger
+import requests
 import sys, json, time, platform
 
 # INFO help function
@@ -55,6 +56,8 @@ else:
     router_abi = json.load(open('/home/fullsend/cryptovesting/app/worker_manager/workers/contract_abis/pancakeswap_factory_abi.json', 'r'))
 pancake_router_contract = w3.eth.contract(address=pancakeswap_router_address, abi=router_abi)
 pancake_factory_contract = w3.eth.contract(address=pancake_swap_factory_address, abi=router_abi)
+MOON_PERCENT = 100
+MOON_ALERT = 50
 
 # INFO function to convert address
 def _a(adr):
@@ -85,23 +88,38 @@ def _get_amounts_out(amt, token, contract):
 # INFO main function
 currentBNB = initialAmountBNB
 targetBNB = initialAmountBNB * percent
+previousBNB = initialAmountBNB
 logger.log("Initial BNB: %s | Target BNB: %s" % (str(currentBNB), str(targetBNB)), level="INFO")
 while currentBNB <= targetBNB:
     try:
         ratioObj = _get_amounts_out(initialAmountToken, token, pancake_factory_contract)
+        previousBNB = currentBNB
         currentBNB = ratioObj['bnb']
         logger.log("Current Ratio: %s pass?: %s" % (str(currentBNB), str(currentBNB >= targetBNB)), level="INFO")
         #targetBNB /= 1000
         if currentBNB >= targetBNB:
-            logger.log("Target ratio: %s, hit with current ratio: %s" % (str(targetBNB), str(currentBNB)), level="SUCCESS")
-            print("Success=sell_at_gain_"+token)
-            sys.exit(0)
+            if(((currentBNB-previousBNB) / previousBNB) * 100) > MOON_ALERT){
+                # send event
+                r = requests.post('http://25.89.250.119:4041/upload_event', 
+                data=json.dumps({'message': 'Token '+token+' to BNB increased by 25% current BNB '+currentBNB+' previous '+previousBNB,
+                        'category': 'IMPT'
+                }), headers={'Content-Type': 'application/json'});
+            }
+            if(targetBNB == (initialAmountBNB * MOON_PERCENT)):
+                logger.log('Moon occured on token returning again', level="MOON")
+                logger.log(str(currentBNB), level="MOON")   
+                print('Success=sell_at_moon_'+token)
+                sys.exit(0)
+            else:
+                logger.log("Target ratio: %s, hit with current ratio: %s" % (str(targetBNB), str(currentBNB)), level="SUCCESS")
+                print("Success=sell_at_gain_"+token)
+                # spawn the moon watch loop
+                targetBNB = initialAmountBNB * MOON_PERCENT
         elif currentBNB <= (initialAmountBNB * 0.5):
             logger.log("Stop loss hit %s amount out: %s" % (str(targetBNB), str(currentBNB)), level="SUCCESS")
             print("Success=sell_at_loss_"+token)
             sys.exit(0)
-        else:
-            continue
+
     except Exception as e:
         logger.log("Exception in loop: "+str(e), level="CRITICAL")
     time.sleep(5)
