@@ -48,7 +48,7 @@ init(logPath, 'Cryptovesting Discord Bot')
 
 // INFO need to transfer env.json manually
 const IP = '25.89.250.119' //'192.168.1.224'
-const env = JSON.parse(fs.readFileSync(path.join(__dirname, 'env.json')))
+let env = JSON.parse(fs.readFileSync(path.join(__dirname, 'env.json')))
 const IDENTIFIER = "%"
 
 const _jstr = (json_dict) => JSON.stringify(json_dict, null, 2)
@@ -161,9 +161,9 @@ const getEvents = async () => {
         path: '/pull_events',
         method: 'GET'
     }
-    const response = await fetch(data.host+data.path)
-    const json = await response.json()
-    const events = json['events']
+    let response = await fetch(data.host+data.path)
+    let json = await response.json()
+    let events = json['events']
     if(events.length > 0) _l('Events: '+_jstr(events), level="EVENTS")
     // INFO event categories
     /*
@@ -171,7 +171,7 @@ const getEvents = async () => {
     fail={failee} (error with worker_threads calling it)
     impt
     */
-    for (const event of events) {
+    for (let event of events) {
         let message = undefined        
         switch (event.category.toLowerCase().split('=')[0]) {
             case 'impt': 
@@ -214,10 +214,10 @@ async function getAllLogs() {
     let logs = {}
     const updateLogs = (key, files) => logs[key] = {files} 
     let promises = []
-    for (const key in availableLogs) {
+    for (let key in availableLogs) {
         if (Object.hasOwnProperty.call(availableLogs, key)) {
-            const el = availableLogs[key];
-            const files = await fse.readdir(el['path'])
+            let el = availableLogs[key];
+            let files = await fse.readdir(el['path'])
             if(files.length > 0) {
                 logs[key] = {files}
             }
