@@ -178,3 +178,41 @@ workerManagerLog_2021-08-12T23:23:31.024Z.log
 
 discordBot_1628810828927.log
 
+sellWorker_0x4099bA927F9f29DeA6cCF0e1c40E9035887AC558Log_08_19_2021__00_06_23.log
+Scrape started on: 00:06:23
+[STARTUP Thu Aug 19 00:06:23 2021]: Arguments test, 0x4099bA927F9f29DeA6cCF0e1c40E9035887AC558, 6, 0.8
+[LOG Thu Aug 19 00:06:23 2021]: Getting the rate of bnb
+[LOG Thu Aug 19 00:06:23 2021]: Approving the sell
+[CRITICAL Thu Aug 19 00:06:24 2021]: Exception at approve {'code': -32000, 'message': 'insufficient funds for gas * price + value'}
+[LOG Thu Aug 19 00:06:24 2021]: Swapping the token
+[SELL Thu Aug 19 00:06:24 2021]: selling token: 0x4099bA927F9f29DeA6cCF0e1c40E9035887AC558
+[SELL Thu Aug 19 00:06:24 2021]: Amount Swapped BNB: 3447911285396 TokenAmount: 6000000000000000000
+[SELL ISSUE Thu Aug 19 00:06:25 2021]: Exception at sendRawTransaction: {'code': -32000, 'message': 'insufficient funds for gas * price + value'}
+
+sniperWorker_0xc0701d32b6e26872753e070f612951f2e24e0765_1629332060286.log
+[ START 2021-08-19T00:14:20.286Z ] Starting newSniperWorker.js
+[ STARTUP 2021-08-19T00:14:20.307Z ] Starting with token: 0xc0701d32b6e26872753e070f612951f2e24e0765
+[ MINT 2021-08-19T00:14:46.303Z ] Liquidity added for token token: 0xc0701d32b6e26872753e070f612951f2e24e0765 info: {
+  "token0": "0xae13d989daC2f0dEbFf460aC112a837C89BAa7cd",
+  "token1": "0xc0701D32B6e26872753E070f612951f2e24e0765",
+  "pair": "0x39080CDB7cDd99f1793D34Bb54CE23b7832f2690"
+}
+
+sniperWorker_0xc0701d32b6e26872753e070f612951f2e24e0765_1629332060286.log
+[ START 2021-08-19T00:14:20.286Z ] Starting newSniperWorker.js
+[ STARTUP 2021-08-19T00:14:20.307Z ] Starting with token: 0xc0701d32b6e26872753e070f612951f2e24e0765
+[ MINT 2021-08-19T00:14:46.303Z ] Liquidity added for token token: 0xc0701d32b6e26872753e070f612951f2e24e0765 info: {
+  "token0": "0xae13d989daC2f0dEbFf460aC112a837C89BAa7cd",
+  "token1": "0xc0701D32B6e26872753E070f612951f2e24e0765",
+  "pair": "0x39080CDB7cDd99f1793D34Bb54CE23b7832f2690"
+}
+
+sniperWorker_0xc0701d32b6e26872753e070f612951f2e24e0765_1629332060286.log
+[ START 2021-08-19T00:14:20.286Z ] Starting newSniperWorker.js
+[ STARTUP 2021-08-19T00:14:20.307Z ] Starting with token: 0xc0701d32b6e26872753e070f612951f2e24e0765
+[ MINT 2021-08-19T00:14:46.303Z ] Liquidity added for token token: 0xc0701d32b6e26872753e070f612951f2e24e0765 info: {
+  "token0": "0xae13d989daC2f0dEbFf460aC112a837C89BAa7cd",
+  "token1": "0xc0701D32B6e26872753E070f612951f2e24e0765",
+  "pair": "0x39080CDB7cDd99f1793D34Bb54CE23b7832f2690"
+}
+

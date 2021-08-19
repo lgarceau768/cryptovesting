@@ -30,14 +30,18 @@ provider_url = ""
 wbnb_address = ""
 pancakeswap_router_address = ""
 pancake_swap_factory_address = ""
-my_wallet_adr = "0x01420A7b545ac6c99F2b91e9f73464AA69C6E248"
-my_pk = "d4f44d00b1995222dde4ce2d39ce177c78030628c0a9536e0f99c904ff74bebb"
+my_wallet_adr = ""
+my_pk = ""
 if net.lower() == 'main':
+    my_wallet_adr = "0x01420A7b545ac6c99F2b91e9f73464AA69C6E248"
+    my_pk = "d4f44d00b1995222dde4ce2d39ce177c78030628c0a9536e0f99c904ff74bebb"
     provider_url = "https://bsc-dataseed.binance.org/"
     wbnb_address = "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c"
     pancakeswap_router_address = "0x10ED43C718714eb63d5aA57B78B54704E256024E"
     pancake_swap_factory_address = "0xcA143Ce32Fe78f1f7019d7d551a6402fC5350c73"
 elif net.lower() == "test":
+    my_wallet_adr = "0xeB8ceace9be0e8E7fCF356a7dc523256d10dE8fC"
+    my_pk = '6212aa6e4d2609a815d85f8afa7bc56264ffe337755ee2699caa2ebc2f6792d1'
     provider_url = "https://data-seed-prebsc-1-s1.binance.org:8545/"
     wbnb_address = "0xae13d989dac2f0debff460ac112a837c89baa7cd"
     pancakeswap_router_address = "0xD99D1c33F9fC3444f8101754aBC46c52416550D1"
@@ -57,7 +61,7 @@ else:
 pancake_router_contract = w3.eth.contract(address=pancakeswap_router_address, abi=router_abi)
 pancake_factory_contract = w3.eth.contract(address=pancake_swap_factory_address, abi=router_abi)
 MOON_PERCENT = 100
-MOON_ALERT = 50
+MOON_ALERT = 25
 
 # INFO function to convert address
 def _a(adr):
@@ -96,12 +100,11 @@ while currentBNB <= targetBNB:
         previousBNB = currentBNB
         currentBNB = ratioObj['bnb']
         logger.log("Current Ratio: %s pass?: %s" % (str(currentBNB), str(currentBNB >= targetBNB)), level="INFO")
-        #targetBNB /= 1000
         if currentBNB >= targetBNB:
-            if(((currentBNB-previousBNB) / previousBNB) * 100) > MOON_ALERT){
+            if((((currentBNB-previousBNB) / previousBNB) * 100) > MOON_ALERT){
                 # send event
                 r = requests.post('http://25.89.250.119:4041/upload_event', 
-                data=json.dumps({'message': 'Token '+token+' to BNB increased by 25% current BNB '+currentBNB+' previous '+previousBNB,
+                data=json.dumps({'message': 'Token '+token+' to BNB increased by 25 current BNB '+currentBNB+' previous '+previousBNB,
                         'category': 'IMPT'
                 }), headers={'Content-Type': 'application/json'});
             }

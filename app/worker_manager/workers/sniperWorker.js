@@ -34,11 +34,11 @@ const _l = (data, level="DEBUG") => {
 }
 
 // INFO setup contract 
-const provider = new ethers.providers.JsonRpcProvider(BSC_TESTNET_URL)
+const provider = new ethers.providers.JsonRpcProvider(BSC_MAINNET_URL)
 const wallet = new ethers.Wallet(my_pk)
 const account = wallet.connect(provider)
 const pairCreated = new ethers.Contract(
-    pancakeSwapFactoryAddressTestNet,
+    pancakeSwapFactoryAddressMainNet,
     [
         'event PairCreated(address indexed token0, address indexed token1, address pair, uint)'
     ],
@@ -75,7 +75,7 @@ const run = async () => {
         pairCreated.on('PairCreated', async(token0, token1, pair) => {
             // FIXME may need to look at potentially checking for the token back to bnb pair as well
             if((token1.toLowerCase() == token.toLowerCase() || token0.toLowerCase() == token.toLowerCase()) &&
-            (token1.toLowerCase() == WBNBAddressTestNet.toLowerCase() || token0.toLowerCase() == WBNBAddressTestNet.toLowerCase())) {
+            (token1.toLowerCase() ==WBNBAddressMainNet.toLowerCase() || token0.toLowerCase() ==WBNBAddressMainNet.toLowerCase())) {
                 _l("Liquidity added for token token: "+token+" info: "+_jstr({token0, token1, pair}), "MINT")
                 // INFO now spawn a buyWorker
                 sendMessage("Mint="+token, _ll, parentPort, isMainThread)

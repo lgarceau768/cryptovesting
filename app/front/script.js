@@ -1,5 +1,5 @@
 // TODO replace with the wallet address of crpytovesting
-let walletAddress = "0x01420A7b545ac6c99F2b91e9f73464AA69C6E248";
+let walletAddress = "0xeB8ceace9be0e8E7fCF356a7dc523256d10dE8fC"; '0x01420A7b545ac6c99F2b91e9f73464AA69C6E248'
 
 // The minimum ABI to get ERC20 Token balance
 let minABI = [
@@ -23,7 +23,7 @@ let minABI = [
 
 
 window.addEventListener('load', () => {
-    let web3 = new Web3('https://bsc-dataseed.binance.org/') // https://data-seed-prebsc-1-s1.binance.org:8545/
+    let web3 = new Web3('https://data-seed-prebsc-1-s1.binance.org:8545/') // https://bsc-dataseed.binance.org/
     const IP = '25.89.250.119' //'192.168.1.224'
 
     async function getBalance(tokenAddress) {
@@ -39,7 +39,7 @@ window.addEventListener('load', () => {
         if(link == ""){
             alert('Please enter a url')
         } else {
-            let address = link.substring(address.indexOf("0x"), 42)
+            let address = '0x' + link.split('0x')[1]
             try {
                 const response = await fetch('http://'+ IP +':4041/upload_token', {
                     method: 'post',
@@ -71,7 +71,7 @@ window.addEventListener('load', () => {
         if(link == ""){
             alert('Please enter a url')
         } else {
-            let address = link.substring(link.indexOf("0x"), 42)
+            let address = '0x'+ link.split('0x')[1]
             try {
                 const response = await fetch('http://'+IP+':4041/upload_token_bypass', {
                     method: 'post',
@@ -101,10 +101,10 @@ window.addEventListener('load', () => {
     sellButton.addEventListener('click', async () => {
         let token = document.getElementById('sellInput').value
         let amount = document.getElementById('sellAmountInput').value
-        if(link == "" || token == "") {
+        if(amount == "" || token == "") {
             alert('Please enter values for a token and link')
         } else {
-            let address = token.substring(token.indexOf('0x'), 42);
+            let address = '0x'+ token.split('0x')[1]
             try {
                 const resp = await fetch('http://'+IP+':4041/upload_sell_token', {
                     method: 'post',
@@ -134,7 +134,7 @@ window.addEventListener('load', () => {
         document.getElementById('amtAvailable').innerText = 'Checking amount..'
         let value = document.getElementById('sellInput').value;
         if(value.length >= 42) {
-            value = value.substring(value.indexOf('0x'), 42);
+            value = '0x'+ value.split('0x')[1]
             console.log(value)
             // get the balance available to sell
             getBalance(value).then((balance) => {

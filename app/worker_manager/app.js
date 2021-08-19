@@ -20,7 +20,7 @@ const BNB_AMT = 0.01;
 const SLIPPAGE = 0.8;
 const PERCENT_GAIN = 1.5;
 const SELL_PERCENT = 0.75
-const BINANCE_NET = "main"
+const BINANCE_NET = "main" // test
 let running = false
 // INFO setup mysql
 let connection = mysql.createConnection(sqlData)
@@ -162,25 +162,30 @@ function spawnSellWorker(token, amt) {
         category: 'IMPT'
     })
     sellProcess.stdout.on('data', (data) => {
-        if(data.indexOf('=') == -1) return
-        let stringVal = data.toString().trim()
-        let successIndex = stringVal.indexOf('Success=')
-        if(successIndex != -1) {
-            // INFO remove token from balances tracking table      
-            let resultVal = JSON.parse(stringVal.split('=')[1])
-            token_balances(token, 0, op="rem")
-            _l("Sell Reply: "+_jstr(resultVal), level="SOLD")
-            sendEvent({
-                message: 'Sold Token TX |'+_jstr(resultVal), 
-                category: 'IMPT'
-            })
-        } else {
-            let failResult = stringVal.split('=')[1]
-            sendEvent({
-                message: 'Sold Token Failed |'+resultVal,
-                category: 'FAIL=sell'
-            })
-            _l("Sell failed "+failResult, level="SELLFAIL")
+        try {
+            if(data.indexOf('=') == -1) return
+            let stringVal = data.toString().trim()
+            let successIndex = stringVal.indexOf('Success=')
+            if(successIndex != -1) {
+                // INFO remove token from balances tracking table      
+                let resultVal = JSON.parse(stringVal.split('=')[1])
+                token_balances(token, 0, op="rem")
+                _l("Sell Reply: "+_jstr(resultVal), level="SOLD")
+                sendEvent({
+                    message: 'Sold Token TX |'+_jstr(resultVal), 
+                    category: 'IMPT'
+                })
+            } else {
+                let failResult = stringVal.split('=')[1]
+                sendEvent({
+                    message: 'Sold Token Failed |'+failResult,
+                    category: 'FAIL=sell'
+                })
+                _l("Sell failed "+failResult, level="SELLFAIL")
+            }
+        } catch (e) {
+            _l("Sell reply interpret exception "+e, level="SELLFAIL")
+            _l(_jstr(e))
         }
     })    
     sellProcess.stderr.on('data', (data) => {
@@ -381,10 +386,13 @@ const program = async () => {
         expression: 'cryptovesting.tokens_to_sell',
         statement: mysqlEvents.STATEMENTS.INSERT,
         onEvent: (event) => {
-            tryWrap(function(event) {
+            try {
                 let tokenData = event["affectedRows"][0]["after"]
                 spawnSellWorker(tokenData['token'], tokenData['amt'])
-            }, event)
+            } catch (e) {
+                _l("Sell Token Manual Error: " + e, level="ERROR")
+                _l(_jstr(e))
+            }
         }
     })
 
