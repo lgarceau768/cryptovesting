@@ -52,9 +52,11 @@ account = w3.toChecksumAddress(my_wallet_adr)
 account_obj = w3.eth.account.privateKeyToAccount(my_pk)
 if platform.system() != "Linux":
     router_abi = json.load(open('/home/fullsend/cryptovesting/app/worker_manager/workers/contract_abis/pancakeswap_factory_abi.json', 'r'))
+    factoryAbi = json.load(open('/home/fullsend/cryptovesting/app/worker_manager/workers/contract_abis/pancakeswap_router_abi.json', 'r'))
 else:
     router_abi = json.load(open('/home/fullsend/cryptovesting/app/worker_manager/workers/contract_abis/pancakeswap_factory_abi.json', 'r'))
-pancake_router_contract = w3.eth.contract(address=pancakeswap_router_address, abi=json.load(open('/home/fullsend/cryptovesting/app/worker_manager/workers/contract_abis/pancakeswap_router_abi.json', 'r')))
+    factoryAbi = json.load(open('/home/fullsend/cryptovesting/app/worker_manager/workers/contract_abis/pancakeswap_router_abi.json', 'r'))
+pancake_router_contract = w3.eth.contract(address=pancakeswap_router_address, abi=factoryAbi)
 pancake_factory_contract = w3.eth.contract(address=pancake_swap_factory_address, abi=router_abi)
 
 # INFO function to convert address
@@ -73,81 +75,17 @@ def _e(amt):
 def _w(amt):
     return w3.toWei(amt, 'wei')
 
-# INFO function to convert call getAmountsOut
-# 179746734697020058
-def _get_amounts_out(amt, token, contract):    
-    amounts = contract.functions.getAmountsOut(amt, [_a(token), _a(wbnb_address)]).call()
-    amount_bnb = int(amounts[1] * float(slippage))
-    amount_tokens = amounts[0]
-    return 0, amount_tokens  
-    #return amount_bnb, amount_tokens
-
 # INFO function to approve
 def _approve(amount, address, approveAdr):
-    tokenContractBasic = w3.eth.contract(_a(address), abi=json.load(open('/home/fullsend/cryptovesting/app/worker_manager/workers/contract_abis/sellabi.json', 'r')))
-
-    approve = tokenContractBasic.functions.approve(_a(approveAdr), amount)
-    nonce = w3.eth.getTransactionCount(account) + 1
-    gas_price = w3.toWei('5', 'gwei')
-    tx = approve.buildTransaction({
-        'nonce': nonce, 
-        'gasPrice': gas_price,
-        'from': my_wallet_adr
-    })
-
-    sign_tx = account_obj.sign_transaction(tx)
-    try:
-        tx_token = _h(w3.eth.sendRawTransaction(sign_tx.rawTransaction))
-        logger.log("Success approve hash: "+tx_token, level="APPROVE")
-    except Exception as e:
-        logger.log("Exception at approve "+str(e), level="CRITICAL")
     
 
 
 # INFO function to make the swap
 def _swap_exact_tokens_for_eth(amt_WBNB, amt_token, token, contract):
-    gas_price = w3.toWei('11', 'gwei')
-    swap_call = contract.functions.swapExactTokensForETH(
-        amt_token,
-        amt_WBNB,
-        [ _a(token), _a(wbnb_address)],
-        account,
-        (int(time.time()) + 10000000)
-    )
-    gas = 1300000
-    nonce = w3.eth.getTransactionCount(account)
-    swap_tx = swap_call.buildTransaction({
-        'from': account,
-        'gas': gas,
-        'value': 0,
-        'gasPrice': gas_price,
-        'nonce': nonce+2
-    })
-    logger.log("selling token: "+token, level="SELL")
-    logger.log("Amount Swapped BNB: "+str(amt_WBNB)+" TokenAmount: "+str(amt_token), level="SELL")
-    signed_tx = account_obj.sign_transaction(swap_tx)
-    try:
-        tx_token = w3.eth.sendRawTransaction(signed_tx.rawTransaction)
-        return tx_token
-    except Exception as e:
-        logger.log("Exception at sendRawTransaction: "+str(e), level="SELL ISSUE")
-        print("Fail=Sell Issue Send Raw Transaction|"+str(e))
-        sys.exit(0)
-        
 
 # INFO main program
 try:
-    logger.log("Getting the rate of bnb")
-    # amount_bnb, amount_tokens = _get_amounts_out(_e(amount), token, pancake_router_contract)
-    amount_bnb = 0;
-    amount_tokens = _e(amount)
-    # INFO SLIPPAGE HERE
-    # FIXME may need to add an approve call here in order to approve the spend
-    logger.log("Approving the sell")
-    _approve(_e(amount_tokens)*10, token, pancakeswap_router_address)
-    _approve(_e(amount_tokens)*10, token, my_wallet_adr)
-    logger.log("Swapping the token")
-    tx_token = _h(_swap_exact_tokens_for_eth(amount_bnb, amount_tokens, token, pancake_router_contract))
+
     returnVal = {
         'txHash': tx_token,
         'soldAmount': amount_tokens,
