@@ -138,7 +138,9 @@ def _swap_exact_tokens_for_eth(amt_WBNB, amt_token, token, contract):
 # INFO main program
 try:
     logger.log("Getting the rate of bnb")
-    amount_bnb, amount_tokens = _get_amounts_out(_e(amount), token, pancake_router_contract)
+    # amount_bnb, amount_tokens = _get_amounts_out(_e(amount), token, pancake_router_contract)
+    amount_bnb = 0;
+    amount_tokens = _e(amount)
     # INFO SLIPPAGE HERE
     # FIXME may need to add an approve call here in order to approve the spend
     logger.log("Approving the sell")
