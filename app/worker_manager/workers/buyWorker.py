@@ -9,6 +9,7 @@ if sys.argv[1].lower() not in ['-u', '-t', '-a'] or sys.argv[1].lower() == '-h':
         -u url (main / test)
         -t token address
         -a amount
+        -s slippage
     ''')
     sys.exit(0)
 
@@ -71,6 +72,28 @@ def _e(amt):
 def _w(amt):
     return w3.toWei(amt, 'wei')
 
+# INFO function to approve
+def _approve(amount, address, approveAdr):
+    tokenContractBasic = w3.eth.contract(_a(address), abi=json.load(open('/home/fullsend/cryptovesting/app/worker_manager/workers/contract_abis/sellabi.json', 'r')))
+
+    approve = tokenContractBasic.functions.approve(_a(approveAdr), amount)
+    nonce = w3.eth.getTransactionCount(account) + 1
+    gas_price = w3.toWei('10', 'gwei')
+    gas = 1300000
+    tx = approve.buildTransaction({
+        'nonce': nonce, 
+        'gasPrice': gas_price,
+        'gas': gas,
+        'from': my_wallet_adr
+    })
+
+    sign_tx = account_obj.sign_transaction(tx)
+    try:
+        tx_token = _h(w3.eth.sendRawTransaction(sign_tx.rawTransaction))
+        logger.log("Success approve hash: "+tx_token, level="APPROVE")
+    except Exception as e:
+        logger.log("Exception at approve "+str(e), level="CRITICAL")
+
 # INFO function to convert call getAmountsOut
 # 179746734697020058
 def _get_amounts_out(amt, token, contract):    
@@ -109,9 +132,13 @@ def _swap_exact_tokens_for_tokens(amt_WBNB, amt_token, token, contract):
 
 # INFO main program
 try:
-    amount_bnb, amount_tokens = _get_amounts_out(_e(amount), token, pancake_factory_contract)
+    logger.log("Approving the swap", level="APPROVE")
+    _approve(_e(amount), wbnb_address, pancakeswap_router_address)
+    logger.log('Getting amounts out', level="INFO")
+    amount_bnb, amount_tokens = _get_amounts_out(_e(amount), token, pancake_router_contract)
     # INFO SLIPPAGE HERE
-    tx_token = _h(_swap_exact_tokens_for_tokens(_e(amount), amount_tokens, token, pancake_factory_contract))
+    logger.log('Buying token')
+    tx_token = _h(_swap_exact_tokens_for_tokens(_e(amount), amount_tokens, token, pancake_router_contract))
     returnVal = {
         'txHash': tx_token,
         'initalAmount': amount_tokens
@@ -121,4 +148,5 @@ try:
 except Exception as e:
     logger.log("Exception: "+str(e))
     print("Fail="+str(e))
+    print(e)
 

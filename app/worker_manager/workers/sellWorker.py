@@ -79,15 +79,16 @@ def _get_amounts_out(amt, token, contract):
     amounts = contract.functions.getAmountsOut(amt, [_a(token), _a(wbnb_address)]).call()
     amount_bnb = int(amounts[1] * float(slippage))
     amount_tokens = amounts[0]
-    return amount_bnb, amount_tokens
+    return 0, amount_tokens  
+ #return amount_bnb, amount_tokens
 
 # INFO function to approve
-def _approve(amount, address):
+def _approve(amount, address, approveAdr):
     tokenContractBasic = w3.eth.contract(_a(address), abi=json.load(open('/home/fullsend/cryptovesting/app/worker_manager/workers/contract_abis/sellabi.json', 'r')))
 
-    approve = tokenContractBasic.functions.approve(_a(pancake_swap_factory_address), amount)
-    nonce = w3.eth.getTransactionCount(account)
-    gas_price = w3.toWei('10', 'gwei')
+    approve = tokenContractBasic.functions.approve(_a(approveAdr), amount)
+    nonce = w3.eth.getTransactionCount(account) + 1
+    gas_price = w3.toWei('11', 'gwei')
     gas = 1300000
     tx = approve.buildTransaction({
         'nonce': nonce, 
@@ -107,7 +108,7 @@ def _approve(amount, address):
 
 # INFO function to make the swap
 def _swap_exact_tokens_for_eth(amt_WBNB, amt_token, token, contract):
-    gas_price = w3.toWei('10', 'gwei')
+    gas_price = w3.toWei('11', 'gwei')
     swap_call = contract.functions.swapExactTokensForETH(
         amt_token,
         amt_WBNB,
@@ -122,7 +123,7 @@ def _swap_exact_tokens_for_eth(amt_WBNB, amt_token, token, contract):
         'gas': gas,
         'value': 0,
         'gasPrice': gas_price,
-        'nonce': nonce+1
+        'nonce': nonce+2
     })
     logger.log("selling token: "+token, level="SELL")
     logger.log("Amount Swapped BNB: "+str(amt_WBNB)+" TokenAmount: "+str(amt_token), level="SELL")
@@ -139,13 +140,14 @@ def _swap_exact_tokens_for_eth(amt_WBNB, amt_token, token, contract):
 # INFO main program
 try:
     logger.log("Getting the rate of bnb")
-    amount_bnb, amount_tokens = _get_amounts_out(_e(amount), token, pancake_factory_contract)
+    amount_bnb, amount_tokens = _get_amounts_out(_e(amount), token, pancake_router_contract)
     # INFO SLIPPAGE HERE
     # FIXME may need to add an approve call here in order to approve the spend
     logger.log("Approving the sell")
-    _approve(amount_tokens*10, token)
+    _approve(_e(amount_tokens)*10, token, pancakeswap_router_address)
+    _approve(_e(amount_tokens)*10, token, my_wallet_adr)
     logger.log("Swapping the token")
-    tx_token = _h(_swap_exact_tokens_for_eth(amount_bnb, amount_tokens, token, pancake_factory_contract))
+    tx_token = _h(_swap_exact_tokens_for_eth(amount_bnb, amount_tokens, token, pancake_router_contract))
     returnVal = {
         'txHash': tx_token,
         'soldAmount': amount_tokens,
