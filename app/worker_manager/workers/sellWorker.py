@@ -54,7 +54,7 @@ if platform.system() != "Linux":
     router_abi = json.load(open('/home/fullsend/cryptovesting/app/worker_manager/workers/contract_abis/pancakeswap_factory_abi.json', 'r'))
 else:
     router_abi = json.load(open('/home/fullsend/cryptovesting/app/worker_manager/workers/contract_abis/pancakeswap_factory_abi.json', 'r'))
-pancake_router_contract = w3.eth.contract(address=pancakeswap_router_address, abi=router_abi)
+pancake_router_contract = w3.eth.contract(address=pancakeswap_router_address, abi=json.load(open('/home/fullsend/cryptovesting/app/worker_manager/workers/contract_abis/pancakeswap_router_abi.json', 'r')))
 pancake_factory_contract = w3.eth.contract(address=pancake_swap_factory_address, abi=router_abi)
 
 # INFO function to convert address
