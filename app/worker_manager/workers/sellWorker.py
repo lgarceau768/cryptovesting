@@ -80,7 +80,7 @@ def _get_amounts_out(amt, token, contract):
     amount_bnb = int(amounts[1] * float(slippage))
     amount_tokens = amounts[0]
     return 0, amount_tokens  
- #return amount_bnb, amount_tokens
+    #return amount_bnb, amount_tokens
 
 # INFO function to approve
 def _approve(amount, address, approveAdr):
@@ -88,12 +88,10 @@ def _approve(amount, address, approveAdr):
 
     approve = tokenContractBasic.functions.approve(_a(approveAdr), amount)
     nonce = w3.eth.getTransactionCount(account) + 1
-    gas_price = w3.toWei('11', 'gwei')
-    gas = 1300000
+    gas_price = w3.toWei('5', 'gwei')
     tx = approve.buildTransaction({
         'nonce': nonce, 
         'gasPrice': gas_price,
-        'gas': gas,
         'from': my_wallet_adr
     })
 

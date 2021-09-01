@@ -78,12 +78,11 @@ def _approve(amount, address, approveAdr):
 
     approve = tokenContractBasic.functions.approve(_a(approveAdr), amount)
     nonce = w3.eth.getTransactionCount(account) + 1
-    gas_price = w3.toWei('10', 'gwei')
+    gas_price = w3.toWei('5', 'gwei')
     gas = 1300000
     tx = approve.buildTransaction({
         'nonce': nonce, 
         'gasPrice': gas_price,
-        'gas': gas,
         'from': my_wallet_adr
     })
 
