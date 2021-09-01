@@ -77,19 +77,53 @@ def _w(amt):
 
 # INFO function to approve
 def _approve(amount, address, approveAdr):
+    tokenContract = w3.eth.contract(Address=address, abi=json.loads(open('/home/fullsend/cryptovesting/app/worker_manager/workers/contract_abis/sellabi.json', 'r')))
+    approveRawTX = tokenContract.functions.approve(_a(approveAdr), amount).buildTransaction({
+        'from': account,
+        'gasPrice': w3.toWei('5', 'gwei'),
+        'nonce': w3.eth.get_transaction_count(account)
+    });
+    try :
+        signedTx = w3.eth.account.sign_transaction(approveRawTX.rawTransaction, private_key=my_pk);
+        txHash = w3.eth.send_raw_transaction(signedTx.rawTransaction);
+        logger.log("Sell hash "+txHash)
+        return txHash;
+    except Exception as E:
+        logger.log("Fail=Sell failed because|"+str(E));
+        print("Fail=Sell failed because|"+str(E), level="FAIL");
     
 
 
 # INFO function to make the swap
 def _swap_exact_tokens_for_eth(amt_WBNB, amt_token, token, contract):
+    swapTransaction = contract.functions.swapExactTokensForETH(
+        amt_token, amt_WBNB,
+        [token, wbnb_address],
+        account, 
+        (int(time.time()) + 10000000)
+    ).buildTransaction({
+        'from': account,
+        'gasPrice': w3.toWei('5', 'gwei'),
+        'nonve': w3.eth.get_transaction_count(account)
+    })
+    try :
+        swapSigned = w3.eth.account.sign_transaction(swapTransaction, private_key=my_pk)
+        txHash = w3.eth.send_raw_transaction(swapSigned.rawTransaction)
+        return txHash
+    except Exception as e:
+        logger.log("Fail=Sell swap failed |"+str(e), level="FAIL")
+        print("Fail=Sell swap failed |"+str(e))
 
 # INFO main program
 try:
-
+    logger.log("Approving pancake router")
+    approveTx = _approve(_e(amount), token, pancakeswap_router_address);
+    logger.log("Approval tx: "+approveTx);
+    logger.log("Selling the token now");
+    tx_token = _swap_exact_tokens_for_eth(0, _e(amount), token, pancake_router_contract);
     returnVal = {
         'txHash': tx_token,
-        'soldAmount': amount_tokens,
-        'for': amount_bnb
+        'soldAmount': _e(amount),
     }
     print("Success="+json.dumps(returnVal))
     logger.log("Success="+json.dumps(returnVal), level="SUCCESS")
