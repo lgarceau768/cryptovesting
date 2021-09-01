@@ -1,5 +1,6 @@
 // TODO replace with the wallet address of crpytovesting
-let walletAddress = "0xeB8ceace9be0e8E7fCF356a7dc523256d10dE8fC"; '0x01420A7b545ac6c99F2b91e9f73464AA69C6E248'
+let walletAddress = "0xeB8ceace9be0e8E7fCF356a7dc523256d10dE8fC";
+walletAddress =  '0x01420A7b545ac6c99F2b91e9f73464AA69C6E248';
 
 // The minimum ABI to get ERC20 Token balance
 let minABI = [
@@ -23,7 +24,7 @@ let minABI = [
 
 
 window.addEventListener('load', () => {
-    let web3 = new Web3('https://data-seed-prebsc-1-s1.binance.org:8545/') // https://bsc-dataseed.binance.org/
+    let web3 = new Web3('https://bsc-dataseed.binance.org') //'https://data-seed-prebsc-1-s1.binance.org:8545/') // https://bsc-dataseed.binance.org/
     const IP = '25.89.250.119' //'192.168.1.224'
 
     async function getBalance(tokenAddress) {
@@ -123,6 +124,36 @@ window.addEventListener('load', () => {
                 }
             } catch (err) {
                 alert('Error selling token: ' + err.message)
+                console.error(err)
+            }
+        }
+    })
+
+    // INFO handle uploading a live token to buy
+    let liveButton = document.getElementById('livetokenBuy');
+    liveButton.addEventListener('click', async () => {
+        let token = document.getElementById('livetoken').value
+        if(token == "") {
+            alert('Please enter values for a token')
+        } else {
+            let address = '0x'+ token.split('0x')[1]
+            try {
+                const resp = await fetch('http://'+IP+':4041/upload_buy_token', {
+                    method: 'post',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                    'token': address
+                    })
+                })
+                let data = await resp.json();
+                if(data['res'] == 'OK'){
+                    alert('Buying token')
+                }
+            } catch (err) {
+                alert('Error buying token: ' + err.message)
                 console.error(err)
             }
         }

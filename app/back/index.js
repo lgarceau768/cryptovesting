@@ -193,6 +193,34 @@ app.post('/upload_sell_token', (req, res) => {
     }
 })
 
+
+app.post('/upload_buy_token', (req, res) => {
+    try {
+        let body = req.body;
+        let token = {
+            "token": body['token']
+        }
+        if(checkAllNonNull(token)){
+            _l("Upload called with incorrect values: "+_jstr(token), level="INPUTERROR")
+            res.send({"res": "fail", "error": "incorrect body values"})
+            return
+        }
+        _l("Token: "+_jstr(token) +" being added", level="INPUT")
+        let sql = "insert into tokens_to_buy set ?"
+        connection.query(sql, token, function (err, result) {
+            if(err) {
+                _l("Error adding token: "+_jstr(token) + " error: "+err, level="ERROR")
+                res.send({"res": 'Error probably duplicate: '+err})
+            } else {
+                _l("Added token: "+_jstr(token), level="SUCCESS")
+                res.send({"res": 'OK'})
+            }
+        })
+    } catch (e) {
+        _l("Upload Sell Error: "+e+" request\n"+_jstr(req), level="FAIL")        
+    }
+})
+
 // INFO run server
 app.listen(port, host=IP, () => {
     console.log(`Success! Your application is running on port ${port}`)

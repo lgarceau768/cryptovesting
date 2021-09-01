@@ -15,7 +15,7 @@ const {
     setLog
 } = shared()
 const { Worker } = require('worker_threads')
-const BNB_AMT_ETHER = 50000000000000000;
+const BNB_AMT_ETHER = 10000000000000000;
 const BNB_AMT = 0.01;
 const SLIPPAGE = 0.8;
 const PERCENT_GAIN = 1.5;
@@ -391,6 +391,21 @@ const program = async () => {
                 spawnSellWorker(tokenData['token'], tokenData['amt'])
             } catch (e) {
                 _l("Sell Token Manual Error: " + e, level="ERROR")
+                _l(_jstr(e))
+            }
+        }
+    })
+
+    instance.addTrigger({
+        name: "Buy Live Token",
+        expression: 'cryptovesting.tokens_to_buy',
+        statement: mysqlEvents.STATEMENTS.INSERT,
+        onEvent: (event) => {
+            try {
+                let tokenData = event["affectedRows"][0]["after"]
+                spawnBuyPythonScript(tokenData['token'])
+            } catch (e) {
+                _l("Buy Token Live Error: " + e, level="ERROR")
                 _l(_jstr(e))
             }
         }

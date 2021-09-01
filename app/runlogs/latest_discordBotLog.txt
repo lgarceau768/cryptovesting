@@ -216,3 +216,8 @@ sniperWorker_0xc0701d32b6e26872753e070f612951f2e24e0765_1629332060286.log
   "pair": "0x39080CDB7cDd99f1793D34Bb54CE23b7832f2690"
 }
 
+buyWorker_0xedd822b00c48d8a1c416ee17507befc2ad71d8c4Log_08_19_2021__00_45_42.log
+Scrape started on: 00:45:42
+[STARTUP Thu Aug 19 00:45:42 2021]: Arguments main, 0xedd822b00c48d8a1c416ee17507befc2ad71d8c4, 0.01, 0.8
+[LOG Thu Aug 19 00:45:43 2021]: Exception: execution reverted
+
