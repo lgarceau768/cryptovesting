@@ -77,7 +77,7 @@ def _w(amt):
 
 # INFO function to approve
 def _approve(amount, address, approveAdr):
-    tokenContract = w3.eth.contract(Address=address, abi=json.loads(open('/home/fullsend/cryptovesting/app/worker_manager/workers/contract_abis/sellabi.json', 'r')))
+    tokenContract = w3.eth.contract(Address=address, abi=json.load(open('/home/fullsend/cryptovesting/app/worker_manager/workers/contract_abis/sellabi.json', 'r')))
     approveRawTX = tokenContract.functions.approve(_a(approveAdr), amount).buildTransaction({
         'from': account,
         'gasPrice': w3.toWei('5', 'gwei'),
