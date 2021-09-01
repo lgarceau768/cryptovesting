@@ -30,7 +30,7 @@ window.addEventListener('load', () => {
     async function getBalance(tokenAddress) {
         let balanceContract = new web3.eth.Contract(minABI,tokenAddress);
         balance = await balanceContract.methods.balanceOf(walletAddress).call();
-        return balance;
+        return web3.utils.fromWei(balance, 'ether');
       }
 
     // INFO upload token for contract check
@@ -115,7 +115,7 @@ window.addEventListener('load', () => {
                     },
                     body: JSON.stringify({
                     'token': address,
-                    'amt': parseInt(amount)
+                    'amt': amount
                     })
                 })
                 let data = await resp.json();

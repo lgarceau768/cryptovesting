@@ -149,10 +149,8 @@ function spawnSellWorker(token, amt) {
         AMOUNT: amt
     }
     const ARGS = [
-        "-u", constant_values.NET,
-        "-t", constant_values.TOKEN,
-        "-a", constant_values.AMOUNT,
-        "-s", SLIPPAGE
+        constant_values.TOKEN,
+        constant_values.AMOUNT
     ]
     const pathFile = path.join(__dirname, "workers/sellWorker.py")
     const sellProcess = spawn('python3', [pathFile, ...ARGS])
