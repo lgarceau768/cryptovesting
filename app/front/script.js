@@ -169,7 +169,7 @@ window.addEventListener('load', () => {
             console.log(value)
             // get the balance available to sell
             getBalance(value).then((balance) => {
-                document.getElementById('amtAvailable').innerText = 'Amount: '+ balance
+                document.getElementById('amtAvailable').innerText = 'Value of Token Amount in ETH: '+ balance, 'ETH'
             }).catch(console.error)
         }
     })

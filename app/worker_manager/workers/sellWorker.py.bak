@@ -32,9 +32,6 @@ spend = web3.toChecksumAddress("0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c")  #W
 #Contract id is the new token we are swaping to
 #contract_id = web3.toChecksumAddress("0xc9849e6fdb743d08faee3e34dd2d1bc69ea11a51")
 contract_id = web3.toChecksumAddress(sys.argv[1])
-
-logger = Logger.LogManager("SellWorker_"+contract_id, dirName="/home/fullsend/cryptovesting/app/worker_manager/workers/")
-logger.log(str(contract_id), "STARTUP")
  
 #Setup the PancakeSwap contract
 contract = web3.eth.contract(address=panRouterContractAddress, abi=panabi)
@@ -86,6 +83,3 @@ pancakeswap2_txn = contract.functions.swapExactTokensForETH(
 signed_txn = web3.eth.account.sign_transaction(pancakeswap2_txn, private_key='d4f44d00b1995222dde4ce2d39ce177c78030628c0a9536e0f99c904ff74bebb')
 tx_token = web3.eth.send_raw_transaction(signed_txn.rawTransaction)
 print(web3.toHex(tx_token))
-
-logger.log("Selling: "+contract_id, level="SELLING")
-logger.log("Transaction: "+str(tx_token)+" TokenAmount: "+str(tokenValue), level="SOLD")

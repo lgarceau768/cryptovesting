@@ -1,8 +1,9 @@
 from web3 import Web3
-import sys
-import json
-import config
-import time
+from scripts import logManager as Logger
+import sys, json, platform, time, config
+#import json
+#import config
+#import time
 
 bsc = "https://bsc-dataseed.binance.org/"
 web3 = Web3(Web3.HTTPProvider(bsc))
@@ -22,6 +23,12 @@ sender_address = web3.toChecksumAddress('0x01420a7b545ac6c99f2b91e9f73464aa69c6e
 spend = web3.toChecksumAddress("0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c")  #WBNB Address
 
 
+#import logging info from buyworker for testing
+#Logger vars
+#logger = Logger.LogManager("sellWorker_"+token, dirName="/home/fullsend/cryptovesting/app/worker_manage>
+#logger.log("Arguments %s, %s, %s, %s" % (net, token, amount, str(slippage)), "STARTUP")
+
+
 #Get BNB Balance
 #balance = web3.eth.get_balance(sender_address)
 #print(balance)
@@ -33,8 +40,11 @@ spend = web3.toChecksumAddress("0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c")  #W
 #contract_id = web3.toChecksumAddress("0xc9849e6fdb743d08faee3e34dd2d1bc69ea11a51")
 contract_id = web3.toChecksumAddress(sys.argv[1])
 
-logger = Logger.LogManager("SellWorker_"+contract_id, dirName="/home/fullsend/cryptovesting/app/worker_manager/workers/")
-logger.log(str(contract_id), "STARTUP")
+#import logging info from buyworker for testing
+#Logger vars
+logger = Logger.LogManager("sellWorker_"+token, dirName="/home/fullsend/cryptovesting/app/worker_manag>
+logger.log("SellWoker_"+contract_id, "STARTUP")
+
  
 #Setup the PancakeSwap contract
 contract = web3.eth.contract(address=panRouterContractAddress, abi=panabi)
@@ -66,6 +76,20 @@ signed_txn = web3.eth.account.sign_transaction(approve, private_key='d4f44d00b19
 tx_token = web3.eth.send_raw_transaction(signed_txn.rawTransaction)
 #print("Approved: " + web3.toHex(tx_token))
 
+#Logger buy
+    logger.log("Selling token: "+contract_id,tx_token, level="SELLING")
+    logger.log("Amount Swapped (Value in ETH: "+tokenValue2+" TokenAmount: "+tokenValue)), level="SELL")
+#    signed_tx = account_obj.sign_transaction(swap_tx)
+#    try:
+#        tx_token = w3.eth.sendRawTransaction(signed_tx.rawTransaction)
+#        return tx_token
+#    except Exception as e:
+#        logger.log("Exception at sendRawTransaction: "+str(e), level="BUY ISSUE")
+#        print("Fail=Buy Issue Send Raw Transaction|"+str(e))
+#        sys.exit(0)
+
+
+
 #Wait after approve 10 seconds before sending transaction
 time.sleep(10)
 #print("Swapping {tokenValue2} {symbol} for BNB")
@@ -87,5 +111,6 @@ signed_txn = web3.eth.account.sign_transaction(pancakeswap2_txn, private_key='d4
 tx_token = web3.eth.send_raw_transaction(signed_txn.rawTransaction)
 print(web3.toHex(tx_token))
 
-logger.log("Selling: "+contract_id, level="SELLING")
-logger.log("Transaction: "+str(tx_token)+" TokenAmount: "+str(tokenValue), level="SOLD")
+    logger.log("Sold token: "+contract_id,tx_token, level="SOLD")
+    logger.log("Amount Swapped (Value in ETH: "+tokenValue2+" TokenAmount: "+tokenValue)), level="SOLD">
+#Need to add exception/tx failure logging

@@ -9,22 +9,23 @@
 </head>
 <body>
     <div style='display:flex;flex-direction:column;'>
-        <h1>Please input the BSCScanLink to the token you wish to add to the contract check</h1>
+        <h1>Pre-Sale with contract check: Please input the BSCScanLink to the token you wish to add to the contract check</h1>
         <label for="linkinput">BSCScanLink: </label>
         <input id="linkinput" type="text" placeholder="https://bscscan.com/contract/0x00000000000000000000"/>
         <button id="uploadtoken">Upload Token</button>
-        <h1>Please input the BSCScanLink to the token you wish to add and BYPASS the contract check</h1>
+        <h1>Pre-sale Contract Validation BYPASSED: Please input the BSCScanLink to the token you wish to add and BYPASS the contract check</h1>
         <label for="linkinput2">BSCScanLink: </label>
         <input id="linkinput2" type="text" placeholder="https://bscscan.com/contract/0x00000000000000000000"/>
         <button id="uploadtokenByPass">Upload Token (BYPASS)</button>
-        <h1>Please input the amount and address of the token you would like to sell<h1>
+        <h1>Manually Sell: Please input the amount and address of the token you would like to sell<h1>
         <label for="sellInput">Token to sell</label>
         <input id="sellInput" type="text" placeholder="0x000000000000000000000000000000" style="min-width:250px;"/>
-        <p id="amtAvailable" style="font-size:12px;font-family:sans-serif;">Checking amount..</p>
-        <label for="sellAmountInput">Sell Amount</label>
+        <p id="amtAvailable" style="font-size:12px;font-family:sans-serif;">Checking Token Value in ETC...</p>
+	<label for="sellAmountInput">Sell Token Amount in ETH</label>
         <input id="sellAmountInput" type="text" placeholder="999999999999"/>
         <button id="sellButton">Sell Token</button>
-        <h1>Please input LIVE token you would live to insert into the cryptovesting system</h1>
+        <p id="amtLeftover" style="font-size:12px;font-family:sans-serif;">ETH value of token after sale remaining in wallet>
+        <h1>Post-Sale+Bypass Contract Validation: Please input LIVE token you would live to insert into the cryptovesting system</h1>
         <label for="livetoken">Token Address: </label>
         <input id="livetoken" type="text" placeholder="0x00000000000000000000"/>
         <button id="livetokenBuy">Live Token Insert</button>

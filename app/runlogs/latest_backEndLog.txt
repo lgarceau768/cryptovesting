@@ -431,3 +431,129 @@ Success! Your application is running on port 4041
 > node index.js
 
 Success! Your application is running on port 4041
+Error: Packets out of order. Got: 0 Expected: 2
+    at Parser._tryReadPacketHeader (/home/fullsend/cryptovesting/app/back/node_modules/mysql/lib/protocol/Parser.js:470:15)
+    at Parser.write (/home/fullsend/cryptovesting/app/back/node_modules/mysql/lib/protocol/Parser.js:33:29)
+    at Protocol.write (/home/fullsend/cryptovesting/app/back/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/home/fullsend/cryptovesting/app/back/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/home/fullsend/cryptovesting/app/back/node_modules/mysql/lib/Connection.js:526:10)
+    at Socket.emit (events.js:375:28)
+    at addChunk (internal/streams/readable.js:290:12)
+    at readableAddChunk (internal/streams/readable.js:265:9)
+    at Socket.Readable.push (internal/streams/readable.js:204:10)
+    at TCP.onStreamRead (internal/stream_base_commons.js:188:23) {
+  code: 'PROTOCOL_PACKETS_OUT_OF_ORDER',
+  fatal: true
+}
+{
+  "code": "PROTOCOL_PACKETS_OUT_OF_ORDER",
+  "fatal": true
+}
+
+> back@1.0.0 start
+> node index.js
+
+Success! Your application is running on port 4041
+
+> back@1.0.0 start
+> node index.js
+
+Success! Your application is running on port 4041
+
+> back@1.0.0 start
+> node index.js
+
+Success! Your application is running on port 4041
+
+> back@1.0.0 start
+> node index.js
+
+Success! Your application is running on port 4041
+
+> back@1.0.0 start
+> node index.js
+
+Success! Your application is running on port 4041
+
+> back@1.0.0 start
+> node index.js
+
+Success! Your application is running on port 4041
+
+> back@1.0.0 start
+> node index.js
+
+Success! Your application is running on port 4041
+
+> back@1.0.0 start
+> node index.js
+
+Success! Your application is running on port 4041
+
+> back@1.0.0 start
+> node index.js
+
+Success! Your application is running on port 4041
+
+> back@1.0.0 start
+> node index.js
+
+Success! Your application is running on port 4041
+
+> back@1.0.0 start
+> node index.js
+
+Success! Your application is running on port 4041
+
+> back@1.0.0 start
+> node index.js
+
+Success! Your application is running on port 4041
+
+> back@1.0.0 start
+> node index.js
+
+Success! Your application is running on port 4041
+
+> back@1.0.0 start
+> node index.js
+
+Success! Your application is running on port 4041
+
+> back@1.0.0 start
+> node index.js
+
+Success! Your application is running on port 4041
+
+> back@1.0.0 start
+> node index.js
+
+Success! Your application is running on port 4041
+
+> back@1.0.0 start
+> node index.js
+
+Success! Your application is running on port 4041
+
+> back@1.0.0 start
+> node index.js
+
+Success! Your application is running on port 4041
+Error: Packets out of order. Got: 0 Expected: 2
+    at Parser._tryReadPacketHeader (/home/fullsend/cryptovesting/app/back/node_modules/mysql/lib/protocol/Parser.js:470:15)
+    at Parser.write (/home/fullsend/cryptovesting/app/back/node_modules/mysql/lib/protocol/Parser.js:33:29)
+    at Protocol.write (/home/fullsend/cryptovesting/app/back/node_modules/mysql/lib/protocol/Protocol.js:38:16)
+    at Socket.<anonymous> (/home/fullsend/cryptovesting/app/back/node_modules/mysql/lib/Connection.js:88:28)
+    at Socket.<anonymous> (/home/fullsend/cryptovesting/app/back/node_modules/mysql/lib/Connection.js:526:10)
+    at Socket.emit (events.js:375:28)
+    at addChunk (internal/streams/readable.js:290:12)
+    at readableAddChunk (internal/streams/readable.js:265:9)
+    at Socket.Readable.push (internal/streams/readable.js:204:10)
+    at TCP.onStreamRead (internal/stream_base_commons.js:188:23) {
+  code: 'PROTOCOL_PACKETS_OUT_OF_ORDER',
+  fatal: true
+}
+{
+  "code": "PROTOCOL_PACKETS_OUT_OF_ORDER",
+  "fatal": true
+}
