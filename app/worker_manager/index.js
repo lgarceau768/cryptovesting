@@ -13,10 +13,10 @@ const IP = '25.89.250.119' //'192.168.1.224'
 let date = new Date().toISOString()
 let path = ""
 try {
-    path= "/home/fullsend/cryptovesting/app/back/logs/backendManualEntryServer_" + date + ".log"
+    path= "/home/fullsend/cryptovesting/app/worker_manager/logs/cryptovestingAPI_" + date + ".log"
     logger.init(path)
 } catch {
-    path = 'logs/backendManualEntryServer_' + Date.now() + '.log'
+    path = 'logs/cryptovestingAPI_' + Date.now() + '.log'
     logger.init(path)
 }
 _l = logger._l
@@ -106,7 +106,7 @@ app.post('/upload_token', (req, res) => {
             worker: 'contractCheckWorker.js'
         }, (res) => {
             _l('Contract Check worker result '+res.toString(), level="CONTRACT")
-        })
+        }, sendEvent)
     } catch (e) {
         _l("Upload Error: "+e+" request\n"+_jstr(req), level="FAIL")
     }
@@ -135,7 +135,7 @@ app.post('/upload_token_bypass', (req, res) => {
             } else {
                 _l('Unknown Sniper reply: '+reply, level="SNIPER")
             }
-        })
+        }, sendEvent)
     } catch (e) {
         _l("Upload Bypass Error: "+e+" request\n"+_jstr(req), level="FAIL")        
     }
@@ -154,7 +154,7 @@ app.post('/upload_sell_token', (req, res) => {
             return
         }
         _l("Token: "+_jstr(token) +" being added", level="INPUT")
-        Cryptovesting.spawnSellWorker(token['token'], token['amt'])
+        Cryptovesting.spawnSellWorker(token['token'], token['amt'], sendEvent)
     } catch (e) {
         _l("Upload Sell Error: "+e+" request\n"+_jstr(req), level="FAIL")        
     }
@@ -173,7 +173,7 @@ app.post('/upload_buy_token', (req, res) => {
             return
         }
         _l("Token: "+_jstr(token) +" being added", level="INPUT")
-        Cryptovesting.spawnBuyPythonScript(token)
+        Cryptovesting.spawnBuyPythonScript(token, sendEvent)
     } catch (e) {
         _l("Upload Sell Error: "+e+" request\n"+_jstr(req), level="FAIL")        
     }

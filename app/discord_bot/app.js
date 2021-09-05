@@ -13,7 +13,7 @@ const logPath = path.join(__dirname, 'logs', 'discordBot_'+ Date.now() + '.log')
 const availableLogs = {
     'backHTML' : {
         'path': '/home/fullsend/cryptovesting/app/back/logs',
-        'name': 'backendManualEntryServer'
+        'name': 'cryptovestingAPI'
     },
     'discordBot' : {
         'path': '/home/fullsend/cryptovesting/app/discord_bot/logs',

@@ -16,8 +16,8 @@ const {
 const { Worker } = require('worker_threads')
 
 // Start Logger
-let logFilePath = path.join(__dirname, 'logs', 'workerManagerLog_ ' + Date.now().toString() + '.log')
-init(logFilePath, "workerManager")
+let logFilePath = path.join(__dirname, 'logs', 'workerSpawnFile_ ' + Date.now().toString() + '.log')
+init(logFilePath, "workerSpawnFile_")
 
 // Import constants
 const { 

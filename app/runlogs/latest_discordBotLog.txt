@@ -1,8 +1,8 @@
 {
   backHTML: {
     files: [
-      'backendManualEntryServer_2021-08-12T23:05:46.496Z.log',
-      'backendManualEntryServer_2021-08-12T23:09:18.915Z.log'
+      'cryptovestingAPI_2021-08-12T23:05:46.496Z.log',
+      'cryptovestingAPI_2021-08-12T23:09:18.915Z.log'
     ]
   },
   discordBot: {
@@ -18,9 +18,9 @@
 {
   backHTML: {
     files: [
-      'backendManualEntryServer_2021-08-12T23:05:46.496Z.log',
-      'backendManualEntryServer_2021-08-12T23:09:18.915Z.log',
-      'backendManualEntryServer_2021-08-12T23:13:14.596Z.log'
+      'cryptovestingAPI_2021-08-12T23:05:46.496Z.log',
+      'cryptovestingAPI_2021-08-12T23:09:18.915Z.log',
+      'cryptovestingAPI_2021-08-12T23:13:14.596Z.log'
     ]
   },
   discordBot: {
@@ -39,11 +39,11 @@
   }
 }
 No Logs
-backendManualEntryServer_2021-08-12T23:05:46.496Z.log
-backendManualEntryServer_2021-08-12T23:09:18.915Z.log
-backendManualEntryServer_2021-08-12T23:13:14.596Z.log
-backendManualEntryServer_2021-08-12T23:17:28.235Z.log
-backendManualEntryServer_2021-08-12T23:18:52.898Z.log
+cryptovestingAPI_2021-08-12T23:05:46.496Z.log
+cryptovestingAPI_2021-08-12T23:09:18.915Z.log
+cryptovestingAPI_2021-08-12T23:13:14.596Z.log
+cryptovestingAPI_2021-08-12T23:17:28.235Z.log
+cryptovestingAPI_2021-08-12T23:18:52.898Z.log
 
 discordBot_1628809546390.log
 discordBot_1628809758823.log
@@ -63,12 +63,12 @@ workerManagerLog_2021-08-12T23:13:14.770Z.log
 workerManagerLog_2021-08-12T23:17:28.307Z.log
 workerManagerLog_2021-08-12T23:18:52.954Z.log
 
-backendManualEntryServer_2021-08-12T23:05:46.496Z.log
-backendManualEntryServer_2021-08-12T23:09:18.915Z.log
-backendManualEntryServer_2021-08-12T23:13:14.596Z.log
-backendManualEntryServer_2021-08-12T23:17:28.235Z.log
-backendManualEntryServer_2021-08-12T23:18:52.898Z.log
-backendManualEntryServer_2021-08-12T23:23:30.933Z.log
+cryptovestingAPI_2021-08-12T23:05:46.496Z.log
+cryptovestingAPI_2021-08-12T23:09:18.915Z.log
+cryptovestingAPI_2021-08-12T23:13:14.596Z.log
+cryptovestingAPI_2021-08-12T23:17:28.235Z.log
+cryptovestingAPI_2021-08-12T23:18:52.898Z.log
+cryptovestingAPI_2021-08-12T23:23:30.933Z.log
 
 discordBot_1628809546390.log
 discordBot_1628809758823.log
