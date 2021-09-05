@@ -1,0 +1,9 @@
+{
+    "BNB_AMT_ETHER": 10000000000000000,
+    "BNB_AMT" : 0.01,
+    "SLIPPAGE": 0.8,
+    "PERCENT_GAIN": 1.5,
+    "SELL_PERCENT": 0.75,
+    "BINANCE_NET": "main",
+    "IP": "25.89.250.119"
+}

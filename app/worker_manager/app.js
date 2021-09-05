@@ -1,148 +1,48 @@
-// INFO worker manager app.js
-// Author Luke Garceau
-const mysql = require('mysql')
-const { spawn } = require('child_process')
-const fetch = require('node-fetch')
+/**
+ * Imports for the Main Cryptovesting Service
+ * @author Luke Garceau
+ * @version 2.0
+ * @date 9/5/21
+ */
+const { spawn } = require('child_process');
+const fetch = require('node-fetch');
 const path = require('path')
-const {
-    _l, init
-} = require('./workers/scripts/logger')
-const mysqlEvents = require('@rodrigogs/mysql-events')
+const { _l, init } = require('./workers/scripts/logger')
 const { shared } = require('./workers/scripts/shared')
+const fs = require('fs')
 const {
-    sqlData,
-    _jstr,
-    setLog
+    _jstr
 } = shared()
 const { Worker } = require('worker_threads')
-const BNB_AMT_ETHER = 10000000000000000;
-const BNB_AMT = 0.01;
-const SLIPPAGE = 0.8;
-const PERCENT_GAIN = 1.5;
-const SELL_PERCENT = 0.75
-const BINANCE_NET = "main" // test
-let running = false
-// INFO setup mysql
-let connection = mysql.createConnection(sqlData)
-const IP = '25.89.250.119' //'192.168.1.224'
-// INFO setup log
-let isoString = new Date()
-try {
-    let logFilePath = "/home/fullsend/cryptovesting/app/worker_manager/logs/workerManagerLog_" + isoString.toISOString() + ".log"
-    init(logFilePath, "workerManager")
-} catch {
-    let logFilePath = "app/worker_manager/logs/workerManagerLog_" + Date.now() + ".log"
-    init(logFilePath, "workerManager")
-}
 
-// INFO function to send an event
-async function sendEvent(event) {
-    let data = {
-        host: 'http://'+IP+':4041',
-        path: '/upload_event',
-        method: 'POST'
-    }
-    event.timestamp = _t()
-    let res = await fetch(data.host+data.path, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json'},
-        body: JSON.stringify(event)
-    })
-    let json = await res.json();
-    console.log(json)
-}
+// Start Logger
+let logFilePath = path.join(__dirname, 'logs', 'workerManagerLog_ ' + Date.now().toString() + '.log')
+init(logFilePath, "workerManager")
 
-async function tryWrap(funct, args) {
-    try {
-        funct(...args)
-    } catch (e) {
-        _l(funct.name+" error: "+e+"\n"+_jstr(e), level="ERROR")
-    }
-}
+// Import constants
+const { 
+    BNB_AMT_ETHER, 
+    BNB_AMT, 
+    SLIPPAGE, 
+    PERCENT_GAIN, 
+    SELL_PERCENT, 
+    BINANCE_NET, 
+    IP 
+} = JSON.parse(fs.readFileSync(path.join(__dirname, 'data', 'constants.json')))
 
-// INFO function to get timestamp
+/**
+ * Functions Below
+ * FIXME need to define an onEventCallback
+ */
+
+// Function to get timestamp
 function _t() {
     let date = new Date()
     return date.toISOString()
 }
 
-// INFO function to spawn worker
-function spawnWorker(workerInfo, onMessage) {
-    let workerBasePath = path.join(__dirname, "workers")
-    let workerName = workerInfo["worker"]
-    let workerPath = path.join(workerBasePath, workerName)
-    let workerData = workerInfo["workerData"]
-    switch (workerName) {
-        case 'contractCheckWorker.js':
-            workerData = workerData["affectedRows"][0]["after"]["contract_hash"]
-            break;
-        case 'sniperWorker.js':
-            workerData = workerData["affectedRows"][0]["after"]["tokenHash"]
-            break;
-        default:
-            break;
-    }
-    _l("Worker Spawned: "+workerName+ " with data: "+_jstr(workerData)+ " and base info: "+_jstr(workerInfo), level="SPAWN")
-    sendEvent({
-        message: workerName+" spawned on token |" + workerData,
-        category: 'IMPT'
-    })
-    console.log(workerPath)
-    const worker = new Worker(workerPath, {
-        workerData: workerData
-    })
-    worker.once('message', (strResponse) => {
-        if (strResponse.indexOf('=') == -1) return
-        onMessage(strResponse)
-    })
-    worker.on('error', (error) => {
-        _l(workerName+": "+_jstr(workerInfo) +" has error: " +error, level="ERROR")
-        sendEvent({
-            message: workerInfo['worker']+' Failed on |'+workerData,
-            category: 'FAIL=manager'
-        })
-    })
-    worker.on('exit', (code) => {
-        _l(workerName+": "+_jstr(workerInfo) +" exited with code: "+code, level="EXIT")
-    })
-}
-
-// INFO function to add / remove token from token_balances
-function token_balances(token, amt, op="add") {
-    switch (op) {
-        case "add":
-            let query = "insert into token_balances set ?"
-            connection.query(query, {
-                "contract_hash": token,
-                "amount": amt
-            })
-            connection.commit()
-            sendEvent({
-                message: 'Token balance on |'+_jstr({token, amt}),
-                category: 'BALANCE'
-            })
-            return;
-        case "rem":
-            let query1 = 'delete from token_balances where contract_hash like "'+token+'"'
-            connection.query(query1)
-            connection.commit()
-            sendEvent({
-                message: 'Token balance remove |'+ token,
-                category: 'BALANCE'
-            })
-            return;
-        default:
-            return;
-    }
-}
-
-// INFO base log complete callback
-function logCompleteCallback(strMessage) {
-    _l(strMessage, level="WORKER_COMPLETE")
-}
-
 // INFO spawn sell worker
-function spawnSellWorker(token, amt) {
+function spawnSellWorker(token, amt, sendEvent) {
     const constant_values = {
         NET: BINANCE_NET,
         TOKEN: token,
@@ -203,7 +103,7 @@ function spawnSellWorker(token, amt) {
 }
 
 // INFO spawn token watcher
-function spawnTokenWatcher(token, amtBNB, amtToken) {
+function spawnTokenWatcher(token, amtBNB, amtToken, sendEvent) {
     const constant_values = {
         NET: BINANCE_NET,
         AMOUNT: amtBNB,
@@ -259,7 +159,7 @@ function spawnTokenWatcher(token, amtBNB, amtToken) {
 }
 
 // INFO buy token with bnb
-function spawnBuyPythonScript(token) {
+function spawnBuyPythonScript(token, sendEvent) {
     // FIXME move bnb amount higher
     const constant_values = {
         SLIPPAGE: SLIPPAGE,
@@ -319,139 +219,65 @@ function spawnBuyPythonScript(token) {
     })
 }
 
-const program = async () => {
-    running = true
-    const instance = new mysqlEvents(connection, {
-        startAtEnd: true,
-        excludeSchemas: {
-            mysql: true,
-        }
-    })
-
-    await instance.start()
-
-    // token being added trigger
-    instance.addTrigger({
-        name: "Token Added",
-        expression: 'cryptovesting.tokens',
-        statement: mysqlEvents.STATEMENTS.INSERT,
-        onEvent: (event) => {
-            console.log('triggered')
-            try {
-                spawnWorker({
-                    workerData: event,
-                    worker: 'contractCheckWorker.js'
-                }, logCompleteCallback)
-            } catch (e) {
-                sendEvent({
-                    message: 'Contract check on '+event['affectedRows'][0]['after']['contract_hash']+' failed |'+e,
-                    category: 'FAIL=contract'
-                })
-            }
-        }
-    })
-
-    instance.addTrigger({
-        name: "Token Added for ByPass",
-        expression: 'cryptovesting.tokens_bypass_contract_check',
-        statement: mysqlEvents.STATEMENTS.INSERT,
-        onEvent: (event) => {            
-            tryWrap(() => {
-                try {
-                    spawnWorker({
-                        workerData: event,
-                        worker: 'sniperWorker.js'
-                    }, (reply) => {
-                        if(reply.indexOf('Mint=') != -1){
-                            // token minted spawn buy script
-                            let token = reply.split('Mint=')[1]
-                            spawnBuyPythonScript(token)
-                        }
-                    })
-                } catch (err) {
-                    sendEvent({
-                        message: 'Sniping token '+event["affectedRows"][0]["after"]["tokenHash"]+' error |'+err,
-                        category: 'FAIL=sniper'
-                    })
-                    _l("ByPass exception: "+err.toString(), level="CRITICAL")
-                }
-            }, [])                      
-        }
-    })
-
-    instance.addTrigger({
-        name: "Sell Token Amount",
-        expression: 'cryptovesting.tokens_to_sell',
-        statement: mysqlEvents.STATEMENTS.INSERT,
-        onEvent: (event) => {
-            try {
-                let tokenData = event["affectedRows"][0]["after"]
-                spawnSellWorker(tokenData['token'], tokenData['amt'])
-            } catch (e) {
-                _l("Sell Token Manual Error: " + e, level="ERROR")
-                _l(_jstr(e))
-            }
-        }
-    })
-
-    instance.addTrigger({
-        name: "Buy Live Token",
-        expression: 'cryptovesting.tokens_to_buy',
-        statement: mysqlEvents.STATEMENTS.INSERT,
-        onEvent: (event) => {
-            try {
-                let tokenData = event["affectedRows"][0]["after"]
-                spawnBuyPythonScript(tokenData['token'])
-            } catch (e) {
-                _l("Buy Token Live Error: " + e, level="ERROR")
-                _l(_jstr(e))
-            }
-        }
-    })
-
-    instance.on(mysqlEvents.EVENTS.CONNECTION_ERROR, (err) => {
-        running = false
-        console.log(err)
-        _l(err, level="CONNECTION_ERROR")
-    });
-    instance.on(mysqlEvents.EVENTS.ZONGJI_ERROR, (err) => {
-        running = false
-        console.log(err)
-        _l(err, level="ZONGJI_ERROR")
-    });
-
-}
-
-function connectSql() {    
-    connection = mysql.createConnection(sqlData)
-    connection.connect()
-}
-
-
-// Handle SQL Issues
-connection.on('error', (err) => {
-    console.log(err)
-    console.log(_jstr(err))
-    _l('Connection Error: '+_jstr(err))
-    connection = null
-    connectSql()
-})
-
-function run() {
-    runing = true
-    connectSql()
-    program()
-        .then(() => console.log("Cryptovesting Main Service Listener Started"))
-        .catch((err) => {
-            console.log(err)
-            running = false
-            connection = null
-    })
-}
-
-
-setInterval(() => {
-    if(!running){
-        tryWrap(run, [])
+// INFO function to add / remove token from token_balances
+function token_balances(token, amt, sendEvent, op="add") {
+    switch (op) {
+        case "add":
+            // FIXME
+            sendEvent({
+                message: 'Token balance on |'+_jstr({token, amt}),
+                category: 'BALANCE'
+            })
+            return;
+        case "rem":
+            // FIXME
+            sendEvent({
+                message: 'Token balance remove |'+ token,
+                category: 'BALANCE'
+            })
+            return;
+        default:
+            return;
     }
-}, 1000)
+}
+
+// INFO function to spawn worker
+function spawnWorker(workerInfo, onMessage, sendEvent) {
+    let workerBasePath = path.join(__dirname, "workers")
+    let workerName = workerInfo["worker"]
+    let workerPath = path.join(workerBasePath, workerName)
+    let workerData = workerInfo["workerData"]
+    _l("Worker Spawned: "+workerName+ " with data: "+_jstr(workerData)+ " and base info: "+_jstr(workerInfo), level="SPAWN")
+    sendEvent({
+        message: workerName+" spawned on token |" + workerData,
+        category: 'IMPT'
+    })
+    console.log(workerPath)
+    const worker = new Worker(workerPath, {
+        workerData: workerData
+    })
+    worker.once('message', (strResponse) => {
+        if (strResponse.indexOf('=') == -1) return
+        onMessage(strResponse)
+    })
+    worker.on('error', (error) => {
+        _l(workerName+": "+_jstr(workerInfo) +" has error: " +error, level="ERROR")
+        sendEvent({
+            message: workerInfo['worker']+' Failed on |'+workerData,
+            category: 'FAIL=manager'
+        })
+    })
+    worker.on('exit', (code) => {
+        _l(workerName+": "+_jstr(workerInfo) +" exited with code: "+code, level="EXIT")
+    })
+}
+
+let app = {
+    spawnBuyPythonScript,
+    spawnSellWorker,
+    spawnTokenWatcher,
+    spawnWorker,
+    token_balances
+}
+
+module.exports = {app}
