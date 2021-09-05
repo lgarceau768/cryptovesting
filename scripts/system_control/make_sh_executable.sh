@@ -1,6 +1,5 @@
 #!/bin/bash
 chmod 777 /home/fullsend/cryptovesting/app/front/start_server.sh
-chmod 777 /home/fullsend/cryptovesting/app/back/start_back.sh
 chmod 777 /home/fullsend/cryptovesting/app/discord_bot/start_dbot.sh
 chmod 777 /home/fullsend/cryptovesting/app/worker_manager/start_cryptovesting.sh
 chmod 777 /home/fullsend/cryptovesting/scripts/system_control/replace_services.sh
