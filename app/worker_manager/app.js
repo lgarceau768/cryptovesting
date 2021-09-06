@@ -65,7 +65,7 @@ function spawnSellWorker(token, amt, sendEvent, _l) {
             let successIndex = stringVal.indexOf('Success=')
             if(successIndex != -1) {
                 // INFO remove token from balances tracking table      
-                let resultVal = JSON.parse(stringVal.split('=')[1])
+                let resultVal = stringVal.split('=')[1]
                 token_balances(token, 0, op="rem", sendEvent, _l)
                 _l("Sell Reply: "+_jstr(resultVal), level="SOLD")
                 sendEvent({
@@ -186,7 +186,7 @@ function spawnBuyPythonScript(token, sendEvent, _l) {
         let stringVal = data.toString().trim()
         let successIndex = stringVal.indexOf("Success=")
         if(successIndex != -1){
-            let resultVal = JSON.parse(stringVal.split("=")[1])
+            let resultVal = stringVal.split("=")[1]
             _l("Buy Success, resultVal: "+_jstr(resultVal), level="BUYSUCCESS")
             sendEvent({
                 message: 'Bought token '+token+' |'+resultVal['initalAmount'].toString(),
