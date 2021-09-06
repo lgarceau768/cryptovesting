@@ -95,7 +95,7 @@ app.post('/upload_token', (req, res) => {
         }
         if(checkAllNonNull(token)){
             _l("Upload called with incorrect values: "+_jstr(token), level="INPUTERROR")
-            res.send({"res": "fail", "error": "incorrect body values"})
+            res.send({"success": false, "error": "incorrect body values"})
             return
         }
         _l("Token: "+token +" being added", level="INPUT")
@@ -120,7 +120,7 @@ app.post('/upload_token_bypass', (req, res) => {
         }
         if(checkAllNonNull(token)){
             _l("Upload called with incorrect values: "+_jstr(token), level="INPUTERROR")
-            res.send({"res": "fail", "error": "incorrect body values"})
+            res.send({"success": false, "error": "incorrect body values"})
             return
         }
         _l("Token: "+_jstr(token) +" being added", level="INPUT")
@@ -151,7 +151,7 @@ app.post('/upload_sell_token', (req, res) => {
         }
         if(checkAllNonNull(token)){
             _l("Upload called with incorrect values: "+_jstr(token), level="INPUTERROR")
-            res.send({"res": "fail", "error": "incorrect body values"})
+            res.send({"success": false, "error": "incorrect body values"})
             return
         }
         _l("Token: "+_jstr(token) +" being added", level="INPUT")
@@ -171,7 +171,7 @@ app.post('/upload_buy_token', (req, res) => {
         }
         if(checkAllNonNull(token)){
             _l("Upload called with incorrect values: "+_jstr(token), level="INPUTERROR")
-            res.send({"res": "fail", "error": "incorrect body values"})
+            res.send({"success": false, "error": "incorrect body values"})
             return
         }
         _l("Token: "+_jstr(token) +" being added", level="INPUT")
