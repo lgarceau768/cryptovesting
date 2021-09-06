@@ -2,10 +2,13 @@ from web3 import Web3
 import sys
 import json
 import config
+from scripts import logManager as Logger
 import time
 
 bsc = "https://bsc-dataseed.binance.org/"
 web3 = Web3(Web3.HTTPProvider(bsc))
+logger = Logger.LogManager("sellWorker_"+token, dirName="/home/fullsend/cryptovesting/app/worker_manager/workers/logs/")
+logger.log("Arguments " + str(sys.argv), level="STARTUP")
 
 #print(web3.isConnected())
 
@@ -67,7 +70,7 @@ tx_token = web3.eth.send_raw_transaction(signed_txn.rawTransaction)
 time.sleep(10)
 #print("Swapping {tokenValue2} {symbol} for BNB")
 #Swaping exact Token for ETH 
-
+logger.log('Token to sell amount: '+str(tokenValue))
 pancakeswap2_txn = contract.functions.swapExactTokensForETH(
             tokenValue ,0, 
             [contract_id, spend],
