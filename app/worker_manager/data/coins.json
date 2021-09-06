@@ -1,13 +1,6 @@
 {
     "sniping": [
-        "0xa2f017966d967ec697C7A20Cf9D0b43CB8d4fF1D",
-        "0xe478690d1631d98641339f5f02985ec75a7f4a4d"
     ],
     "watching": [
-        {
-            "tokenAddress": "0xe478690d1631d98641339f5f02985ec75a7f4a4d",
-            "tokenAmount": "64.2",
-            "bnbAmount": "0.01"
-        }
     ]
 }

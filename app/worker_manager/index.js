@@ -127,7 +127,7 @@ function persistOp(data, op='add', table='sniper'){
         }
         existingPersistData[table].splice(foundIndex, 1);
     } 
-    fs.writeFileSync(path.join(__dirname, 'data', 'coin.json'), JSON.stringify(existingPersistData))
+    fs.writeFileSync(path.join(__dirname, 'data', 'coins.json'), JSON.stringify(existingPersistData))
 }
 
 app.post('/upload_token_bypass', (req, res) => {
