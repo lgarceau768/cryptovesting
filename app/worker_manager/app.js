@@ -38,6 +38,23 @@ function _t() {
     return date.toISOString()
 }
 
+function persistOp(data, op='add', table='sniper'){ 
+    let existingPersistData = fs.readFileSync(path.join(__dirname, 'data', 'coins.json'), 'utf-8')
+    existingPersistData = JSON.parse(existingPersistData);
+    if(op === 'add') {
+        existingPersistData[table].push(data)
+    } else if(op === 'remove') {
+        let foundIndex = -1;
+        for(let i = 0; i < existingPersistData[table].length; i++){
+            if(existingPersistData[table][i] == data){
+                foundIndex = i;
+            }
+        }
+        existingPersistData[table].splice(foundIndex, 1);
+    } 
+    fs.writeFileSync(path.join(__dirname, 'data', 'coin.json'), JSON.stringify(existingPersistData))
+}
+
 // INFO spawn sell worker
 function spawnSellWorker(token, amt, sendEvent, _l) {
     const constant_values = {
@@ -69,7 +86,7 @@ function spawnSellWorker(token, amt, sendEvent, _l) {
                 token_balances(token, 0, op="rem", sendEvent, _l)
                 _l("Sell Reply: "+_jstr(resultVal), level="SOLD")
                 sendEvent({
-                    message: 'Sold Token TX |'+_jstr(resultVal), 
+                    message: 'Sold Token TX |'+resultVal, 
                     category: 'IMPT'
                 })
             } else {
@@ -103,6 +120,11 @@ function spawnSellWorker(token, amt, sendEvent, _l) {
 
 // INFO spawn token watcher
 function spawnTokenWatcher(token, amtBNB, amtToken, sendEvent, _l) {
+    persistOp({
+        tokenAddress: token,
+        tokenAmount: amtToken,
+        bnbAmount: amtBNB
+    }, op='add', table='watching')
     const constant_values = {
         NET: BINANCE_NET,
         AMOUNT: amtBNB,
@@ -131,6 +153,11 @@ function spawnTokenWatcher(token, amtBNB, amtToken, sendEvent, _l) {
         let successIndex = stringVal.indexOf('Success=')
         if(successIndex != -1){
             // FIXME (make constant) now sell token (currently sell 0.75 of token)
+            persistOp({
+                tokenAddress: token,
+                tokenAmount: amtToken,
+                bnbAmount: amtBNB
+            }, op='remove', table='watching')
             _l("Selling "+parseFloat(amtToken * SELL_PERCENT), "SLIPPAGE")
             spawnSellWorker(token, parseFloat(amtToken * SELL_PERCENT), sendEvent, _l)
         } else {

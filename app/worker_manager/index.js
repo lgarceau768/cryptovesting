@@ -8,16 +8,17 @@ const cors = require('cors')
 const { app: Cryptovesting } = require('./app');
 const { _l, init } = require("./workers/scripts/logger.js");
 const IP = '25.89.250.119' //'192.168.1.224'
+const path = require('path');
 
 // INFO setup logger
 let date = new Date().toISOString()
-let path = ""
+let logPath = ""
 try {
-    path= "/home/fullsend/cryptovesting/app/worker_manager/logs/cryptovestingAPI_" + date + ".log"
-    init(path, "cryptovestingAPI")
+    logPath= "/home/fullsend/cryptovesting/app/worker_manager/logs/cryptovestingAPI_" + date + ".log"
+    init(logPath, "cryptovestingAPI")
 } catch {
-    path = 'logs/cryptovestingAPI_' + Date.now() + '.log'
-    init(path, "cryptovestingAPI")
+    logPath = 'logs/cryptovestingAPI_' + Date.now() + '.log'
+    init(logPath, "cryptovestingAPI")
 }
 let events = []
 const _jstr = (json_dict) => {
@@ -111,6 +112,23 @@ app.post('/upload_token', (req, res) => {
     }
 })
 
+function persistOp(data, op='add', table='sniper'){ 
+    let existingPersistData = fs.readFileSync(path.join(__dirname, 'data', 'coins.json'), 'utf-8')
+    existingPersistData = JSON.parse(existingPersistData);
+    if(op === 'add') {
+        existingPersistData[table].push(data)
+    } else if(op === 'remove') {
+        let foundIndex = -1;
+        for(let i = 0; i < existingPersistData[table].length; i++){
+            if(existingPersistData[table][i] == data){
+                foundIndex = i;
+            }
+        }
+        existingPersistData[table].splice(foundIndex, 1);
+    } 
+    fs.writeFileSync(path.join(__dirname, 'data', 'coin.json'), JSON.stringify(existingPersistData))
+}
+
 app.post('/upload_token_bypass', (req, res) => {
     try {
         let body = req.body;
@@ -125,12 +143,14 @@ app.post('/upload_token_bypass', (req, res) => {
         }
         _l("Token: "+_jstr(token) +" being added", level="INPUT")
         res.send({success: true})
+        persistOp(token, op="add", table="sniping")
         Cryptovesting.spawnWorker({
             workerData: token,
             worker: 'sniperWorker.js'
         }, (reply) => {
             _l('Worker Reply: '+reply, level="WORKERREPLY")
             if(reply.indexOf('Mint=') != -1){
+                persistOp(token, op='remove', table='sniping')
                 let token = reply.split('Mint=')[1]
                 Cryptovesting.spawnBuyPythonScript(token, sendEvent, _l)
             } else {
@@ -185,4 +205,28 @@ app.post('/upload_buy_token', (req, res) => {
 // INFO run server
 app.listen(port, host=IP, () => {
     console.log(`Success! Your application is running on port ${port}`)
+})
+
+// Need to read in data from the data/coins.json file
+let coinsFile = fs.readFileSync(path.join(__dirname, 'data', 'coins.json'), 'utf-8')
+let persistedCoins = JSON.parse(coinsFile)
+persistedCoins['watching'].forEach((token) => {
+    _l('Read persisted token: '+_jstr(token)+ " was watching, respawning watcher", level="PERSIST")
+    let { tokenAddress, tokenAmount, bnbAmount } = token
+    Cryptovesting.spawnTokenWatcher(tokenAddress, bnbAmount, tokenAmount, sendEvent, _l)
+})
+persistedCoins['sniping'].forEach((token) => {
+    _l('Read persisted token: '+token+ " was sniping, respawning sniper", level="PERSIST")
+    Cryptovesting.spawnWorker({
+        workerData: token,
+        worker: 'sniperWorker.js'
+    }, (reply) => {
+        _l('Worker Reply: '+reply, level="WORKERREPLY")
+        if(reply.indexOf('Mint=') != -1){
+            let token = reply.split('Mint=')[1]
+            Cryptovesting.spawnBuyPythonScript(token, sendEvent, _l)
+        } else {
+            _l('Unknown Sniper reply: '+reply, level="SNIPER")
+        }
+    }, sendEvent, _l)
 })
