@@ -7,7 +7,7 @@ import time
 
 bsc = "https://bsc-dataseed.binance.org/"
 web3 = Web3(Web3.HTTPProvider(bsc))
-logger = Logger.LogManager("sellWorker_"+token, dirName="/home/fullsend/cryptovesting/app/worker_manager/workers/logs/")
+logger = Logger.LogManager("sellWorker_"+str(sys.argv[1]), dirName="/home/fullsend/cryptovesting/app/worker_manager/workers/logs/")
 logger.log("Arguments " + str(sys.argv), level="STARTUP")
 
 #print(web3.isConnected())
