@@ -18,7 +18,7 @@ net = sys.argv[sys.argv.index('-u')+1]
 token = sys.argv[sys.argv.index('-t')+1]
 amount = sys.argv[sys.argv.index('-a')+1]
 slippage = float(sys.argv[sys.argv.index('-s')+1]) 
-logger = Logger.LogManager("buyWorker_"+token, dirName="/home/fullsend/cryptovesting/app/worker_manager/workers/logs/")
+logger = Logger.LogManager("buyWorker_"+str(token), dirName="/home/fullsend/cryptovesting/app/worker_manager/workers/logs/")
 logger.log("Arguments %s, %s, %s, %s" % (net, token, amount, str(slippage)), "STARTUP")
 
 # INFO set variables based on net
