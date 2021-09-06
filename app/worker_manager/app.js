@@ -277,7 +277,7 @@ function spawnWorker(workerInfo, onMessage, sendEvent, _l) {
     let workerData = workerInfo["workerData"]
     _l("Worker Spawned: "+workerName+ " with data: "+_jstr(workerData)+ " and base info: "+_jstr(workerInfo), level="SPAWN")
     sendEvent({
-        message: workerName+" spawned on token |" + workerData,
+        message: workerName+" spawned on token |" + workerData.toString(),
         category: 'IMPT'
     })
     console.log(workerPath)
@@ -291,7 +291,7 @@ function spawnWorker(workerInfo, onMessage, sendEvent, _l) {
     worker.on('error', (error) => {
         _l(workerName+": "+_jstr(workerInfo) +" has error: " +error, level="ERROR")
         sendEvent({
-            message: workerInfo['worker']+' Failed on |'+workerData,
+            message: workerInfo['worker']+' Failed on |'+workerData.toString(),
             category: 'FAIL=manager'
         })
     })
