@@ -1,12 +1,12 @@
 const express = require("express");
-const logger = require('./logger.js')
+const logger = require('./workers/scripts/logger.js')
 const bodyParser = require('body-parser')
 const { v4: uuidv4 } = require('uuid');
 const app = express();
 const port = 4041;
 const cors = require('cors')
 const { app: Cryptovesting } = require('./app');
-const { _l } = require("./workers/scripts/logger.js");
+const { _l, init } = require("./workers/scripts/logger.js");
 const IP = '25.89.250.119' //'192.168.1.224'
 
 // INFO setup logger
@@ -14,12 +14,11 @@ let date = new Date().toISOString()
 let path = ""
 try {
     path= "/home/fullsend/cryptovesting/app/worker_manager/logs/cryptovestingAPI_" + date + ".log"
-    logger.init(path)
+    init(path)
 } catch {
     path = 'logs/cryptovestingAPI_' + Date.now() + '.log'
-    logger.init(path)
+    init(path)
 }
-_l = logger._l
 let events = []
 const _jstr = (json_dict) => {
     try {
@@ -101,6 +100,7 @@ app.post('/upload_token', (req, res) => {
             return
         }
         _l("Token: "+token +" being added", level="INPUT")
+        res.send({success: true})
         Cryptovesting.spawnWorker({
             workerData: token,
             worker: 'contractCheckWorker.js'
@@ -125,6 +125,7 @@ app.post('/upload_token_bypass', (req, res) => {
             return
         }
         _l("Token: "+_jstr(token) +" being added", level="INPUT")
+        res.send({success: true})
         Cryptovesting.spawnWorker({
             workerData: token,
             worker: 'sniperWorker.js'
@@ -154,6 +155,7 @@ app.post('/upload_sell_token', (req, res) => {
             return
         }
         _l("Token: "+_jstr(token) +" being added", level="INPUT")
+        res.send({success: true})
         Cryptovesting.spawnSellWorker(token['token'], token['amt'], sendEvent)
     } catch (e) {
         _l("Upload Sell Error: "+e+" request\n"+_jstr(req), level="FAIL")        
@@ -173,6 +175,7 @@ app.post('/upload_buy_token', (req, res) => {
             return
         }
         _l("Token: "+_jstr(token) +" being added", level="INPUT")
+        res.send({success: true})
         Cryptovesting.spawnBuyPythonScript(token, sendEvent)
     } catch (e) {
         _l("Upload Sell Error: "+e+" request\n"+_jstr(req), level="FAIL")        
