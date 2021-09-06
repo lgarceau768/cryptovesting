@@ -143,7 +143,8 @@ try:
     tx_token = _h(_swap_exact_tokens_for_tokens(_e(amount), amount_tokens, token, pancake_router_contract))
     returnVal = {
         'txHash': tx_token,
-        'initalAmount': amount_tokens
+        'amountToken': w3.fromWei(amount_tokens, 'ether'),
+        'amountEther': amount_tokens,
     }
     print("Success="+json.dumps(returnVal))
     logger.log("Success="+json.dumps(returnVal), level="SUCCESS")

@@ -189,11 +189,11 @@ function spawnBuyPythonScript(token, sendEvent, _l) {
             let resultVal = stringVal.split("=")[1]
             _l("Buy Success, resultVal: "+_jstr(resultVal), level="BUYSUCCESS")
             sendEvent({
-                message: 'Bought token '+token+' |'+resultVal['initalAmount'].toString(),
+                message: 'Bought token '+token+' |'+resultVal['amountToken'].toString(),
                 category: 'IMPT'
             })
-            spawnTokenWatcher(token, BNB_AMT_ETHER, resultVal['initalAmount'], sendEvent, _l)
-            token_balances(token, resultVal['initalAmount'], sendEvent, _l)
+            spawnTokenWatcher(token, BNB_AMT_ETHER, resultVal['amountEther'], sendEvent, _l)
+            token_balances(token, resultVal['amountEther'], sendEvent, _l)
         } else {
             let failResult = stringVal.split("=")
             sendEvent({

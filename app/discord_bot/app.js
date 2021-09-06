@@ -130,12 +130,48 @@ function createImptMessage(event) {
     let timestamp = event.timestamp
     let message = event.message.split('|')[0]
     let data = event.message.split('|')[1]
+    let DataType = "Reply"
+    // handle tx / contract replies nicely
+    if(data.indexOf('0x') != -1){
+        data = data.split('0x')[1]
+        data = "0x" + data
+
+        switch (data.length) {
+            case 66:
+                // transaction address
+                DataType = "Bincance Transaction"
+                data = "https://bscscan.com/tx/" + data
+                break;
+            
+            case 42:
+                // token adddress
+                DataType = "Binance Contract / Token"
+                data = "https://bscscan.com/address/" + data
+                break
+            default:
+                break;
+        }
+    }
+    if(data.indexOf('{') != -1) {
+        // interpret as json
+        try {
+            data = JSON.parse(data)
+            if(data.hasOwnProperty('token') && data.hasOwnProperty('amt')) {
+                DataType = "Info"
+                data = "Selling " + data['amt'] + "\nhttps://bscscan.com/address/" + data['token']
+            }
+        } catch (err) {
+            DataType = "Reply"
+            data = event.message.split('|')[1]
+        }
+    }
+
     let messageRet = new Discord.MessageEmbed()
         .setColor('#4DFF4D')
         .setTitle('Important')
         .setDescription(message)
         .addField('Timestamp', timestamp)
-        .addField('Data', data)
+        .addField(DataType, data)
         .setTimestamp();
     return messageRet
 }
