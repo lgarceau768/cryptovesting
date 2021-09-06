@@ -23,8 +23,9 @@ const {
 const date = new Date()
 // INFO pull token from workerData or args
 const token = getWorkerData(workerData, process, isMainThread)
+console.log(token)
 let pathLog = ""
-pathLog = path.join(__dirname,'logs', "sniperWorker_" + token + "_"+ Date.now() + ".log")
+pathLog = path.join(__dirname,'logs', "sniperWorker_" + token.toString() + "_"+ Date.now() + ".log")
 init(pathLog, "newSniperWorker.js")
 
 

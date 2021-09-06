@@ -215,6 +215,7 @@ function spawnBuyPythonScript(token, sendEvent, _l) {
         if(successIndex != -1){
             let resultVal = stringVal.split("=")[1]
             _l("Buy Success, resultVal: "+_jstr(resultVal), level="BUYSUCCESS")
+            resultVal = JSON.parse(resultVal)
             sendEvent({
                 message: 'Bought token '+token+' |'+resultVal['amountToken'].toString(),
                 category: 'IMPT'
