@@ -141,9 +141,10 @@ try:
     # INFO SLIPPAGE HERE
     logger.log('Buying token')
     tx_token = _h(_swap_exact_tokens_for_tokens(_e(amount), amount_tokens, token, pancake_router_contract))
+    tokenValNice = w3.fromWei(amount_tokens, 'ether')
     returnVal = {
         'txHash': tx_token,
-        'amountToken': w3.fromWei(amount_tokens, 'ether'),
+        'amountToken': str(tokenValNice),
         'amountEther': amount_tokens,
     }
     print("Success="+json.dumps(returnVal))
