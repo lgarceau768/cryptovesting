@@ -144,24 +144,27 @@ function createImptMessage(event) {
             DataType = "Reply"
             data = event.message.split('|')[1]
         }
-    } else if(data.indexOf('0x') != -1){
-        data = data.split('0x')[1]
-        data = "0x" + data
+    } else {
+        data = data.replace('"', '')
+        if(data.indexOf('0x') != -1){
+            data = data.split('0x')[1]
+            data = "0x" + data
 
-        switch (data.length) {
-            case 66:
-                // transaction address
-                DataType = "Bincance Transaction"
-                data = "https://bscscan.com/tx/" + data
-                break;
-            
-            case 42:
-                // token adddress
-                DataType = "Binance Contract / Token"
-                data = "https://bscscan.com/address/" + data
-                break
-            default:
-                break;
+            switch (data.length) {
+                case 66:
+                    // transaction address
+                    DataType = "Bincance Transaction"
+                    data = "https://bscscan.com/tx/" + data
+                    break;
+                
+                case 42:
+                    // token adddress
+                    DataType = "Binance Contract / Token"
+                    data = "https://bscscan.com/address/" + data
+                    break
+                default:
+                    break;
+            }
         }
     }
 
