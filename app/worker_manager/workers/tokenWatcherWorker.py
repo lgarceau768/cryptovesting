@@ -101,13 +101,6 @@ while currentBNB <= targetBNB:
         currentBNB = ratioObj['bnb']
         logger.log("Current Ratio: %s pass?: %s" % (str(currentBNB), str(currentBNB >= targetBNB)), level="INFO")
         if currentBNB >= targetBNB:
-            if((((currentBNB-previousBNB) / previousBNB) * 100) > MOON_ALERT){
-                # send event
-                r = requests.post('http://25.89.250.119:4041/upload_event', 
-                data=json.dumps({'message': 'Token '+token+' to BNB increased by 25 current BNB '+currentBNB+' previous '+previousBNB,
-                        'category': 'IMPT'
-                }), headers={'Content-Type': 'application/json'});
-            }
             if(targetBNB == (initialAmountBNB * MOON_PERCENT)):
                 logger.log('Moon occured on token returning again', level="MOON")
                 logger.log(str(currentBNB), level="MOON")   
