@@ -64,7 +64,7 @@ approve = sellTokenContract.functions.approve(panRouterContractAddress, balance)
 
 signed_txn = web3.eth.account.sign_transaction(approve, private_key='d4f44d00b1995222dde4ce2d39ce177c78030628c0a9536e0f99c904ff74bebb')
 tx_token = web3.eth.send_raw_transaction(signed_txn.rawTransaction)
-#print("Approved: " + web3.toHex(tx_token))
+logger.log("Approved: " + web3.toHex(tx_token))
 
 #Wait after approve 10 seconds before sending transaction
 time.sleep(10)

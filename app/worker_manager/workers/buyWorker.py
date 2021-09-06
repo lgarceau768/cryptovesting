@@ -135,6 +135,7 @@ def _swap_exact_tokens_for_tokens(amt_WBNB, amt_token, token, contract):
 try:
     logger.log("Approving the swap", level="APPROVE")
     _approve(_e(amount), wbnb_address, pancakeswap_router_address)
+    time.sleep(5)
     logger.log('Getting amounts out', level="INFO")
     amount_bnb, amount_tokens = _get_amounts_out(_e(amount), token, pancake_router_contract)
     # INFO SLIPPAGE HERE
