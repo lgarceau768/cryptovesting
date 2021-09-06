@@ -15,9 +15,6 @@ const {
 } = shared()
 const { Worker } = require('worker_threads')
 
-// Start Logger
-let logFilePath = path.join(__dirname, 'logs', 'workerSpawnFile_ ' + Date.now().toString() + '.log')
-init(logFilePath, "workerSpawnFile_")
 
 // Import constants
 const { 
@@ -42,7 +39,7 @@ function _t() {
 }
 
 // INFO spawn sell worker
-function spawnSellWorker(token, amt, sendEvent) {
+function spawnSellWorker(token, amt, sendEvent, _l) {
     const constant_values = {
         NET: BINANCE_NET,
         TOKEN: token,
@@ -103,7 +100,7 @@ function spawnSellWorker(token, amt, sendEvent) {
 }
 
 // INFO spawn token watcher
-function spawnTokenWatcher(token, amtBNB, amtToken, sendEvent) {
+function spawnTokenWatcher(token, amtBNB, amtToken, sendEvent, _l) {
     const constant_values = {
         NET: BINANCE_NET,
         AMOUNT: amtBNB,
@@ -159,7 +156,7 @@ function spawnTokenWatcher(token, amtBNB, amtToken, sendEvent) {
 }
 
 // INFO buy token with bnb
-function spawnBuyPythonScript(token, sendEvent) {
+function spawnBuyPythonScript(token, sendEvent, _l) {
     // FIXME move bnb amount higher
     const constant_values = {
         SLIPPAGE: SLIPPAGE,
@@ -242,7 +239,7 @@ function token_balances(token, amt, sendEvent, op="add") {
 }
 
 // INFO function to spawn worker
-function spawnWorker(workerInfo, onMessage, sendEvent) {
+function spawnWorker(workerInfo, onMessage, sendEvent, _l) {
     let workerBasePath = path.join(__dirname, "workers")
     let workerName = workerInfo["worker"]
     let workerPath = path.join(workerBasePath, workerName)

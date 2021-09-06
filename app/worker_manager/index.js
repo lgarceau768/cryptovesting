@@ -14,10 +14,10 @@ let date = new Date().toISOString()
 let path = ""
 try {
     path= "/home/fullsend/cryptovesting/app/worker_manager/logs/cryptovestingAPI_" + date + ".log"
-    init(path)
+    init(path, "cryptovestingAPI")
 } catch {
     path = 'logs/cryptovestingAPI_' + Date.now() + '.log'
-    init(path)
+    init(path, "cryptovestingAPI")
 }
 let events = []
 const _jstr = (json_dict) => {
@@ -62,11 +62,9 @@ function sendEvent(event) {
         let newEvent = event
         if(newEvent == null) {
             _l("Upload event issue null value", level="INPUTERROR")
-            res.send({"res": "Fail", "error": "incorrect event posted"})
             return
         }
         events.push(newEvent)
-        res.send({"res": "OK"})
     } catch (e) {        
         _l("Upload Event Error: "+e+" request\n"+_jstr(req), level="FAIL")
     }
@@ -104,9 +102,9 @@ app.post('/upload_token', (req, res) => {
         Cryptovesting.spawnWorker({
             workerData: token,
             worker: 'contractCheckWorker.js'
-        }, (res) => {
-            _l('Contract Check worker result '+res.toString(), level="CONTRACT")
-        }, sendEvent)
+        }, (response) => {
+            _l('Contract Check worker result '+response.toString(), level="CONTRACT")
+        }, sendEvent, _l)
     } catch (e) {
         _l("Upload Error: "+e+" request\n"+_jstr(req), level="FAIL")
     }
@@ -132,11 +130,11 @@ app.post('/upload_token_bypass', (req, res) => {
         }, (reply) => {
             if(reply.indexOf('Mint=') != -1){
                 let token = reply.split('Mint=')[1]
-                Cryptovesting.spawnBuyPythonScript(token)
+                Cryptovesting.spawnBuyPythonScript(token, sendEvent, _l)
             } else {
                 _l('Unknown Sniper reply: '+reply, level="SNIPER")
             }
-        }, sendEvent)
+        }, sendEvent, _l)
     } catch (e) {
         _l("Upload Bypass Error: "+e+" request\n"+_jstr(req), level="FAIL")        
     }
@@ -156,7 +154,7 @@ app.post('/upload_sell_token', (req, res) => {
         }
         _l("Token: "+_jstr(token) +" being added", level="INPUT")
         res.send({success: true})
-        Cryptovesting.spawnSellWorker(token['token'], token['amt'], sendEvent)
+        Cryptovesting.spawnSellWorker(token['token'], token['amt'], sendEvent, _l)
     } catch (e) {
         _l("Upload Sell Error: "+e+" request\n"+_jstr(req), level="FAIL")        
     }
@@ -176,7 +174,7 @@ app.post('/upload_buy_token', (req, res) => {
         }
         _l("Token: "+_jstr(token) +" being added", level="INPUT")
         res.send({success: true})
-        Cryptovesting.spawnBuyPythonScript(token, sendEvent)
+        Cryptovesting.spawnBuyPythonScript(token, sendEvent, _l)
     } catch (e) {
         _l("Upload Sell Error: "+e+" request\n"+_jstr(req), level="FAIL")        
     }
