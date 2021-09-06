@@ -64,6 +64,7 @@ function sendEvent(event) {
             _l("Upload event issue null value", level="INPUTERROR")
             return
         }
+        newEvent.timestamp = new Date().toISOString()
         events.push(newEvent)
     } catch (e) {        
         _l("Upload Event Error: "+e+" request\n"+_jstr(req), level="FAIL")
