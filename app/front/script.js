@@ -55,7 +55,7 @@ window.addEventListener('load', () => {
                     })
                 })
                 let data = await response.json();
-                if(data["res"] == "OK"){
+                if(data["success"]){
                     alert('Added!')
                 }
             } catch (err) {
@@ -87,7 +87,7 @@ window.addEventListener('load', () => {
                     })
                 })
                 let data = await response.json();
-                if(data["res"] == "OK"){
+                if(data["success"]){
                     alert('Added!')
                 }
             } catch (err) {
@@ -119,7 +119,7 @@ window.addEventListener('load', () => {
                     })
                 })
                 let data = await resp.json();
-                if(data['res'] == 'OK'){
+                if(data["success"]){
                     alert('Selling token')
                 }
             } catch (err) {
@@ -149,7 +149,7 @@ window.addEventListener('load', () => {
                     })
                 })
                 let data = await resp.json();
-                if(data['res'] == 'OK'){
+                if(data["success"]){
                     alert('Buying token')
                 }
             } catch (err) {
