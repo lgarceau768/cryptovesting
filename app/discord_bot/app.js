@@ -132,7 +132,19 @@ function createImptMessage(event) {
     let data = event.message.split('|')[1]
     let DataType = "Reply"
     // handle tx / contract replies nicely
-    if(data.indexOf('0x') != -1){
+    if(data.indexOf('{') != -1) {
+        // interpret as json
+        try {
+            data = JSON.parse(data)
+            if(data.hasOwnProperty('token') && data.hasOwnProperty('amt')) {
+                DataType = "Info"
+                data = "Selling " + data['amt'] + "\nhttps://bscscan.com/address/" + data['token']
+            }
+        } catch (err) {
+            DataType = "Reply"
+            data = event.message.split('|')[1]
+        }
+    } else if(data.indexOf('0x') != -1){
         data = data.split('0x')[1]
         data = "0x" + data
 
@@ -150,19 +162,6 @@ function createImptMessage(event) {
                 break
             default:
                 break;
-        }
-    }
-    if(data.indexOf('{') != -1) {
-        // interpret as json
-        try {
-            data = JSON.parse(data)
-            if(data.hasOwnProperty('token') && data.hasOwnProperty('amt')) {
-                DataType = "Info"
-                data = "Selling " + data['amt'] + "\nhttps://bscscan.com/address/" + data['token']
-            }
-        } catch (err) {
-            DataType = "Reply"
-            data = event.message.split('|')[1]
         }
     }
 
