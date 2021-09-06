@@ -9,6 +9,7 @@ const { app: Cryptovesting } = require('./app');
 const { _l, init } = require("./workers/scripts/logger.js");
 const IP = '25.89.250.119' //'192.168.1.224'
 const path = require('path');
+const fs = require('fs')
 
 // INFO setup logger
 let date = new Date().toISOString()
