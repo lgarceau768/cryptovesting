@@ -53,7 +53,7 @@ function spawnSellWorker(token, amt, sendEvent, _l) {
     const sellProcess = spawn('python3', [pathFile, ...ARGS])
     _l("Sell worker spawned for token: "+token+"\n"+_jstr(ARGS), level="SELL")
     sendEvent({
-        message: 'Spawning sell on |'+_jstr({token, amt}),
+        message: 'Spawning sell on |'+token,
         category: 'IMPT'
     })
     sellProcess.stdout.on('data', (data) => {
