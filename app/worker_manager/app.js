@@ -58,8 +58,10 @@ function spawnSellWorker(token, amt, sendEvent, _l) {
     })
     sellProcess.stdout.on('data', (data) => {
         try {
+            _l('Sell Reply: '+data, level="SELLREPLY")
             if(data.indexOf('=') == -1) return
             let stringVal = data.toString().trim()
+            _l('Sell Reply: '+data, level="SELLREPLY")
             let successIndex = stringVal.indexOf('Success=')
             if(successIndex != -1) {
                 // INFO remove token from balances tracking table      
@@ -123,6 +125,7 @@ function spawnTokenWatcher(token, amtBNB, amtToken, sendEvent, _l) {
         category: 'IMPT'
     })
     watchProcess.stdout.on('data', (data) => {
+        _l('Watcher Reply: '+data, level="WATCHERREPLY")
         if(data.indexOf('=') == -1) return
         let stringVal = data.toString().trim()
         let successIndex = stringVal.indexOf('Success=')

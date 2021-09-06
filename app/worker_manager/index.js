@@ -129,6 +129,7 @@ app.post('/upload_token_bypass', (req, res) => {
             workerData: token,
             worker: 'sniperWorker.js'
         }, (reply) => {
+            _l('Worker Reply: '+reply, level="WORKERREPLY")
             if(reply.indexOf('Mint=') != -1){
                 let token = reply.split('Mint=')[1]
                 Cryptovesting.spawnBuyPythonScript(token, sendEvent, _l)
