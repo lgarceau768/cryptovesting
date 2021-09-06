@@ -175,7 +175,7 @@ app.post('/upload_buy_token', (req, res) => {
         }
         _l("Token: "+_jstr(token) +" being added", level="INPUT")
         res.send({success: true})
-        Cryptovesting.spawnBuyPythonScript(token, sendEvent, _l)
+        Cryptovesting.spawnBuyPythonScript(token['token'], sendEvent, _l)
     } catch (e) {
         _l("Upload Sell Error: "+e+" request\n"+_jstr(req), level="FAIL")        
     }
