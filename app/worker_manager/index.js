@@ -217,9 +217,9 @@ persistedCoins['watching'].forEach((token) => {
     Cryptovesting.spawnTokenWatcher(tokenAddress, bnbAmount, tokenAmount, sendEvent, _l)
 })
 persistedCoins['sniping'].forEach((token) => {
-    _l('Read persisted token: '+token+ " was sniping, respawning sniper", level="PERSIST")
+    _l('Read persisted token: '+token.toString()+ " was sniping, respawning sniper", level="PERSIST")
     Cryptovesting.spawnWorker({
-        workerData: token,
+        workerData: token.toString(),
         worker: 'sniperWorker.js'
     }, (reply) => {
         _l('Worker Reply: '+reply, level="WORKERREPLY")
