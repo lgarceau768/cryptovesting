@@ -1,0 +1,124 @@
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <style>
+    #container {
+  position: relative;
+  width: 894px;
+  height: 333px;
+
+  background: radial-gradient(50% 50% at 50% 50%, #222222 0%, #000000 100%);
+  border-radius: 15px;
+}
+
+#title {
+  position: absolute;
+  width: 230px;
+  height: 38px;
+  left: 77px;
+  top: 8px;
+
+  font-family: Roboto Condensed;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 28px;
+  text-decoration-line: underline;
+
+  color: #ffffff;
+}
+
+#labels {
+  position: absolute;
+  width: 95px;
+  height: 63px;
+  left: 0px;
+  top: 114px;
+
+  font-family: Roboto Condensed;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 17px;
+  line-height: 20px;
+  text-align: right;
+
+  color: #ffffff;
+}
+
+#date {
+  position: absolute;
+  width: 81px;
+  height: 17px;
+  left: 104px;
+  top: 154px;
+
+  font-family: Roboto Condensed;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 17px;
+  line-height: 20px;
+  text-align: right;
+
+  color: #ffffff;
+}
+
+#tokenCount {
+  position: absolute;
+  width: 81px;
+  height: 17px;
+  left: 104px;
+  top: 136px;
+
+  font-family: Roboto Condensed;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 17px;
+  line-height: 20px;
+  text-align: right;
+
+  color: #ffffff;
+}
+
+#ethersCount {
+  position: absolute;
+  width: 81px;
+  height: 17px;
+  left: 104px;
+  top: 117px;
+
+  font-family: Roboto Condensed;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 17px;
+  line-height: 20px;
+  text-align: right;
+
+  color: #ffffff;
+}
+
+#embed {
+  position: absolute;
+  width: 612px;
+  height: 222px;
+  left: 237px;
+  top: 80px;
+
+  background: url(image.png);
+  border-radius: 12px;
+}
+    </style>
+    </head>
+    <body>
+    <div id="container">
+  <p id="title">Token Balance Report</p>
+  <p id="labels">Ethers: <br>Token Count: Date:</p>
+  <p id="date">$date</p>
+  <p id="tokenCount">$tokenCount</p>
+  <p id="ethersCount">$etherCount</p>
+  <!--https://explorer.bitquery.io/bsc/token/0x1d2f0da169ceb9fc7b3144628db156f3f6c60dbe-->
+  <iframe src="https://explorer.bitquery.io/bsc/token/$address" id="embed"/>
+</div>
+    </body>
+</html>

@@ -7,6 +7,7 @@ const pastebin = require('pastebin-js')
 const fse = require('fs-extra');
 const { spawn } = require('child_process')
 const web3 = require('web3')
+const nodeHtmlToImage = require('node-html-to-image')
 
 const client = new Discord.Client()
 let bot_updates_channel = undefined
@@ -339,6 +340,24 @@ function findLogAgainstStr(files, str) {
     return retFile
 }
 
+async function sendTokenBalanceReport(data, token) {
+    let balanceHmtl = fs.readFileSync(path.join(__dirname, 'msg_html', 'balance_report.html'), 'utf-8')
+    balanceHmtl = balanceHmtl.replace('$date', new Date().toISOString())
+    balanceHmtl = balanceHmtl.replace('$tokenCount', data['token'])
+    balanceHmtl = balanceHmtl.replace('$etherCount', data['ethers'].substring(0, 6))
+    balanceHmtl = balanceHmtl.replace('$address', token)
+    const image = await nodeHtmlToImage({
+        html: balanceHmtl,
+        quality: 100,
+        type: 'jpeg',
+        puppeteerArgs: {
+            args: ['--no-sandbox'],
+        },
+        encoding: 'buffer',
+    })
+    bot_updates_channel.send(new Discord.MessageAttachment(image, 'tokenBalanceReport_'+token+'.jpeg'))
+}
+
 // INFO setup function to loop for printing events to the channel
 setInterval(getEvents, 3000)
 
@@ -477,7 +496,7 @@ client.on('message', async (msg) => {
                     let tokenToCheck = restOfCommands[2]
                     let result = await getTokenBalance(tokenToCheck)
                     if(result['success']){
-                        msg.channel.send(JSON.stringify(result['result']))
+                        sendTokenBalanceReport(result['result'], tokenToCheck)
                     } else {
                         msg.channel.send('Failed to get the balance because\n'+result['err'])
                     }
