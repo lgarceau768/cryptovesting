@@ -275,9 +275,10 @@ function spawnWorker(workerInfo, onMessage, sendEvent, _l) {
     let workerName = workerInfo["worker"]
     let workerPath = path.join(workerBasePath, workerName)
     let workerData = workerInfo["workerData"]
-    _l("Worker Spawned: "+workerName+ " with data: "+_jstr(workerData)+ " and base info: "+_jstr(workerInfo), level="SPAWN")
+    console.log(workerData)
+    _l("Worker Spawned: "+workerName+ " with data: "+workerData.toString()+ " and base info: "+_jstr(workerInfo), level="SPAWN")
     sendEvent({
-        message: workerName+" spawned on token |" + _jstr(workerData),
+        message: workerName+" spawned on token |" + workerData.toString(),
         category: 'IMPT'
     })
     console.log(workerPath)
