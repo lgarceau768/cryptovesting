@@ -144,7 +144,7 @@ app.post('/upload_token_bypass', (req, res) => {
         }
         _l("Token: "+_jstr(token) +" being added", level="INPUT")
         res.send({success: true})
-        persistOp(token, op="add", table="sniping")
+        persistOp(token['tokenHash'], op="add", table="sniping")
         Cryptovesting.spawnWorker({
             workerData: token,
             worker: 'sniperWorker.js'
