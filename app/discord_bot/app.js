@@ -6,15 +6,12 @@ const fs = require('fs')
 const pastebin = require('pastebin-js')
 const fse = require('fs-extra');
 const { spawn } = require('child_process')
+const web3 = require('web3')
 
 const client = new Discord.Client()
 let bot_updates_channel = undefined
 const logPath = path.join(__dirname, 'logs', 'discordBot_'+ Date.now() + '.log')
 const availableLogs = {
-    'backHTML' : {
-        'path': '/home/fullsend/cryptovesting/app/back/logs',
-        'name': 'cryptovestingAPI'
-    },
     'discordBot' : {
         'path': '/home/fullsend/cryptovesting/app/discord_bot/logs',
         'name': 'discordBot'
@@ -45,6 +42,11 @@ const availableLogs = {
     }
 }
 init(logPath, 'Cryptovesting Discord Bot')
+
+// setup web3 for getting token balances
+const w3 = new web3(new web3.providers.HttpProvider('https://bsc-dataseed.binance.org/'))
+const ourAddress = "0x01420A7b545ac6c99F2b91e9f73464AA69C6E248"
+const balanceAbi = '[{"inputs":[{"internalType":"string","name":"_NAME","type":"string"},{"internalType":"string","name":"_SYMBOL","type":"string"},{"internalType":"uint256","name":"_DECIMALS","type":"uint256"},{"internalType":"uint256","name":"_supply","type":"uint256"},{"internalType":"uint256","name":"_txFee","type":"uint256"},{"internalType":"uint256","name":"_lpFee","type":"uint256"},{"internalType":"uint256","name":"_MAXAMOUNT","type":"uint256"},{"internalType":"uint256","name":"SELLMAXAMOUNT","type":"uint256"},{"internalType":"address","name":"routerAddress","type":"address"},{"internalType":"address","name":"tokenOwner","type":"address"}],"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"owner","type":"address"},{"indexed":true,"internalType":"address","name":"spender","type":"address"},{"indexed":false,"internalType":"uint256","name":"value","type":"uint256"}],"name":"Approval","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"uint256","name":"minTokensBeforeSwap","type":"uint256"}],"name":"MinTokensBeforeSwapUpdated","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"previousOwner","type":"address"},{"indexed":true,"internalType":"address","name":"newOwner","type":"address"}],"name":"OwnershipTransferred","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"uint256","name":"tokensSwapped","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"ethReceived","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"tokensIntoLiqudity","type":"uint256"}],"name":"SwapAndLiquify","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"bool","name":"enabled","type":"bool"}],"name":"SwapAndLiquifyEnabledUpdated","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"from","type":"address"},{"indexed":true,"internalType":"address","name":"to","type":"address"},{"indexed":false,"internalType":"uint256","name":"value","type":"uint256"}],"name":"Transfer","type":"event"},{"inputs":[],"name":"_liquidityFee","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"_maxTxAmount","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"_owner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"_taxFee","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"owner","type":"address"},{"internalType":"address","name":"spender","type":"address"}],"name":"allowance","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"spender","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"approve","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"account","type":"address"}],"name":"balanceOf","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"claimTokens","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"decimals","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"spender","type":"address"},{"internalType":"uint256","name":"subtractedValue","type":"uint256"}],"name":"decreaseAllowance","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"tAmount","type":"uint256"}],"name":"deliver","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"account","type":"address"}],"name":"excludeFromFee","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"account","type":"address"}],"name":"excludeFromReward","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"geUnlockTime","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"account","type":"address"}],"name":"includeInFee","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"account","type":"address"}],"name":"includeInReward","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"spender","type":"address"},{"internalType":"uint256","name":"addedValue","type":"uint256"}],"name":"increaseAllowance","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"account","type":"address"}],"name":"isExcludedFromFee","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"account","type":"address"}],"name":"isExcludedFromReward","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"time","type":"uint256"}],"name":"lock","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"name","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"numTokensSellToAddToLiquidity","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tAmount","type":"uint256"},{"internalType":"bool","name":"deductTransferFee","type":"bool"}],"name":"reflectionFromToken","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"renounceOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"liquidityFee","type":"uint256"}],"name":"setLiquidityFeePercent","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"maxTxPercent","type":"uint256"}],"name":"setMaxTxPercent","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"swapNumber","type":"uint256"}],"name":"setNumTokensSellToAddToLiquidity","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"bool","name":"_enabled","type":"bool"}],"name":"setSwapAndLiquifyEnabled","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"taxFee","type":"uint256"}],"name":"setTaxFeePercent","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"swapAndLiquifyEnabled","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"symbol","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"rAmount","type":"uint256"}],"name":"tokenFromReflection","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"totalFees","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"totalSupply","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"recipient","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"transfer","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"sender","type":"address"},{"internalType":"address","name":"recipient","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"transferFrom","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"newOwner","type":"address"}],"name":"transferOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"uniswapV2Pair","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"uniswapV2Router","outputs":[{"internalType":"contract IUniswapV2Router02","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"unlock","outputs":[],"stateMutability":"nonpayable","type":"function"},{"stateMutability":"payable","type":"receive"}]'
 
 // INFO need to transfer env.json manually
 const IP = '25.89.250.119' //'192.168.1.224'
@@ -192,6 +194,95 @@ function createBalanceMessage(event) {
     return messageRet
 }
 
+const postToken = async (contractHash) => {
+    let data = {
+        host: 'http://'+IP+':4041',
+        path: '/upload_token',
+        method: 'POST'
+    }
+    let response = await fetch(data.host+data.path, {
+        method: data.method,
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({contractHash})
+    })
+    return await response.json()
+} 
+
+const postTokenByPass = async (contractHash) => {
+    let data = {
+        host: 'http://'+IP+':4041',
+        path: '/upload_token_bypass',
+        method: 'POST'
+    }
+    let response = await fetch(data.host+data.path, {
+        method: data.method,
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({contractHash})
+    })
+    return await response.json()
+} 
+
+const getTokenBalance = async (contractHash) => {
+    // TODO implement token balance retrieval with a table of 
+    // ethers, usd, amount token
+    try {
+        let tokenContract = new w3.eth.Contract(JSON.parse(balanceAbi), contractHash)
+        let balance = await tokenContract.methods.balanceOf(ourAddress).call()
+        let vals = {
+            'ethers': balance.toString(),
+            'token': w3.utils.fromWei(balance.toString()).toString()
+        }
+        return {
+            'success': true,
+            'result': vals
+        }
+    }  catch (err) {
+        return {
+            'success': false,
+            'err': err.toString()
+        }
+    }
+}
+
+const postTokenSell = async (contractHash, amount) => {
+    let data = {
+        host: 'http://'+IP+':4041',
+        path: '/upload_sell_token',
+        method: 'POST'
+    }
+    let response = await fetch(data.host+data.path, {
+        method: data.method,
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            token: contractHash,
+            amt: amount
+        })
+    })
+    return await response.json()
+} 
+
+const postLiveToken = async (contractHash) => {
+    let data = {
+        host: 'http://'+IP+':4041',
+        path: '/upload_buy_token',
+        method: 'POST'
+    }
+    let response = await fetch(data.host+data.path, {
+        method: data.method,
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({token: contractHash})
+    })
+    return await response.json()
+} 
+
 // INFO function to request events from backend
 const getEvents = async () => {
     let data = {
@@ -248,22 +339,6 @@ function findLogAgainstStr(files, str) {
     return retFile
 }
 
-async function getAllLogs() {
-    let logs = {}
-    const updateLogs = (key, files) => logs[key] = {files} 
-    let promises = []
-    for (let key in availableLogs) {
-        if (Object.hasOwnProperty.call(availableLogs, key)) {
-            let el = availableLogs[key];
-            let files = await fse.readdir(el['path'])
-            if(files.length > 0) {
-                logs[key] = {files}
-            }
-        }
-    }
-    return logs
-}
-
 // INFO setup function to loop for printing events to the channel
 setInterval(getEvents, 3000)
 
@@ -273,124 +348,151 @@ client.on('ready', async () => {
 })
 
 client.on('message', async (msg) => {
-    if (msg.content.charAt(0) != IDENTIFIER) return
-    else msg.content = msg.content.substr(1)
+    if(msg.author.bot) {
+        return
+    }
+    if (msg.content.charAt(0) != IDENTIFIER) {
+        return
+    } else {
+        msg.content = msg.content.substr(1)
+    }
     _l('Message: '+msg.content, level="MESSAGE")
-    if (msg.content === 'ping') {
-        msg.reply('pong')
-    } else if (msg.content.indexOf('log') == 0) {
-        let content = msg.content.split(' ')
-        try {           
-            let justKeys = Object.keys(availableLogs)  
-            let subCommand = content[1]            
-            switch (subCommand) {
-                case 'help': 
-                    msg.channel.send('To use the log command use it like so')
-                    let commands = {
-                        'commands': {
-                            'help': {
-                                'description': 'Show the help menu',
-                                'example': '%log help'
-                            },
-                            'showAvailable': {
-                                'description': 'Show the available log ids call to upload a single log to pastebin',
-                                'example': '%log showAvailable'
-                            },
-                            'getLogs': {
-                                'description': 'Get all the available logs of the ids in the system, will return a large list to use in the single upload',
-                                'example': '%log getLogs'
-                            },
-                            'upload': {
-                                'description': 'Will upload a log based on the id it is passed and will optionally check the name of the file against the uploaded string',
-                                'examples' : [
-                                    {
-                                        'command': '%log upload manager',
-                                        'description': 'Will upload the most recent manager log file' 
-                                    },
-                                    {
-                                        'command': '%log upload sniper 2021-07-10T02:29:25.282Z',
-                                        'description': 'Will upload the log file containing the given string'
-                                    },
-                                    {
-                                        'command': '%log upload buy 0x000000000000000000000',
-                                        'description': 'Will upload the log file containing the given token address aka string'
-                                    }
-                                ]
-                            }
-                        }
-                    }
-                    msg.channel.send(_jstr(commands))                    
-                    break;
-                case 'showAvailable':
-                    msg.channel.send('Available logs ids to use')
-                    msg.channel.send(_jstr(justKeys))
-                    break;
-                case 'getLogs':
-                    const listLogs = spawn('sh' ,["/home/fullsend/cryptovesting/scripts/system_control/list_logs.sh"])
-                    listLogs.stdout.on('data', function (data) {
-                        console.log(data.toString())
-                        msg.channel.send(data.toString().replace(/.log/g, ''))
-                        clearTimeout(noTimeout)
-                    })
-                    const noTimeout = setTimeout(() => {
-                        console.log('No Logs')
-                        msg.channel.send('No Logs Found')
-                    }, 500)
-                    listLogs.stderr.on('data', function (data) {
-                        clearTimeout(noTimeout)
-                        msg.channel.send('Error getting logs')
-                        _l("Error getting logs: "+_jstr(data), level="ERROR")
-                    })
-                    return
-                    getAllLogs()
-                    .then((logs) => {
-                        console.log(logs)
-                        
-                    })
-                    break;
-                case 'upload':
-                    if (justKeys.indexOf(content[2]) != -1) {
-                        let pathFile = availableLogs[content[2]]['path']
-                        let files = fs.readdir(pathFile, (err, files) => {
-                            if(err) {
-                                _l("Error reading dir "+pathFile+" "+err, level="ERROR")
-                            } else {
-                                // now find the oldest file
-                                if (content.length == 4) {
-                                    let fileMatch = findLogAgainstStr(files, content[3])
-                                    if (fileMatch != undefined) {
-                                        uploadFileToPasteBin(pathFile, fileMatch)
-                                    } else {
-                                        msg.channel.send('No matching log file not found for '+content[2]+' and str '+content[3])
-                                    }
-                                } else {
-                                    let newestLog = findNewestLog(files)
-                                    // now read file
-                                    if (newestLog != undefined) {
-                                        uploadFileToPasteBin(pathFile, newestLog, msg)
-                                    } else {
-                                        msg.channel.send('No matching log file not found for '+content[2]+' and str '+content[3])
-                                    }
-                                    return
+    switch (msg.content.split(' ')[0]) {
+        case 'help':
+            msg.channel.send('Available topLevel commands are log, api \nlog corresponds to commands that have to do with the log files of the system\napi corresponds to the commands that directly interact with the cryptovesting api\nUse %[topLevelCommand] help to see more info')
+            break;
+        case 'log':
+            try {        
+                let content = msg.content.split(' ')   
+                let justKeys = Object.keys(availableLogs)  
+                let subCommand = content[1]            
+                switch (subCommand) {
+                    case 'help': 
+                        msg.channel.send('To use the log command use it like so')
+                        let commands = {
+                            'commands': {
+                                'help': {
+                                    'description': 'Show the help menu',
+                                    'example': '%log help'
+                                },
+                                'showAvailable': {
+                                    'description': 'Show the available log ids call to upload a single log to pastebin',
+                                    'example': '%log showAvailable'
+                                },
+                                'getLogs': {
+                                    'description': 'Get all the available logs of the ids in the system, will return a large list to use in the single upload',
+                                    'example': '%log getLogs'
+                                },
+                                'upload': {
+                                    'description': 'Will upload a log based on the id it is passed and will optionally check the name of the file against the uploaded string',
+                                    'examples' : [
+                                        {
+                                            'command': '%log upload manager',
+                                            'description': 'Will upload the most recent manager log file' 
+                                        },
+                                        {
+                                            'command': '%log upload sniper 2021-07-10T02:29:25.282Z',
+                                            'description': 'Will upload the log file containing the given string'
+                                        },
+                                        {
+                                            'command': '%log upload buy 0x000000000000000000000',
+                                            'description': 'Will upload the log file containing the given token address aka string'
+                                        }
+                                    ]
                                 }
                             }
+                        }
+                        msg.channel.send(_jstr(commands))                    
+                        break;
+                    case 'showAvailable':
+                        msg.channel.send('Available logs ids to use')
+                        msg.channel.send(_jstr(justKeys))
+                        break;
+                    case 'getLogs':
+                        const listLogs = spawn('sh' ,["/home/fullsend/cryptovesting/scripts/system_control/list_logs.sh"])
+                        listLogs.stdout.on('data', function (data) {
+                            console.log(data.toString())
+                            msg.channel.send(data.toString().replace(/.log/g, ''))
+                            clearTimeout(noTimeout)
                         })
+                        const noTimeout = setTimeout(() => {
+                            console.log('No Logs')
+                            msg.channel.send('No Logs Found')
+                        }, 500)
+                        listLogs.stderr.on('data', function (data) {
+                            clearTimeout(noTimeout)
+                            msg.channel.send('Error getting logs')
+                            _l("Error getting logs: "+_jstr(data), level="ERROR")
+                        })
+                        break;
+                    case 'upload':
+                        if (justKeys.indexOf(content[2]) != -1) {
+                            let pathFile = availableLogs[content[2]]['path']
+                            let files = fs.readdir(pathFile, (err, files) => {
+                                if(err) {
+                                    _l("Error reading dir "+pathFile+" "+err, level="ERROR")
+                                } else {
+                                    // now find the oldest file
+                                    if (content.length == 4) {
+                                        let fileMatch = findLogAgainstStr(files, content[3])
+                                        if (fileMatch != undefined) {
+                                            uploadFileToPasteBin(pathFile, fileMatch)
+                                        } else {
+                                            msg.channel.send('No matching log file not found for '+content[2]+' and str '+content[3])
+                                        }
+                                    } else {
+                                        let newestLog = findNewestLog(files)
+                                        // now read file
+                                        if (newestLog != undefined) {
+                                            uploadFileToPasteBin(pathFile, newestLog, msg)
+                                        } else {
+                                            msg.channel.send('No matching log file not found for '+content[2]+' and str '+content[3])
+                                        }
+                                        return
+                                    }
+                                }
+                            })
+                        } else {
+                            msg.channel.send('ID '+content[2]+' not found in showAvailable')
+                        }
+                        break;
+                    default:
+                        msg.channel.send('Subcommand '+content[1]+' not found')
+                        msg.channel.send('To use the log command use it like so')
+                        msg.channel.send('% log {availableKey} {token} // (without token will return most recent)')
+                        break;
+                }
+            } catch (err) {
+                msg.channel.send('Error using log '+err)
+                msg.channel.send('To use the log command use it like so')
+                msg.channel.send('% log {availableKey} {token} // (without token will return most recent)')
+            }
+            break;
+    
+        case 'api':
+            let restOfCommands = msg.content.split(' ')
+            let subcommand = restOfCommands[1];
+            switch (subcommand) {
+                case 'balance':
+                    let tokenToCheck = restOfCommands[2]
+                    let result = await getTokenBalance(tokenToCheck)
+                    if(result['success']){
+                        msg.channel.send(JSON.stringify(result['result']))
                     } else {
-                        msg.channel.send('ID '+content[2]+' not found in showAvailable')
+                        msg.channel.send('Failed to get the balance because\n'+result['err'])
                     }
                     break;
+            
                 default:
-                    msg.channel.send('Subcommand '+content[1]+' not found')
-                    msg.channel.send('To use the log command use it like so')
-                    msg.channel.send('% log {availableKey} {token} // (without token will return most recent)')
                     break;
             }
-        } catch (err) {
-            msg.channel.send('Error using log '+err)
-            msg.channel.send('To use the log command use it like so')
-            msg.channel.send('% log {availableKey} {token} // (without token will return most recent)')
-        }
+            break;
+        default:
+            msg.channel.send("Unknown command please use %help to see the commands")
+            break;
     }
+
+
 })
 
 client.login(env.BOT_TOKEN)
