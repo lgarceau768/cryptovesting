@@ -7,7 +7,7 @@ const pastebin = require('pastebin-js')
 const fse = require('fs-extra');
 const { spawn } = require('child_process')
 const web3 = require('web3')
-const nodeHtmlToImage = require('node-html-to-image')
+const puppeteer = require('puppeteer')
 
 const client = new Discord.Client()
 let bot_updates_channel = undefined
@@ -57,38 +57,48 @@ const IDENTIFIER = "%"
 const _jstr = (json_dict) => JSON.stringify(json_dict, null, 2)
 
 async function uploadFileToPasteBin(basePath, filePath) {
-    let text = await fs.readFileSync(path.join(basePath, filePath), 'utf8')
-    console.log(text)
-    let data = {
-        'api_dev_key': 'j1LhJqqjhwBSN2bVto0Ucb4el96v84Lv',
-        'api_paste_code': text,
-        'api_paste_name': filePath,
-        'api_option': 'paste',
-        'api_paste_private': '1'
-    }
-    var formBody = [];
-    for (var property in data) {
-        var encodedKey = encodeURIComponent(property);
-        var encodedValue = encodeURIComponent(data[property]);
-        formBody.push(encodedKey + "=" + encodedValue);
-    }
-    formBody = formBody.join("&");
-
-    fetch('https://pastebin.com/api/api_post.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
-            },
-            body: formBody
+    try {
+        let text = await fs.readFileSync(path.join(basePath, filePath), 'utf8')
+        console.log(text)
+        let data = {
+            'api_dev_key': 'j1LhJqqjhwBSN2bVto0Ucb4el96v84Lv',
+            'api_paste_code': text,
+            'api_paste_name': filePath,
+            'api_option': 'paste',
+            'api_paste_private': '1'
         }
-    ).then(async (res) => {
-        _l('Uploaded '+filePath+ ' to '+res)
-        let txt = await res.text()
-        bot_updates_channel.send('Uploaded '+filePath+' to url: '+txt)
-    }).catch((err) => {
-        _l('Error uploading '+filePath+' err '+err)
-        bot_updates_channel.send('Upload error')
-    })
+        var formBody = [];
+        for (var property in data) {
+            var encodedKey = encodeURIComponent(property);
+            var encodedValue = encodeURIComponent(data[property]);
+            formBody.push(encodedKey + "=" + encodedValue);
+        }
+        formBody = formBody.join("&");
+
+        fetch('https://pastebin.com/api/api_post.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+                },
+                body: formBody
+            }
+        ).then(async (res) => {
+            _l('Uploaded '+filePath+ ' to '+res)
+            let txt = await res.text()
+            bot_updates_channel.send('Uploaded '+filePath+' to url: '+txt)
+        }).catch((err) => {
+            _l('Error uploading '+filePath+' err '+err)
+            bot_updates_channel.send('Upload error')
+        })
+    } catch (err) {
+        _l('Upload log error: '+err, level="ERROR")
+        try {
+            bot_updates_channel.send('Upload error '+err)
+        } catch (err) {
+            _l("Error sending discord message", level="CRITICAL")
+        }
+    }
+    
 }
 
 function findNewestLog(files) {
@@ -208,7 +218,8 @@ const postToken = async (contractHash) => {
         },
         body: JSON.stringify({contractHash})
     })
-    return await response.json()
+    let reply = await response.json()
+    return reply;
 } 
 
 const postTokenByPass = async (contractHash) => {
@@ -341,21 +352,30 @@ function findLogAgainstStr(files, str) {
 }
 
 async function sendTokenBalanceReport(data, token) {
-    let balanceHmtl = fs.readFileSync(path.join(__dirname, 'msg_html', 'balance_report.html'), 'utf-8')
-    balanceHmtl = balanceHmtl.replace('$date', new Date().toISOString())
-    balanceHmtl = balanceHmtl.replace('$tokenCount', data['token'])
-    balanceHmtl = balanceHmtl.replace('$etherCount', data['ethers'].substring(0, 6))
-    balanceHmtl = balanceHmtl.replace('$address', token)
-    const image = await nodeHtmlToImage({
-        html: balanceHmtl,
-        quality: 100,
-        type: 'jpeg',
-        puppeteerArgs: {
-            args: ['--no-sandbox'],
-        },
-        encoding: 'buffer',
-    })
-    bot_updates_channel.send(new Discord.MessageAttachment(image, 'tokenBalanceReport_'+token+'.jpeg'))
+    try {
+        let balanceHmtl = fs.readFileSync(path.join(__dirname, 'msg_html', 'balance_report.html'), 'utf-8')
+        balanceHmtl = balanceHmtl.replace('$date', new Date().toISOString())
+        balanceHmtl = balanceHmtl.replace('$tokenCount', data['token'])
+        balanceHmtl = balanceHmtl.replace('$etherCount', data['ethers'].substring(0, 6))
+        balanceHmtl = balanceHmtl.replace('$address', token)
+        const browser = await puppeteer.launch();
+        const page = await browser.newPage();
+        await page.setContent(balanceHmtl)
+        await page.setViewport({
+            width: 894,
+            height: 333,
+            deviceScaleFactor: 1
+        });
+        let screenShotPath = path.join(__dirname, 'balance_reports', 'balance_report_'+token+'.jpeg')
+        await page.screenshot({
+            path: screenShotPath
+        })
+        bot_updates_channel.send(new Discord.MessageAttachment(fs.readFileSync(screenShotPath), 'tokenBalanceReport_'+token+'.jpeg'))
+    } catch (err) {
+        _l("Error sending token balance report: "+err, level="ERROR")
+        bot_updates_channel.send("Error uploading balance report: "+err)
+    }
+    
 }
 
 // INFO setup function to loop for printing events to the channel
