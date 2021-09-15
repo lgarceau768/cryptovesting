@@ -146,7 +146,7 @@ app.post('/upload_token_bypass', (req, res) => {
         res.send({success: true})
         persistOp(token['tokenHash'], op="add", table="sniping")
         Cryptovesting.spawnWorker({
-            workerData: token,
+            workerData: token['tokenHash'],
             worker: 'sniperWorker.js'
         }, (reply) => {
             _l('Worker Reply: '+reply, level="WORKERREPLY")
