@@ -4,11 +4,13 @@ from web3 import Web3
 import asyncio
 import sys
 import time
+from scripts import logManager as Logger
 
 # add your blockchain connection information
 bsc = 'https://bsc-dataseed.binance.org/'
 web3 = Web3(Web3.HTTPProvider(bsc))
-print(web3.isConnected())
+logger = Logger.LogManager("sniperWorker_"+str(sys.argv[1]), dirName="/home/fullsend/cryptovesting/app/worker_manager/workers/logs/")
+logger.log("Arguments " + str(sys.argv), level="STARTUP")
 
 # uniswap factory address and abi = pancakeswap factory
 uniswap_factory = '0xcA143Ce32Fe78f1f7019d7d551a6402fC5350c73'  #Testnet  #0x6725F303b657a9451d8BA641348b6761A6CC7a17
@@ -49,11 +51,17 @@ def handle_event(event):
 
 
     if(token0.upper().strip('"') == wbnb2 and token1.upper().strip('"') == tokenToBuy2):
-        print("pair detected")
+        print("Mint="+tokenToBuy2)
+        logger.log('Pair for our coin detected', level="SUCCESS")
+        logger.log('Pair: '+token0+'|'+token1, level="PAIR")
         sys.exit(1)
     elif(token0.upper().strip('"') == tokenToBuy2 and token1.upper().strip('"') == wbnb2):
-        print("pair detected")
+        print("Mint="+tokenToBuy2)
+        logger.log('Pair for our coin detected', level="SUCCESS")
+        logger.log('Pair: '+token0+'|'+token1, level="PAIR")
         sys.exit(1)
+    else:
+        logger.log('Pair: '+token0+'|'+token1, level="PAIR")
 
 
 # asynchronous defined function to loop
@@ -81,6 +89,8 @@ def main():
                 log_loop(event_filter,2 )))
                 # log_loop(block_filter, 2),
                 # log_loop(tx_filter, 2)))
+    except Exception as e:
+        print('Fail='+str(e));
     finally:
         # close loop to free up system resources
         loop.close()

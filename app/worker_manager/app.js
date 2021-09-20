@@ -118,6 +118,41 @@ function spawnSellWorker(token, amt, sendEvent, _l) {
     })
 }
 
+
+// INFO spawn sell worker
+function spawnSniperWorker(token, onMessage, sendEvent, _l) {
+    const constant_values = {
+        TOKEN: token,
+    }
+    const ARGS = [
+        constant_values.TOKEN
+    ]
+    const pathFile = path.join(__dirname, "workers/sniperWorker.py")
+    const sellProcess = spawn('python3', [pathFile, ...ARGS])
+    _l("Sniper worker spawned for token: "+token+"\n"+_jstr(ARGS), level="SNIPE")
+    sendEvent({
+        message: 'Spawning sniper on |'+token,
+        category: 'IMPT'
+    })
+    sellProcess.stdout.on('data', (data) => {
+        onMessage(data)
+    })    
+    sellProcess.stderr.on('data', (data) => {
+        _l("Sniper Exception: "+data, level="CRITICAL")
+        sendEvent({
+            message: 'Sniper Token Exception |'+data,
+            category: 'FAIL=sell'
+        })
+    })
+    sellProcess.on('error', (err) => {
+        _l("Sniper Error"+err, level="CRITICAL")
+        sendEvent({
+            message: 'Sniper Token Error |0',
+            category: 'FAIL=sell'
+        })
+    })
+}
+
 // INFO spawn token watcher
 function spawnTokenWatcher(token, amtBNB, amtToken, sendEvent, _l) {
     persistOp({
@@ -305,7 +340,8 @@ let app = {
     spawnSellWorker,
     spawnTokenWatcher,
     spawnWorker,
-    token_balances
+    token_balances,
+    spawnSniperWorker
 }
 
 module.exports = {app}

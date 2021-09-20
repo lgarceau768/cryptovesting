@@ -145,10 +145,8 @@ app.post('/upload_token_bypass', (req, res) => {
         _l("Token: "+_jstr(token) +" being added", level="INPUT")
         res.send({success: true})
         persistOp(token['tokenHash'], op="add", table="sniping")
-        Cryptovesting.spawnWorker({
-            workerData: token['tokenHash'],
-            worker: 'sniperWorker.js'
-        }, (reply) => {
+        Cryptovesting.spawnSniperWorker(token['tokenHash'], 
+        (reply) => {
             _l('Worker Reply: '+reply, level="WORKERREPLY")
             if(reply.indexOf('Mint=') != -1){
                 persistOp(token, op='remove', table='sniping')
