@@ -79,7 +79,7 @@ function persistOp(data, op, table){
     if(op == 'add') {
         let foundIndex = -1;
         for(let i = 0; i < existingPersistData[table].length; i++){
-            _l('compare: '+existingPersistData[table][i]+ ' | '+_jstr(data), level="DEBUG")
+            _l('compare: '+_jstr(existingPersistData[table][i])+ ' | '+_jstr(data), level="DEBUG")
             if(existingPersistData[table][i] == data){
                 foundIndex = i;
             }
