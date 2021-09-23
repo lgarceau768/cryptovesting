@@ -101,14 +101,16 @@ async function uploadFileToPasteBin(basePath, filePath) {
     
 }
 
-function findNewestLog(files) {
+function findNewestLog(files, delimiter) {
     let oldestTime = parseInt(files[0].split('_')[1].replace('.log', ''))
     let oldestFile = files[0]
     files.forEach(file => {
-        let split = file.split('_')
-        if (parseInt(split[1].replace('.log', '')) >= oldestTime) {
-            oldestFile = file
-            oldestTime = parseInt(split[1].replace('.log', ''))
+        if(file.indexOf(delimiter) != -1){
+            let split = file.split('_')
+            if (parseInt(split[1].replace('.log', '')) >= oldestTime) {
+                oldestFile = file
+                oldestTime = parseInt(split[1].replace('.log', ''))
+            }
         }
     })
     return oldestFile
@@ -125,7 +127,7 @@ function createFailMessage(event) {
     // now to upload the log file
     fse.readdir(availableLogs[failee]['path'])
     .then((files) => {
-        let file = findNewestLog(files)
+        let file = findNewestLog(files, availableLogs[failee]['path'])
         console.log(file)
         uploadFileToPasteBin(availableLogs[failee]['path'], file)
     })    
