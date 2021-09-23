@@ -408,8 +408,14 @@ async function requestThenSuccess(promiseFunction, functionality) {
         .setTitle('API Call Success')
         .setDescription(functionality)
         .addField('Duration', (endTime-startTime).toString()+" seconds")
-        .addField('ReturnVal', _jstr(returnVal))
         .setTimestamp();
+        if(returnVal.hasOwnProperty('workers')){
+            let workers = returnVal['workers']
+            workers.forEach(worker => {
+                messageRet.addField(worker['name'], _jstr(worker['data']))
+                messageRet.addField(worker['name'], worker['timestamp'])
+            })
+        }
         bot_updates_channel.send(messageRet)
     } else {        
         let messageRet = new Discord.MessageEmbed()
