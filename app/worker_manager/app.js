@@ -8,7 +8,7 @@ const { spawn } = require('child_process');
 const fetch = require('node-fetch');
 const path = require('path')
 const { _l, init } = require('./workers/scripts/logger')
-const { shared } = require('./workers/scripts/shared')
+const { shared, my_acc_testnet } = require('./workers/scripts/shared')
 const fs = require('fs')
 const {
     _jstr
@@ -339,7 +339,7 @@ function getInvestedTokens() {
 }
 
 // INFO function to add / remove token from token_balances
-function token_balances(token, amt, op, sendEvent) {
+async function token_balances(token, amt, op, sendEvent)  {
     let web3 = new Web3('https://bsc-dataseed.binance.org')
     let amountChanged = web3.utils.fromWei(amt.toString(), 'ether')
     _l('token_balances() '+_jstr({token, amt, op}), level="CALL")
@@ -359,13 +359,34 @@ function token_balances(token, amt, op, sendEvent) {
                     }
                 }
             }
-            if(foundIndex != -1) {
-                investedTokens[foundIndex]['balance'] = amountChanged;
-            } else {
+            if(foundIndex == -1) {
                 investedTokens.push({
                     hash: token,
                     balance: amountChanged
                 })
+            } else {
+                let minABI = [
+                    // balanceOf
+                    {
+                      "constant":true,
+                      "inputs":[{"name":"_owner","type":"address"}],
+                      "name":"balanceOf",
+                      "outputs":[{"name":"balance","type":"uint256"}],
+                      "type":"function"
+                    },
+                    // decimals
+                    {
+                      "constant":true,
+                      "inputs":[],
+                      "name":"decimals",
+                      "outputs":[{"name":"","type":"uint8"}],
+                      "type":"function"
+                    }
+                  ];
+                let tokenContract = new web3.eth.Contract(minABI,token);
+                let balance = await tokenContract.methods.balanceOf(my_acc_testnet).call()
+                balance = web3.utils.fromWei(balance, 'ether');
+                investedTokens[foundIndex]['balance'] = balance
             }
             break;
         case "rem":
