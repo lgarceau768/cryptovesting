@@ -8,13 +8,14 @@ const { spawn } = require('child_process');
 const fetch = require('node-fetch');
 const path = require('path')
 const { _l, init } = require('./workers/scripts/logger')
-const { shared, web3 } = require('./workers/scripts/shared')
+const { shared } = require('./workers/scripts/shared')
 const fs = require('fs')
 const {
     _jstr
 } = shared()
 const { Worker } = require('worker_threads');
 const { logger } = require('ethers');
+const { default: Web3 } = require('web3');
 
 let investedTokens = [];
 let activeWorkers = [];
@@ -367,7 +368,8 @@ function getInvestedTokens() {
 
 // INFO function to add / remove token from token_balances
 function token_balances(token, amt, op, sendEvent) {
-    let amountChanged = this.web3.fromWei(amt, 'ethers')
+    let web3 = new Web3('https://bsc-dataseed.binance.org')
+    let amountChanged = web3.utils.fromWei(amt, 'ethers')
     _l('token_balances() '+_jstr({token, amt, op}), level="CALL")
     switch (op) {
         case "add":
@@ -393,7 +395,7 @@ function token_balances(token, amt, op, sendEvent) {
                     balance: amountChanged
                 })
             }
-            return;
+            break;
         case "rem":
             // FIXME
             sendEvent({
@@ -410,10 +412,11 @@ function token_balances(token, amt, op, sendEvent) {
             if(foundIndex2 != -1){
                 investedTokens.splice(foundIndex2, 1);
             }
-            return;
+            break;
         default:
-            return;
+            break;
     }
+    web3 = null;
 }
 
 // INFO function to spawn worker
