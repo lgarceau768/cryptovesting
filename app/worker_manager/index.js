@@ -135,11 +135,11 @@ app.post('/upload_token', (req, res) => {
     }
 })
 
-function persistOp(data, op='add', table='sniper'){ 
+function persistOp(data, op, table){ 
     _l('persistOp() '+_jstr({data, op, table}), level="CALL")
     let existingPersistData = fs.readFileSync(path.join(__dirname, 'data', 'coins.json'), 'utf-8')
     existingPersistData = JSON.parse(existingPersistData);
-    if(op === 'add') {
+    if(op == 'add') {
         let foundIndex = -1;
         for(let i = 0; i < existingPersistData[table].length; i++){
             if(existingPersistData[table][i] == data){
@@ -149,7 +149,7 @@ function persistOp(data, op='add', table='sniper'){
         if(foundIndex == -1){
             existingPersistData[table].push(data)
         }
-    } else if(op === 'remove') {
+    } else if(op == 'remove') {
         let foundIndex = -1;
         for(let i = 0; i < existingPersistData[table].length; i++){
             if(existingPersistData[table][i] == data){
@@ -176,13 +176,13 @@ app.post('/upload_token_bypass', (req, res) => {
         }
         _l("Token: "+_jstr(token) +" being added", level="INPUT")
         res.send({success: true})
-        persistOp(token['tokenHash'], op="add", table="sniping")
+        persistOp(token['tokenHash'], "add", "sniping")
         Cryptovesting.spawnSniperWorker(token['tokenHash'], 
         (reply) => {
             _l('Worker Reply: '+reply, level="WORKERREPLY")
             if(reply.indexOf('Mint=') != -1){
                 _l('Sniped Token '+token+' success now spawning a buy worker', level="SPAWN")
-                persistOp(token, op='remove', table='sniping')
+                persistOp(token, 'remove', 'sniping')
                 let token = reply.split('Mint=')[1]
                 Cryptovesting.spawnBuyPythonScript(token, sendEvent, _l)
             } else {

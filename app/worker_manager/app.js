@@ -72,13 +72,21 @@ function _t() {
     return date.toISOString()
 }
 
-function persistOp(data, op='add', table='sniper'){ 
+function persistOp(data, op, table){ 
     _l('persistOp() '+_jstr({data, op, table}), level="CALL")
     let existingPersistData = fs.readFileSync(path.join(__dirname, 'data', 'coins.json'), 'utf-8')
     existingPersistData = JSON.parse(existingPersistData);
-    if(op === 'add') {
-        existingPersistData[table].push(data)
-    } else if(op === 'remove') {
+    if(op == 'add') {
+        let foundIndex = -1;
+        for(let i = 0; i < existingPersistData[table].length; i++){
+            if(existingPersistData[table][i] == data){
+                foundIndex = i;
+            }
+        }
+        if(foundIndex == -1){
+            existingPersistData[table].push(data)
+        }
+    } else if(op == 'remove') {
         let foundIndex = -1;
         for(let i = 0; i < existingPersistData[table].length; i++){
             if(existingPersistData[table][i] == data){
@@ -206,7 +214,7 @@ function spawnTokenWatcher(token, amtBNB, amtToken, sendEvent, _l) {
         tokenAddress: token,
         tokenAmount: amtToken,
         bnbAmount: amtBNB
-    }, op='add', table='watching')
+    }, 'add', 'watching')
     const constant_values = {
         NET: BINANCE_NET,
         AMOUNT: amtBNB,
@@ -240,7 +248,7 @@ function spawnTokenWatcher(token, amtBNB, amtToken, sendEvent, _l) {
                 tokenAddress: token,
                 tokenAmount: amtToken,
                 bnbAmount: amtBNB
-            }, op='remove', table='watching')
+            }, remove, watching)
             _l("Selling because of token balance increase "+parseFloat(amtToken * SELL_PERCENT), "SLIPPAGE")
             spawnSellWorker(token, parseFloat(amtToken * SELL_PERCENT), sendEvent, _l)
         } else {
