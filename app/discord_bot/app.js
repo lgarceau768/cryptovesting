@@ -587,27 +587,27 @@ client.on('message', async (msg) => {
                 case 'insert':
                 case 'bypass_insert':
                     msg.channel.send("Making API request to bypass insert with token "+restOfCommands[2])
-                    requestThenSuccess(postTokenByPass(restOfCommands[2]))
+                    requestThenSuccess(() => postTokenByPass(restOfCommands[2]))
                     break;
                 case 'contract_check_insert':
                     msg.channel.send("Making API request to contract check with token "+restOfCommands[2])
-                    requestThenSuccess(postToken(restOfCommands[2]))
+                    requestThenSuccess(() => postToken(restOfCommands[2]))
                     break;
                 case 'sell':
                     msg.channel.send("Making API request to sell with token "+restOfCommands[2]+' and selling '+restOfCommands[3])
-                    requestThenSuccess(postTokenSell(restOfCommands[2], restOfCommands[3]))
+                    requestThenSuccess(() => postTokenSell(restOfCommands[2], restOfCommands[3]))
                     break;
                 case 'buy':
                     msg.channel.send("Making API request to buy with token "+restOfCommands[2])
-                    requestThenSuccess(postLiveToken(restOfCommands[2]))
+                    requestThenSuccess(() => postLiveToken(restOfCommands[2]))
                     break;
                 case 'get_active_workers':
                     msg.channel.send("Making API request to get active workers")
-                    requestThenSuccess(getActiveWorkers())
+                    requestThenSuccess(() => getActiveWorkers())
                     break;
                 case 'invested_coins':
                     msg.channel.send("Making API request to get invested coins")
-                    requestThenSuccess(getInvestedTokens())
+                    requestThenSuccess(() => getInvestedTokens())
                     break;
                 default:
                     break;
