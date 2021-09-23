@@ -100,11 +100,19 @@ app.get('/pull_events', (req, res) => {
 })
 
 app.get('/active_workers', (req, res) => {
-    res.send({workers: Cryptovesting.getWorkers()})
+    try {
+        res.send({success: true, workers: Cryptovesting.getWorkers()})
+    } catch (err) {
+        res.send({success: false, error: err.toString()})
+    }
 })
 
 app.get('/invested_coins', (req, res) => {
-    res.send({coins: Cryptovesting.getInvestedTokens()})
+    try {
+        res.send({success: true, workers: Cryptovesting.getInvestedTokens()})
+    } catch (err) {
+        res.send({success: false, error: err.toString()})
+    }
 })
 
 app.post('/upload_token', (req, res) => {
