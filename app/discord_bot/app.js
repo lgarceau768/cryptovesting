@@ -397,9 +397,9 @@ async function sendTokenBalanceReport(data, token) {
 }
 
 async function requestThenSuccess(promiseFunction, functionality) {
-    let startTime = new Date.now()
+    let startTime = Date.now()
     let returnVal = await promiseFunction();
-    let endTime = new Date.now()
+    let endTime = Date.now()
     _l('Request finished: '+returnVal['success']+ ' functionality: '+functionality)
     if(returnVal['success']) {
         let messageRet = new Discord.MessageEmbed()
