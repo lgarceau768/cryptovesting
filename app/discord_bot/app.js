@@ -412,8 +412,9 @@ async function requestThenSuccess(promiseFunction, functionality) {
         if(returnVal.hasOwnProperty('workers')){
             let workers = returnVal['workers']
             workers.forEach(worker => {
-                messageRet.addField(worker['name'], _jstr(worker['data']))
-                messageRet.addField(worker['name'], worker['timestamp'])
+                let name = worker['name'].charAt(0).toUpperCase() + worker['name'].slice(1)
+                messageRet.addField(name, _jstr(worker['data']))
+                messageRet.addField(name+ " TimeStamp", worker['timestamp'])
             })
         }
         bot_updates_channel.send(messageRet)
