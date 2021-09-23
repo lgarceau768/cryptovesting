@@ -295,7 +295,7 @@ const postLiveToken = async (contractHash) => {
     return await response.json()
 } 
 
-const getActiveWorkers = async => {
+const getActiveWorkers = async() => {
     let data = {
         host: 'http://'+IP+':4041',
         path: '/active_workers',
@@ -310,7 +310,7 @@ const getActiveWorkers = async => {
     return await response.json()
 }
 
-const getInvestedTokens = async => {
+const getInvestedTokens = async () => {
     let data = {
         host: 'http://'+IP+':4041',
         path: '/invested_coins',
