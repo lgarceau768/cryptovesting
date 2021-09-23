@@ -18,7 +18,7 @@ net = sys.argv[sys.argv.index('-u')+1]
 token = sys.argv[sys.argv.index('-t')+1]
 amount = sys.argv[sys.argv.index('-a')+1]
 slippage = float(sys.argv[sys.argv.index('-s')+1]) 
-logger = Logger.LogManager("buyWorker", dirName="/home/fullsend/cryptovesting/app/worker_manager/workers/logs/")
+logger = Logger.LogManager("buyWorker")
 logger.log("Arguments %s, %s, %s, %s" % (net, token, amount, str(slippage)), "STARTUP")
 
 # INFO set variables based on net
@@ -56,7 +56,9 @@ else:
     router_abi = json.load(open('/home/fullsend/cryptovesting/app/worker_manager/workers/contract_abis/pancakeswap_factory_abi.json', 'r'))
     factoryAbi = json.load(open('/home/fullsend/cryptovesting/app/worker_manager/workers/contract_abis/pancakeswap_router_abi.json', 'r'))
 pancake_router_contract = w3.eth.contract(address=pancakeswap_router_address, abi=factoryAbi)
+logger.log('Pancake Router contract created on address: ' +pancakeswap_router_address, level="INFO");
 pancake_factory_contract = w3.eth.contract(address=pancake_swap_factory_address, abi=router_abi)
+logger.log('Pancake Factory contract created on address: ' +pancake_swap_factory_address, level="INFO");
 
 # INFO function to convert address
 def _a(adr):
@@ -76,6 +78,7 @@ def _w(amt):
 
 # INFO function to approve
 def _approve(amount, address, approveAdr):
+    logger.log('Approving '+str(amount)+' for spender: '+str(approveAdr)+' for the funds of: '+str(address), level="INFO");
     tokenContractBasic = w3.eth.contract(_a(address), abi=json.load(open('/home/fullsend/cryptovesting/app/worker_manager/workers/contract_abis/sellabi.json', 'r')))
 
     approve = tokenContractBasic.functions.approve(_a(approveAdr), amount)
@@ -99,6 +102,7 @@ def _approve(amount, address, approveAdr):
 # 179746734697020058
 def _get_amounts_out(amt, token, contract):    
     amount_bnb, amount_tokens =  contract.functions.getAmountsOut(amt, [_a(wbnb_address), _a(token)]).call()
+    logger.log('Get Amounts Out of [\''+str(token)+', '+str(wbnb_address)+'\'] returned [\''+str(amount_tokens)+', '+str(amount_bnb)+'\']', level="INFO")
     return amount_bnb, int(amount_tokens * 0.8)
 
 # INFO function to make the swap
@@ -119,11 +123,12 @@ def _swap_exact_tokens_for_tokens(amt_WBNB, amt_token, token, contract):
         'gasPrice': gas_price,
         'nonce': nonce
     })
-    logger.log("Buying token: "+token, level="BUY")
-    logger.log("Amount Swapped BNB: "+str(amt_WBNB)+" TokenAmount: "+str(amt_token), level="BUY")
+    logger.log('Swaping for '+str(amt_token)+' for the BNB amount of '+str(amt_WBNB), level="INFO")
+    logger.log("Buying token: "+token, level="INFO")
     signed_tx = account_obj.sign_transaction(swap_tx)
     try:
         tx_token = w3.eth.sendRawTransaction(signed_tx.rawTransaction)
+        logger.log('Buy Transaction Hash '+str(w3.toHex(tx_token)), level="INFO")
         return tx_token
     except Exception as e:
         logger.log("Exception at sendRawTransaction: "+str(e), level="BUY ISSUE")

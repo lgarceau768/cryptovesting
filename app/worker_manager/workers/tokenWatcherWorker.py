@@ -22,7 +22,7 @@ token = sys.argv[sys.argv.index('-t')+1]
 initialAmountBNB = int(float(sys.argv[sys.argv.index('-i')+1]))
 initialAmountToken = int(float(sys.argv[sys.argv.index('-a')+1]))
 percent = float(sys.argv[sys.argv.index('-p')+1])
-logger = Logger.LogManager("tokenWatcher_"+token, dirName="/home/fullsend/cryptovesting/app/worker_manager/workers/logs/")
+logger = Logger.LogManager("tokenWatcher_"+token)
 logger.log("Arguments %s, %s, %s, %s, %s" % (token, initialAmountBNB, percent, net, initialAmountToken), level="STARTUP")
 
 # INFO set variables based on net
@@ -84,6 +84,7 @@ def _get_amounts_out(amt, token, contract):
     amounts = contract.functions.getAmountsOut(amt, [_a(token), _a(wbnb_address)]).call()
     amount_bnb = amounts[1]
     amount_tokens = amounts[0]
+    logger.log('Get Amounts Out of [\''+str(token)+', '+str(wbnb_address)+'\'] returned [\''+str(amount_tokens)+', '+str(amount_bnb)+'\']', level="INFO")
     return {
         'bnb': amount_bnb,
         'tok': amount_tokens

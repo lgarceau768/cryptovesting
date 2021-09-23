@@ -295,6 +295,10 @@ const postLiveToken = async (contractHash) => {
     return await response.json()
 } 
 
+const getActiveWorkers = async => {
+    
+}
+
 // INFO function to request events from backend
 const getEvents = async () => {
     let data = {

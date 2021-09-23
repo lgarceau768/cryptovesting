@@ -13,8 +13,10 @@ const fs = require('fs')
 const {
     _jstr
 } = shared()
-const { Worker } = require('worker_threads')
+const { Worker } = require('worker_threads');
+const { logger } = require('ethers');
 
+let activeWorkers = [];
 
 // Import constants
 const { 
@@ -32,6 +34,37 @@ const {
  * FIXME need to define an onEventCallback
  */
 
+function addWorker(workerName, workerData) {
+    let workerId = activeWorkers.length;
+    activeWorkers.push({
+        name: workerName,
+        data: workerData,
+        id,
+        timestamp: _t()
+    })
+    return workerId
+} 
+
+function getWorkers() {
+    return activeWorkers
+}
+
+function removeWorker(id) {
+    let removeIndex = -1;
+    for (let index = 0; index < activeWorkers.length; index++) {
+        const worker = activeWorkers[index];
+        if(worker.id == id){
+            removeIndex = index;
+        }
+    }
+    if(removeIndex != -1) {
+        activeWorkers.splice(removeIndex, 1)
+        return true
+    } else {
+        return false
+    }
+}
+
 // Function to get timestamp
 function _t() {
     let date = new Date()
@@ -39,6 +72,7 @@ function _t() {
 }
 
 function persistOp(data, op='add', table='sniper'){ 
+    logger.log('persistOp() '+_jstr({data, op, table}), level="CALL")
     let existingPersistData = fs.readFileSync(path.join(__dirname, 'data', 'coins.json'), 'utf-8')
     existingPersistData = JSON.parse(existingPersistData);
     if(op === 'add') {
@@ -57,6 +91,8 @@ function persistOp(data, op='add', table='sniper'){
 
 // INFO spawn sell worker
 function spawnSellWorker(token, amt, sendEvent, _l) {
+    let workerId = addWorker('sell', {token, amt})
+    logger.log('spawnSellWorker() '+_jstr({token, amt}), level="CALL")
     const constant_values = {
         NET: BINANCE_NET,
         TOKEN: token,
@@ -75,6 +111,7 @@ function spawnSellWorker(token, amt, sendEvent, _l) {
     })
     sellProcess.stdout.on('data', (data) => {
         try {
+            removeWorker(workerId)
             _l('Sell Reply: '+data, level="SELLREPLY")
             if(data.indexOf('=') == -1) return
             let stringVal = data.toString().trim()
@@ -103,6 +140,7 @@ function spawnSellWorker(token, amt, sendEvent, _l) {
         }
     })    
     sellProcess.stderr.on('data', (data) => {
+        removeWorker(workerId)
         _l("Sell Exception: "+data, level="CRITICAL")
         sendEvent({
             message: 'Sold Token Exception |'+data,
@@ -110,6 +148,7 @@ function spawnSellWorker(token, amt, sendEvent, _l) {
         })
     })
     sellProcess.on('error', (err) => {
+        removeWorker(workerId)
         _l("Sell Error"+err, level="CRITICAL")
         sendEvent({
             message: 'Sold Token Error |0',
@@ -121,6 +160,8 @@ function spawnSellWorker(token, amt, sendEvent, _l) {
 
 // INFO spawn sell worker
 function spawnSniperWorker(token, onMessage, sendEvent, _l) {
+    let workerId = addWorker('sniper', {token})
+    logger.log('spawnSniperWorker() '+token, level="CALL")
     const constant_values = {
         TOKEN: token,
     }
@@ -135,9 +176,11 @@ function spawnSniperWorker(token, onMessage, sendEvent, _l) {
         category: 'IMPT'
     })
     sellProcess.stdout.on('data', (data) => {
+        removeWorker(workerId)
         onMessage(data)
     })    
     sellProcess.stderr.on('data', (data) => {
+        removeWorker(workerId)
         _l("Sniper Exception: "+data, level="CRITICAL")
         sendEvent({
             message: 'Sniper Token Exception |'+data,
@@ -145,6 +188,7 @@ function spawnSniperWorker(token, onMessage, sendEvent, _l) {
         })
     })
     sellProcess.on('error', (err) => {
+        removeWorker(workerId)
         _l("Sniper Error"+err, level="CRITICAL")
         sendEvent({
             message: 'Sniper Token Error |0',
@@ -155,6 +199,8 @@ function spawnSniperWorker(token, onMessage, sendEvent, _l) {
 
 // INFO spawn token watcher
 function spawnTokenWatcher(token, amtBNB, amtToken, sendEvent, _l) {
+    let workerId = addWorker('watcher', {token, amtBNB, amtToken})
+    logger.log('spawnTokenWatcher() '+_jstr({token, amtBNB, amtToken}), level="CALL")
     persistOp({
         tokenAddress: token,
         tokenAmount: amtToken,
@@ -182,6 +228,7 @@ function spawnTokenWatcher(token, amtBNB, amtToken, sendEvent, _l) {
         category: 'IMPT'
     })
     watchProcess.stdout.on('data', (data) => {
+        removeWorker(workerId)
         _l('Watcher Reply: '+data, level="WATCHERREPLY")
         if(data.indexOf('=') == -1) return
         let stringVal = data.toString().trim()
@@ -205,6 +252,7 @@ function spawnTokenWatcher(token, amtBNB, amtToken, sendEvent, _l) {
         }
     });
     watchProcess.stderr.on('data', (data) => {
+        removeWorker(workerId)
         _l("Watch Exception: "+data, level="CRITICAL")
         sendEvent({
             message: 'Watching token Exception |'+data, 
@@ -212,6 +260,7 @@ function spawnTokenWatcher(token, amtBNB, amtToken, sendEvent, _l) {
         })
     })
     watchProcess.on('error', () => {
+        removeWorker(workerId)
         _l("Watch Error", level="CRITICAL")
         sendEvent({
             message: 'Watching token Error |0', 
@@ -222,6 +271,8 @@ function spawnTokenWatcher(token, amtBNB, amtToken, sendEvent, _l) {
 
 // INFO buy token with bnb
 function spawnBuyPythonScript(token, sendEvent, _l) {
+    let workerId = addWorker('buy', {token})
+    logger.log('spawnBuyPythonScript() '+token, level="CALL")
     // FIXME move bnb amount higher
     const constant_values = {
         SLIPPAGE: SLIPPAGE,
@@ -243,6 +294,7 @@ function spawnBuyPythonScript(token, sendEvent, _l) {
         category: 'IMPT'
     })
     buyProcess.stdout.on('data', (data) => {
+        removeWorker(workerId)
         _l("Reply from BuyWorker "+data, level="REPLY")
         if(data.indexOf('=') == -1) return
         let stringVal = data.toString().trim()
@@ -267,6 +319,7 @@ function spawnBuyPythonScript(token, sendEvent, _l) {
         }
     })
     buyProcess.stderr.on('data', (data) => {
+        removeWorker(workerId)
         _l("Buy Exception: "+data, level="CRITICAL")
         sendEvent({
             message: 'Buying token Exception |'+data, 
@@ -274,6 +327,7 @@ function spawnBuyPythonScript(token, sendEvent, _l) {
         })
     })
     buyProcess.on('error', () => {
+        removeWorker(workerId)
         _l("Buy Error"+data, level="CRITICAL")
         sendEvent({
             message: 'Buying token Error |0', 
@@ -284,6 +338,7 @@ function spawnBuyPythonScript(token, sendEvent, _l) {
 
 // INFO function to add / remove token from token_balances
 function token_balances(token, amt, sendEvent, op="add") {
+    logger.log('token_balances() '+_jstr({token, amt, op}), level="CALL")
     switch (op) {
         case "add":
             // FIXME
@@ -306,6 +361,8 @@ function token_balances(token, amt, sendEvent, op="add") {
 
 // INFO function to spawn worker
 function spawnWorker(workerInfo, onMessage, sendEvent, _l) {
+    let workerId = addWorker(workerInfo['worker'].replace('Worker').replace('.py'), {data: workerInfo['worker']})
+    logger.log('spawnWorker() '+_jstr(workerInfo), level="CALL")
     let workerBasePath = path.join(__dirname, "workers")
     let workerName = workerInfo["worker"]
     let workerPath = path.join(workerBasePath, workerName)
@@ -320,10 +377,12 @@ function spawnWorker(workerInfo, onMessage, sendEvent, _l) {
         workerData: workerData
     })
     worker.once('message', (strResponse) => {
+        removeWorker(workerId)
         if (strResponse.indexOf('=') == -1) return
         onMessage(strResponse)
     })
     worker.on('error', (error) => {
+        removeWorker(workerId)
         _l(workerName+": "+_jstr(workerInfo) +" has error: " +error, level="ERROR")
         sendEvent({
             message: workerInfo['worker']+' Failed on |'+workerData.toString(),
@@ -331,11 +390,13 @@ function spawnWorker(workerInfo, onMessage, sendEvent, _l) {
         })
     })
     worker.on('exit', (code) => {
+        removeWorker(workerId)
         _l(workerName+": "+_jstr(workerInfo) +" exited with code: "+code, level="EXIT")
     })
 }
 
 let app = {
+    getWorkers,
     spawnBuyPythonScript,
     spawnSellWorker,
     spawnTokenWatcher,

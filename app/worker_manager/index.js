@@ -44,6 +44,17 @@ app.use(function (req, res, next) {
     next();
 });
 
+function logReq(url, req) {
+    _l(url+" "+_jstr({
+        params: req.params, 
+        body: req.body,
+        headers: req.headers,
+        ip: req.ip,
+        cookies: req.cookies,
+        readable: req.readable
+    }), level="REQUEST")
+}
+
 function checkAllNonNull(val) {
     for (const key in val) {
         if (Object.hasOwnProperty.call(val, key)) {
@@ -74,6 +85,7 @@ function sendEvent(event) {
 }
 
 app.post('/upload_event', (req, res) => {
+    logReq('/upload_event', req)
     sendEvent(req.body)
 })
 
@@ -82,11 +94,17 @@ app.get('/pull_events', (req, res) => {
         res.send({events})
         events = []
     } catch (e) {
+        logReq('/pull_events', req)
         _l("Pull Events Error: "+e+" request\n"+_jstr(req), level="FAIL")
     }
 })
 
+app.get('/active_workers', (req, res) => {
+    res.send({workers: Cryptovesting.getWorkers()})
+})
+
 app.post('/upload_token', (req, res) => {
+    logReq('/upload_token', req)
     try {
         let body = JSON.parse(req.body);
         let token = {
@@ -114,6 +132,7 @@ app.post('/upload_token', (req, res) => {
 })
 
 function persistOp(data, op='add', table='sniper'){ 
+    _l('persistOp() '+_jstr({data, op, table}), level="CALL")
     let existingPersistData = fs.readFileSync(path.join(__dirname, 'data', 'coins.json'), 'utf-8')
     existingPersistData = JSON.parse(existingPersistData);
     if(op === 'add') {
@@ -131,6 +150,7 @@ function persistOp(data, op='add', table='sniper'){
 }
 
 app.post('/upload_token_bypass', (req, res) => {
+    logReq('/upload_token_bypass', req)
     try {
         let body = req.body;
         let token = {
@@ -162,6 +182,7 @@ app.post('/upload_token_bypass', (req, res) => {
 })
 
 app.post('/upload_sell_token', (req, res) => {
+    logReq('/upload_sell_token', req)
     try {
         let body = req.body;
         let token = {
@@ -183,6 +204,7 @@ app.post('/upload_sell_token', (req, res) => {
 
 
 app.post('/upload_buy_token', (req, res) => {
+    logReq('/upload_buy_token', req)
     try {
         let body = req.body;
         let token = {
