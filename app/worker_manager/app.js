@@ -8,7 +8,7 @@ const { spawn } = require('child_process');
 const fetch = require('node-fetch');
 const path = require('path')
 const { _l, init } = require('./workers/scripts/logger')
-const { shared } = require('./workers/scripts/shared')
+const { shared, web3 } = require('./workers/scripts/shared')
 const fs = require('fs')
 const {
     _jstr
@@ -367,12 +367,13 @@ function getInvestedTokens() {
 
 // INFO function to add / remove token from token_balances
 function token_balances(token, amt, op, sendEvent) {
+    let amountChanged = web3.utils.fromWei(amt, 'ethers')
     _l('token_balances() '+_jstr({token, amt, op}), level="CALL")
     switch (op) {
         case "add":
             // FIXME
             sendEvent({
-                message: 'Token balance on |'+_jstr({token, amt}),
+                message: 'Token balance on |'+_jstr({token, amountChanged}),
                 category: 'BALANCE'
             })
             let foundIndex = -1;
@@ -385,11 +386,11 @@ function token_balances(token, amt, op, sendEvent) {
                 }
             }
             if(foundIndex != -1) {
-                investedTokens[foundIndex]['balance'] = amt;
+                investedTokens[foundIndex]['balance'] = amountChanged;
             } else {
                 investedTokens.push({
                     hash: token,
-                    balance: amt
+                    balance: amountChanged
                 })
             }
             return;
