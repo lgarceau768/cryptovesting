@@ -441,8 +441,7 @@ client.on('message', async (msg) => {
     switch (msg.content.split(' ')[0]) {
         case 'delete':
             let ammountToDelete = msg.content.split(' ')[1]
-            let fetchedMessages = await msg.channel.fetchMessages({limit: ammountToDelete})
-            msg.channel.bulkDelete(fetchedMessages)
+            msg.channel.bulkDelete(ammountToDelete)
             msg.channel.send('Deleted: '+ammountToDelete+" messages");
             break;
         case 'help':
