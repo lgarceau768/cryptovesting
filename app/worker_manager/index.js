@@ -274,7 +274,7 @@ let persistedCoins = JSON.parse(coinsFile)
 persistedCoins['watching'].forEach((token) => {
     _l('Read persisted token: '+_jstr(token)+ " was watching, respawning watcher", level="PERSIST")
     let { tokenAddress, tokenAmount, bnbAmount } = token
-    Cryptovesting.spawnTokenWatcher(tokenAddress, bnbAmount, tokenAmount, sendEvent, _l)
+    Cryptovesting.spawnTokenWatcher(tokenAddress, bnbAmount, tokenAmount, sendEvent, _l, persistOp)
 })
 persistedCoins['sniping'].forEach((token) => {
     _l('Read persisted token: '+token.toString()+ " was sniping, respawning sniper", level="PERSIST")

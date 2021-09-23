@@ -190,7 +190,7 @@ function spawnSniperWorker(token, onMessage, sendEvent, _l) {
 }
 
 // INFO spawn token watcher
-function spawnTokenWatcher(token, amtBNB, amtToken, sendEvent, _l) {
+function spawnTokenWatcher(token, amtBNB, amtToken, sendEvent, _l, persistOp) {
     let workerId = addWorker('watcher', {token, amtBNB, amtToken})
     _l('spawnTokenWatcher() '+_jstr({token, amtBNB, amtToken}), level="CALL")
     token_balances(token, amtToken, 'add', sendEvent)
@@ -303,7 +303,7 @@ function spawnBuyPythonScript(token, sendEvent, _l) {
                 message: 'Bought token hash '+resultVal['txHash']+' |'+resultVal['amountToken'].toString(),
                 category: 'IMPT'
             })
-            spawnTokenWatcher(token, BNB_AMT_ETHER, resultVal['amountEther'], sendEvent, _l)
+            spawnTokenWatcher(token, BNB_AMT_ETHER, resultVal['amountEther'], sendEvent, _l, persistOp)
             token_balances(token, resultVal['amountEther'], 'add', sendEvent,)
         } else {
             let failResult = stringVal.split("=")
