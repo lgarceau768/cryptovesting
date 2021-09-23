@@ -400,7 +400,7 @@ async function requestThenSuccess(promiseFunction, functionality) {
     let startTime = Date.now()
     let returnVal = await promiseFunction();
     let endTime = Date.now()
-    _l('ReturnVal: '+returnVal)
+    console.log(returnVal)
     _l('Request finished: '+returnVal['success']+ ' functionality: '+functionality)
     if(returnVal['success']) {
         let messageRet = new Discord.MessageEmbed()
