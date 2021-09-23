@@ -143,7 +143,7 @@ function spawnSellWorker(token, amt, sendEvent, _l) {
             if(successIndex != -1) {
                 // INFO remove token from balances tracking table      
                 let resultVal = stringVal.split('=')[1]
-                token_balances(token, 0, op="rem", sendEvent, _l)
+                token_balances(token, 0, 'rem', sendEvent)
                 _l("Sell Reply: "+_jstr(resultVal), level="SOLD")
                 sendEvent({
                     message: 'Sold Token TX |'+resultVal, 
@@ -224,7 +224,7 @@ function spawnSniperWorker(token, onMessage, sendEvent, _l) {
 function spawnTokenWatcher(token, amtBNB, amtToken, sendEvent, _l) {
     let workerId = addWorker('watcher', {token, amtBNB, amtToken})
     _l('spawnTokenWatcher() '+_jstr({token, amtBNB, amtToken}), level="CALL")
-    token_balances(token, 'add', amtToken, sendEvent, _l)
+    token_balances(token, amtToken, 'add', sendEvent)
     persistOp({
         tokenAddress: token,
         tokenAmount: amtToken,
@@ -333,7 +333,7 @@ function spawnBuyPythonScript(token, sendEvent, _l) {
                 category: 'IMPT'
             })
             spawnTokenWatcher(token, BNB_AMT_ETHER, resultVal['amountEther'], sendEvent, _l)
-            token_balances(token, resultVal['amountEther'], sendEvent, _l)
+            token_balances(token, resultVal['amountEther'], 'add', sendEvent,)
         } else {
             let failResult = stringVal.split("=")
             sendEvent({
@@ -366,7 +366,7 @@ function getInvestedTokens() {
 }
 
 // INFO function to add / remove token from token_balances
-function token_balances(token, amt, sendEvent, op="add") {
+function token_balances(token, amt, op, sendEvent) {
     _l('token_balances() '+_jstr({token, amt, op}), level="CALL")
     switch (op) {
         case "add":
