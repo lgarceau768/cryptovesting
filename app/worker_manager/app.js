@@ -80,10 +80,12 @@ function persistOp(data, op, table){
         let foundIndex = -1;
         for(let i = 0; i < existingPersistData[table].length; i++){
             if(existingPersistData[table][i] == data){
+                _l('compare: '+existingPersistData[table][i]+ ' | '+data, level="DEBUG")
                 foundIndex = i;
             }
         }
         if(foundIndex == -1){
+            _l("new token "+data, level="DEBUG")
             existingPersistData[table].push(data)
         }
     } else if(op == 'remove') {
@@ -93,6 +95,7 @@ function persistOp(data, op, table){
                 foundIndex = i;
             }
         }
+        _l('removing at '+foundIndex, level="DEBUG")
         existingPersistData[table].splice(foundIndex, 1);
     } 
     fs.writeFileSync(path.join(__dirname, 'data', 'coins.json'), JSON.stringify(existingPersistData))
