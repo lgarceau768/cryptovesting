@@ -40,7 +40,7 @@ function addWorker(workerName, workerData) {
     activeWorkers.push({
         name: workerName,
         data: workerData,
-        id,
+        id: workerId,
         timestamp: _t()
     })
     return workerId
