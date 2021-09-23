@@ -123,21 +123,20 @@ function createFailMessage(event) {
     let message = event.message
     let failureInfo = message.split('|')[1]
     _l('Fail message stuff: '+ failureInfo)
-    
-    // now to upload the log file
-    fse.readdir(availableLogs[failee]['path'])
-    .then((files) => {
-        let file = findNewestLog(files, availableLogs[failee]['path'])
-        console.log(file)
-        uploadFileToPasteBin(availableLogs[failee]['path'], file)
-        let messageRet = new Discord.MessageEmbed()
+    let messageRet = new Discord.MessageEmbed()
         .setColor('#ff0026')
         .setTitle(failee+' failed')
         .setDescription(message)
         .addField('Timestamp', timestamp)
         .addField('Info', failureInfo)
         .setTimestamp(); 
-        bot_updates_channel.send(messageRet)
+    bot_updates_channel.send(messageRet)
+    // now to upload the log file
+    fse.readdir(availableLogs[failee]['path'])
+    .then((files) => {
+        let file = findNewestLog(files, availableLogs[failee]['path'])
+        console.log(file)
+        uploadFileToPasteBin(availableLogs[failee]['path'], file)
     })    
 }
 

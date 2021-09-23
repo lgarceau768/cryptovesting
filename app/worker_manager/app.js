@@ -73,45 +73,7 @@ function _t() {
     return date.toISOString()
 }
 
-function persistOp(data, op, table){ 
-    _l('persistOp() '+_jstr({data, op, table}), level="CALL")
-    let existingPersistData = fs.readFileSync(path.join(__dirname, 'data', 'coins.json'), 'utf-8')
-    existingPersistData = JSON.parse(existingPersistData);
-    if(op == 'add') {
-        let foundIndex = -1;
-        for(let i = 0; i < existingPersistData[table].length; i++){
-            if(table == 'sniper'){
-                if(existingPersistData[table][i] == data){
-                    foundIndex = i;
-                }
-            } else {
-                if(existingPersistData[table][i]['tokenAddress'] == data['tokenAddress']){
-                    foundIndex = i;
-                }
-            }
-        }
-        if(foundIndex == -1){
-            _l("New Perisiting token "+_jstr(data), level="DEBUG")
-            existingPersistData[table].push(data)
-        }
-    } else if(op == 'remove') {
-        let foundIndex = -1;
-        for(let i = 0; i < existingPersistData[table].length; i++){
-            if(table == 'sniper'){
-                if(existingPersistData[table][i] == data){
-                    foundIndex = i;
-                }
-            } else {
-                if(existingPersistData[table][i]['tokenAddress'] == data['tokenAddress']){
-                    foundIndex = i;
-                }
-            }
-        }
-        _l('Remvoing persited token: '+_jstr(data), level="DEBUG")
-        existingPersistData[table].splice(foundIndex, 1);
-    } 
-    fs.writeFileSync(path.join(__dirname, 'data', 'coins.json'), JSON.stringify(existingPersistData))
-}
+
 
 // INFO spawn sell worker
 function spawnSellWorker(token, amt, sendEvent, _l) {

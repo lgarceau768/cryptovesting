@@ -87,11 +87,12 @@ function sendEvent(event) {
 app.post('/upload_event', (req, res) => {
     logReq('/upload_event', req)
     sendEvent(req.body)
+    res.send({success: true})
 })
 
 app.get('/pull_events', (req, res) => {
     try {
-        res.send({events})
+        res.send({success: true, events})
         events = []
     } catch (e) {
         logReq('/pull_events', req)
@@ -136,6 +137,10 @@ app.post('/upload_token', (req, res) => {
             workerData: token,
             worker: 'contractCheckWorker.js'
         }, (response) => {
+            sendEvent({
+                message: 'Contract Check Complete on |'+token["contract_hash"],
+                category: 'IMPT'
+            })
             _l('Contract Check worker result '+response.toString(), level="CONTRACT")
         }, sendEvent, _l)
     } catch (e) {
