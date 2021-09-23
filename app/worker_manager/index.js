@@ -142,13 +142,13 @@ function persistOp(data, op, table){
     if(op == 'add') {
         let foundIndex = -1;
         for(let i = 0; i < existingPersistData[table].length; i++){
+            _l('compare: '+existingPersistData[table][i]+ ' | '+_jstr(data), level="DEBUG")
             if(existingPersistData[table][i] == data){
-                _l('compare: '+existingPersistData[table][i]+ ' | '+data, level="DEBUG")
                 foundIndex = i;
             }
         }
         if(foundIndex == -1){
-            _l("new token "+data, level="DEBUG")
+            _l("new token "+_jstr(data), level="DEBUG")
             existingPersistData[table].push(data)
         }
     } else if(op == 'remove') {
