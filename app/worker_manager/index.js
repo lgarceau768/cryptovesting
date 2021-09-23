@@ -140,7 +140,15 @@ function persistOp(data, op='add', table='sniper'){
     let existingPersistData = fs.readFileSync(path.join(__dirname, 'data', 'coins.json'), 'utf-8')
     existingPersistData = JSON.parse(existingPersistData);
     if(op === 'add') {
-        existingPersistData[table].push(data)
+        let foundIndex = -1;
+        for(let i = 0; i < existingPersistData[table].length; i++){
+            if(existingPersistData[table][i] == data){
+                foundIndex = i;
+            }
+        }
+        if(foundIndex == -1){
+            existingPersistData[table].push(data)
+        }
     } else if(op === 'remove') {
         let foundIndex = -1;
         for(let i = 0; i < existingPersistData[table].length; i++){

@@ -400,6 +400,7 @@ async function requestThenSuccess(promiseFunction, functionality) {
     let startTime = new Date.now()
     let returnVal = await promiseFunction();
     let endTime = new Date.now()
+    _l('Request finished: '+returnVal['success']+ ' functionality: '+functionality)
     if(returnVal['success']) {
         let messageRet = new Discord.MessageEmbed()
         .setColor('#00FF00')
