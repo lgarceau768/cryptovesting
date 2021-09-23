@@ -367,7 +367,7 @@ function getInvestedTokens() {
 
 // INFO function to add / remove token from token_balances
 function token_balances(token, amt, op, sendEvent) {
-    let amountChanged = web3.utils.fromWei(amt, 'ethers')
+    let amountChanged = this.web3.fromWei(amt, 'ethers')
     _l('token_balances() '+_jstr({token, amt, op}), level="CALL")
     switch (op) {
         case "add":
