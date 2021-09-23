@@ -73,7 +73,7 @@ function _t() {
 }
 
 function persistOp(data, op='add', table='sniper'){ 
-    logger.log('persistOp() '+_jstr({data, op, table}), level="CALL")
+    _l('persistOp() '+_jstr({data, op, table}), level="CALL")
     let existingPersistData = fs.readFileSync(path.join(__dirname, 'data', 'coins.json'), 'utf-8')
     existingPersistData = JSON.parse(existingPersistData);
     if(op === 'add') {
@@ -93,7 +93,7 @@ function persistOp(data, op='add', table='sniper'){
 // INFO spawn sell worker
 function spawnSellWorker(token, amt, sendEvent, _l) {
     let workerId = addWorker('sell', {token, amt})
-    logger.log('spawnSellWorker() '+_jstr({token, amt}), level="CALL")
+    _l('spawnSellWorker() '+_jstr({token, amt}), level="CALL")
     const constant_values = {
         NET: BINANCE_NET,
         TOKEN: token,
@@ -162,7 +162,7 @@ function spawnSellWorker(token, amt, sendEvent, _l) {
 // INFO spawn sell worker
 function spawnSniperWorker(token, onMessage, sendEvent, _l) {
     let workerId = addWorker('sniper', {token})
-    logger.log('spawnSniperWorker() '+token, level="CALL")
+    _l('spawnSniperWorker() '+token, level="CALL")
     const constant_values = {
         TOKEN: token,
     }
@@ -201,7 +201,7 @@ function spawnSniperWorker(token, onMessage, sendEvent, _l) {
 // INFO spawn token watcher
 function spawnTokenWatcher(token, amtBNB, amtToken, sendEvent, _l) {
     let workerId = addWorker('watcher', {token, amtBNB, amtToken})
-    logger.log('spawnTokenWatcher() '+_jstr({token, amtBNB, amtToken}), level="CALL")
+    _l('spawnTokenWatcher() '+_jstr({token, amtBNB, amtToken}), level="CALL")
     persistOp({
         tokenAddress: token,
         tokenAmount: amtToken,
@@ -273,7 +273,7 @@ function spawnTokenWatcher(token, amtBNB, amtToken, sendEvent, _l) {
 // INFO buy token with bnb
 function spawnBuyPythonScript(token, sendEvent, _l) {
     let workerId = addWorker('buy', {token})
-    logger.log('spawnBuyPythonScript() '+token, level="CALL")
+    _l('spawnBuyPythonScript() '+token, level="CALL")
     // FIXME move bnb amount higher
     const constant_values = {
         SLIPPAGE: SLIPPAGE,
@@ -344,7 +344,7 @@ function getInvestedTokens() {
 
 // INFO function to add / remove token from token_balances
 function token_balances(token, amt, sendEvent, op="add") {
-    logger.log('token_balances() '+_jstr({token, amt, op}), level="CALL")
+    _l('token_balances() '+_jstr({token, amt, op}), level="CALL")
     switch (op) {
         case "add":
             // FIXME
@@ -393,7 +393,7 @@ function token_balances(token, amt, sendEvent, op="add") {
 // INFO function to spawn worker
 function spawnWorker(workerInfo, onMessage, sendEvent, _l) {
     let workerId = addWorker(workerInfo['worker'].replace('Worker').replace('.py'), {data: workerInfo['worker']})
-    logger.log('spawnWorker() '+_jstr(workerInfo), level="CALL")
+    _l('spawnWorker() '+_jstr(workerInfo), level="CALL")
     let workerBasePath = path.join(__dirname, "workers")
     let workerName = workerInfo["worker"]
     let workerPath = path.join(workerBasePath, workerName)
