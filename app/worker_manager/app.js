@@ -16,6 +16,7 @@ const {
 const { Worker } = require('worker_threads');
 const { logger } = require('ethers');
 
+let investedTokens = [];
 let activeWorkers = [];
 
 // Import constants
@@ -336,6 +337,10 @@ function spawnBuyPythonScript(token, sendEvent, _l) {
     })
 }
 
+function getInvestedTokens() {
+    return investedTokens
+}
+
 // INFO function to add / remove token from token_balances
 function token_balances(token, amt, sendEvent, op="add") {
     logger.log('token_balances() '+_jstr({token, amt, op}), level="CALL")
@@ -346,6 +351,21 @@ function token_balances(token, amt, sendEvent, op="add") {
                 message: 'Token balance on |'+_jstr({token, amt}),
                 category: 'BALANCE'
             })
+            let foundIndex = -1;
+            for (let index = 0; index < investedTokens.length; index++) {
+                const token = investedTokens[index];
+                if(token.hash == token){
+                    foundIndex = index;
+                }
+            }
+            if(foundIndex != -1) {
+                investedTokens[foundIndex]['balance'] = amt;
+            } else {
+                investedTokens.push({
+                    hash: token,
+                    balance: amt
+                })
+            }
             return;
         case "rem":
             // FIXME
@@ -353,6 +373,16 @@ function token_balances(token, amt, sendEvent, op="add") {
                 message: 'Token balance remove |'+ token,
                 category: 'BALANCE'
             })
+            let foundIndex2 = -1;
+            for (let index2 = 0; index2 < investedTokens.length; index2++) {
+                const token2 = investedTokens[index2];
+                if(token2.hash == token){
+                    foundIndex2 = index2;
+                }
+            }
+            if(foundIndex2 != -1){
+                investedTokens.splice(foundIndex2, 1);
+            }
             return;
         default:
             return;
@@ -396,6 +426,7 @@ function spawnWorker(workerInfo, onMessage, sendEvent, _l) {
 }
 
 let app = {
+    getInvestedTokens,
     getWorkers,
     spawnBuyPythonScript,
     spawnSellWorker,

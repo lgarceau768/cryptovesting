@@ -296,7 +296,33 @@ const postLiveToken = async (contractHash) => {
 } 
 
 const getActiveWorkers = async => {
-    
+    let data = {
+        host: 'http://'+IP+':4041',
+        path: '/active_workers',
+        method: 'GET'
+    }
+    let response = await fetch(data.host+data.path, {
+        method: data.method,
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    return await response.json()
+}
+
+const getInvestedTokens = async => {
+    let data = {
+        host: 'http://'+IP+':4041',
+        path: '/invested_coins',
+        method: 'GET'
+    }
+    let response = await fetch(data.host+data.path, {
+        method: data.method,
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    return await response.json()
 }
 
 // INFO function to request events from backend
@@ -356,30 +382,42 @@ function findLogAgainstStr(files, str) {
 }
 
 async function sendTokenBalanceReport(data, token) {
-    try {
-        let balanceHmtl = fs.readFileSync(path.join(__dirname, 'msg_html', 'balance_report.html'), 'utf-8')
-        balanceHmtl = balanceHmtl.replace('$date', new Date().toISOString())
-        balanceHmtl = balanceHmtl.replace('$tokenCount', data['token'])
-        balanceHmtl = balanceHmtl.replace('$etherCount', data['ethers'].substring(0, 6))
-        balanceHmtl = balanceHmtl.replace('$address', token)
-        const browser = await puppeteer.launch();
-        const page = await browser.newPage();
-        await page.setContent(balanceHmtl)
-        await page.setViewport({
-            width: 894,
-            height: 333,
-            deviceScaleFactor: 1
-        });
-        let screenShotPath = path.join(__dirname, 'balance_reports', 'balance_report_'+token+'.jpeg')
-        await page.screenshot({
-            path: screenShotPath
-        })
-        bot_updates_channel.send(new Discord.MessageAttachment(fs.readFileSync(screenShotPath), 'tokenBalanceReport_'+token+'.jpeg'))
-    } catch (err) {
-        _l("Error sending token balance report: "+err, level="ERROR")
-        bot_updates_channel.send("Error uploading balance report: "+err)
+    let tokenAmount = data['token']
+    let etherAmount = data['ethers']
+    let tokenAddress = token
+    let messageRet = new Discord.MessageEmbed()
+        .setColor('#FFFF19')
+        .setTitle('Balance Update')
+        .setDescription('Current Balance for token: '+tokenAddress)
+        .addField('Timestamp', new Date().toISOString())
+        .addField('Token Amount', tokenAmount)
+        .addField('Ethers Amount', etherAmount)
+        .setTimestamp();
+    bot_updates_channel.send(messageRet)    
+}
+
+async function requestThenSuccess(promiseFunction, functionality) {
+    let startTime = new Date.now()
+    let returnVal = await promiseFunction();
+    let endTime = new Date.now()
+    if(returnVal['success']) {
+        let messageRet = new Discord.MessageEmbed()
+        .setColor('#00FF00')
+        .setTitle('API Call Success')
+        .setDescription(functionality)
+        .addField('Duration', endTime-startTime)
+        .setTimestamp();
+        bot_updates_channel.send(messageRet)
+    } else {        
+        let messageRet = new Discord.MessageEmbed()
+        .setColor('#FF0000')
+        .setTitle('API Call Fail')
+        .setDescription(functionality)
+        .addField('Duration', endTime-startTime)
+        .addField('Error', returnVal['error'])
+        .setTimestamp();
+        bot_updates_channel.send(messageRet)
     }
-    
 }
 
 // INFO setup function to loop for printing events to the channel
@@ -525,7 +563,46 @@ client.on('message', async (msg) => {
                         msg.channel.send('Failed to get the balance because\n'+result['err'])
                     }
                     break;
-            
+                case 'help':
+                    let commands = {
+                        INFO: 'This shows example messages to call the commands do not use the {}',
+                        balance: '%api balance {token address}\nReturns the current balance we have of the token ',
+                        contract_check_insert: '%api contract_check_insert {token address}\nInserts a token into the contract check service',
+                        bypass_insert: '%api (insert / bypass_insert) {token address}\nInserts a token into the cryptovesting sniping service',
+                        insert: '%api (insert / bypass_insert) {token address}\nInserts a token into the cryptovesting sniping service',
+                        sell: '%api sell {token} {amount (IN THE TOKEN DECIMALS}\nSells a give amount of the specified token (NOT IN ETHERS IN TOKEN)',
+                        buy: '%api buy {token}\nBuys the given token',
+                        get_active_workers: '%api get_active_workers\nReturns a detailed list of the active workers in the cryptovesting service',
+                        invested_coins: '%api invested_coins\nReturns a list of the currently invested coins',
+                        help: '%api help\nDisplays this menu',
+                    }
+                    msg.channel.send(_jstr(commands))
+                    break;
+                case 'insert':
+                case 'bypass_insert':
+                    msg.channel.send("Making API request to bypass insert with token "+restOfCommands[2])
+                    requestThenSuccess(postTokenByPass(restOfCommands[2]))
+                    break;
+                case 'contract_check_insert':
+                    msg.channel.send("Making API request to contract check with token "+restOfCommands[2])
+                    requestThenSuccess(postToken(restOfCommands[2]))
+                    break;
+                case 'sell':
+                    msg.channel.send("Making API request to sell with token "+restOfCommands[2]+' and selling '+restOfCommands[3])
+                    requestThenSuccess(postTokenSell(restOfCommands[2], restOfCommands[3]))
+                    break;
+                case 'buy':
+                    msg.channel.send("Making API request to buy with token "+restOfCommands[2])
+                    requestThenSuccess(postLiveToken(restOfCommands[2]))
+                    break;
+                case 'get_active_workers':
+                    msg.channel.send("Making API request to get active workers")
+                    requestThenSuccess(getActiveWorkers())
+                    break;
+                case 'invested_coins':
+                    msg.channel.send("Making API request to get invested coins")
+                    requestThenSuccess(getInvestedTokens())
+                    break;
                 default:
                     break;
             }

@@ -103,6 +103,10 @@ app.get('/active_workers', (req, res) => {
     res.send({workers: Cryptovesting.getWorkers()})
 })
 
+app.get('/invested_coins', (req, res) => {
+    res.send({coins: Cryptovesting.getInvestedTokens()})
+})
+
 app.post('/upload_token', (req, res) => {
     logReq('/upload_token', req)
     try {
