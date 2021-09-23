@@ -406,7 +406,7 @@ async function requestThenSuccess(promiseFunction, functionality) {
         .setColor('#00FF00')
         .setTitle('API Call Success')
         .setDescription(functionality)
-        .addField('Duration', endTime-startTime)
+        .addField('Duration', (endTime-startTime).toString()+" seconds")
         .setTimestamp();
         bot_updates_channel.send(messageRet)
     } else {        
@@ -414,7 +414,7 @@ async function requestThenSuccess(promiseFunction, functionality) {
         .setColor('#FF0000')
         .setTitle('API Call Fail')
         .setDescription(functionality)
-        .addField('Duration', endTime-startTime)
+        .addField('Duration', (endTime-startTime).toString()+" seconds")
         .addField('Error', returnVal['error'])
         .setTimestamp();
         bot_updates_channel.send(messageRet)
@@ -587,27 +587,27 @@ client.on('message', async (msg) => {
                 case 'insert':
                 case 'bypass_insert':
                     msg.channel.send("Making API request to bypass insert with token "+restOfCommands[2])
-                    requestThenSuccess(() => postTokenByPass(restOfCommands[2]))
+                    requestThenSuccess(() => postTokenByPass(restOfCommands[2]), 'Bypass Insert')
                     break;
                 case 'contract_check_insert':
                     msg.channel.send("Making API request to contract check with token "+restOfCommands[2])
-                    requestThenSuccess(() => postToken(restOfCommands[2]))
+                    requestThenSuccess(() => postToken(restOfCommands[2]), 'Contract Insert')
                     break;
                 case 'sell':
                     msg.channel.send("Making API request to sell with token "+restOfCommands[2]+' and selling '+restOfCommands[3])
-                    requestThenSuccess(() => postTokenSell(restOfCommands[2], restOfCommands[3]))
+                    requestThenSuccess(() => postTokenSell(restOfCommands[2], restOfCommands[3]), 'Sell')
                     break;
                 case 'buy':
                     msg.channel.send("Making API request to buy with token "+restOfCommands[2])
-                    requestThenSuccess(() => postLiveToken(restOfCommands[2]))
+                    requestThenSuccess(() => postLiveToken(restOfCommands[2]), 'Buy')
                     break;
                 case 'get_active_workers':
                     msg.channel.send("Making API request to get active workers")
-                    requestThenSuccess(() => getActiveWorkers())
+                    requestThenSuccess(() => getActiveWorkers(), 'Get Active Workers')
                     break;
                 case 'invested_coins':
                     msg.channel.send("Making API request to get invested coins")
-                    requestThenSuccess(() => getInvestedTokens())
+                    requestThenSuccess(() => getInvestedTokens(), 'Get Invested Coins')
                     break;
                 default:
                     break;
