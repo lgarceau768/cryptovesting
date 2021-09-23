@@ -63,7 +63,7 @@ logger.log('Approving: '+str(tokenValue2)+ ' of the token', level="INFO")
 start = time.time()
 approve = sellTokenContract.functions.approve(panRouterContractAddress, balance).buildTransaction({
             'from': sender_address,
-            'gasPrice': web3.toWei('10','gwei'),
+            'gasPrice': web3.toWei('20','gwei'),
             'nonce': web3.eth.get_transaction_count(sender_address),
             })
 logger.log('Current transaction count: '+str(web3.eth.get_transaction_count(sender_address)), level="INFO")
@@ -85,7 +85,7 @@ pancakeswap2_txn = contract.functions.swapExactTokensForETH(
 
             ).buildTransaction({
             'from': sender_address,
-            'gasPrice': web3.toWei('10','gwei'),
+            'gasPrice': web3.toWei('20','gwei'),
             'nonce': web3.eth.get_transaction_count(sender_address),
             })
     
