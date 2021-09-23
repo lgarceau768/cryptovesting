@@ -376,10 +376,12 @@ function token_balances(token, amt, sendEvent, op="add") {
                 category: 'BALANCE'
             })
             let foundIndex = -1;
-            for (let index = 0; index < investedTokens.length; index++) {
-                const token = investedTokens[index];
-                if(token.hash == token){
-                    foundIndex = index;
+            if(investedTokens.length < 0){
+                for (let index = 0; index < investedTokens.length; index++) {
+                    const token = investedTokens[index];
+                    if(token.hash == token){
+                        foundIndex = index;
+                    }
                 }
             }
             if(foundIndex != -1) {
