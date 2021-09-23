@@ -119,6 +119,6 @@ while currentBNB <= targetBNB:
 
     except Exception as e:
         logger.log("Exception in loop: "+str(e), level="CRITICAL")
-    time.sleep(5)
+    time.sleep(10)
     
 

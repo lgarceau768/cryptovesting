@@ -73,7 +73,7 @@ logger.log("Approved transaction hash: " + web3.toHex(tx_token), level="HASH")
 logger.log('Now waiting to sell after 5 seconds');
 
 #Wait after approve 10 seconds before sending transaction
-time.sleep(5)
+time.sleep(10)
 #print("Swapping {tokenValue2} {symbol} for BNB")
 #Swaping exact Token for ETH 
 logger.log('Token to sell amount: '+str(tokenValue))
