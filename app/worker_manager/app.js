@@ -15,7 +15,7 @@ const {
 } = shared()
 const { Worker } = require('worker_threads');
 const { logger } = require('ethers');
-const { default: Web3 } = require('web3');
+const Web3 = require('web3')
 
 let investedTokens = [];
 let activeWorkers = [];
