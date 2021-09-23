@@ -142,23 +142,34 @@ function persistOp(data, op, table){
     if(op == 'add') {
         let foundIndex = -1;
         for(let i = 0; i < existingPersistData[table].length; i++){
-            _l('compare: '+_jstr(existingPersistData[table][i])+ ' | '+_jstr(data), level="DEBUG")
-            if(existingPersistData[table][i] == data){
-                foundIndex = i;
+            if(table == 'sniper'){
+                if(existingPersistData[table][i] == data){
+                    foundIndex = i;
+                }
+            } else {
+                if(existingPersistData[table][i]['tokenAddress'] == data['tokenAddress']){
+                    foundIndex = i;
+                }
             }
         }
         if(foundIndex == -1){
-            _l("new token "+_jstr(data), level="DEBUG")
+            _l("New Perisiting token "+_jstr(data), level="DEBUG")
             existingPersistData[table].push(data)
         }
     } else if(op == 'remove') {
         let foundIndex = -1;
         for(let i = 0; i < existingPersistData[table].length; i++){
-            if(existingPersistData[table][i] == data){
-                foundIndex = i;
+            if(table == 'sniper'){
+                if(existingPersistData[table][i] == data){
+                    foundIndex = i;
+                }
+            } else {
+                if(existingPersistData[table][i]['tokenAddress'] == data['tokenAddress']){
+                    foundIndex = i;
+                }
             }
         }
-        _l('removing at '+foundIndex, level="DEBUG")
+        _l('Remvoing persited token: '+_jstr(data), level="DEBUG")
         existingPersistData[table].splice(foundIndex, 1);
     } 
     fs.writeFileSync(path.join(__dirname, 'data', 'coins.json'), JSON.stringify(existingPersistData))
