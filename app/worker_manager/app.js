@@ -241,7 +241,7 @@ function spawnTokenWatcher(token, amtBNB, amtToken, sendEvent, _l) {
                 tokenAmount: amtToken,
                 bnbAmount: amtBNB
             }, op='remove', table='watching')
-            _l("Selling "+parseFloat(amtToken * SELL_PERCENT), "SLIPPAGE")
+            _l("Selling because of token balance increase "+parseFloat(amtToken * SELL_PERCENT), "SLIPPAGE")
             spawnSellWorker(token, parseFloat(amtToken * SELL_PERCENT), sendEvent, _l)
         } else {
             let failResult = stringVal.split('=')[1]
@@ -303,6 +303,7 @@ function spawnBuyPythonScript(token, sendEvent, _l) {
         if(successIndex != -1){
             let resultVal = stringVal.split("=")[1]
             _l("Buy Success, resultVal: "+_jstr(resultVal), level="BUYSUCCESS")
+            _l('Now spawning a token watcher because of buy', level="SPAWN")
             resultVal = JSON.parse(resultVal)
             sendEvent({
                 message: 'Bought token '+token+' |'+resultVal['amountToken'].toString(),

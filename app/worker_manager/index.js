@@ -173,6 +173,7 @@ app.post('/upload_token_bypass', (req, res) => {
         (reply) => {
             _l('Worker Reply: '+reply, level="WORKERREPLY")
             if(reply.indexOf('Mint=') != -1){
+                _l('Sniped Token '+token+' success now spawning a buy worker', level="SPAWN")
                 persistOp(token, op='remove', table='sniping')
                 let token = reply.split('Mint=')[1]
                 Cryptovesting.spawnBuyPythonScript(token, sendEvent, _l)
@@ -248,6 +249,7 @@ persistedCoins['sniping'].forEach((token) => {
     }, (reply) => {
         _l('Worker Reply: '+reply, level="WORKERREPLY")
         if(reply.indexOf('Mint=') != -1){
+            _l('Sniped Persisted Token '+token+' success now spawning a buy worker', level="SPAWN")
             let token = reply.split('Mint=')[1]
             Cryptovesting.spawnBuyPythonScript(token, sendEvent, _l)
         } else {
