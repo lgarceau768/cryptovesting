@@ -408,6 +408,7 @@ async function requestThenSuccess(promiseFunction, functionality) {
         .setTitle('API Call Success')
         .setDescription(functionality)
         .addField('Duration', (endTime-startTime).toString()+" seconds")
+        .addField('ReturnVal', _jstr(returnVal))
         .setTimestamp();
         bot_updates_channel.send(messageRet)
     } else {        
