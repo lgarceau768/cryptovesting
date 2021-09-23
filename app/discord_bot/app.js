@@ -130,15 +130,15 @@ function createFailMessage(event) {
         let file = findNewestLog(files, availableLogs[failee]['path'])
         console.log(file)
         uploadFileToPasteBin(availableLogs[failee]['path'], file)
+        let messageRet = new Discord.MessageEmbed()
+        .setColor('#ff0026')
+        .setTitle(failee+' failed')
+        .setDescription(message)
+        .addField('Timestamp', timestamp)
+        .addField('Info', failureInfo)
+        .setTimestamp(); 
+        bot_updates_channel.send(messageRet)
     })    
-    let messageRet = new Discord.MessageEmbed()
-    .setColor('#ff0026')
-    .setTitle(failee+' failed')
-    .setDescription(message)
-    .addField('Timestamp', timestamp)
-    .addField('Info', failureInfo)
-    .setTimestamp(); 
-    return messageRet
 }
 
 function createImptMessage(event) {

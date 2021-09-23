@@ -152,11 +152,11 @@ function spawnSellWorker(token, amt, sendEvent, _l) {
                 })
             } else {
                 let failResult = stringVal.split('=')[1]
+                _l("Sell failed "+failResult, level="SELLFAIL")
                 sendEvent({
                     message: 'Sold Token Failed |'+failResult,
                     category: 'FAIL=sell'
                 })
-                _l("Sell failed "+failResult, level="SELLFAIL")
             }
         } catch (e) {
             _l("Sell reply interpret exception "+e, level="SELLFAIL")
@@ -167,7 +167,7 @@ function spawnSellWorker(token, amt, sendEvent, _l) {
         removeWorker(workerId)
         _l("Sell Exception: "+data, level="CRITICAL")
         sendEvent({
-            message: 'Sold Token Exception |'+data,
+            message: 'Sold Token Exception |'+data.toString(),
             category: 'FAIL=sell'
         })
     })
