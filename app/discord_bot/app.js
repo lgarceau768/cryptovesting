@@ -439,8 +439,14 @@ client.on('message', async (msg) => {
     }
     _l('Message: '+msg.content, level="MESSAGE")
     switch (msg.content.split(' ')[0]) {
+        case 'delete':
+            let ammountToDelete = msg.content.split(' ')[1]
+            let fetchedMessages = await msg.channel.fetchMessages({limit: ammountToDelete})
+            msg.channel.bulkDelete(fetchedMessages)
+            msg.channel.send('Deleted: '+ammountToDelete+" messages");
+            break;
         case 'help':
-            msg.channel.send('Available topLevel commands are log, api \nlog corresponds to commands that have to do with the log files of the system\napi corresponds to the commands that directly interact with the cryptovesting api\nUse %[topLevelCommand] help to see more info')
+            msg.channel.send('Available topLevel commands are log, api, delete, help \nlog corresponds to commands that have to do with the log files of the system\napi corresponds to the commands that directly interact with the cryptovesting api\nUse %[topLevelCommand] help to see more info\n delete {number} deletes a number of previous messages')
             break;
         case 'log':
             try {        
