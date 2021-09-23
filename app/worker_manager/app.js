@@ -224,6 +224,7 @@ function spawnSniperWorker(token, onMessage, sendEvent, _l) {
 function spawnTokenWatcher(token, amtBNB, amtToken, sendEvent, _l) {
     let workerId = addWorker('watcher', {token, amtBNB, amtToken})
     _l('spawnTokenWatcher() '+_jstr({token, amtBNB, amtToken}), level="CALL")
+    token_balances(token, 'add', amtToken)
     persistOp({
         tokenAddress: token,
         tokenAmount: amtToken,
