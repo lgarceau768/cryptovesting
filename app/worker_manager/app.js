@@ -306,7 +306,7 @@ function spawnBuyPythonScript(token, sendEvent, _l) {
             _l('Now spawning a token watcher because of buy', level="SPAWN")
             resultVal = JSON.parse(resultVal)
             sendEvent({
-                message: 'Bought token '+token+' |'+resultVal['amountToken'].toString(),
+                message: 'Bought token hash '+resultVal['txHash']+' |'+resultVal['amountToken'].toString(),
                 category: 'IMPT'
             })
             spawnTokenWatcher(token, BNB_AMT_ETHER, resultVal['amountEther'], sendEvent, _l)
