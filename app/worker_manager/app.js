@@ -369,7 +369,7 @@ function getInvestedTokens() {
 // INFO function to add / remove token from token_balances
 function token_balances(token, amt, op, sendEvent) {
     let web3 = new Web3('https://bsc-dataseed.binance.org')
-    let amountChanged = web3.utils.fromWei(amt, 'ether')
+    let amountChanged = web3.utils.fromWei(amt.toString(), 'ether')
     _l('token_balances() '+_jstr({token, amt, op}), level="CALL")
     switch (op) {
         case "add":
