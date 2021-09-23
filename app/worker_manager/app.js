@@ -160,12 +160,16 @@ function spawnSellWorker(token, amt, sendEvent, _l) {
             }
         } catch (e) {
             _l("Sell reply interpret exception "+e, level="SELLFAIL")
+            console.log('Sell Exception')
+            console.error(e)
             _l(_jstr(e))
         }
     })    
     sellProcess.stderr.on('data', (data) => {
         removeWorker(workerId)
         _l("Sell Exception: "+data, level="CRITICAL")
+        console.log('Sell Exception')
+        console.error(data)
         sendEvent({
             message: 'Sold Token Exception |'+data.toString(),
             category: 'FAIL=sell'
@@ -206,6 +210,8 @@ function spawnSniperWorker(token, onMessage, sendEvent, _l) {
     sellProcess.stderr.on('data', (data) => {
         removeWorker(workerId)
         _l("Sniper Exception: "+data, level="CRITICAL")
+        console.log('Sniper Exception')
+        console.error(data)
         sendEvent({
             message: 'Sniper Token Exception |'+data,
             category: 'FAIL=sell'
@@ -279,6 +285,8 @@ function spawnTokenWatcher(token, amtBNB, amtToken, sendEvent, _l) {
     watchProcess.stderr.on('data', (data) => {
         removeWorker(workerId)
         _l("Watch Exception: "+data, level="CRITICAL")
+        console.log('Watch Exception')
+        console.error(data)
         sendEvent({
             message: 'Watching token Exception |'+data, 
             category: 'FAIL=tokenWatcher'
@@ -347,6 +355,8 @@ function spawnBuyPythonScript(token, sendEvent, _l) {
     buyProcess.stderr.on('data', (data) => {
         removeWorker(workerId)
         _l("Buy Exception: "+data, level="CRITICAL")
+        console.log('Buy Exception')
+        console.error(data)
         sendEvent({
             message: 'Buying token Exception |'+data, 
             category: 'FAIL=buy'
