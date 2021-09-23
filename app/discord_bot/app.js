@@ -416,6 +416,11 @@ async function requestThenSuccess(promiseFunction, functionality) {
                 messageRet.addField(name, _jstr(worker['data']))
                 messageRet.addField(name+ " TimeStamp", worker['timestamp'])
             })
+        } else if(returnVal.hasOwnProperty('coins')){
+            let coins = returnVal['coins']
+            coins.forEach(coin => {
+                messageRet.addField('Token '+coin.hash, coin.balance)
+            })
         }
         bot_updates_channel.send(messageRet)
     } else {        

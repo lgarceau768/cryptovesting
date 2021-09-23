@@ -109,7 +109,7 @@ app.get('/active_workers', (req, res) => {
 
 app.get('/invested_coins', (req, res) => {
     try {
-        res.send({success: true, workers: Cryptovesting.getInvestedTokens()})
+        res.send({success: true, coins: Cryptovesting.getInvestedTokens()})
     } catch (err) {
         res.send({success: false, error: err.toString()})
     }
