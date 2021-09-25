@@ -412,8 +412,7 @@ async function requestThenSuccess(promiseFunction, functionality) {
             let workers = returnVal['workers']
             workers.forEach(worker => {
                 let name = worker['name'].charAt(0).toUpperCase() + worker['name'].slice(1)
-                messageRet.addField(name, _jstr(worker['data']))
-                messageRet.addField(name+ " TimeStamp", worker['timestamp'])
+                messageRet.addField(name, _jstr(worker['data']) + 'Timestamp: '+worker['timestamp'])
             })
         } else if(returnVal.hasOwnProperty('coins')){
             let coins = returnVal['coins']
