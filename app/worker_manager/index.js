@@ -133,7 +133,7 @@ app.post('/upload_token', (req, res) => {
             res.send({"success": false, "error": "incorrect body values"})
             return
         }
-        _l("Token: "+token +" being added", level="INPUT")
+        _l("Token: "+_jstr(token) +" being added", level="INPUT")
         res.send({success: true})
         Cryptovesting.spawnWorker({
             workerData: token,

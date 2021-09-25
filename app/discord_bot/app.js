@@ -217,7 +217,7 @@ const postToken = async (contractHash) => {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({contractHash})
+        body: JSON.stringify({contract_hash: contractHash})
     })
     let reply = await response.json()
     return reply;
