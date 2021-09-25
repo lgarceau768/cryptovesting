@@ -343,10 +343,7 @@ async function token_balances(token, op, sendEvent)  {
     switch (op) {
         case "add":
             // FIXME
-            sendEvent({
-                message: 'Token balance on |'+token,
-                category: 'BALANCE'
-            })
+            
             let foundIndex = -1;
             if(investedTokens.length < 0){
                 for (let index = 0; index < investedTokens.length; index++) {
@@ -387,6 +384,10 @@ async function token_balances(token, op, sendEvent)  {
                 
                 investedTokens[foundIndex]['balance'] = balance
             }
+            sendEvent({
+                message: 'Token balance on '+token+' |'+balance,
+                category: 'BALANCE'
+            })
             break;
         case "rem":
             // FIXME
