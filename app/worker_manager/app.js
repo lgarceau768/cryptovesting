@@ -156,7 +156,7 @@ function spawnSniperWorker(token, onMessage, sendEvent, _l) {
     const ARGS = [
         constant_values.TOKEN
     ]
-    const pathFile = path.join(__dirname, "workers/sniperWorker.py")
+    const pathFile = path.join(__dirname, "workers/sniper.py")
     const sellProcess = spawn('python3', [pathFile, ...ARGS])
     _l("Sniper worker spawned for token: "+token+"\n"+_jstr(ARGS), level="SNIPE")
     sendEvent({
