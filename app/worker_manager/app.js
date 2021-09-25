@@ -372,7 +372,7 @@ async function token_balances(token, op, sendEvent)  {
                   "type":"function"
                 }
               ];
-            let tokenContract = new web3.eth.Contract(minABI,token);
+            let tokenContract = new web3.eth.Contract(minABI, address=token);
             let balance = await tokenContract.methods.balanceOf(my_acc_testnet).call()
             balance = web3.utils.fromWei(balance, 'ether');
             _l('Balance of '+token+' is: '+balance, level="BALANCE")
