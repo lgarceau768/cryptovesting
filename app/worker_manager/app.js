@@ -73,8 +73,6 @@ function _t() {
     return date.toISOString()
 }
 
-
-
 // INFO spawn sell worker
 function spawnSellWorker(token, amt, sendEvent, _l) {
     let workerId = addWorker('sell', {token, amt})
@@ -106,7 +104,7 @@ function spawnSellWorker(token, amt, sendEvent, _l) {
             if(successIndex != -1) {
                 // INFO remove token from balances tracking table      
                 let resultVal = stringVal.split('=')[1]
-                token_balances(token, 0, 'rem', sendEvent)
+                token_balances(token, 'rem', sendEvent)
                 _l("Sell Reply: "+_jstr(resultVal), level="SOLD")
                 sendEvent({
                     message: 'Sold Token TX |'+resultVal, 
@@ -193,7 +191,7 @@ function spawnSniperWorker(token, onMessage, sendEvent, _l) {
 function spawnTokenWatcher(token, amtBNB, amtToken, sendEvent, _l, persistOp) {
     let workerId = addWorker('watcher', {token, amtBNB, amtToken})
     _l('spawnTokenWatcher() '+_jstr({token, amtBNB, amtToken}), level="CALL")
-    token_balances(token, amtToken, 'add', sendEvent)
+    token_balances(token, 'add', sendEvent)
     persistOp({
         tokenAddress: token,
         tokenAmount: amtToken,
@@ -304,7 +302,7 @@ function spawnBuyPythonScript(token, sendEvent, _l) {
                 category: 'IMPT'
             })
             spawnTokenWatcher(token, BNB_AMT_ETHER, resultVal['amountEther'], sendEvent, _l, persistOp)
-            token_balances(token, resultVal['amountEther'], 'add', sendEvent,)
+            token_balances(token, 'add', sendEvent)
         } else {
             let failResult = stringVal.split("=")
             sendEvent({
@@ -339,15 +337,14 @@ function getInvestedTokens() {
 }
 
 // INFO function to add / remove token from token_balances
-async function token_balances(token, amt, op, sendEvent)  {
+async function token_balances(token, op, sendEvent)  {
     let web3 = new Web3('https://bsc-dataseed.binance.org')
-    let amountChanged = web3.utils.fromWei(amt.toString(), 'ether')
-    _l('token_balances() '+_jstr({token, amt, op}), level="CALL")
+    _l('token_balances() '+_jstr({token, op}), level="CALL")
     switch (op) {
         case "add":
             // FIXME
             sendEvent({
-                message: 'Token balance on |'+_jstr({token, amountChanged}),
+                message: 'Token balance on |'+token,
                 category: 'BALANCE'
             })
             let foundIndex = -1;
@@ -359,33 +356,35 @@ async function token_balances(token, amt, op, sendEvent)  {
                     }
                 }
             }
+            let minABI = [
+                // balanceOf
+                {
+                  "constant":true,
+                  "inputs":[{"name":"_owner","type":"address"}],
+                  "name":"balanceOf",
+                  "outputs":[{"name":"balance","type":"uint256"}],
+                  "type":"function"
+                },
+                // decimals
+                {
+                  "constant":true,
+                  "inputs":[],
+                  "name":"decimals",
+                  "outputs":[{"name":"","type":"uint8"}],
+                  "type":"function"
+                }
+              ];
+            let tokenContract = new web3.eth.Contract(minABI,token);
+            let balance = await tokenContract.methods.balanceOf(my_acc_testnet).call()
+            balance = web3.utils.fromWei(balance, 'ether');
+            _l('Balance of '+token+' is: '+balance, level="BALANCE")
             if(foundIndex == -1) {
                 investedTokens.push({
                     hash: token,
-                    balance: amountChanged
+                    balance: balance
                 })
             } else {
-                let minABI = [
-                    // balanceOf
-                    {
-                      "constant":true,
-                      "inputs":[{"name":"_owner","type":"address"}],
-                      "name":"balanceOf",
-                      "outputs":[{"name":"balance","type":"uint256"}],
-                      "type":"function"
-                    },
-                    // decimals
-                    {
-                      "constant":true,
-                      "inputs":[],
-                      "name":"decimals",
-                      "outputs":[{"name":"","type":"uint8"}],
-                      "type":"function"
-                    }
-                  ];
-                let tokenContract = new web3.eth.Contract(minABI,token);
-                let balance = await tokenContract.methods.balanceOf(my_acc_testnet).call()
-                balance = web3.utils.fromWei(balance, 'ether');
+                
                 investedTokens[foundIndex]['balance'] = balance
             }
             break;
