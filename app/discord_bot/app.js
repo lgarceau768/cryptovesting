@@ -234,7 +234,7 @@ const postTokenByPass = async (contractHash) => {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({contractHash})
+        body: JSON.stringify({contract_hash: contractHash})
     })
     return await response.json()
 } 
