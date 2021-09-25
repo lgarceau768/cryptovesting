@@ -59,10 +59,12 @@ function checkAllNonNull(val) {
     for (const key in val) {
         if (Object.hasOwnProperty.call(val, key)) {
             const element = val[key];
-            if(element == null) {
+            if(element === null) {
+                _l('Element null: '+element, level="CHECK_ALL_NONE");
                 return true
             }
-            if(element == "") {
+            if(element === "") {
+                _l('Element null: '+element, level="CHECK_ALL_NONE");
                 return true
             }
         }
