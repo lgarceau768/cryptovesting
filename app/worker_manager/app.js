@@ -353,6 +353,7 @@ async function token_balances(token, op, sendEvent)  {
                     }
                 }
             }
+            console.log(address)
             let minABI = [
                 // balanceOf
                 {
