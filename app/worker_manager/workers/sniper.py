@@ -80,7 +80,7 @@ async def log_loop(event_filter, poll_interval):
 # create a filter for the latest block and look for the "PairCreated" event for the uniswap factory contract
 # run an async loop
 # try to run the log_loop function above every 2 seconds
-def main():
+async def main():
     logger.log('Starting to snipe the chain 0_0', level="SNIPE")
     event_filter = contract.events.PairCreated.createFilter(fromBlock='latest')
     
@@ -96,7 +96,7 @@ def main():
     except Exception as e:
         if(str(e).__contains__('filter not found')):
             loop.close()
-            main()
+            await main()
         else:
             print('Fail='+str(e));
     finally:
