@@ -216,6 +216,7 @@ app.post('/upload_token_bypass', (req, res) => {
                 Cryptovesting.spawnBuyPythonScript(token, sendEvent, _l)
             } else {
                 _l('Unknown Sniper reply: '+reply, level="SNIPER")
+                
             }
         }, sendEvent, _l)
     } catch (e) {

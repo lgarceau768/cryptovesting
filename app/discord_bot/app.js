@@ -59,7 +59,6 @@ const _jstr = (json_dict) => JSON.stringify(json_dict, null, 2)
 async function uploadFileToPasteBin(basePath, filePath) {
     try {
         let text = await fs.readFileSync(path.join(basePath, filePath), 'utf8')
-        console.log(text)
         let data = {
             'api_dev_key': 'j1LhJqqjhwBSN2bVto0Ucb4el96v84Lv',
             'api_paste_code': text,
@@ -135,7 +134,6 @@ function createFailMessage(event) {
     fse.readdir(availableLogs[failee]['path'])
     .then((files) => {
         let file = findNewestLog(files, availableLogs[failee]['path'])
-        console.log(file)
         uploadFileToPasteBin(availableLogs[failee]['path'], file)
     })    
 }
@@ -513,12 +511,10 @@ client.on('message', async (msg) => {
                     case 'getLogs':
                         const listLogs = spawn('sh' ,["/home/fullsend/cryptovesting/scripts/system_control/list_logs.sh"])
                         listLogs.stdout.on('data', function (data) {
-                            console.log(data.toString())
                             msg.channel.send(data.toString().replace(/.log/g, ''))
                             clearTimeout(noTimeout)
                         })
                         const noTimeout = setTimeout(() => {
-                            console.log('No Logs')
                             msg.channel.send('No Logs Found')
                         }, 500)
                         listLogs.stderr.on('data', function (data) {

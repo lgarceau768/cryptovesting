@@ -120,16 +120,16 @@ function spawnSellWorker(token, amt, sendEvent, _l) {
             }
         } catch (e) {
             _l("Sell reply interpret exception "+e, level="SELLFAIL")
-            console.log('Sell Exception')
-            console.error(e)
+            sendEvent({
+                message: 'Sell reply interpret exception |'+e.toString(),
+                category: 'FAIL=sell'
+            })
             _l(_jstr(e))
         }
     })    
     sellProcess.stderr.on('data', (data) => {
         removeWorker(workerId)
         _l("Sell Exception: "+data, level="CRITICAL")
-        console.log('Sell Exception')
-        console.error(data.toString())
         sendEvent({
             message: 'Sold Token Exception |'+data.toString(),
             category: 'FAIL=sell'
@@ -164,14 +164,16 @@ function spawnSniperWorker(token, onMessage, sendEvent, _l) {
         category: 'IMPT'
     })
     sellProcess.stdout.on('data', (data) => {
+        sendEvent({
+            message: 'Sniper worker reply |'+data.toString(),
+            category: 'IMPT'
+        })
         removeWorker(workerId)
         onMessage(data)
     })    
     sellProcess.stderr.on('data', (data) => {
         removeWorker(workerId)
         _l("Sniper Exception: "+data, level="CRITICAL")
-        console.log('Sniper Exception')
-        console.error(data.toString())
         sendEvent({
             message: 'Sniper Token Exception |'+data,
             category: 'FAIL=sell'
@@ -245,8 +247,6 @@ function spawnTokenWatcher(token, amtBNB, amtToken, sendEvent, _l, persistOp) {
     watchProcess.stderr.on('data', (data) => {
         removeWorker(workerId)
         _l("Watch Exception: "+data, level="CRITICAL")
-        console.log('Watch Exception')
-        console.error(data.toString())
         sendEvent({
             message: 'Watching token Exception |'+data, 
             category: 'FAIL=tokenWatcher'
@@ -315,8 +315,6 @@ function spawnBuyPythonScript(token, sendEvent, _l) {
     buyProcess.stderr.on('data', (data) => {
         removeWorker(workerId)
         _l("Buy Exception: "+data, level="CRITICAL")
-        console.log('Buy Exception')
-        console.error(data.toString())
         sendEvent({
             message: 'Buying token Exception |'+data, 
             category: 'FAIL=buy'
@@ -443,7 +441,6 @@ function spawnWorker(workerInfo, onMessage, sendEvent, _l) {
         message: workerName+" spawned on token |" + workerData.toString(),
         category: 'IMPT'
     })
-    console.log(workerPath)
     const worker = new Worker(workerPath, {
         workerData: workerData
     })

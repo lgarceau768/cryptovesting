@@ -83,6 +83,7 @@ async def log_loop(event_filter, poll_interval):
 def main():
     logger.log('Starting to snipe the chain 0_0', level="SNIPE")
     event_filter = contract.events.PairCreated.createFilter(fromBlock='latest')
+    
     #block_filter = web3.eth.filter('latest')
     # tx_filter = web3.eth.filter('pending')
     loop = asyncio.get_event_loop()
@@ -93,7 +94,11 @@ def main():
                 # log_loop(block_filter, 2),
                 # log_loop(tx_filter, 2)))
     except Exception as e:
-        print('Fail='+str(e));
+        if(str(e).__contains__('filter not found')):
+            loop.close()
+            main()
+        else:
+            print('Fail='+str(e));
     finally:
         # close loop to free up system resources
         loop.close()
