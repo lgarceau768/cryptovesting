@@ -347,8 +347,8 @@ async function token_balances(token, op, sendEvent)  {
             let foundIndex = -1;
             if(investedTokens.length < 0){
                 for (let index = 0; index < investedTokens.length; index++) {
-                    const token = investedTokens[index];
-                    if(token.hash == token){
+                    const investedtoken = investedTokens[index];
+                    if(investedtoken.hash == token){
                         foundIndex = index;
                     }
                 }
