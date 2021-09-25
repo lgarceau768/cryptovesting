@@ -274,23 +274,39 @@ app.listen(port, host=IP, () => {
 let coinsFile = fs.readFileSync(path.join(__dirname, 'data', 'coins.json'), 'utf-8')
 let persistedCoins = JSON.parse(coinsFile)
 persistedCoins['watching'].forEach((token) => {
-    _l('Read persisted token: '+_jstr(token)+ " was watching, respawning watcher", level="PERSIST")
-    let { tokenAddress, tokenAmount, bnbAmount } = token
-    Cryptovesting.spawnTokenWatcher(tokenAddress, bnbAmount, tokenAmount, sendEvent, _l, persistOp)
+    try {
+        _l('Read persisted token: '+_jstr(token)+ " was watching, respawning watcher", level="PERSIST")
+        let { tokenAddress, tokenAmount, bnbAmount } = token
+        Cryptovesting.spawnTokenWatcher(tokenAddress, bnbAmount, tokenAmount, sendEvent, _l, persistOp)
+    } catch (e) {
+        sendEvent({
+            message: 'Error reading peristed watching token |'+token, 
+            category: 'FAIL=manager'
+        })
+        _l('Error reading persisted watching token: '+token+'\n'+e, level="ERROR")
+    }
 })
 persistedCoins['sniping'].forEach((token) => {
-    _l('Read persisted token: '+token.toString()+ " was sniping, respawning sniper", level="PERSIST")
-    Cryptovesting.spawnWorker({
-        workerData: token.toString(),
-        worker: 'sniperWorker.js'
-    }, (reply) => {
-        _l('Worker Reply: '+reply, level="WORKERREPLY")
-        if(reply.indexOf('Mint=') != -1){
-            _l('Sniped Persisted Token '+token+' success now spawning a buy worker', level="SPAWN")
-            let token = reply.split('Mint=')[1]
-            Cryptovesting.spawnBuyPythonScript(token, sendEvent, _l)
-        } else {
-            _l('Unknown Sniper reply: '+reply, level="SNIPER")
-        }
-    }, sendEvent, _l)
+    try {
+        _l('Read persisted token: '+token.toString()+ " was sniping, respawning sniper", level="PERSIST")
+        Cryptovesting.spawnWorker({
+            workerData: token.toString(),
+            worker: 'sniperWorker.js'
+        }, (reply) => {
+            _l('Worker Reply: '+reply, level="WORKERREPLY")
+            if(reply.indexOf('Mint=') != -1){
+                _l('Sniped Persisted Token '+token+' success now spawning a buy worker', level="SPAWN")
+                let token = reply.split('Mint=')[1]
+                Cryptovesting.spawnBuyPythonScript(token, sendEvent, _l)
+            } else {
+                _l('Unknown Sniper reply: '+reply, level="SNIPER")
+            }
+        }, sendEvent, _l)
+    } catch (err) {
+        sendEvent({
+            message: 'Error reading peristed sniper token |'+token, 
+            category: 'FAIL=manager'
+        })
+        _l('Error reading persisted sniper token: '+token+'\n'+e, level="ERROR")
+    }
 })
