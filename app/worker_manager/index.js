@@ -302,7 +302,7 @@ persistedCoins['sniping'].forEach((token) => {
                 _l('Unknown Sniper reply: '+reply, level="SNIPER")
             }
         }, sendEvent, _l)
-    } catch (err) {
+    } catch (e) {
         sendEvent({
             message: 'Error reading peristed sniper token |'+token, 
             category: 'FAIL=manager'
