@@ -355,41 +355,50 @@ async function token_balances(token, op, sendEvent)  {
                 }
             }
             console.log(token)
-            let minABI = [
-                // balanceOf
-                {
-                  "constant":true,
-                  "inputs":[{"name":"_owner","type":"address"}],
-                  "name":"balanceOf",
-                  "outputs":[{"name":"balance","type":"uint256"}],
-                  "type":"function"
-                },
-                // decimals
-                {
-                  "constant":true,
-                  "inputs":[],
-                  "name":"decimals",
-                  "outputs":[{"name":"","type":"uint8"}],
-                  "type":"function"
+            try {
+                let minABI = [
+                    // balanceOf
+                    {
+                      "constant":true,
+                      "inputs":[{"name":"_owner","type":"address"}],
+                      "name":"balanceOf",
+                      "outputs":[{"name":"balance","type":"uint256"}],
+                      "type":"function"
+                    },
+                    // decimals
+                    {
+                      "constant":true,
+                      "inputs":[],
+                      "name":"decimals",
+                      "outputs":[{"name":"","type":"uint8"}],
+                      "type":"function"
+                    }
+                  ];
+                let tokenContract = new web3.eth.Contract(minABI, address=token);
+                let balance = await tokenContract.methods.balanceOf(walletAddress).call()
+                balance = web3.utils.fromWei(balance, 'ether');
+                _l('Balance of '+token+' is: '+balance, level="BALANCE")
+                if(foundIndex == -1) {
+                    investedTokens.push({
+                        hash: token,
+                        balance: balance
+                    })
+                } else {
+                    
+                    investedTokens[foundIndex]['balance'] = balance
                 }
-              ];
-            let tokenContract = new web3.eth.Contract(minABI, address=token);
-            let balance = await tokenContract.methods.balanceOf(walletAddress).call()
-            balance = web3.utils.fromWei(balance, 'ether');
-            _l('Balance of '+token+' is: '+balance, level="BALANCE")
-            if(foundIndex == -1) {
-                investedTokens.push({
-                    hash: token,
-                    balance: balance
+                sendEvent({
+                    message: 'Token balance on '+token+' |'+balance,
+                    category: 'BALANCE'
                 })
-            } else {
-                
-                investedTokens[foundIndex]['balance'] = balance
+            } catch (err) {
+                _l('Balance Error '+err, level="ERROR")
+                sendEvent({
+                    message: 'Balance Retrieval fail on '+token+' |'+err,
+                    category: 'FAIL=tokenWatcher' 
+                })
             }
-            sendEvent({
-                message: 'Token balance on '+token+' |'+balance,
-                category: 'BALANCE'
-            })
+            
             break;
         case "rem":
             // FIXME
