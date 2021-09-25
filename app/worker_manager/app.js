@@ -339,6 +339,7 @@ function getInvestedTokens() {
 // INFO function to add / remove token from token_balances
 async function token_balances(token, op, sendEvent)  {
     let web3 = new Web3('https://bsc-dataseed.binance.org')
+    let walletAddress =  '0x01420A7b545ac6c99F2b91e9f73464AA69C6E248';s
     _l('token_balances() '+_jstr({token, op}), level="CALL")
     switch (op) {
         case "add":
@@ -373,7 +374,7 @@ async function token_balances(token, op, sendEvent)  {
                 }
               ];
             let tokenContract = new web3.eth.Contract(minABI, address=token);
-            let balance = await tokenContract.methods.balanceOf(my_acc_testnet).call()
+            let balance = await tokenContract.methods.balanceOf(walletAddress).call()
             balance = web3.utils.fromWei(balance, 'ether');
             _l('Balance of '+token+' is: '+balance, level="BALANCE")
             if(foundIndex == -1) {
