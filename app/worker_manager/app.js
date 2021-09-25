@@ -339,7 +339,7 @@ function getInvestedTokens() {
 // INFO function to add / remove token from token_balances
 async function token_balances(token, op, sendEvent)  {
     let web3 = new Web3('https://bsc-dataseed.binance.org')
-    let walletAddress =  '0x01420A7b545ac6c99F2b91e9f73464AA69C6E248';s
+    let walletAddress =  '0x01420A7b545ac6c99F2b91e9f73464AA69C6E248';
     _l('token_balances() '+_jstr({token, op}), level="CALL")
     switch (op) {
         case "add":
