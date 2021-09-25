@@ -160,7 +160,7 @@ function spawnSniperWorker(token, onMessage, sendEvent, _l) {
     const sellProcess = spawn('python3', [pathFile, ...ARGS])
     _l("Sniper worker spawned for token: "+token+"\n"+_jstr(ARGS), level="SNIPE")
     sendEvent({
-        message: 'Spawning sniper on '+token,
+        message: 'Spawning sniper on '+token+' |'+token,
         category: 'IMPT'
     })
     sellProcess.stdout.on('data', (data) => {
