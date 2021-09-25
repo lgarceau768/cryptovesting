@@ -290,13 +290,12 @@ persistedCoins['watching'].forEach((token) => {
 persistedCoins['sniping'].forEach((token) => {
     try {
         _l('Read persisted token: '+token.toString()+ " was sniping, respawning sniper", level="PERSIST")
-        Cryptovesting.spawnWorker({
-            workerData: token.toString(),
-            worker: 'sniperWorker.js'
-        }, (reply) => {
+        Cryptovesting.spawnSniperWorker(token.toString(), 
+        (reply) => {
             _l('Worker Reply: '+reply, level="WORKERREPLY")
             if(reply.indexOf('Mint=') != -1){
-                _l('Sniped Persisted Token '+token+' success now spawning a buy worker', level="SPAWN")
+                _l('Sniped Token '+token+' success now spawning a buy worker', level="SPAWN")
+                persistOp(token, 'remove', 'sniping')
                 let token = reply.split('Mint=')[1]
                 Cryptovesting.spawnBuyPythonScript(token, sendEvent, _l)
             } else {
