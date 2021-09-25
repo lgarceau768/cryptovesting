@@ -338,88 +338,96 @@ function getInvestedTokens() {
 
 // INFO function to add / remove token from token_balances
 async function token_balances(token, op, sendEvent)  {
-    let web3 = new Web3('https://bsc-dataseed.binance.org')
-    let walletAddress =  '0x01420A7b545ac6c99F2b91e9f73464AA69C6E248';
-    _l('token_balances() '+_jstr({token, op}), level="CALL")
-    switch (op) {
-        case "add":
-            // FIXME
-            
-            let foundIndex = -1;
-            if(investedTokens.length < 0){
-                for (let index = 0; index < investedTokens.length; index++) {
-                    const investedtoken = investedTokens[index];
-                    if(investedtoken.hash == token){
-                        foundIndex = index;
+    if(token !== null && token !== "") {
+
+        let web3 = new Web3('https://bsc-dataseed.binance.org')
+        let walletAddress =  '0x01420A7b545ac6c99F2b91e9f73464AA69C6E248';
+        _l('token_balances() '+_jstr({token, op}), level="CALL")
+        switch (op) {
+            case "add":
+                // FIXME
+                
+                let foundIndex = -1;
+                if(investedTokens.length < 0){
+                    for (let index = 0; index < investedTokens.length; index++) {
+                        const investedtoken = investedTokens[index];
+                        if(investedtoken.hash == token){
+                            foundIndex = index;
+                        }
                     }
                 }
-            }
-            try {
-                let minABI = [
-                    // balanceOf
-                    {
-                      "constant":true,
-                      "inputs":[{"name":"_owner","type":"address"}],
-                      "name":"balanceOf",
-                      "outputs":[{"name":"balance","type":"uint256"}],
-                      "type":"function"
-                    },
-                    // decimals
-                    {
-                      "constant":true,
-                      "inputs":[],
-                      "name":"decimals",
-                      "outputs":[{"name":"","type":"uint8"}],
-                      "type":"function"
+                try {
+                    let minABI = [
+                        // balanceOf
+                        {
+                          "constant":true,
+                          "inputs":[{"name":"_owner","type":"address"}],
+                          "name":"balanceOf",
+                          "outputs":[{"name":"balance","type":"uint256"}],
+                          "type":"function"
+                        },
+                        // decimals
+                        {
+                          "constant":true,
+                          "inputs":[],
+                          "name":"decimals",
+                          "outputs":[{"name":"","type":"uint8"}],
+                          "type":"function"
+                        }
+                      ];
+                    let tokenContract = new web3.eth.Contract(minABI, address=token);
+                    let balance = await tokenContract.methods.balanceOf(walletAddress).call()
+                    balance = web3.utils.fromWei(balance, 'ether');
+                    _l('Balance of '+token+' is: '+balance, level="BALANCE")
+                    if(foundIndex == -1) {
+                        investedTokens.push({
+                            hash: token,
+                            balance: balance
+                        })
+                    } else {
+                        
+                        investedTokens[foundIndex]['balance'] = balance
                     }
-                  ];
-                let tokenContract = new web3.eth.Contract(minABI, address=token);
-                let balance = await tokenContract.methods.balanceOf(walletAddress).call()
-                balance = web3.utils.fromWei(balance, 'ether');
-                _l('Balance of '+token+' is: '+balance, level="BALANCE")
-                if(foundIndex == -1) {
-                    investedTokens.push({
-                        hash: token,
-                        balance: balance
+                    sendEvent({
+                        message: 'Token balance on '+token+' |'+balance,
+                        category: 'BALANCE'
                     })
-                } else {
-                    
-                    investedTokens[foundIndex]['balance'] = balance
+                } catch (err) {
+                    _l('Balance Error '+err, level="ERROR")
+                    sendEvent({
+                        message: 'Balance Retrieval fail on '+token+' |'+err,
+                        category: 'FAIL=tokenWatcher' 
+                    })
                 }
+                
+                break;
+            case "rem":
+                // FIXME
                 sendEvent({
-                    message: 'Token balance on '+token+' |'+balance,
+                    message: 'Token balance remove |'+ token,
                     category: 'BALANCE'
                 })
-            } catch (err) {
-                _l('Balance Error '+err, level="ERROR")
-                sendEvent({
-                    message: 'Balance Retrieval fail on '+token+' |'+err,
-                    category: 'FAIL=tokenWatcher' 
-                })
-            }
-            
-            break;
-        case "rem":
-            // FIXME
-            sendEvent({
-                message: 'Token balance remove |'+ token,
-                category: 'BALANCE'
-            })
-            let foundIndex2 = -1;
-            for (let index2 = 0; index2 < investedTokens.length; index2++) {
-                const token2 = investedTokens[index2];
-                if(token2.hash == token){
-                    foundIndex2 = index2;
+                let foundIndex2 = -1;
+                for (let index2 = 0; index2 < investedTokens.length; index2++) {
+                    const token2 = investedTokens[index2];
+                    if(token2.hash == token){
+                        foundIndex2 = index2;
+                    }
                 }
-            }
-            if(foundIndex2 != -1){
-                investedTokens.splice(foundIndex2, 1);
-            }
-            break;
-        default:
-            break;
+                if(foundIndex2 != -1){
+                    investedTokens.splice(foundIndex2, 1);
+                }
+                break;
+            default:
+                break;
+        }
+        web3 = null;
+    } else {
+        sendEvent({
+            message: 'Incorrect token for token balances |'+token,
+            category: 'FAIL=manager'
+        })
     }
-    web3 = null;
 }
 
 // INFO function to spawn worker
