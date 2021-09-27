@@ -52,7 +52,7 @@ function getWorkers() {
     return activeWorkers
 }
 
-function removeWorker(id, sendEvent) {
+function removeWorker(id, sendEvent, persistOp) {
     let removeIndex = -1;
     for (let index = 0; index < activeWorkers.length; index++) {
         const worker = activeWorkers[index];
@@ -65,6 +65,7 @@ function removeWorker(id, sendEvent) {
         if(worker['data'].hasOwnProperty('token')) {
             if(worker.name.toLowerCase().indexOf('sniper') != -1) {
                 token_balances(worker.data.token, 'rem', sendEvent)
+                persistOp()
             }
         }
         try {
@@ -86,7 +87,7 @@ function _t() {
 }
 
 // INFO spawn sell worker
-function spawnSellWorker(token, amt, sendEvent, _l) {
+function spawnSellWorker(token, amt, sendEvent, _l, persistOp) {
     _l('spawnSellWorker() '+_jstr({token, amt}), level="CALL")
     const constant_values = {
         NET: BINANCE_NET,
@@ -107,7 +108,7 @@ function spawnSellWorker(token, amt, sendEvent, _l) {
     })
     sellProcess.stdout.on('data', (data) => {
         try {
-            removeWorker(workerId, sendEvent)
+            removeWorker(workerId, sendEvent, persistOp)
             _l('Sell Reply: '+data, level="SELLREPLY")
             if(data.indexOf('=') == -1) return
             let stringVal = data.toString().trim()
@@ -140,7 +141,7 @@ function spawnSellWorker(token, amt, sendEvent, _l) {
         }
     })    
     sellProcess.stderr.on('data', (data) => {
-        removeWorker(workerId, sendEvent)
+        removeWorker(workerId, sendEvent, persistOp)
         _l("Sell Exception: "+data, level="CRITICAL")
         sendEvent({
             message: 'Sold Token Exception |'+data.toString(),
@@ -148,7 +149,7 @@ function spawnSellWorker(token, amt, sendEvent, _l) {
         })
     })
     sellProcess.on('error', (err) => {
-        removeWorker(workerId, sendEvent)
+        removeWorker(workerId, sendEvent, persistOp)
         _l("Sell Error"+err, level="CRITICAL")
         sendEvent({
             message: 'Sold Token Error |0',
@@ -159,7 +160,7 @@ function spawnSellWorker(token, amt, sendEvent, _l) {
 
 
 // INFO spawn sell worker
-function spawnSniperWorker(token, onMessage, sendEvent, _l) {
+function spawnSniperWorker(token, onMessage, sendEvent, _l, persistOp) {
     _l('spawnSniperWorker() '+token, level="CALL")
     const constant_values = {
         TOKEN: token,
@@ -180,11 +181,11 @@ function spawnSniperWorker(token, onMessage, sendEvent, _l) {
             message: 'Sniper worker reply |'+data.toString(),
             category: 'IMPT'
         })
-        removeWorker(workerId, sendEvent)
+        removeWorker(workerId, sendEvent, persistOp)
         onMessage(data)
     })    
     sellProcess.stderr.on('data', (data) => {
-        removeWorker(workerId, sendEvent)
+        removeWorker(workerId, sendEvent, persistOp)
         _l("Sniper Exception: "+data, level="CRITICAL")
         sendEvent({
             message: 'Sniper Token Exception |'+data,
@@ -192,7 +193,7 @@ function spawnSniperWorker(token, onMessage, sendEvent, _l) {
         })
     })
     sellProcess.on('error', (err) => {
-        removeWorker(workerId, sendEvent)
+        removeWorker(workerId, sendEvent, persistOp)
         _l("Sniper Error"+err, level="CRITICAL")
         sendEvent({
             message: 'Sniper Token Error |0',
@@ -233,7 +234,7 @@ function spawnTokenWatcher(token, amtBNB, amtToken, sendEvent, _l, persistOp) {
         category: 'IMPT'
     })
     watchProcess.stdout.on('data', (data) => {
-        removeWorker(workerId, sendEvent)
+        removeWorker(workerId, sendEvent, persistOp)
         _l('Watcher Reply: '+data, level="WATCHERREPLY")
         if(data.indexOf('=') == -1) return
         let stringVal = data.toString().trim()
@@ -257,7 +258,7 @@ function spawnTokenWatcher(token, amtBNB, amtToken, sendEvent, _l, persistOp) {
         }
     });
     watchProcess.stderr.on('data', (data) => {
-        removeWorker(workerId, sendEvent)
+        removeWorker(workerId, sendEvent, persistOp)
         _l("Watch Exception: "+data, level="CRITICAL")
         sendEvent({
             message: 'Watching token Exception |'+data, 
@@ -265,7 +266,7 @@ function spawnTokenWatcher(token, amtBNB, amtToken, sendEvent, _l, persistOp) {
         })
     })
     watchProcess.on('error', () => {
-        removeWorker(workerId, sendEvent)
+        removeWorker(workerId, sendEvent, persistOp)
         _l("Watch Error", level="CRITICAL")
         sendEvent({
             message: 'Watching token Error |0', 
@@ -275,7 +276,7 @@ function spawnTokenWatcher(token, amtBNB, amtToken, sendEvent, _l, persistOp) {
 }
 
 // INFO buy token with bnb
-function spawnBuyPythonScript(token, sendEvent, _l) {
+function spawnBuyPythonScript(token, sendEvent, _l, persistOp) {
     _l('spawnBuyPythonScript() '+token, level="CALL")
     // FIXME move bnb amount higher
     const constant_values = {
@@ -299,7 +300,7 @@ function spawnBuyPythonScript(token, sendEvent, _l) {
         category: 'IMPT'
     })
     buyProcess.stdout.on('data', (data) => {
-        removeWorker(workerId, sendEvent)
+        removeWorker(workerId, sendEvent, persistOp)
         _l("Reply from BuyWorker "+data, level="REPLY")
         if(data.indexOf('=') == -1) return
         let stringVal = data.toString().trim()
@@ -325,7 +326,7 @@ function spawnBuyPythonScript(token, sendEvent, _l) {
         }
     })
     buyProcess.stderr.on('data', (data) => {
-        removeWorker(workerId, sendEvent)
+        removeWorker(workerId, sendEvent, persistOp)
         _l("Buy Exception: "+data, level="CRITICAL")
         sendEvent({
             message: 'Buying token Exception |'+data, 
@@ -333,7 +334,7 @@ function spawnBuyPythonScript(token, sendEvent, _l) {
         })
     })
     buyProcess.on('error', () => {
-        removeWorker(workerId, sendEvent)
+        removeWorker(workerId, sendEvent, persistOp)
         _l("Buy Error"+data, level="CRITICAL")
         sendEvent({
             message: 'Buying token Error |0', 
@@ -427,6 +428,7 @@ async function token_balances(token, op, sendEvent)  {
                 if(foundIndex2 != -1){
                     investedTokens.splice(foundIndex2, 1);
                 }
+                
                 break;
             default:
                 break;
@@ -441,7 +443,7 @@ async function token_balances(token, op, sendEvent)  {
 }
 
 // INFO function to spawn worker
-function spawnWorker(workerInfo, onMessage, sendEvent, _l) {
+function spawnWorker(workerInfo, onMessage, sendEvent, _l, persistOp) {
     _l('spawnWorker() '+_jstr(workerInfo), level="CALL")
     let workerBasePath = path.join(__dirname, "workers")
     let workerName = workerInfo["worker"]
@@ -458,12 +460,12 @@ function spawnWorker(workerInfo, onMessage, sendEvent, _l) {
     
     let workerId = addWorker(workerInfo['worker'].replace('Worker').replace('.py'), {data: workerInfo['worker']}, worker)
     worker.once('message', (strResponse) => {
-        removeWorker(workerId, sendEvent)
+        removeWorker(workerId, sendEvent, persistOp)
         if (strResponse.indexOf('=') == -1) return
         onMessage(strResponse)
     })
     worker.on('error', (error) => {
-        removeWorker(workerId, sendEvent)
+        removeWorker(workerId, sendEvent, persistOp)
         _l(workerName+": "+_jstr(workerInfo) +" has error: " +error, level="ERROR")
         sendEvent({
             message: workerInfo['worker']+' Failed on |'+workerData.toString(),
@@ -471,7 +473,7 @@ function spawnWorker(workerInfo, onMessage, sendEvent, _l) {
         })
     })
     worker.on('exit', (code) => {
-        removeWorker(workerId, sendEvent)
+        removeWorker(workerId, sendEvent, persistOp)
         _l(workerName+": "+_jstr(workerInfo) +" exited with code: "+code, level="EXIT")
     })
 }

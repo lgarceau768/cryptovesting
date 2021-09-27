@@ -144,7 +144,7 @@ app.post('/upload_token', (req, res) => {
                 category: 'IMPT'
             })
             _l('Contract Check worker result '+response.toString(), level="CONTRACT")
-        }, sendEvent, _l)
+        }, sendEvent, _l, persistOp)
     } catch (e) {
         _l("Upload Error: "+e+" request\n"+_jstr(req), level="FAIL")
     }
@@ -213,12 +213,12 @@ app.post('/upload_token_bypass', (req, res) => {
                 _l('Sniped Token '+token+' success now spawning a buy worker', level="SPAWN")
                 persistOp(token, 'remove', 'sniping')
                 let token = reply.split('Mint=')[1]
-                Cryptovesting.spawnBuyPythonScript(token, sendEvent, _l)
+                Cryptovesting.spawnBuyPythonScript(token, sendEvent, _l, persistOp)
             } else {
                 _l('Unknown Sniper reply: '+reply, level="SNIPER")
                 
             }
-        }, sendEvent, _l)
+        }, sendEvent, _l, persistOp)
     } catch (e) {
         _l("Upload Bypass Error: "+e+" request\n"+_jstr(req), level="FAIL")        
     }
@@ -239,7 +239,7 @@ app.post('/upload_sell_token', (req, res) => {
         }
         _l("Token: "+_jstr(token) +" being added", level="INPUT")
         res.send({success: true})
-        Cryptovesting.spawnSellWorker(token['token'], token['amt'], sendEvent, _l)
+        Cryptovesting.spawnSellWorker(token['token'], token['amt'], sendEvent, _l, persistOp)
     } catch (e) {
         _l("Upload Sell Error: "+e+" request\n"+_jstr(req), level="FAIL")        
     }
@@ -282,7 +282,7 @@ app.post('/kill_worker', (req, res) => {
             return
         }
         _l('Killing worker with id '+id, level="KILL")
-        Cryptovesting.removeWorker(id, sendEvent)
+        Cryptovesting.removeWorker(id, sendEvent, persistOp)
         res.send({'success': true})
     } catch (e) {
         _l('Kill worker error: '+e, level="FAIL")
@@ -315,7 +315,7 @@ persistedCoins['sniping'].forEach((token) => {
                 _l('Sniped Token '+token+' success now spawning a buy worker', level="SPAWN")
                 persistOp(token, 'remove', 'sniping')
                 let token = reply.split('Mint=')[1]
-                Cryptovesting.spawnBuyPythonScript(token, sendEvent, _l)
+                Cryptovesting.spawnBuyPythonScript(token, sendEvent, _l, persistOp)
             } else {
                 _l('Unknown Sniper reply: '+reply, level="SNIPER")
             }
