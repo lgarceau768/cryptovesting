@@ -308,7 +308,7 @@ const getInvestedTokens = async () => {
 const killWorker = async (id) => {
     let data = {
         host: 'http://'+IP+':4041',
-        path: '/invested_coins',
+        path: '/kill_worker',
         method: 'POST'
     }
     let response = await fetch(data.host+data.path, {
