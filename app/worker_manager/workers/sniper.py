@@ -93,7 +93,7 @@ def main():
                 # log_loop(block_filter, 2),
                 # log_loop(tx_filter, 2)))
     except Exception as e:
-        logger.log('Sniper loop exception: '+e, level="DEBUG")
+        logger.log('Sniper loop exception: '+str(e), level="DEBUG")
         if('filter not found' in str(e)):
             logger.log('Filter not found new block', level="DEBUG")
             loop.close()
