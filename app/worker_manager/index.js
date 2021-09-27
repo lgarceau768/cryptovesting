@@ -282,7 +282,7 @@ app.post('/kill_worker', (req, res) => {
             return
         }
         _l('Killing worker with id '+id, level="KILL")
-        Cryptovesting.removeWorker(id)
+        Cryptovesting.removeWorker(id, sendEvent)
     } catch (e) {
         _l('Kill worker error: '+e, level="FAIL")
     }
