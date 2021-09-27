@@ -271,6 +271,23 @@ app.listen(port, host=IP, () => {
     console.log(`Success! Your application is running on port ${port}`)
 })
 
+app.post('/kill_worker', (req, res) => {
+    logReq('/kill_worker', req)
+    try {
+        let body = req.body;
+        let id = body['id']
+        if(checkAllNonNull(body)) {
+            _l('Kill worker called with incorrect values: '+id, level="INPUTERROR")
+            res.send({'success': false, 'error': 'incorrect body values'})
+            return
+        }
+        _l('Killing worker with id '+id, level="KILL")
+        Cryptovesting.removeWorker(id)
+    } catch (e) {
+        _l('Kill worker error: '+e, level="FAIL")
+    }
+})
+
 // Need to read in data from the data/coins.json file
 let coinsFile = fs.readFileSync(path.join(__dirname, 'data', 'coins.json'), 'utf-8')
 let persistedCoins = JSON.parse(coinsFile)

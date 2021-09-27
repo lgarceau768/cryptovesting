@@ -305,6 +305,22 @@ const getInvestedTokens = async () => {
     return await response.json()
 }
 
+const killWorker = async (id) => {
+    let data = {
+        host: 'http://'+IP+':4041',
+        path: '/invested_coins',
+        method: 'GET'
+    }
+    let response = await fetch(data.host+data.path, {
+        method: data.method,
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({id})
+    })
+    return await response.json()
+}
+
 // INFO function to request events from backend
 const getEvents = async () => {
     let data = {
@@ -394,7 +410,8 @@ async function requestThenSuccess(promiseFunction, functionality) {
             messageRet.addField('Total Workers', workers.length)
             workers.forEach(worker => {
                 let name = worker['name'].charAt(0).toUpperCase() + worker['name'].slice(1)
-                messageRet.addField(name, _jstr(worker['data']) + '\nTimestamp: '+worker['timestamp'])
+                
+                messageRet.addField(name, _jstr(worker['data']) + '\nTimestamp: '+worker['timestamp'] + '\nWorker ID' + worker['id'])
             })
         } else if(returnVal.hasOwnProperty('coins')){
             let coins = returnVal['coins']
@@ -572,9 +589,14 @@ client.on('message', async (msg) => {
                         buy: '%api buy {token}\nBuys the given token',
                         get_active_workers: '%api get_active_workers\nReturns a detailed list of the active workers in the cryptovesting service',
                         invested_coins: '%api invested_coins\nReturns a list of the currently invested coins',
+                        kill_worker: '%api kill_worker {worker id}\nKills a specified worker',
                         help: '%api help\nDisplays this menu',
                     }
                     msg.channel.send(_jstr(commands))
+                    break;
+                case 'kill_worker':
+                    msg.channel.send('Making API request to kill worker '+restOfCommands[2])
+                    requestThenSuccess(() => killWorker(restOfCommands[2]), 'Kill Worker')
                     break;
                 case 'insert':
                 case 'bypass_insert':

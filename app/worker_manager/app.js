@@ -36,12 +36,13 @@ const {
  * FIXME need to define an onEventCallback
  */
 
-function addWorker(workerName, workerData) {
+function addWorker(workerName, workerData, worker) {
     let workerId = activeWorkers.length;
     activeWorkers.push({
         name: workerName,
         data: workerData,
         id: workerId,
+        worker,
         timestamp: _t()
     })
     return workerId
@@ -60,6 +61,8 @@ function removeWorker(id) {
         }
     }
     if(removeIndex != -1) {
+        let worker = activeWorkers[removeIndex]['worker']
+        worker.terminate();
         activeWorkers.splice(removeIndex, 1)
         return true
     } else {
@@ -430,7 +433,6 @@ async function token_balances(token, op, sendEvent)  {
 
 // INFO function to spawn worker
 function spawnWorker(workerInfo, onMessage, sendEvent, _l) {
-    let workerId = addWorker(workerInfo['worker'].replace('Worker').replace('.py'), {data: workerInfo['worker']})
     _l('spawnWorker() '+_jstr(workerInfo), level="CALL")
     let workerBasePath = path.join(__dirname, "workers")
     let workerName = workerInfo["worker"]
@@ -444,6 +446,8 @@ function spawnWorker(workerInfo, onMessage, sendEvent, _l) {
     const worker = new Worker(workerPath, {
         workerData: workerData
     })
+    
+    let workerId = addWorker(workerInfo['worker'].replace('Worker').replace('.py'), {data: workerInfo['worker']}, worker)
     worker.once('message', (strResponse) => {
         removeWorker(workerId)
         if (strResponse.indexOf('=') == -1) return
@@ -465,6 +469,7 @@ function spawnWorker(workerInfo, onMessage, sendEvent, _l) {
 
 let app = {
     getInvestedTokens,
+    removeWorker,
     getWorkers,
     spawnBuyPythonScript,
     spawnSellWorker,
