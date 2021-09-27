@@ -154,6 +154,7 @@ function persistOp(data, op, table){
     _l('persistOp() '+_jstr({data, op, table}), level="CALL")
     let existingPersistData = fs.readFileSync(path.join(__dirname, 'data', 'coins.json'), 'utf-8')
     existingPersistData = JSON.parse(existingPersistData);
+    _l('Existing persist data: '+_jstr(existingPersistData), level="DEBUG")
     if(op == 'add') {
         let foundIndex = -1;
         for(let i = 0; i < existingPersistData[table].length; i++){
