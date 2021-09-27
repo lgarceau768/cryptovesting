@@ -391,6 +391,7 @@ async function requestThenSuccess(promiseFunction, functionality) {
         .setTimestamp();
         if(returnVal.hasOwnProperty('workers')){
             let workers = returnVal['workers']
+            messageRet.addField('Total Workers', workers.length)
             workers.forEach(worker => {
                 let name = worker['name'].charAt(0).toUpperCase() + worker['name'].slice(1)
                 messageRet.addField(name, _jstr(worker['data']) + '\nTimestamp: '+worker['timestamp'])
