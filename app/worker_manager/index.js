@@ -261,7 +261,7 @@ app.post('/upload_buy_token', (req, res) => {
         }
         _l("Token: "+_jstr(token) +" being added", level="INPUT")
         res.send({success: true})
-        Cryptovesting.spawnBuyPythonScript(token['token'], sendEvent, _l)
+        Cryptovesting.spawnBuyPythonScript(token['token'], sendEvent, _l, persistOp)
     } catch (e) {
         _l("Upload Sell Error: "+e+" request\n"+_jstr(req), level="FAIL")        
     }
@@ -320,7 +320,7 @@ persistedCoins['sniper'].forEach((token) => {
             } else {
                 _l('Unknown Sniper reply: '+reply, level="SNIPER")
             }
-        }, sendEvent, _l)
+        }, sendEvent, _l, persistOp)
     } catch (e) {
         sendEvent({
             message: 'Error reading peristed sniper token |'+token, 
