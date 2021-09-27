@@ -42,7 +42,7 @@ function addWorker(workerName, workerData, worker) {
         name: workerName,
         data: workerData,
         id: workerId,
-        worker,
+        worker: worker,
         timestamp: _t()
     })
     return workerId
@@ -67,7 +67,11 @@ function removeWorker(id, sendEvent) {
                 token_balances(worker.data.token, 'rem', sendEvent)
             }
         }
-        worker['worker'].terminate();
+        try {
+            worker['worker'].terminate()
+        } catch (e) {
+            worker['worker'].kill()
+        }
         activeWorkers.splice(removeIndex, 1)
         return true
     } else {
@@ -83,7 +87,6 @@ function _t() {
 
 // INFO spawn sell worker
 function spawnSellWorker(token, amt, sendEvent, _l) {
-    let workerId = addWorker('sell', {token, amt})
     _l('spawnSellWorker() '+_jstr({token, amt}), level="CALL")
     const constant_values = {
         NET: BINANCE_NET,
@@ -96,6 +99,7 @@ function spawnSellWorker(token, amt, sendEvent, _l) {
     ]
     const pathFile = path.join(__dirname, "workers/sellWorker.py")
     const sellProcess = spawn('python3', [pathFile, ...ARGS])
+    let workerId = addWorker('sell', {token, amt}, sellProcess)
     _l("Sell worker spawned for token: "+token+"\n"+_jstr(ARGS), level="SELL")
     sendEvent({
         message: 'Spawning sell on |'+token,
@@ -156,7 +160,6 @@ function spawnSellWorker(token, amt, sendEvent, _l) {
 
 // INFO spawn sell worker
 function spawnSniperWorker(token, onMessage, sendEvent, _l) {
-    let workerId = addWorker('sniper', {token})
     _l('spawnSniperWorker() '+token, level="CALL")
     const constant_values = {
         TOKEN: token,
@@ -166,6 +169,7 @@ function spawnSniperWorker(token, onMessage, sendEvent, _l) {
     ]
     const pathFile = path.join(__dirname, "workers/sniper.py")
     const sellProcess = spawn('python3', [pathFile, ...ARGS])
+    let workerId = addWorker('sniper', {token}, sellProcess)
     _l("Sniper worker spawned for token: "+token+"\n"+_jstr(ARGS), level="SNIPE")
     sendEvent({
         message: 'Spawning sniper on '+token+' |'+token,
@@ -199,7 +203,6 @@ function spawnSniperWorker(token, onMessage, sendEvent, _l) {
 
 // INFO spawn token watcher
 function spawnTokenWatcher(token, amtBNB, amtToken, sendEvent, _l, persistOp) {
-    let workerId = addWorker('watcher', {token, amtBNB, amtToken})
     _l('spawnTokenWatcher() '+_jstr({token, amtBNB, amtToken}), level="CALL")
     token_balances(token, 'add', sendEvent)
     persistOp({
@@ -223,6 +226,7 @@ function spawnTokenWatcher(token, amtBNB, amtToken, sendEvent, _l, persistOp) {
     ]
     const pathFile = path.join(__dirname, "workers/tokenWatcherWorker.py")
     const watchProcess = spawn('python3', [pathFile, ...ARGS])
+    let workerId = addWorker('watcher', {token, amtBNB, amtToken}, watchProcess)
     _l("Watcher worker spawned for token: "+token+"\n"+_jstr(ARGS), level="WATCH");
     sendEvent({
         message: 'Watching token |'+token, 
@@ -272,7 +276,6 @@ function spawnTokenWatcher(token, amtBNB, amtToken, sendEvent, _l, persistOp) {
 
 // INFO buy token with bnb
 function spawnBuyPythonScript(token, sendEvent, _l) {
-    let workerId = addWorker('buy', {token})
     _l('spawnBuyPythonScript() '+token, level="CALL")
     // FIXME move bnb amount higher
     const constant_values = {
@@ -289,6 +292,7 @@ function spawnBuyPythonScript(token, sendEvent, _l) {
     ]
     const pathFile = path.join(__dirname, "workers/buyWorker.py")
     const buyProcess = spawn('python3', [pathFile, ...ARGS])
+    let workerId = addWorker('buy', {token}, buyProcess)
     _l("Buy Worker Spawned with args: "+_jstr(ARGS), level="BUY")
     sendEvent({
         message: 'Buying token |'+token, 
