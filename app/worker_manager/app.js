@@ -63,7 +63,7 @@ function removeWorker(id, sendEvent) {
     if(removeIndex != -1) {
         let worker = activeWorkers[removeIndex]
         if(worker['data'].hasOwnProperty('token')) {
-            if(worker.name.lower().indexOf('sniper') != -1) {
+            if(worker.name.toLowerCase().indexOf('sniper') != -1) {
                 token_balances(worker.data.token, 'rem', sendEvent)
             }
         }
