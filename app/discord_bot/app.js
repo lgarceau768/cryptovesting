@@ -150,8 +150,19 @@ function createImptMessage(event) {
         }
     }
 
+    let color = '#4DFF4D'
+    if(message.indexOf('sniper') != -1) {
+        color = '#ECBEB4'    
+    } else if(message.indexOf('buy') != -1) {
+        color = '#9DF7E5'
+    } else if(message.indexOf('sell') != -1) {
+        color = '#FA7921'
+    } else if(message.indexOf('watching') != -1) {
+        color = '#FF8360'
+    }
+
     let messageRet = new Discord.MessageEmbed()
-        .setColor('#4DFF4D')
+        .setColor(color)
         .setTitle('Important')
         .setDescription(message)
         .addField('Timestamp', timestamp)
@@ -165,7 +176,7 @@ function createBalanceMessage(event) {
     let message = event.message.split('|')[0]
     let data = event.message.split('|')[1]
     let messageRet = new Discord.MessageEmbed()
-        .setColor('#FFFF19')
+        .setColor('# ')
         .setTitle('Balance Update')
         .setDescription(message)
         .addField('Timestamp', timestamp)
@@ -373,7 +384,7 @@ async function requestThenSuccess(promiseFunction, functionality) {
     _l('Request finished: '+returnVal['success']+ ' functionality: '+functionality)
     if(returnVal['success']) {
         let messageRet = new Discord.MessageEmbed()
-        .setColor('#00FF00')
+        .setColor('#05668D')
         .setTitle('API Call Success')
         .setDescription(functionality)
         .addField('Duration', (endTime-startTime).toString()+" seconds")
@@ -382,7 +393,7 @@ async function requestThenSuccess(promiseFunction, functionality) {
             let workers = returnVal['workers']
             workers.forEach(worker => {
                 let name = worker['name'].charAt(0).toUpperCase() + worker['name'].slice(1)
-                messageRet.addField(name, _jstr(worker['data']) + 'Timestamp: '+worker['timestamp'])
+                messageRet.addField(name, _jstr(worker['data']) + '\nTimestamp: '+worker['timestamp'])
             })
         } else if(returnVal.hasOwnProperty('coins')){
             let coins = returnVal['coins']
@@ -393,7 +404,7 @@ async function requestThenSuccess(promiseFunction, functionality) {
         bot_updates_channel.send(messageRet)
     } else {        
         let messageRet = new Discord.MessageEmbed()
-        .setColor('#FF0000')
+        .setColor('#FF3A20')
         .setTitle('API Call Fail')
         .setDescription(functionality)
         .addField('Duration', (endTime-startTime).toString()+" seconds")
@@ -590,6 +601,7 @@ client.on('message', async (msg) => {
                     requestThenSuccess(() => getInvestedTokens(), 'Get Invested Coins')
                     break;
                 default:
+                    msg.channel.send("Unknown API command please use %help to see the commands")
                     break;
             }
             break;
