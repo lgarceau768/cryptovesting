@@ -61,13 +61,13 @@ function removeWorker(id, sendEvent) {
         }
     }
     if(removeIndex != -1) {
-        let worker = activeWorkers[removeIndex]['worker']
+        let worker = activeWorkers[removeIndex]
         if(worker['data'].hasOwnProperty('token')) {
             if(worker.name.lower().indexOf('sniper') != -1) {
                 token_balances(worker.data.token, 'rem', sendEvent)
             }
         }
-        worker.terminate();
+        worker['worker'].terminate();
         activeWorkers.splice(removeIndex, 1)
         return true
     } else {
