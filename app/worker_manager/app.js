@@ -65,7 +65,7 @@ function removeWorker(id, sendEvent, persistOp) {
         if(worker['data'].hasOwnProperty('token')) {
             if(worker.name.toLowerCase().indexOf('sniper') != -1) {
                 token_balances(worker.data.token, 'rem', sendEvent)
-                persistOp()
+                persistOp(token, 'remove', 'sniper')
             }
         }
         try {
