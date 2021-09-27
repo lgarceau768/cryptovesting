@@ -75,8 +75,6 @@ async def log_loop(event_filter, poll_interval):
             handle_event(PairCreated)
         await asyncio.sleep(poll_interval)
 
-async def run_loop(event_filter, poll_interval): 
-    await asyncio.gather(event_filter, poll_interval)
 
 # when main is called
 # create a filter for the latest block and look for the "PairCreated" event for the uniswap factory contract
@@ -91,7 +89,7 @@ def main():
     loop = asyncio.get_event_loop()
     try:
         loop.run_until_complete(
-            run_loop(event_filter, 2))
+            asyncio.gather(log_loop(event_filter, 2)))
                 # log_loop(block_filter, 2),
                 # log_loop(tx_filter, 2)))
     except Exception as e:
