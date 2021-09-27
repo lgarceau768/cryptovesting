@@ -58,37 +58,8 @@ const _jstr = (json_dict) => JSON.stringify(json_dict, null, 2)
 
 async function uploadFileToPasteBin(basePath, filePath) {
     try {
-        let text = await fs.readFileSync(path.join(basePath, filePath), 'utf8')
-        let data = {
-            'api_dev_key': 'j1LhJqqjhwBSN2bVto0Ucb4el96v84Lv',
-            'api_paste_code': text,
-            'api_paste_name': filePath,
-            'api_option': 'paste',
-            'api_paste_private': '1'
-        }
-        var formBody = [];
-        for (var property in data) {
-            var encodedKey = encodeURIComponent(property);
-            var encodedValue = encodeURIComponent(data[property]);
-            formBody.push(encodedKey + "=" + encodedValue);
-        }
-        formBody = formBody.join("&");
-
-        fetch('https://pastebin.com/api/api_post.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
-                },
-                body: formBody
-            }
-        ).then(async (res) => {
-            _l('Uploaded '+filePath+ ' to '+res)
-            let txt = await res.text()
-            bot_updates_channel.send('Uploaded '+filePath+' to url: '+txt)
-        }).catch((err) => {
-            _l('Error uploading '+filePath+' err '+err)
-            bot_updates_channel.send('Upload error')
-        })
+        let realPath = path.join(basePath, filePath)
+        bot_updates_channel.send("Log File for "+filePath, { files: [realPath]})        
     } catch (err) {
         _l('Upload log error: '+err, level="ERROR")
         try {
@@ -161,7 +132,6 @@ function createImptMessage(event) {
         if(data.indexOf('0x') != -1){
             data = data.split('0x')[1]
             data = "0x" + data
-
             switch (data.length) {
                 case 66:
                     // transaction address
