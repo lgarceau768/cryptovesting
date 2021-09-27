@@ -309,7 +309,7 @@ const killWorker = async (id) => {
     let data = {
         host: 'http://'+IP+':4041',
         path: '/invested_coins',
-        method: 'GET'
+        method: 'POST'
     }
     let response = await fetch(data.host+data.path, {
         method: data.method,
