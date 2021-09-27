@@ -56,12 +56,12 @@ def handle_event(event):
         print("Mint="+tokenToBuy2)
         logger.log('Pair for our coin detected', level="SUCCESS")
         logger.log('Pair: '+token0+'|'+token1, level="PAIR")
-        sys.exit(1)
+        sys.exit()
     elif(token0.upper().strip('"') == tokenToBuy2 and token1.upper().strip('"') == wbnb2):
         print("Mint="+tokenToBuy2)
         logger.log('Pair for our coin detected', level="SUCCESS")
         logger.log('Pair: '+token0+'|'+token1, level="PAIR")
-        sys.exit(1)
+        sys.exit()
     else:
         logger.log('Pair: '+token0+'|'+token1, level="PAIR")
 
