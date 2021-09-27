@@ -206,13 +206,13 @@ app.post('/upload_token_bypass', (req, res) => {
         }
         _l("Token: "+_jstr(token) +" being added", level="INPUT")
         res.send({success: true})
-        persistOp(token['tokenHash'], "add", "sniping")
+        persistOp(token['tokenHash'], "add", "sniper")
         Cryptovesting.spawnSniperWorker(token['tokenHash'], 
         (reply) => {
             _l('Worker Reply: '+reply, level="WORKERREPLY")
             if(reply.indexOf('Mint=') != -1){
                 _l('Sniped Token '+token+' success now spawning a buy worker', level="SPAWN")
-                persistOp(token, 'remove', 'sniping')
+                persistOp(token, 'remove', 'sniper')
                 let token = reply.split('Mint=')[1]
                 Cryptovesting.spawnBuyPythonScript(token, sendEvent, _l, persistOp)
             } else {
@@ -306,7 +306,7 @@ persistedCoins['watching'].forEach((token) => {
         _l('Error reading persisted watching token: '+token+'\n'+e, level="ERROR")
     }
 })
-persistedCoins['sniping'].forEach((token) => {
+persistedCoins['sniper'].forEach((token) => {
     try {
         _l('Read persisted token: '+token.toString()+ " was sniping, respawning sniper", level="PERSIST")
         Cryptovesting.spawnSniperWorker(token.toString(), 
@@ -314,7 +314,7 @@ persistedCoins['sniping'].forEach((token) => {
             _l('Worker Reply: '+reply, level="WORKERREPLY")
             if(reply.indexOf('Mint=') != -1){
                 _l('Sniped Token '+token+' success now spawning a buy worker', level="SPAWN")
-                persistOp(token, 'remove', 'sniping')
+                persistOp(token, 'remove', 'sniper')
                 let token = reply.split('Mint=')[1]
                 Cryptovesting.spawnBuyPythonScript(token, sendEvent, _l, persistOp)
             } else {
