@@ -5,7 +5,7 @@ os.chdir('/home/fullsend/cryptovesting/app/worker_manager')
 class LogManager:
 
     def __init__(self, basename):    
-        self.fileName = basename +  "Log_" + datetime.now().strftime("%m_%d_%Y__%H_%M_%S") + ".log"
+        self.fileName = basename +  ".log"
         self.fileName = os.path.join(os.getcwd(), 'workers', 'logs', self.fileName)
         with open(self.fileName, "w") as file:
             file.write("Scrape started on: "+datetime.now().strftime("%X") + "\n")
