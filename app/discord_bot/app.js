@@ -15,31 +15,31 @@ let bot_listen_channel = undefined
 const logPath = path.join(__dirname, 'logs', 'discordBot_'+ Date.now() + '.log')
 const availableLogs = {
     'discordBot' : {
-        'path': '/home/fullsend/cryptovesting/app/discord_bot/logs',
+        'path': path.join(__dirname, 'logs'),
         'name': 'discordBot'
     },
     'manager' : {
-        'path': '/home/fullsend/cryptovesting/app/worker_manager/logs',
+        'path': path.join(__dirname, '..', 'worker_manager', 'logs'),
         'name': 'workerManagerLog'
     },
     'sell' : {
-        'path': '/home/fullsend/cryptovesting/app/worker_manager/workers/logs',
+        'path': path.join(__dirname, '..', 'worker_manager', 'workers', 'logs'),
         'name': 'sellWorker'
     },
     'buy' : {
-        'path': '/home/fullsend/cryptovesting/app/worker_manager/workers/logs',
+        'path': path.join(__dirname, '..', 'worker_manager', 'workers', 'logs'),
         'name': 'buyWorker'
     },
     'contract' : {
-        'path': '/home/fullsend/cryptovesting/app/worker_manager/workers/logs',
+        'path': path.join(__dirname, '..', 'worker_manager', 'workers', 'logs'),
         'name': 'contractCheckWorker'
     },
     'sniper' : {
-        'path': '/home/fullsend/cryptovesting/app/worker_manager/workers/logs',
+        'path': path.join(__dirname, '..', 'worker_manager', 'workers', 'logs'),
         'name': 'sniperWorker'
     },
     'tokenWatcher': {
-        'path': '/home/fullsend/cryptovesting/app/worker_manager/workers/logs',
+        'path': path.join(__dirname, '..', 'worker_manager', 'workers', 'logs'),
         'name': 'tokenWatcher'
     }
 }
@@ -455,8 +455,8 @@ function spawnLogListener (logFile, logType) {
                     let newData = fs.readFileSync(logPath, 'utf-8').split('\n')
                     if(listeningLogFiles[id]['currentData'].length !== newData.length) {
                         let difference = newData.length - listeningLogFiles[id]['currentData'].length
-                        for(let i = newData.length; i >= (newData.length - difference); i--) {
-                            bot_listen_channel.send(newData[i].toString())
+                        for(let i = newData.length - 1; i >= (newData.length - difference); i--) {
+                            bot_listen_channel.send('Listen '+logType+' |'+newData[i].toString())
                         }
                         listeningLogFiles[id]['currentData'] = newData
                     }
@@ -490,6 +490,10 @@ function stopLogListening (listenerID) {
         _l('Error stoppping logListener '+err, level="ERROR")
         bot_listen_channel.send('Error stoppping logListener '+err)
     }
+}
+
+function getListeners () {
+    bot_listen_channel.send(_jstr({listeningLogFiles}))
 }
 
 // INFO setup function to loop for printing events to the channel
@@ -566,13 +570,20 @@ client.on('message', async (msg) => {
                                 'stopListening' : {
                                     'description': 'Will stop listing to a given logListenerID',
                                     'example': '%log stopListening {logListenerID}'
+                                },
+                                'getListeners' : {
+                                    'description': 'Will list all the active listeners and their ids',
+                                    'example': '%log getListeners'
                                 }
                             }
                         }
                         msg.channel.send(_jstr(commands))                    
                         break;
+                    case 'getListeners':
+                        getListeners();
+                        break;
                     case 'listen':
-                        spawnLogListener(content[2], content[3])
+                        spawnLogListener(content[3], content[2])
                         break;
                     case 'stopListening': 
                         stopLogListening(content[2])
