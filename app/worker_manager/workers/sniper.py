@@ -96,9 +96,8 @@ def main():
         logger.log('Sniper loop exception: '+str(e), level="DEBUG")
         if('filter not found' in str(e)):
             logger.log('Filter not found new block', level="DEBUG")
-            event_filter = contract.events.PairCreated.createFilter(fromBlock='latest')
             logger.log('New Filter made continuing to snipe the chain 0_0', level="SNIPE")
-            
+            main()
         else:
             print('Fail='+str(e));
     finally:
