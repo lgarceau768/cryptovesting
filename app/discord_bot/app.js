@@ -11,6 +11,7 @@ const puppeteer = require('puppeteer')
 
 const client = new Discord.Client()
 let bot_updates_channel = undefined
+let bot_listen_channel = undefined
 const logPath = path.join(__dirname, 'logs', 'discordBot_'+ Date.now() + '.log')
 const availableLogs = {
     'discordBot' : {
@@ -53,6 +54,7 @@ const balanceAbi = '[{"inputs":[{"internalType":"string","name":"_NAME","type":"
 const IP = '25.89.250.119' //'192.168.1.224'
 let env = JSON.parse(fs.readFileSync(path.join(__dirname, 'env.json')))
 const IDENTIFIER = "%"
+const listeningLogFiles = [];
 
 const _jstr = (json_dict) => JSON.stringify(json_dict, null, 2)
 
@@ -432,12 +434,71 @@ async function requestThenSuccess(promiseFunction, functionality) {
     }
 }
 
+function spawnLogListener (logFile, logType) {
+    if(logType === 'discordBot') {
+        bot_listen_channel.send('Cannot listen to the discord bots log through the bot')
+        return
+    }
+    try {
+        _l('spawnLogListener('+logFile+','+logType+')', level="CALL")
+        if(availableLogs.hasOwnProperty(logType)) {
+            let logPath = path.join(availableLogs[logType]['path'], logFile)
+            if(fs.existsSync(logPath)){
+                let id = listeningLogFiles.length
+                let currentData = fs.readFileSync(logPath, 'utf-8').split('\n')
+                listeningLogFiles.push({ 
+                    id,
+                    currentData,
+                    path: logPath
+                })
+                let listener = fs.watchFile(logPath, { persistent: false, interval: 1000}, (curr, prev) => {    
+                    let newData = fs.readFileSync(logPath, 'utf-8').split('\n')
+                    if(listeningLogFiles[id]['currentData'].length !== newData.length) {
+                        let difference = newData.length - listeningLogFiles[id]['currentData'].length
+                        for(let i = newData.length; i >= (newData.length - difference); i--) {
+                            bot_listen_channel.send(newData[i].toString())
+                        }
+                        listeningLogFiles[id]['currentData'] = newData
+                    }
+                })
+                listeningLogFiles[id]['listener'] = listener
+                bot_listen_channel.send('Starting listening to'+logFile+' with id of: '+id)
+            } else {
+                bot_listen_channel.send('Unknown logFile '+logFile)
+            }
+        } else {
+            bot_listen_channel.send("Unknown logType "+logType)
+        }
+    } catch (err) {
+        _l('Error spawning logListener '+err, level="ERROR")
+        bot_listen_channel.send('Error spawning logListener '+err)
+    }
+}
+
+function stopLogListening (listenerID) {
+    try {
+        _l('stopLogListening('+listenerID+')', level="CALL")
+        if(listenerID < (listeningLogFiles.length - 1)) {
+            listeningLogFiles[listenerID]['worker'].close()
+            listeningLogFiles = listeningLogFiles.splice(listenerID, 1)
+            bot_listen_channel.send('Stopping listening to listener id: '+listenerID)
+        } else {
+            _l('Invalid listener id: '+listenerID, level="INPUTERROR")
+            bot_listen_channel.send('Invalid listener id: '+listenerID)
+        }
+    } catch (err) {
+        _l('Error stoppping logListener '+err, level="ERROR")
+        bot_listen_channel.send('Error stoppping logListener '+err)
+    }
+}
+
 // INFO setup function to loop for printing events to the channel
 setInterval(getEvents, 3000)
 
 client.on('ready', async () => {
     _l("Bot logged in as user "+client.user.tag, level="LOGIN")    
     bot_updates_channel = await client.channels.fetch('867853712202792990')
+    bot_listen_channel = await client.channels.fetch('892483824515153981')
 })
 
 client.on('message', async (msg) => {
@@ -497,10 +558,24 @@ client.on('message', async (msg) => {
                                             'description': 'Will upload the log file containing the given token address aka string'
                                         }
                                     ]
+                                },
+                                'listen': {
+                                    'description': 'Will listen to a given log file and report the changes',
+                                    'example': '%log listen manager {latest manager logFileName}'
+                                },
+                                'stopListening' : {
+                                    'description': 'Will stop listing to a given logListenerID',
+                                    'example': '%log stopListening {logListenerID}'
                                 }
                             }
                         }
                         msg.channel.send(_jstr(commands))                    
+                        break;
+                    case 'listen':
+                        spawnLogListener(content[2], content[3])
+                        break;
+                    case 'stopListening': 
+                        stopLogListening(content[2])
                         break;
                     case 'showAvailable':
                         msg.channel.send('Available logs ids to use')
