@@ -476,6 +476,7 @@ function spawnLogListener (logFile, logType) {
 }
 
 function stopLogListening (listenerID) {
+    listenerID = listenerID-1;
     try {
         _l('stopLogListening('+listenerID+')', level="CALL")
         if(listenerID < (listeningLogFiles.length - 1)) {
