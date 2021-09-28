@@ -464,7 +464,7 @@ function spawnLogListener (logFile, logType) {
                 listeningLogFiles[id]['listener'] = listener
                 bot_listen_channel.send('Starting listening to'+logFile+' with id of: '+id)
             } else {
-                bot_listen_channel.send('Unknown logFile '+logFile)
+                bot_listen_channel.send('Unknown logFile '+logPath)
             }
         } else {
             bot_listen_channel.send("Unknown logType "+logType)
