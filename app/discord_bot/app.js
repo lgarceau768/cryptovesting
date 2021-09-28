@@ -442,7 +442,7 @@ function spawnLogListener (logFile, logType) {
     try {
         _l('spawnLogListener('+logFile+','+logType+')', level="CALL")
         if(availableLogs.hasOwnProperty(logType)) {
-            let logPath = path.join(availableLogs[logType]['path'], logFile)
+            let logPath = path.join(availableLogs[logType]['path'], logFile+'.log')
             if(fs.existsSync(logPath)){
                 let id = listeningLogFiles.length
                 let currentData = fs.readFileSync(logPath, 'utf-8').split('\n')
