@@ -12,13 +12,13 @@ const path = require('path');
 const fs = require('fs')
 
 // INFO setup logger
-let date = new Date().toISOString()
+let date = new Date().getTime()
 let logPath = ""
 try {
     logPath= "/home/fullsend/cryptovesting/app/worker_manager/logs/cryptovestingAPI_" + date + ".log"
     init(logPath, "cryptovestingAPI")
 } catch {
-    logPath = 'logs/cryptovestingAPI_' + Date.now() + '.log'
+    logPath = 'logs/cryptovestingAPI_' + Date.now(). + '.log'
     init(logPath, "cryptovestingAPI")
 }
 let events = []
