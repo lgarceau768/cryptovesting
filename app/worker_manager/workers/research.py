@@ -62,7 +62,7 @@ def handle_event(event):
         logger.log('Pair: '+token0+'|'+token1, level="PAIR")
         sys.exit()
     else:
-        print('PAIR='+token0+'|'+token1, level="PAIR")
+        print('PAIR='+token0+'|'+token1)
 
 
 # asynchronous defined function to loop
