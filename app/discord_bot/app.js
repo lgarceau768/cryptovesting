@@ -450,9 +450,10 @@ function spawnLogListener (logFile, logType) {
                     currentData,
                     path: logPath
                 })
-                let listener = fs.watchFile(logPath, { persistent: false, interval: 1000}, (curr, prev) => {    
+                let listener = fs.watchFile(logPath, { persistent: false, interval: 1000}, (curr, prev) => {   
                     let newData = fs.readFileSync(logPath, 'utf-8').split('$[')
                     if(listeningLogFiles[id]['currentData'].length !== newData.length) {
+                        _l('Listener update on '+logType, level="LISTEN")
                         let difference = newData.length - listeningLogFiles[id]['currentData'].length
                         for(let i = newData.length - 1; i > (newData.length - difference - 1); i--) {
                             let logLine = newData[i]
