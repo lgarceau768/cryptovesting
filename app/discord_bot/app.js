@@ -474,7 +474,7 @@ function spawnLogListener (logFile, logType) {
                                         let logMessageSplit = logMessage.replace(/["]+/g, "").split('|')
                                         logMessageSplit.forEach(object => {
                                             if(object.indexOf('0x') != -1) {
-                                                let data = "https://bscscan.com/address/" + object.substring(object.indexOf('0x'), 42)
+                                                let data = "https://bscscan.com/address/" + object
                                                 messageRet.addField('Binance Address', data)
                                             } else {
                                                 messageRet.addField('Data', object)
