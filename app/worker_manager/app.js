@@ -138,7 +138,7 @@ function spawnTokenContractResearchWorker (sendEvent, _l, persistOp) {
                                         "bscscan_link": "https://bscscan.com/address/" + tokenAddress,
                                         "contract_hash": tokenAddress
                                     }
-                                    Cryptovesting.spawnWorker({
+                                    spawnWorker({
                                         workerData: token,
                                         worker: 'contractCheckWorker.js'
                                     }, (response) => {
