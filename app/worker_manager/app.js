@@ -105,6 +105,7 @@ function spawnTokenContractResearchWorker (sendEvent, _l, persistOp) {
         return
     }
     spawnSniperWorker('0x0000000000000000000000000000000000000000', (data) => {
+        data = data.toString()
         if(data.indexOf('PAIR=')){
             let logMessage = data.split('PAIR=')[0]
             let tokenAddress = logMessage.split('|')[1].substring(logMessage.split('|')[1].indexOf('0x'), logMessage.split('|')[1].indexOf('0x') + 42)
