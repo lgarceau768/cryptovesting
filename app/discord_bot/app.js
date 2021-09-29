@@ -468,7 +468,6 @@ function spawnLogListener (logFile, logType) {
                                         .setColor('#EDDBDC')
                                         .setTitle('Log '+logType)
                                         .setDescription(logTypeRead)
-                                        .addField('Log', logMessage)
                                         .addField('Timestamp', logTimestamp);
                                     if(logMessage.indexOf('|') !== -1) {
                                         let logMessageSplit = logMessage.replace(/["]+/g, "").split('|')
@@ -492,6 +491,8 @@ function spawnLogListener (logFile, logType) {
                                                 messageRet.addField(field.toString(), dataVal);
                                             }
                                         }
+                                    } else {
+                                        messageRet.addField('Log', logMessage)
                                     }
                                     bot_listen_channel.send(messageRet)
                                 }
