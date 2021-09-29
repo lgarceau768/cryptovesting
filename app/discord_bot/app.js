@@ -412,7 +412,6 @@ async function requestThenSuccess(promiseFunction, functionality) {
             messageRet.addField('Total Workers', workers.length)
             workers.forEach(worker => {
                 let name = worker['name'].charAt(0).toUpperCase() + worker['name'].slice(1)
-                
                 messageRet.addField(name, _jstr(worker['data']) + '\nTimestamp: '+worker['timestamp'] + '\nWorker ID: ' + worker['id'])
             })
         } else if(returnVal.hasOwnProperty('coins')){
@@ -461,11 +460,11 @@ function spawnLogListener (logFile, logType) {
                                 let splitSide = logLine.split(']:')
                                 let spacesSplitDataSide = splitSide[0].split(' ')
                                 let logTypeRead = spacesSplitDataSide[0]
-                                let logTimestamp = spacesSplitDataSide[1]
+                                let logTimestamp = splitSide.substring(splitSide[0].indexOf(' '))
                                 let logMessage = splitSide[1]
                                 let messageRet = new Discord.MessageEmbed()
                                     .setColor('#EDDBDC')
-                                    .setTitle(logType)
+                                    .setTitle('Log '+logType)
                                     .setDescription(logTypeRead)
                                     .addField('Log', logMessage)
                                     .addField('Timestamp', logTimestamp);
