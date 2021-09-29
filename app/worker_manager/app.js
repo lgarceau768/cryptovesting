@@ -96,11 +96,19 @@ function removeWorker(id, sendEvent, persistOp) {
 
 function spawnTokenContractResearchWorker (sendEvent, _l, persistOp) {
     // will spawn a sniper worker to not end
+    if(ResearchListener !== undefined) {
+        sendEvent({
+            message: 'Research Worker alreadying running',
+            category: 'IMPT'
+        })
+        return
+    }
     spawnSniperWorker('0x00000Research0000', (data) => {
         _l('Research Worker Data '+data)
         _l('Research Worker Closed', level="CLOSE")
     }, sendEvent, _l, persistOp)
-    let listener = fs.watchFile('/home/fullsend/crypotvesting/app/worker_manager/workers/log/sniper_0x00000Research0000.log', { persistent: false, interval: 1000}, (curr, prev) => {   
+    let logPath = '/home/fullsend/crypotvesting/app/worker_manager/workers/log/sniper_0x00000Research0000.log'
+    ResearchListener = fs.watchFile(logPath, { persistent: false, interval: 1000}, (curr, prev) => {   
         let newData = fs.readFileSync(logPath, 'utf-8').split('$[')
         if(listeningLogFiles[id]['currentData'].length !== newData.length) {
             _l('Listener update on '+logType, level="LISTEN")
@@ -158,6 +166,10 @@ function spawnTokenContractResearchWorker (sendEvent, _l, persistOp) {
             }
         }
     })
+}
+
+function stopResearch() {
+    ResearchListener.close()
 }
 
 // Function to get timestamp
@@ -568,7 +580,8 @@ let app = {
     spawnWorker,
     token_balances,
     spawnSniperWorker,
-    spawnTokenContractResearchWorker
+    spawnTokenContractResearchWorker,
+    stopResearch
 }
 
 module.exports = {app}

@@ -117,6 +117,24 @@ app.get('/invested_coins', (req, res) => {
     }
 })
 
+app.get('/stop_research', (req, res) => {
+    try {
+        Cryptovesting.stopResearch();
+        res.send({success: true})
+    } catch (err) {
+        res.send({success: false, error: err.toString()})
+    }
+})
+
+app.get('/start_research', (req, res) => {
+    try {
+        Cryptovesting.spawnTokenContractResearchWorker(sendEvent, _l, persistOp);
+        res.send({success: true})
+    } catch (err) {
+        res.send({success: false, error: err.toString()})
+    }
+})
+
 app.post('/upload_token', (req, res) => {
     logReq('/upload_token', req)
     try {
