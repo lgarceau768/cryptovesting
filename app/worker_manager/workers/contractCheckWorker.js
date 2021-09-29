@@ -1,5 +1,5 @@
 const { EVM, events } = require('evm')
-const { parentPort, workerData } = require('worker_threads') 
+const { parentPort, workerData, isMainThread } = require('worker_threads') 
 const fs = require('fs')
 const { spawn } = require('child_process')
 const mysql = require('mysql')
@@ -114,11 +114,12 @@ function runContractCheck(filePath, token){
                 // TODO add function to add this coin to a new table which is the static coin check pass table
                 let fileData = fs.readFileSync("/home/fullsend/cryptovesting/scripts/rugmenot_contracts/contracts/json/" + resultPath)
                 let jsonData = JSON.parse(fileData)
-                addToken(token, jsonData["totalScore"], resultPath)
+                sendMessage('SUCCESS='+JSON.stringify(jsonData), _l, parentPort, isMainThread)
+                //addToken(token, jsonData["totalScore"], resultPath)
             }
         })
-        contractCheckProcess.stderr.on('data', (data) => console.log('error: '+data))
-        contractCheckProcess.on('error', () => console.log('failed to start'))
+        contractCheckProcess.stderr.on('data', (data) => sendMessage('Error='+data, _l, parentPort, isMainThread))
+        contractCheckProcess.on('Error=0', () => console.log('failed to start'))
     } catch (err) {
         _l("Error="+err, level="ERROR")
     }    
@@ -131,6 +132,7 @@ try {
         let filePath = outputContractSource(token, contractDict)
         runContractCheck(filePath, token)        
     })    
+    
 } catch (err) {
     _l("Contract Check failed="+token, level="FAIL")    
 }     

@@ -7,6 +7,7 @@
 const { spawn } = require('child_process');
 const fetch = require('node-fetch');
 const path = require('path')
+const { v4: uuidv4 } = require('uuid');
 const { _l, init } = require('./workers/scripts/logger')
 const { shared, my_acc_testnet } = require('./workers/scripts/shared')
 const fs = require('fs')
@@ -91,6 +92,73 @@ function removeWorker(id, sendEvent, persistOp) {
     } else {
         return false
     }
+}
+
+function spawnTokenContractResearchWorker (sendEvent, _l, persistOp) {
+    // will spawn a sniper worker to not end
+    spawnSniperWorker('0x00000Research0000', (data) => {
+        _l('Research Worker Data '+data)
+        _l('Research Worker Closed', level="CLOSE")
+    }, sendEvent, _l, persistOp)
+    let listener = fs.watchFile(logPath, { persistent: false, interval: 1000}, (curr, prev) => {   
+        let newData = fs.readFileSync(logPath, 'utf-8').split('$[')
+        if(listeningLogFiles[id]['currentData'].length !== newData.length) {
+            _l('Listener update on '+logType, level="LISTEN")
+            try {
+                let difference = newData.length - listeningLogFiles[id]['currentData'].length
+                for(let i = newData.length - 1; i > (newData.length - difference - 1); i--) {
+                    let logLine = newData[i]
+                    if(logLine.length > 0) {
+                        let splitSide = logLine.split(']:')
+                        let spacesSplitDataSide = splitSide[0].split(' ')
+                        let logTypeRead = spacesSplitDataSide[0]
+                        let logTimestamp = splitSide[0].substring(splitSide[0].indexOf(' '))
+                        let logMessage = splitSide[1]
+                        if(logTypeRead === 'PAIR') {
+                            // check to see if pair is wbnb and x
+                            if(logMessage.indexOf('0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c') !== -1) {
+                                // pull the other index
+                                let tokenAddress = logMessage.split('|')[1].substring(logMessage.split('|')[1].indexOf('0x'), logMessage.split('|')[1].indexOf('0x') + 42)
+                                let token = {
+                                    "uuid": uuidv4(),
+                                    "token_name": tokenAddress,
+                                    "bscscan_link": "https://bscscan.com/address/" + tokenAddress,
+                                    "contract_hash": tokenAddress
+                                }
+                                Cryptovesting.spawnWorker({
+                                    workerData: token,
+                                    worker: 'contractCheckWorker.js'
+                                }, (response) => {
+                                    response = response.toString()
+                                    if(response.indexOf('SUCCESS') != -1) {
+                                        let jsonData = JSON.parse(response.split('=')[1])
+                                        sendEvent({
+                                            message: 'Contract Check Complete on '+tokenAddress+' |'+_jstr(jsonData), 
+                                            category: 'IMPT'
+                                        })
+                                    } else {
+                                        if(response.indexOf('Error=') != -1) {
+                                            sendEvent({
+                                                message: 'Contract Check Complete on '+token["contract_hash"]+'|',
+                                                category: 'FAIL=contract'
+                                            })
+
+                                        } else {
+                                            _l('Unknown reply contractCheckWorker '+response, level="UNKNOWN")
+                                        }
+                                    }
+                                    _l('Contract Check worker result '+response.toString(), level="CONTRACT")
+                                }, sendEvent, _l, persistOp)
+                            }
+                        }
+                    }
+                }
+            } catch (err) { 
+                bot_listen_channel.send('Listener update error: '+err)
+                _l('Listener update exception: '+err, level="ERROR")
+            }
+        }
+    })
 }
 
 // Function to get timestamp
