@@ -104,12 +104,12 @@ function spawnTokenContractResearchWorker (sendEvent, _l, persistOp) {
         })
         return
     }
-    spawnSniperWorker('0x00000Research0000', (data) => {
+    spawnSniperWorker('0x0000000000000000000000000000000000000000', (data) => {
         _l('Research Worker Data '+data)
         _l('Research Worker Closed', level="CLOSE")
     }, sendEvent, _l, persistOp)
     setTimeout(() => {
-        let logPath = '/home/fullsend/cryptovesting/app/worker_manager/workers/logs/sniperWorker_0x00000Research0000.log'
+        let logPath = '/home/fullsend/cryptovesting/app/worker_manager/workers/logs/sniperWorker_0x0000000000000000000000000000000000000000.log'
         ResearchListener = fs.watchFile(logPath, { persistent: false, interval: 1000}, (curr, prev) => {   
             let newData = fs.readFileSync(logPath, 'utf-8').split('$[')
             if(listeningLogFiles[id]['currentData'].length !== newData.length) {
