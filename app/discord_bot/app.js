@@ -455,7 +455,7 @@ function spawnLogListener (logFile, logType) {
                     let newData = fs.readFileSync(logPath, 'utf-8').split('$[')
                     if(listeningLogFiles[id]['currentData'].length !== newData.length) {
                         let difference = newData.length - listeningLogFiles[id]['currentData'].length
-                        for(let i = newData.length - 1; i >= (newData.length - difference); i--) {
+                        for(let i = newData.length - 1; i > (newData.length - difference - 1); i--) {
                             let logLine = newData[i]
                             if(logLine.length > 0) {
                                 let splitSide = logLine.split(']:')
@@ -483,7 +483,6 @@ function spawnLogListener (logFile, logType) {
                                     }
                                 }
                                 bot_listen_channel.send(messageRet)
-
                             }
                         }
                         listeningLogFiles[id]['currentData'] = newData
