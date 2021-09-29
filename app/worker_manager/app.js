@@ -105,74 +105,42 @@ function spawnTokenContractResearchWorker (sendEvent, _l, persistOp) {
         return
     }
     spawnSniperWorker('0x0000000000000000000000000000000000000000', (data) => {
-        _l('Research Worker Data '+data)
-        _l('Research Worker Closed', level="CLOSE")
-    }, sendEvent, _l, persistOp)
-    setTimeout(() => {
-        let currentData = []
-        let logPath = '/home/fullsend/cryptovesting/app/worker_manager/workers/logs/sniperWorker_0x0000000000000000000000000000000000000000.log'
-        _l('Spawning Worker for research')
-        ResearchListener = fs.watchFile(logPath, { persistent: false, interval: 1000}, (curr, prev) => {   
-            _l('Reasearch listen check')
-            let newData = fs.readFileSync(logPath, 'utf-8').split('$[')
-            if(currentData.length !== newData.length) {
-                _l('Listener update on research', level="LISTEN")
-                try {
-                    let difference = newData.length - currentData.length
-                    _l('Difference: '+difference)
-                    for(let i = newData.length - 1; i > (newData.length - difference - 1); i--) {
-                        let logLine = newData[i]
-                        if(logLine.length > 0) {
-                            let splitSide = logLine.split(']:')
-                            let spacesSplitDataSide = splitSide[0].split(' ')
-                            let logTypeRead = spacesSplitDataSide[0]
-                            let logMessage = splitSide[1]
-                            if(logTypeRead === 'PAIR') {
-                                // check to see if pair is wbnb and x
-                                if(logMessage.indexOf('0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c') !== -1) {
-                                    // pull the other index
-                                    let tokenAddress = logMessage.split('|')[1].substring(logMessage.split('|')[1].indexOf('0x'), logMessage.split('|')[1].indexOf('0x') + 42)
-                                    let token = {
-                                        "uuid": uuidv4(),
-                                        "token_name": tokenAddress,
-                                        "bscscan_link": "https://bscscan.com/address/" + tokenAddress,
-                                        "contract_hash": tokenAddress
-                                    }
-                                    spawnWorker({
-                                        workerData: token,
-                                        worker: 'contractCheckWorker.js'
-                                    }, (response) => {
-                                        response = response.toString()
-                                        if(response.indexOf('SUCCESS') != -1) {
-                                            let jsonData = JSON.parse(response.split('=')[1])
-                                            sendEvent({
-                                                message: 'Contract Check Complete on '+tokenAddress+' |'+_jstr(jsonData), 
-                                                category: 'IMPT'
-                                            })
-                                        } else {
-                                            if(response.indexOf('Error=') != -1) {
-                                                sendEvent({
-                                                    message: 'Contract Check Complete on '+token["contract_hash"]+'|'+response.split('=')[0],
-                                                    category: 'FAIL=contract'
-                                                })
+        if(data.indexOf('PAIR=')){
+            let logMessage = data.split('PAIR=')[0]
+            let tokenAddress = logMessage.split('|')[1].substring(logMessage.split('|')[1].indexOf('0x'), logMessage.split('|')[1].indexOf('0x') + 42)
+                let token = {
+                    "uuid": uuidv4(),
+                    "token_name": tokenAddress,
+                    "bscscan_link": "https://bscscan.com/address/" + tokenAddress,
+                    "contract_hash": tokenAddress
+                }
+                spawnWorker({
+                    workerData: token,
+                    worker: 'contractCheckWorker.js'
+                }, (response) => {
+                    response = response.toString()
+                    if(response.indexOf('SUCCESS') != -1) {
+                        let jsonData = JSON.parse(response.split('=')[1])
+                        sendEvent({
+                            message: 'Contract Check Complete on '+tokenAddress+' |'+_jstr(jsonData), 
+                            category: 'IMPT'
+                        })
+                    } else {
+                        if(response.indexOf('Error=') != -1) {
+                            sendEvent({
+                                message: 'Contract Check Complete on '+token["contract_hash"]+'|'+response.split('=')[0],
+                                category: 'FAIL=contract'
+                            })
 
-                                            } else {
-                                                _l('Unknown reply contractCheckWorker '+response, level="UNKNOWN")
-                                            }
-                                        }
-                                        _l('Contract Check worker result '+response.toString(), level="CONTRACT")
-                                    }, sendEvent, _l, persistOp)
-                                }
-                            }
+                        } else {
+                            _l('Unknown reply contractCheckWorker '+response, level="UNKNOWN")
                         }
                     }
-                } catch (err) { 
-                    _l('Listener update exception: '+err, level="ERROR")
-                }
-                currentData = newData
-            }
-        })            
-    }, 0)    
+                    _l('Contract Check worker result '+response.toString(), level="CONTRACT")
+                }, sendEvent, _l, persistOp)
+        }
+    }, sendEvent, _l, persistOp)
+      
 }
 
 function stopResearch() {
@@ -267,7 +235,11 @@ function spawnSniperWorker(token, onMessage, sendEvent, _l, persistOp) {
     const ARGS = [
         constant_values.TOKEN
     ]
-    const pathFile = path.join(__dirname, "workers/sniper.py")
+    let pathFile = path.join(__dirname, "workers/sniper.py")
+    if(token == "0x0000000000000000000000000000000000000000") {
+        pathFile = path.join(__dirname, "workers/researcg.py")
+
+    }
     const sellProcess = spawn('python3', [pathFile, ...ARGS])
     let workerId = addWorker('sniper', {token}, sellProcess)
     _l("Sniper worker spawned for token: "+token+"\n"+_jstr(ARGS), level="SNIPE")
