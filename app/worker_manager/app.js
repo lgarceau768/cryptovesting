@@ -164,7 +164,6 @@ function spawnTokenContractResearchWorker (sendEvent, _l, persistOp) {
                         }
                     }
                 } catch (err) { 
-                    bot_listen_channel.send('Listener update error: '+err)
                     _l('Listener update exception: '+err, level="ERROR")
                 }
                 currentData = newData
