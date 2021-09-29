@@ -19,7 +19,7 @@ connection.connect()
 
 // INFO init
 let isoString = new Date()
-let logFilePath = "/home/fullsend/cryptovesting/scripts/rugmenot_contracts/logs/tokensWatcherLog_" + isoString.toISOString() + ".log"
+let logFilePath = "/home/fullsend/cryptovesting/scripts/rugmenot_contracts/logs/tokensWatcherLog_" + isoString.getTime() + ".log"
 console.log(logFilePath)
 logger.init(logFilePath)
 _l = logger._l

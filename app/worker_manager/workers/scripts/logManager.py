@@ -15,7 +15,7 @@ class LogManager:
         return datetime.now().strftime("%c")
 
     def log(self, data, level="LOG"):
-        line = "[%s %s]: %s\n" % (level, self.getTime(), str(data))
+        line = "$[%s %s]: %s\n" % (level, self.getTime(), str(data))
         with open(self.fileName, 'a+') as file:
             file.write(line)
             file.close()

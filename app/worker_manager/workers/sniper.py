@@ -45,7 +45,6 @@ def handle_event(event):
     #txhash = Web3.toJSON(event['transactionHash'])
    # print("Block: " + block)
     #print("Txhash: " + txhash)
-    logger.log('Token Pair Detected: [\''+str(token0)+', '+str(token1)+'\']', level="PAIR")
 
     wbnb2 = wbnb.upper()
 

@@ -3,7 +3,7 @@ let pathUse = ""
 function init(path, program) {
     pathUse = path
     let isoString = new Date();
-    fs.writeFileSync(path, "[ START "+ isoString.toISOString() + " ] Starting " + program + "\n")
+    fs.writeFileSync(path, "$[ START "+ isoString.toISOString() + " ] Starting " + program + "\n")
 }
 
 const _l = (data, level="LOG") => {

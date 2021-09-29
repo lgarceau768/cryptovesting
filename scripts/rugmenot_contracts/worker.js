@@ -23,7 +23,7 @@ connection.connect()
 // INFO init
 // INFO init
 let isoString = new Date()
-let logFilePath = "/home/fullsend/cryptovesting/scripts/rugmenot_contracts/logs/workerToken" + "_"+ isoString.toISOString() + ".log"
+let logFilePath = "/home/fullsend/cryptovesting/scripts/rugmenot_contracts/logs/workerToken" + "_"+ isoString.getTime() + ".log"
 logger.init(logFilePath)
 const event = workerData
 let token = {

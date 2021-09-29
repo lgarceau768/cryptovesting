@@ -445,18 +445,45 @@ function spawnLogListener (logFile, logType) {
             let logPath = path.join(availableLogs[logType]['path'], logFile+'.log')
             if(fs.existsSync(logPath)){
                 let id = listeningLogFiles.length
-                let currentData = fs.readFileSync(logPath, 'utf-8').split('\n')
+                let currentData = fs.readFileSync(logPath, 'utf-8').split('$[')
                 listeningLogFiles.push({ 
                     id,
                     currentData,
                     path: logPath
                 })
                 let listener = fs.watchFile(logPath, { persistent: false, interval: 1000}, (curr, prev) => {    
-                    let newData = fs.readFileSync(logPath, 'utf-8').split('\n')
+                    let newData = fs.readFileSync(logPath, 'utf-8').split('$[')
                     if(listeningLogFiles[id]['currentData'].length !== newData.length) {
                         let difference = newData.length - listeningLogFiles[id]['currentData'].length
                         for(let i = newData.length - 1; i >= (newData.length - difference); i--) {
-                            bot_listen_channel.send('Listen '+logType+' |'+newData[i].toString())
+                            let logLine = newData[i]
+                            if(logLine.length > 0) {
+                                let splitSide = logLine.split(']:')
+                                let spacesSplitDataSide = splitSide[0].split(' ')
+                                let logType = spacesSplitDataSide[0]
+                                let logTimestamp = spacesSplitDataSide[1]
+                                let logMessage = splitSide[1]
+                                let messageRet = new Discord.MessageEmbed()
+                                    .setColor('#EDDBDC')
+                                    .setTitle(logType)
+                                    .setDescription(logMessage)
+                                    .addField('Timestamp', logTimestamp);
+                                if(logMessage.indexOf('{') !== -1) {
+                                    // json embedded
+                                    let firstIndex = logMessage.indexOf('{')
+                                    let nextIndex = logMessage.indexOf('{', firstIndex + 1)
+                                    let jsonString = logMessage.substring(firstIndex, nextIndex)
+                                    let jsonObj = JSON.parse(jsonString)
+                                    for (const field in jsonObj) {
+                                        if (Object.hasOwnProperty.call(jsonObj, field)) {
+                                            const dataVal = jsonObj[field];
+                                            messageRet.addField(field, dataVal);
+                                        }
+                                    }
+                                }
+                                bot_listen_channel.send(messageRet)
+
+                            }
                         }
                         listeningLogFiles[id]['currentData'] = newData
                     }
