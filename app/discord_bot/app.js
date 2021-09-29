@@ -448,59 +448,65 @@ function spawnLogListener (logFile, logType) {
                     currentData,
                     path: logPath
                 })
-                let listener = fs.watchFile(logPath, { persistent: false, interval: 1000}, (curr, prev) => {   
-                    let newData = fs.readFileSync(logPath, 'utf-8').split('$[')
-                    if(listeningLogFiles[id]['currentData'].length !== newData.length) {
-                        _l('Listener update on '+logType, level="LISTEN")
-                        try {
-                            let difference = newData.length - listeningLogFiles[id]['currentData'].length
-                            for(let i = newData.length - 1; i > (newData.length - difference - 1); i--) {
-                                let logLine = newData[i]
-                                if(logLine.length > 0) {
-                                    let splitSide = logLine.split(']:')
-                                    let spacesSplitDataSide = splitSide[0].split(' ')
-                                    let logTypeRead = spacesSplitDataSide[0]
-                                    let logTimestamp = splitSide[0].substring(splitSide[0].indexOf(' '))
-                                    let logMessage = splitSide[1]
-                                    let messageRet = new Discord.MessageEmbed()
-                                        .setColor('#EDDBDC')
-                                        .setTitle('Log '+logType)
-                                        .setDescription(logTypeRead)
-                                        .addField('Timestamp', logTimestamp);
-                                    if(logMessage.indexOf('|') !== -1) {
-                                        let logMessageSplit = logMessage.replace(/["]+/g, "").split('|')
-                                        logMessageSplit.forEach(object => {
-                                            if(object.indexOf('0x') != -1) {
-                                                let data = "https://bscscan.com/address/" + object.substring(object.indexOf('0x'), object.indexOf('0x')+42)
-                                                messageRet.addField('Binance Address', data)
+                let listener = fs.watchFile(logPath, { persistent: false, interval: 1000}, (curr, prev) => {  
+                    setTimeout(() => {
+                        // Using this so the stack is not blocked
+                        let newData = fs.readFileSync(logPath, 'utf-8').split('$[')
+                        if(listeningLogFiles[id]['currentData'].length !== newData.length) {
+                            _l('Listener update on '+logType, level="LISTEN")
+                            try {
+                                let difference = newData.length - listeningLogFiles[id]['currentData'].length
+                                for(let i = newData.length - 1; i > (newData.length - difference - 1); i--) {
+                                    let logLine = newData[i]
+                                    if(listeningLogFiles[id]['currentData'][i] !== logLine) {
+
+                                        if(logLine.length > 0) {
+                                            let splitSide = logLine.split(']:')
+                                            let spacesSplitDataSide = splitSide[0].split(' ')
+                                            let logTypeRead = spacesSplitDataSide[0]
+                                            let logTimestamp = splitSide[0].substring(splitSide[0].indexOf(' '))
+                                            let logMessage = splitSide[1]
+                                            let messageRet = new Discord.MessageEmbed()
+                                                .setColor('#EDDBDC')
+                                                .setTitle('Log '+logType)
+                                                .setDescription(logTypeRead)
+                                                .addField('Timestamp', logTimestamp);
+                                            if(logMessage.indexOf('|') !== -1) {
+                                                let logMessageSplit = logMessage.replace(/["]+/g, "").split('|')
+                                                logMessageSplit.forEach(object => {
+                                                    if(object.indexOf('0x') != -1) {
+                                                        let data = "https://bscscan.com/address/" + object.substring(object.indexOf('0x'), object.indexOf('0x')+42)
+                                                        messageRet.addField('Binance Address', data)
+                                                    } else {
+                                                        messageRet.addField('Data', object)
+                                                    }
+                                                });
+                                            } else if(logMessage.indexOf('{') !== -1) {
+                                                // json embedded
+                                                let firstIndex = logMessage.indexOf('{')
+                                                let nextIndex = logMessage.indexOf('{', firstIndex + 1)
+                                                let jsonString = logMessage.substring(firstIndex, nextIndex)
+                                                let jsonObj = JSON.parse(jsonString)
+                                                for (const field in jsonObj) {
+                                                    if (Object.hasOwnProperty.call(jsonObj, field)) {
+                                                        const dataVal = jsonObj[field];
+                                                        messageRet.addField(field.toString(), dataVal);
+                                                    }
+                                                }
                                             } else {
-                                                messageRet.addField('Data', object)
+                                                messageRet.addField('Log', logMessage)
                                             }
-                                        });
-                                    } else if(logMessage.indexOf('{') !== -1) {
-                                        // json embedded
-                                        let firstIndex = logMessage.indexOf('{')
-                                        let nextIndex = logMessage.indexOf('{', firstIndex + 1)
-                                        let jsonString = logMessage.substring(firstIndex, nextIndex)
-                                        let jsonObj = JSON.parse(jsonString)
-                                        for (const field in jsonObj) {
-                                            if (Object.hasOwnProperty.call(jsonObj, field)) {
-                                                const dataVal = jsonObj[field];
-                                                messageRet.addField(field.toString(), dataVal);
-                                            }
+                                            bot_listen_channel.send(messageRet)
                                         }
-                                    } else {
-                                        messageRet.addField('Log', logMessage)
                                     }
-                                    bot_listen_channel.send(messageRet)
                                 }
+                                listeningLogFiles[id]['currentData'] = newData
+                            } catch (err) { 
+                                bot_listen_channel.send('Listener update error: '+err)
+                                _l('Listener update exception: '+err, level="ERROR")
                             }
-                            listeningLogFiles[id]['currentData'] = newData
-                        } catch (err) { 
-                            bot_listen_channel.send('Listener update error: '+err)
-                            _l('Listener update exception: '+err, level="ERROR")
                         }
-                    }
+                    }, 0) 
                 })
                 listeningLogFiles[id]['listener'] = listener
                 bot_listen_channel.send('Starting listening to'+logFile+' with id of: '+id)

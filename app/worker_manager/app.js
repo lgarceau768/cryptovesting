@@ -112,7 +112,6 @@ function spawnTokenContractResearchWorker (sendEvent, _l, persistOp) {
                         let splitSide = logLine.split(']:')
                         let spacesSplitDataSide = splitSide[0].split(' ')
                         let logTypeRead = spacesSplitDataSide[0]
-                        let logTimestamp = splitSide[0].substring(splitSide[0].indexOf(' '))
                         let logMessage = splitSide[1]
                         if(logTypeRead === 'PAIR') {
                             // check to see if pair is wbnb and x
@@ -139,7 +138,7 @@ function spawnTokenContractResearchWorker (sendEvent, _l, persistOp) {
                                     } else {
                                         if(response.indexOf('Error=') != -1) {
                                             sendEvent({
-                                                message: 'Contract Check Complete on '+token["contract_hash"]+'|',
+                                                message: 'Contract Check Complete on '+token["contract_hash"]+'|'+response.split('=')[0],
                                                 category: 'FAIL=contract'
                                             })
 
