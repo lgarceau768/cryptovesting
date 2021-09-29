@@ -18,6 +18,7 @@ const { Worker } = require('worker_threads');
 const { logger } = require('ethers');
 const Web3 = require('web3')
 
+let ResearchListener = undefined
 let investedTokens = [];
 let activeWorkers = [];
 
