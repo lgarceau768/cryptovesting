@@ -109,13 +109,14 @@ function spawnTokenContractResearchWorker (sendEvent, _l, persistOp) {
         _l('Research Worker Closed', level="CLOSE")
     }, sendEvent, _l, persistOp)
     setTimeout(() => {
+        let currentData = []
         let logPath = '/home/fullsend/cryptovesting/app/worker_manager/workers/logs/sniperWorker_0x0000000000000000000000000000000000000000.log'
         ResearchListener = fs.watchFile(logPath, { persistent: false, interval: 1000}, (curr, prev) => {   
             let newData = fs.readFileSync(logPath, 'utf-8').split('$[')
-            if(listeningLogFiles[id]['currentData'].length !== newData.length) {
+            if(currentData.length !== newData.length) {
                 _l('Listener update on '+logType, level="LISTEN")
                 try {
-                    let difference = newData.length - listeningLogFiles[id]['currentData'].length
+                    let difference = newData.length - currentData.length
                     for(let i = newData.length - 1; i > (newData.length - difference - 1); i--) {
                         let logLine = newData[i]
                         if(logLine.length > 0) {
@@ -166,6 +167,7 @@ function spawnTokenContractResearchWorker (sendEvent, _l, persistOp) {
                     bot_listen_channel.send('Listener update error: '+err)
                     _l('Listener update exception: '+err, level="ERROR")
                 }
+                currentData = newData
             }
         })
     }, 2000)

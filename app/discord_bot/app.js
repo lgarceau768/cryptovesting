@@ -321,6 +321,36 @@ const killWorker = async (id) => {
     return await response.json()
 }
 
+const stopResearch = async () => {
+    let data = {
+        host: 'http://'+IP+':4041',
+        path: '/stop_research',
+        method: 'GET'
+    }
+    let response = await fetch(data.host+data.path, {
+        method: data.method,
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    })
+    return await response.json()
+}
+
+const startResearch = async () => {
+    let data = {
+        host: 'http://'+IP+':4041',
+        path: '/start_research',
+        method: 'GET'
+    }
+    let response = await fetch(data.host+data.path, {
+        method: data.method,
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    })
+    return await response.json()
+}
+
 // INFO function to request events from backend
 const getEvents = async () => {
     let data = {
@@ -725,8 +755,18 @@ client.on('message', async (msg) => {
                         invested_coins: '%api invested_coins\nReturns a list of the currently invested coins',
                         kill_worker: '%api kill_worker {worker id}\nKills a specified worker',
                         help: '%api help\nDisplays this menu',
+                        start_research: '%api start_research',
+                        stop_research: '%api stop_research',
                     }
                     msg.channel.send(_jstr(commands))
+                    break;
+                case 'start_research':
+                    msg.channel.send('Making API request to start research')
+                    requestThenSuccess(() => startResearch(), 'Start Research')
+                    break;
+                case 'start_research':
+                    msg.channel.send('Making API request to stop research')
+                    requestThenSuccess(() => stopResearch(), 'Stop Research')
                     break;
                 case 'kill_worker':
                     msg.channel.send('Making API request to kill worker '+restOfCommands[2])
