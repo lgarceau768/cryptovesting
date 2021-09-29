@@ -114,7 +114,7 @@ function spawnTokenContractResearchWorker (sendEvent, _l, persistOp) {
         ResearchListener = fs.watchFile(logPath, { persistent: false, interval: 1000}, (curr, prev) => {   
             let newData = fs.readFileSync(logPath, 'utf-8').split('$[')
             if(currentData.length !== newData.length) {
-                _l('Listener update on '+logType, level="LISTEN")
+                _l('Listener update on research', level="LISTEN")
                 try {
                     let difference = newData.length - currentData.length
                     for(let i = newData.length - 1; i > (newData.length - difference - 1); i--) {
