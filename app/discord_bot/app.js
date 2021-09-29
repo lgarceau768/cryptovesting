@@ -460,7 +460,7 @@ function spawnLogListener (logFile, logType) {
                                 let splitSide = logLine.split(']:')
                                 let spacesSplitDataSide = splitSide[0].split(' ')
                                 let logTypeRead = spacesSplitDataSide[0]
-                                let logTimestamp = splitSide.substring(splitSide[0].indexOf(' '))
+                                let logTimestamp = splitSide[0].substring(splitSide[0].indexOf(' '))
                                 let logMessage = splitSide[1]
                                 let messageRet = new Discord.MessageEmbed()
                                     .setColor('#EDDBDC')
