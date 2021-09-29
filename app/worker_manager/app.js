@@ -237,7 +237,7 @@ function spawnSniperWorker(token, onMessage, sendEvent, _l, persistOp) {
     ]
     let pathFile = path.join(__dirname, "workers/sniper.py")
     if(token == "0x0000000000000000000000000000000000000000") {
-        pathFile = path.join(__dirname, "workers/researcg.py")
+        pathFile = path.join(__dirname, "workers/research.py")
 
     }
     const sellProcess = spawn('python3', [pathFile, ...ARGS])
