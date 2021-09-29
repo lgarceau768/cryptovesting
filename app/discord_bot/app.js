@@ -503,7 +503,7 @@ function spawnLogListener (logFile, logType) {
                                     for (const field in jsonObj) {
                                         if (Object.hasOwnProperty.call(jsonObj, field)) {
                                             const dataVal = jsonObj[field];
-                                            messageRet.addField(field, dataVal);
+                                            messageRet.addField(field.toString(), dataVal);
                                         }
                                     }
                                 }
