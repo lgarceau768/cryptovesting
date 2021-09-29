@@ -460,13 +460,14 @@ function spawnLogListener (logFile, logType) {
                             if(logLine.length > 0) {
                                 let splitSide = logLine.split(']:')
                                 let spacesSplitDataSide = splitSide[0].split(' ')
-                                let logType = spacesSplitDataSide[0]
+                                let logTypeRead = spacesSplitDataSide[0]
                                 let logTimestamp = spacesSplitDataSide[1]
                                 let logMessage = splitSide[1]
                                 let messageRet = new Discord.MessageEmbed()
                                     .setColor('#EDDBDC')
                                     .setTitle(logType)
-                                    .setDescription(logMessage)
+                                    .setDescription(logTypeRead)
+                                    .addField('Log', logMessage)
                                     .addField('Timestamp', logTimestamp);
                                 if(logMessage.indexOf('{') !== -1) {
                                     // json embedded
