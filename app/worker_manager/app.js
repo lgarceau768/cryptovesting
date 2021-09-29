@@ -108,65 +108,68 @@ function spawnTokenContractResearchWorker (sendEvent, _l, persistOp) {
         _l('Research Worker Data '+data)
         _l('Research Worker Closed', level="CLOSE")
     }, sendEvent, _l, persistOp)
-    let logPath = '/home/fullsend/cryptovesting/app/worker_manager/workers/logs/sniperWorker_0x00000Research0000.log'
-    ResearchListener = fs.watchFile(logPath, { persistent: false, interval: 1000}, (curr, prev) => {   
-        let newData = fs.readFileSync(logPath, 'utf-8').split('$[')
-        if(listeningLogFiles[id]['currentData'].length !== newData.length) {
-            _l('Listener update on '+logType, level="LISTEN")
-            try {
-                let difference = newData.length - listeningLogFiles[id]['currentData'].length
-                for(let i = newData.length - 1; i > (newData.length - difference - 1); i--) {
-                    let logLine = newData[i]
-                    if(logLine.length > 0) {
-                        let splitSide = logLine.split(']:')
-                        let spacesSplitDataSide = splitSide[0].split(' ')
-                        let logTypeRead = spacesSplitDataSide[0]
-                        let logMessage = splitSide[1]
-                        if(logTypeRead === 'PAIR') {
-                            // check to see if pair is wbnb and x
-                            if(logMessage.indexOf('0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c') !== -1) {
-                                // pull the other index
-                                let tokenAddress = logMessage.split('|')[1].substring(logMessage.split('|')[1].indexOf('0x'), logMessage.split('|')[1].indexOf('0x') + 42)
-                                let token = {
-                                    "uuid": uuidv4(),
-                                    "token_name": tokenAddress,
-                                    "bscscan_link": "https://bscscan.com/address/" + tokenAddress,
-                                    "contract_hash": tokenAddress
-                                }
-                                Cryptovesting.spawnWorker({
-                                    workerData: token,
-                                    worker: 'contractCheckWorker.js'
-                                }, (response) => {
-                                    response = response.toString()
-                                    if(response.indexOf('SUCCESS') != -1) {
-                                        let jsonData = JSON.parse(response.split('=')[1])
-                                        sendEvent({
-                                            message: 'Contract Check Complete on '+tokenAddress+' |'+_jstr(jsonData), 
-                                            category: 'IMPT'
-                                        })
-                                    } else {
-                                        if(response.indexOf('Error=') != -1) {
-                                            sendEvent({
-                                                message: 'Contract Check Complete on '+token["contract_hash"]+'|'+response.split('=')[0],
-                                                category: 'FAIL=contract'
-                                            })
-
-                                        } else {
-                                            _l('Unknown reply contractCheckWorker '+response, level="UNKNOWN")
-                                        }
+    setTimeout(() => {
+        let logPath = '/home/fullsend/cryptovesting/app/worker_manager/workers/logs/sniperWorker_0x00000Research0000.log'
+        ResearchListener = fs.watchFile(logPath, { persistent: false, interval: 1000}, (curr, prev) => {   
+            let newData = fs.readFileSync(logPath, 'utf-8').split('$[')
+            if(listeningLogFiles[id]['currentData'].length !== newData.length) {
+                _l('Listener update on '+logType, level="LISTEN")
+                try {
+                    let difference = newData.length - listeningLogFiles[id]['currentData'].length
+                    for(let i = newData.length - 1; i > (newData.length - difference - 1); i--) {
+                        let logLine = newData[i]
+                        if(logLine.length > 0) {
+                            let splitSide = logLine.split(']:')
+                            let spacesSplitDataSide = splitSide[0].split(' ')
+                            let logTypeRead = spacesSplitDataSide[0]
+                            let logMessage = splitSide[1]
+                            if(logTypeRead === 'PAIR') {
+                                // check to see if pair is wbnb and x
+                                if(logMessage.indexOf('0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c') !== -1) {
+                                    // pull the other index
+                                    let tokenAddress = logMessage.split('|')[1].substring(logMessage.split('|')[1].indexOf('0x'), logMessage.split('|')[1].indexOf('0x') + 42)
+                                    let token = {
+                                        "uuid": uuidv4(),
+                                        "token_name": tokenAddress,
+                                        "bscscan_link": "https://bscscan.com/address/" + tokenAddress,
+                                        "contract_hash": tokenAddress
                                     }
-                                    _l('Contract Check worker result '+response.toString(), level="CONTRACT")
-                                }, sendEvent, _l, persistOp)
+                                    Cryptovesting.spawnWorker({
+                                        workerData: token,
+                                        worker: 'contractCheckWorker.js'
+                                    }, (response) => {
+                                        response = response.toString()
+                                        if(response.indexOf('SUCCESS') != -1) {
+                                            let jsonData = JSON.parse(response.split('=')[1])
+                                            sendEvent({
+                                                message: 'Contract Check Complete on '+tokenAddress+' |'+_jstr(jsonData), 
+                                                category: 'IMPT'
+                                            })
+                                        } else {
+                                            if(response.indexOf('Error=') != -1) {
+                                                sendEvent({
+                                                    message: 'Contract Check Complete on '+token["contract_hash"]+'|'+response.split('=')[0],
+                                                    category: 'FAIL=contract'
+                                                })
+
+                                            } else {
+                                                _l('Unknown reply contractCheckWorker '+response, level="UNKNOWN")
+                                            }
+                                        }
+                                        _l('Contract Check worker result '+response.toString(), level="CONTRACT")
+                                    }, sendEvent, _l, persistOp)
+                                }
                             }
                         }
                     }
+                } catch (err) { 
+                    bot_listen_channel.send('Listener update error: '+err)
+                    _l('Listener update exception: '+err, level="ERROR")
                 }
-            } catch (err) { 
-                bot_listen_channel.send('Listener update error: '+err)
-                _l('Listener update exception: '+err, level="ERROR")
             }
-        }
-    })
+        })
+    }, 2000)
+    
 }
 
 function stopResearch() {
