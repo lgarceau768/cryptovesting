@@ -567,7 +567,8 @@ let app = {
     spawnTokenWatcher,
     spawnWorker,
     token_balances,
-    spawnSniperWorker
+    spawnSniperWorker,
+    spawnTokenContractResearchWorker
 }
 
 module.exports = {app}
