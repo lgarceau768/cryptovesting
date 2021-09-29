@@ -470,7 +470,7 @@ function spawnLogListener (logFile, logType) {
                                         .setDescription(logTypeRead)
                                         .addField('Timestamp', logTimestamp);
                                     if(logMessage.indexOf('|') !== -1) {
-                                        let logMessageSplit = logMessage.replace(/["]+/g, "").split('|')
+                                        let logMessageSplit = logMessage.replace(/["]+/g, "").replace("Pair: ").split('|')
                                         logMessageSplit.forEach(object => {
                                             if(object.indexOf('0x') != -1) {
                                                 let data = "https://bscscan.com/address/" + object
