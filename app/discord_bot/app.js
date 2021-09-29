@@ -474,24 +474,8 @@ function spawnLogListener (logFile, logType) {
                                         let logMessageSplit = logMessage.replace(/["]+/g, "").split('|')
                                         logMessageSplit.forEach(object => {
                                             if(object.indexOf('0x') != -1) {
-                                                let data = ""
-                                                let DataType = ""
-                                                switch (object.length) {
-                                                    case 66:
-                                                        // transaction address
-                                                        DataType = "Bincance Transaction"
-                                                        data = "https://bscscan.com/tx/" + object
-                                                        break;
-                                                    
-                                                    case 42:
-                                                        // token adddress
-                                                        DataType = "Binance Contract / Token"
-                                                        data = "https://bscscan.com/address/" + object
-                                                        break
-                                                    default:
-                                                        break;
-                                                }
-                                                messageRet.addField(DataType, data)
+                                                let data = "https://bscscan.com/address/" + object.substring(object.indexOf('0x'), 42)
+                                                messageRet.addField('Binance Address', data)
                                             } else {
                                                 messageRet.addField('Data', object)
                                             }
