@@ -108,7 +108,7 @@ function spawnTokenContractResearchWorker (sendEvent, _l, persistOp) {
         _l('Research Worker Data '+data)
         _l('Research Worker Closed', level="CLOSE")
     }, sendEvent, _l, persistOp)
-    let logPath = '/home/fullsend/crypotvesting/app/worker_manager/workers/log/sniperWorker_0x00000Research0000.log'
+    let logPath = '/home/fullsend/crypotvesting/app/worker_manager/workers/logs/sniperWorker_0x00000Research0000.log'
     ResearchListener = fs.watchFile(logPath, { persistent: false, interval: 1000}, (curr, prev) => {   
         let newData = fs.readFileSync(logPath, 'utf-8').split('$[')
         if(listeningLogFiles[id]['currentData'].length !== newData.length) {
