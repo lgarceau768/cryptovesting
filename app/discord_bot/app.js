@@ -468,7 +468,33 @@ function spawnLogListener (logFile, logType) {
                                     .setDescription(logTypeRead)
                                     .addField('Log', logMessage)
                                     .addField('Timestamp', logTimestamp);
-                                if(logMessage.indexOf('{') !== -1) {
+                                if(logMessage.indexOf('|') !== -1) {
+                                    let logMessageSplit = logMessage.replace(/["]+/g, "").split('|')
+                                    logMessageSplit.forEach(object => {
+                                        if(object.indexOf('0x') != -1) {
+                                            let data = ""
+                                            let DataType = ""
+                                            switch (object.length) {
+                                                case 66:
+                                                    // transaction address
+                                                    DataType = "Bincance Transaction"
+                                                    data = "https://bscscan.com/tx/" + object
+                                                    break;
+                                                
+                                                case 42:
+                                                    // token adddress
+                                                    DataType = "Binance Contract / Token"
+                                                    data = "https://bscscan.com/address/" + object
+                                                    break
+                                                default:
+                                                    break;
+                                            }
+                                            messageRet.addField(DataType, data)
+                                        } else {
+                                            messageRet.addField('Data', object)
+                                        }
+                                    });
+                                } else if(logMessage.indexOf('{') !== -1) {
                                     // json embedded
                                     let firstIndex = logMessage.indexOf('{')
                                     let nextIndex = logMessage.indexOf('{', firstIndex + 1)
