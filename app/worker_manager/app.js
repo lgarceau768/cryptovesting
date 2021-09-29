@@ -49,7 +49,20 @@ function addWorker(workerName, workerData, worker) {
 } 
 
 function getWorkers() {
-    return activeWorkers
+    let newWorkerArr = []
+    activeWorkers.forEach(worker => {
+        let newWorker = {}
+        for (const key in worker) {
+            if (Object.hasOwnProperty.call(worker, key)) {
+                const element = worker[key];
+                if(key !== 'worker') {
+                    newWorker[key] = element
+                }
+            }
+        }
+        newWorkerArr.push(newWorker)
+    });
+    return newWorkerArr
 }
 
 function removeWorker(id, sendEvent, persistOp) {
