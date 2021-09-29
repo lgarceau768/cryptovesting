@@ -3,11 +3,9 @@ const fetch = require('node-fetch')
 const { init, _l } = require('../worker_manager/workers/scripts/logger')
 const path = require('path')
 const fs = require('fs')
-const pastebin = require('pastebin-js')
 const fse = require('fs-extra');
 const { spawn } = require('child_process')
 const web3 = require('web3')
-const puppeteer = require('puppeteer')
 
 const client = new Discord.Client()
 let bot_updates_channel = undefined
@@ -470,7 +468,7 @@ function spawnLogListener (logFile, logType) {
                                         .setDescription(logTypeRead)
                                         .addField('Timestamp', logTimestamp);
                                     if(logMessage.indexOf('|') !== -1) {
-                                        let logMessageSplit = logMessage.replace(/["]+/g, "").replace("Pair: ", "").split('|')
+                                        let logMessageSplit = logMessage.replace(/["]+/g, "").replace("Pair: \n", "").split('|')
                                         logMessageSplit.forEach(object => {
                                             if(object.indexOf('0x') != -1) {
                                                 let data = "https://bscscan.com/address/" + object

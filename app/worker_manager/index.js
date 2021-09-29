@@ -1,5 +1,4 @@
 const express = require("express");
-const logger = require('./workers/scripts/logger.js')
 const bodyParser = require('body-parser')
 const { v4: uuidv4 } = require('uuid');
 const app = express();
