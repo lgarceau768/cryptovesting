@@ -83,7 +83,7 @@ def main():
     logger.log('Starting to snipe the chain 0_0', level="SNIPE")
     event_filter = contract.events.PairCreated.createFilter(fromBlock='latest')
     
-    #block_filter = web3.eth.filter('latest')
+    #block_filter = web3.eth.filter('latest')  
     # tx_filter = web3.eth.filter('pending')
     loop = asyncio.get_event_loop()
     try:

@@ -56,7 +56,8 @@ const listeningLogFiles = [];
 
 const _jstr = (json_dict) => JSON.stringify(json_dict, null, 2)
 
-async function uploadFileToPasteBin(basePath, filePath) {
+/** Discord Message Functions */
+async function uploadFileToDiscord(basePath, filePath) {
     try {
         let realPath = path.join(basePath, filePath)
         bot_updates_channel.send("Log File for "+filePath, { files: [realPath]})        
@@ -85,7 +86,7 @@ function findNewestLog(files, delimiter) {
     })
     return oldestFile
 }
-// INFO functions to create pretty messages
+
 function createFailMessage(event) {
     let timestamp = event.timestamp
     let failee = event.category.split('=')[1]
@@ -105,7 +106,7 @@ function createFailMessage(event) {
     fse.readdir(availableLogs[failee]['path'])
     .then((files) => {
         let file = findNewestLog(files, availableLogs[failee]['path'])
-        uploadFileToPasteBin(availableLogs[failee]['path'], file)
+        uploadFileToDiscord(availableLogs[failee]['path'], file)
     })    
 }
 
@@ -185,6 +186,7 @@ function createBalanceMessage(event) {
     return messageRet
 }
 
+/** Post Messages to the Cryptovesting API */
 const postToken = async (contractHash) => {
     let data = {
         host: 'http://'+IP+':4041',
@@ -351,7 +353,6 @@ const startResearch = async () => {
     return await response.json()
 }
 
-// INFO function to request events from backend
 const getEvents = async () => {
     let data = {
         host: 'http://'+IP+':4041',
@@ -362,12 +363,6 @@ const getEvents = async () => {
     let json = await response.json()
     let events = json['events']
     if(events.length > 0) _l('Events: '+_jstr(events), level="EVENTS")
-    // INFO event categories
-    /*
-    balance
-    fail={failee} (error with worker_threads calling it)
-    impt
-    */
     for (let event of events) {
         let message = undefined        
         switch (event.category.toLowerCase().split('=')[0]) {
@@ -672,13 +667,13 @@ client.on('message', async (msg) => {
                         break;
                     case 'getLogs':
                         const listLogs = spawn('sh' ,["/home/fullsend/cryptovesting/scripts/system_control/list_logs.sh"])
+                        const noTimeout = setTimeout(() => {
+                            msg.channel.send('No Logs Found')
+                        }, 500)
                         listLogs.stdout.on('data', function (data) {
                             msg.channel.send(data.toString().replace(/.log/g, ''))
                             clearTimeout(noTimeout)
                         })
-                        const noTimeout = setTimeout(() => {
-                            msg.channel.send('No Logs Found')
-                        }, 500)
                         listLogs.stderr.on('data', function (data) {
                             clearTimeout(noTimeout)
                             msg.channel.send('Error getting logs')
@@ -696,7 +691,7 @@ client.on('message', async (msg) => {
                                     if (content.length == 4) {
                                         let fileMatch = findLogAgainstStr(files, content[3])
                                         if (fileMatch != undefined) {
-                                            uploadFileToPasteBin(pathFile, fileMatch)
+                                            uploadFileToDiscord(pathFile, fileMatch)
                                         } else {
                                             msg.channel.send('No matching log file not found for '+content[2]+' and str '+content[3])
                                         }
@@ -704,7 +699,7 @@ client.on('message', async (msg) => {
                                         let newestLog = findNewestLog(files)
                                         // now read file
                                         if (newestLog != undefined) {
-                                            uploadFileToPasteBin(pathFile, newestLog, msg)
+                                            uploadFileToDiscord(pathFile, newestLog, msg)
                                         } else {
                                             msg.channel.send('No matching log file not found for '+content[2]+' and str '+content[3])
                                         }
