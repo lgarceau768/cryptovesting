@@ -105,7 +105,7 @@ function spawnTokenContractResearchWorker (sendEvent, _l, persistOp) {
         return
     }
     spawnSniperWorker('0x0000000000000000000000000000000000000000', (data) => {
-        _l('Research Data: '+data.toString(), level="RESERCH")
+        _l('Research Data: '+data.toString(), level="RESEARCH")
         data = data.toString()
         if(data.indexOf('PAIR=')){
             let logMessage = data.split('PAIR=')[0]
@@ -240,7 +240,6 @@ function spawnSniperWorker(token, onMessage, sendEvent, _l, persistOp) {
     let pathFile = path.join(__dirname, "workers/sniper.py")
     if(token == "0x0000000000000000000000000000000000000000") {
         pathFile = path.join(__dirname, "workers/research.py")
-
     }
     const sellProcess = spawn('python3', [pathFile, ...ARGS])
     let workerId = addWorker('sniper', {token}, sellProcess)
@@ -249,14 +248,21 @@ function spawnSniperWorker(token, onMessage, sendEvent, _l, persistOp) {
         message: 'Spawning sniper on '+token+' |'+token,
         category: 'IMPT'
     })
-    sellProcess.stdout.on('data', (data) => {
-        sendEvent({
-            message: 'Sniper worker reply |'+data.toString(),
-            category: 'IMPT'
-        })
-        removeWorker(workerId, sendEvent, persistOp)
-        onMessage(data)
-    })    
+    if(token == "0x0000000000000000000000000000000000000000") {
+        sellProcess.stdout.on('data', (data) => {
+            _l('Research Data From Inner : '+data.toString(), level="LOG")
+            onMessage(data)
+        })   
+    } else {        
+        sellProcess.stdout.on('data', (data) => {
+            sendEvent({
+                message: 'Sniper worker reply |'+data.toString(),
+                category: 'IMPT'
+            })
+            removeWorker(workerId, sendEvent, persistOp)
+            onMessage(data)
+        })   
+    }
     sellProcess.stderr.on('data', (data) => {
         removeWorker(workerId, sendEvent, persistOp)
         _l("Sniper Exception: "+data, level="CRITICAL")
