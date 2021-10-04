@@ -30,7 +30,7 @@ logger.log('Created the contract object to pancake router: '+panRouterContractAd
 wbnb = web3.toChecksumAddress('0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c')   #WBNB
 tokenToBuy = web3.toChecksumAddress('0x0000000000000000000000000000000000000000')
 
-async def sendToken(token):
+def sendToken(token):
     path = '/upload_token'
     ip = '25.89.250.119'
     payload = { 
@@ -39,9 +39,11 @@ async def sendToken(token):
         'contract_hash': token
     }
     r = requests.post('http://'+ip+path, data=payload)
-    json = await r.json()
+    json = r.json()
+    print(json)
     logger.log('Send token '+token+' reply: '+str(json), level="REPLY")
 
+sendToken('0xdfe1d7176bee0f34494eb2b5020c61eadd14748e')
 
 # define function to handle events and print to the console
 def handle_event(event):
