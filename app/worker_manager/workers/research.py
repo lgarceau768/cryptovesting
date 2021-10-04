@@ -1,6 +1,7 @@
 # import the following dependencies
 import json
 from web3 import Web3
+import requests
 import asyncio
 import sys
 import time
@@ -29,7 +30,17 @@ logger.log('Created the contract object to pancake router: '+panRouterContractAd
 wbnb = web3.toChecksumAddress('0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c')   #WBNB
 tokenToBuy = web3.toChecksumAddress('0x0000000000000000000000000000000000000000')
 
-
+async def sendToken(token):
+    path = '/upload_token'
+    ip = '25.89.250.119'
+    payload = { 
+        'token': token,
+        'bscscan_link': 'https://bscscan.com/token/'+token,
+        'contract_hash': token
+    }
+    r = requests.post('http://'+ip+path, data=payload)
+    json = await r.json()
+    logger.log('Send token '+token+' reply: '+str(json), level="REPLY")
 
 
 # define function to handle events and print to the console
@@ -63,7 +74,11 @@ def handle_event(event):
         sys.exit()
     else:
         logger.log('Pair: '+token0+'|'+token1, level="PAIR")
-        print('PAIR='+token0+'|'+token1, flush=True)
+        if(token0.upper().strip('"') == wbnb2):
+            sendToken(token1)
+        elif(token1.upper().strip('"') == wbnb2):
+            sendToken(token0)
+        
 
 
 # asynchronous defined function to loop

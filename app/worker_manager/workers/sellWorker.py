@@ -92,4 +92,4 @@ pancakeswap2_txn = contract.functions.swapExactTokensForETH(
 signed_txn = web3.eth.account.sign_transaction(pancakeswap2_txn, private_key='d4f44d00b1995222dde4ce2d39ce177c78030628c0a9536e0f99c904ff74bebb')
 tx_token = web3.eth.send_raw_transaction(signed_txn.rawTransaction)
 logger.log('Token Sell Transaction hash: '+str(web3.toHex(tx_token)), level="HASH")
-print("Success="+web3.toHex(tx_token))
+print("Success="+web3.toHex(tx_token), flush=True)

@@ -104,45 +104,7 @@ function spawnTokenContractResearchWorker (sendEvent, _l, persistOp) {
         })
         return
     }
-    spawnSniperWorker('0x0000000000000000000000000000000000000000', (data) => {
-        _l('Research Data: '+data.toString(), level="RESEARCH")
-        data = data.toString()
-        if(data.indexOf('PAIR=')){
-            let logMessage = data.split('PAIR=')[0]
-            let tokenAddress = logMessage.split('|')[1].substring(logMessage.split('|')[1].indexOf('0x'), logMessage.split('|')[1].indexOf('0x') + 42)
-                let token = {
-                    "uuid": uuidv4(),
-                    "token_name": tokenAddress,
-                    "bscscan_link": "https://bscscan.com/address/" + tokenAddress,
-                    "contract_hash": tokenAddress
-                }
-                spawnWorker({
-                    workerData: token,
-                    worker: 'contractCheckWorker.js'
-                }, (response) => {
-                    response = response.toString()
-                    if(response.indexOf('SUCCESS') != -1) {
-                        let jsonData = JSON.parse(response.split('=')[1])
-                        sendEvent({
-                            message: 'Contract Check Complete on '+tokenAddress+' |'+_jstr(jsonData), 
-                            category: 'IMPT'
-                        })
-                    } else {
-                        if(response.indexOf('Error=') != -1) {
-                            sendEvent({
-                                message: 'Contract Check Complete on '+token["contract_hash"]+'|'+response.split('=')[0],
-                                category: 'FAIL=contract'
-                            })
-
-                        } else {
-                            _l('Unknown reply contractCheckWorker '+response, level="UNKNOWN")
-                        }
-                    }
-                    _l('Contract Check worker result '+response.toString(), level="CONTRACT")
-                }, sendEvent, _l, persistOp)
-        }
-    }, sendEvent, _l, persistOp)
-      
+    spawnSniperWorker('0x0000000000000000000000000000000000000000', (data) => {} , sendEvent, _l, persistOp)      
 }
 
 function stopResearch() {
