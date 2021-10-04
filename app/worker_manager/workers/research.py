@@ -32,7 +32,7 @@ tokenToBuy = web3.toChecksumAddress('0x0000000000000000000000000000000000000000'
 
 def sendToken(token):
     path = '/upload_token'
-    ip = '25.89.250.119'
+    ip = '25.89.250.119:4041'
     payload = { 
         'token': token,
         'bscscan_link': 'https://bscscan.com/token/'+token,
