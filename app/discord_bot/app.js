@@ -759,7 +759,7 @@ client.on('message', async (msg) => {
                     msg.channel.send('Making API request to start research')
                     requestThenSuccess(() => startResearch(), 'Start Research')
                     break;
-                case 'start_research':
+                case 'stop_research':
                     msg.channel.send('Making API request to stop research')
                     requestThenSuccess(() => stopResearch(), 'Stop Research')
                     break;
