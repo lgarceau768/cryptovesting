@@ -1,11 +1,6 @@
 {
-    "sniping": [
-       "0xdfe1d7176bee0f34494eb2b5020c61eadd14748e",
-       "0x90db4c8ddc0055ae03cde0b4e83fbde7de711464",
-       "0x82ed5FE7e64875C30fE7Faaf2Bf04e3BA9f8f066",
-       "0xd91Ce8F08f8DF73bFBD05f17433987d2fB2345c4",
-       "0xa21e88c9615d391f54e3e13942d961301a70d507",
-       "0xd91Ce8F08f8DF73bFBD05f17433987d2fB2345c4"      
+    "sniper": [
+       "0xdfe1d7176bee0f34494eb2b5020c61eadd14748e"    
     ],
     "watching": []
   }
