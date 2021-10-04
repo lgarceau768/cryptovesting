@@ -346,9 +346,3 @@ persistedCoins['sniper'].forEach((token) => {
         _l('Error reading persisted sniper token: '+token+'\n'+e, level="ERROR")
     }
 })
-
-sendEvent({
-    message: 'Spawning sniper for research on token contracts +|0x0000Research000',
-    category: 'IMPT'
-})
-Cryptovesting.spawnTokenContractResearchWorker(sendEvent, _l, persistOp)
