@@ -105,7 +105,7 @@ while currentBNB <= targetBNB:
             if(targetBNB == (initialAmountBNB * MOON_PERCENT)):
                 logger.log('Moon occured on token returning again', level="MOON")
                 logger.log(str(currentBNB), level="MOON")   
-                print('Success=sell_at_moon_'+token)
+                print('Success=sell_at_moon_'+token, flush=True)
                 sys.exit(0)
             else:
                 logger.log("Target ratio: %s, hit with current ratio: %s" % (str(targetBNB), str(currentBNB)), level="SUCCESS")
@@ -114,7 +114,7 @@ while currentBNB <= targetBNB:
                 targetBNB = initialAmountBNB * MOON_PERCENT
         elif currentBNB <= (initialAmountBNB * 0.5):
             logger.log("Stop loss hit %s amount out: %s" % (str(targetBNB), str(currentBNB)), level="SUCCESS")
-            print("Success=sell_at_loss_"+token)
+            print("Success=sell_at_loss_"+token, flush=True)
             sys.exit(0)
 
     except Exception as e:

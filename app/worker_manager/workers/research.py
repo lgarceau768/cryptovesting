@@ -52,18 +52,18 @@ def handle_event(event):
 
 
     if(token0.upper().strip('"') == wbnb2 and token1.upper().strip('"') == tokenToBuy2):
-        print("Mint="+tokenToBuy2)
+        print("Mint="+tokenToBuy2, flush=True)
         logger.log('Pair for our coin detected', level="SUCCESS")
         logger.log('MINT: '+token0+'|'+token1, level="MINT")
         sys.exit()
     elif(token0.upper().strip('"') == tokenToBuy2 and token1.upper().strip('"') == wbnb2):
-        print("Mint="+tokenToBuy2)
+        print("Mint="+tokenToBuy2, flush=True)
         logger.log('Pair for our coin detected', level="SUCCESS")
         logger.log('MINT: '+token0+'|'+token1, level="MINT")
         sys.exit()
     else:
         logger.log('Pair: '+token0+'|'+token1, level="PAIR")
-        print('PAIR='+token0+'|'+token1)
+        print('PAIR='+token0+'|'+token1, flush=True)
 
 
 # asynchronous defined function to loop
@@ -99,7 +99,7 @@ def main():
             logger.log('New Filter made continuing to snipe the chain 0_0', level="SNIPE")
             main()
         else:
-            print('Fail='+str(e));
+            print('Fail='+str(e), flush=True);
     finally:
         # close loop to free up system resources
         loop.close()
