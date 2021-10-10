@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "..\\app\\worker_manager"
+		},
+		{
+			"path": "..\\v2_manager\\lib"
+		}
+	],
+	"settings": {}
+}
