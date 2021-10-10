@@ -7,14 +7,18 @@ const web3 = require('web3')
 // load our files
 const BinanceInteractor = require('./lib/BinanceInteractions')
 
-// need to test most of the functionality
+run()
 
-const bsc = new BinanceInteractor('main')
-let buyVal = bsc.buyWithSlippage('0x2170ed0880ac9a755fd29b2688956bd959f933f8')
-console.log(buyVal)
+async function run () {
+    // need to test most of the functionality
 
-let sellVal = bsc.sellToken('0x2170ed0880ac9a755fd29b2688956bd959f933f8', 0.1)
-console.log(sellVal)
+    const bsc = new BinanceInteractor('main')
+    let buyVal = await bsc.buyWithSlippage('0x2170ed0880ac9a755fd29b2688956bd959f933f8')
+    console.log(buyVal)
 
-let snipeVal = bsc.snipe('0x2170ed0880ac9a755fd29b2688956bd959f933f8')
-console.log(snipeVal)
+    let sellVal = await bsc.sellToken('0x2170ed0880ac9a755fd29b2688956bd959f933f8', 0.1)
+    console.log(sellVal)
+
+    let snipeVal = await bsc.snipe('0x2170ed0880ac9a755fd29b2688956bd959f933f8')
+    console.log(snipeVal)
+}
