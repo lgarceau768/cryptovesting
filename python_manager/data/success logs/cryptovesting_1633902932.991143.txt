@@ -1,0 +1,16 @@
+Starting Logger
+
+Successful Buy Log on 10/10/21 buying SPHINX 0x2e121ed64eeeb58788ddb204627ccb7c7c59884c
+
+variables | done | __init__ @ 2021-10-10 17:55:33 -> Load of settings done
+BinanceInteractor | buy | buyToken @ 2021-10-10 17:55:33 -> Buying token 0x2e121ed64eeeb58788ddb204627ccb7c7c59884c
+BinanceInteractor | call | approve @ 2021-10-10 17:55:33 -> (basic_sell_abi, 0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c, 0x10ED43C718714eb63d5aA57B78B54704E256024E, 212327751740660728)
+BinanceInteractor | call | createContract @ 2021-10-10 17:55:33 -> (basic_sell_abi, 0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c)
+BinanceInteractor | txHash | createTransaction @ 2021-10-10 17:55:33 -> 0xc02b3eb5431bb7fa95ed2f278aacfc2d6ec102954e10e912f9b724f215e642e5
+BinanceInteractor | approved | buyToken @ 2021-10-10 17:55:48 -> Approval hash 0xc02b3eb5431bb7fa95ed2f278aacfc2d6ec102954e10e912f9b724f215e642e5
+BinanceInteractor | call | getAmountsOut @ 2021-10-10 17:55:48 -> (10000000000000000, 0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c, 0x2e121ed64eeeb58788ddb204627ccb7c7c59884c)
+BinanceInteractor | call | createContract @ 2021-10-10 17:55:48 -> (pancake_router_abi, 0x10ED43C718714eb63d5aA57B78B54704E256024E)
+BinanceInteractor | call | swapExactETHForTokens @ 2021-10-10 17:55:48 -> (10000000000000000, 0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c, 205221690691972169728, 0x2e121ed64eeeb58788ddb204627ccb7c7c59884c)
+BinanceInteractor | call | createContract @ 2021-10-10 17:55:48 -> (pancake_router_abi, 0x10ED43C718714eb63d5aA57B78B54704E256024E)
+BinanceInteractor | txHash | createTransaction @ 2021-10-10 17:55:48 -> 0xd7d0e6eadfd3c965661b2df60e8215ef1fc5b82c86ad4ea09d25216e32ef7b0c
+BinanceInteractor | swapped | buyToken @ 2021-10-10 17:55:48 -> Swap hash 0xd7d0e6eadfd3c965661b2df60e8215ef1fc5b82c86ad4ea09d25216e32ef7b0c
