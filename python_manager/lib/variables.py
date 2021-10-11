@@ -28,14 +28,15 @@ allSettings = {
     'moon_percent': 5,
     'sell_amount': 0.75,
     'keep_amount': 0.25,
-    'sniper_interval': 2 * 1000
+    'sniper_interval': 2 * 1000,
+    'tx_delay': 10
 }
 
 class Variables(logger.LogObject):
     def __init__(self, net):
         global allSettings
-        super().__init__('variables')
-        if net is 'test':
+        super().__init__('Variables')
+        if net == 'test':
             self.settings = {
                 'bsc_url': 'https://data-seed-prebsc-1-s1.binance.org:8545/',
                 'network_id': 97,
