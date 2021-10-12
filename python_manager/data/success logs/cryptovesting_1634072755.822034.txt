@@ -1,0 +1,14 @@
+Starting Logger
+Successful buy testnet
+Variables | done | __init__ @ 2021-10-12 17:05:55 -> Load of settings done
+BinanceInteractor | buy | buyToken @ 2021-10-12 17:05:55 -> Buying token 0x1420a48727ea14ae8c5780d8fc2702a2ac53f4d1
+BinanceInteractor | call | approve @ 2021-10-12 17:05:56 -> (basic_sell_abi, 0xae13d989daC2f0dEbFf460aC112a837C89BAa7cd, 0xD99D1c33F9fC3444f8101754aBC46c52416550D1, 1997632459000000000)
+BinanceInteractor | call | createContract @ 2021-10-12 17:05:56 -> (basic_sell_abi, 0xae13d989daC2f0dEbFf460aC112a837C89BAa7cd)
+BinanceInteractor | txHash | createTransaction @ 2021-10-12 17:05:57 -> 0x0865ae48ee525e9af8903a14785e018b5648c652308411d279ddcaa7f900bbad
+BinanceInteractor | approved | buyToken @ 2021-10-12 17:06:07 -> Approval hash 0x0865ae48ee525e9af8903a14785e018b5648c652308411d279ddcaa7f900bbad
+BinanceInteractor | call | getAmountsOut @ 2021-10-12 17:06:07 -> (10000000000000000, 0xae13d989daC2f0dEbFf460aC112a837C89BAa7cd, 0x1420a48727ea14ae8c5780d8fc2702a2ac53f4d1)
+BinanceInteractor | call | createContract @ 2021-10-12 17:06:07 -> (pancake_router_abi, 0xD99D1c33F9fC3444f8101754aBC46c52416550D1)
+BinanceInteractor | call | swapExactETHForTokens @ 2021-10-12 17:06:13 -> (10000000000000000, 0xae13d989daC2f0dEbFf460aC112a837C89BAa7cd, 7366789574457955450880, 0x1420a48727ea14ae8c5780d8fc2702a2ac53f4d1)
+BinanceInteractor | call | createContract @ 2021-10-12 17:06:13 -> (pancake_router_abi, 0xD99D1c33F9fC3444f8101754aBC46c52416550D1)
+BinanceInteractor | txHash | createTransaction @ 2021-10-12 17:06:14 -> 0xc62c34f43b4dc3a6527be39b7ee933fbc308e23cdca3ec3a325ce32d7aafe3b3
+BinanceInteractor | swapped | buyToken @ 2021-10-12 17:06:18 -> Swap hash 0xc62c34f43b4dc3a6527be39b7ee933fbc308e23cdca3ec3a325ce32d7aafe3b3

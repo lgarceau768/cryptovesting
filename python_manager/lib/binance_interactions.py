@@ -148,7 +148,7 @@ class BinanceInteractor(logger.LogObject):
     def sellToken(self, token, sellAmount):
         self.log('Selling token '+token, 'sell')
         tokenInfo = self.getCoinInfo(token)
-        sellEthers = self.ether(sellAmount) + 1
+        sellEthers = self.ether(sellAmount)
         tokenBalance = tokenInfo['rawBalance']
         approveHash = self.approve('basic_sell_abi', token, self.variables.getSetting('ps_router_address'), tokenBalance)
         if approveHash is not None:
