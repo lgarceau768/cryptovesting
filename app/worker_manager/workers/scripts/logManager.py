@@ -1,7 +1,6 @@
 import os, sys, inspect, re, traceback
 from datetime import datetime
 
-os.chdir('/home/fullsend/cryptovesting/app/worker_manager')
 class LogManager:
 
     def __init__(self, basename):    

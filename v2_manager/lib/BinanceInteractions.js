@@ -1,4 +1,5 @@
 const web3 = require('web3')
+const util = require('util')
 var Tx = require('ethereumjs-tx')
 const Variables = require('./Variables.js')
 const LogObject = require('./LoggingObject.js')
@@ -67,21 +68,26 @@ class BinanceInteractor extends LogObject{
 
         const txHash = tx.serialize()
         const hashString = '0x' + txHash.toString('hex')
+        this.log('Transaction '+hashString, 'TX')
         return this.W3.eth.sendSignedTransaction(hashString, (err, txHash) => {
            return cb(err, txHash)
         })
     }
 
-    smartContractInterAct(contract_data, interactionCallBack) {
-        let txObj = {
-            gasPrice: this.hex(this.gwei(this.Variables.getSetting('gas_price'))),
-            gas: this.hex(this.Variables.getSetting('gas_amount')),
-            from: this.address(this.Variables.getSetting('account_address')),
-            data: contract_data,
-            nonce: this.hex((nonce + 1).toString()),
-            to: contract_address
-        }
-        return this.signAndSendTx(txObj, interactionCallBack.bind(this))
+    smartContractInterAct(nonce, contract_address, contract_data, interactionCallBack) {
+        this.W3.eth.getGasPrice()
+            .then(gasPrice => {
+                let txObj = {
+                    gasPrice: this.hex(gasPrice),
+                    gasLimit: this.W3.utils.toHex(81000),
+                    from: this.address(this.Variables.getSetting('account_address')),
+                    data: contract_data,
+                    nonce: this.hex((nonce + 1).toString()),
+                    to: contract_address
+                }
+                return this.signAndSendTx(txObj, interactionCallBack.bind(this))
+            })
+            .catch(err => this.log('Error getting gas price '+err, 'ERROR'))
     }
 
     /** Smart Contract Methods */
@@ -104,7 +110,7 @@ class BinanceInteractor extends LogObject{
                     return txHash
                 }
             }
-            return this.smartContractInterAct(approve_data, approveCallBack)
+            return this.smartContractInterAct(nonce, contract_address, approve_data, approveCallBack)
         })        
     }
 

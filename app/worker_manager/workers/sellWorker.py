@@ -1,14 +1,14 @@
 from web3 import Web3
 import sys
 import json
-import config
 from scripts import logManager as Logger
 import time
+import logging
+logging.basicConfig(filename='logs\\sellWorker_'+sys.argv[1]+'.log', encoding='utf-8', level=logging.DEBUG)
 
 bsc = "https://bsc-dataseed.binance.org/"
 web3 = Web3(Web3.HTTPProvider(bsc))
-logger = Logger.LogManager("sellWorker_"+str(sys.argv[1]))
-logger.log("Arguments " + str(sys.argv), level="STARTUP")
+logging.info("Arguments " + str(sys.argv))
 
 #print(web3.isConnected())
 
@@ -27,10 +27,10 @@ spend = web3.toChecksumAddress("0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c")  #W
 
 #Get BNB Balance
 #balance = web3.eth.get_balance(sender_address)
-#print(balance)
+#logging.info(balance)
  
 #humanReadable = web3.fromWei(balance,'ether')
-#print(humanReadable)
+#logging.info(humanReadable)
  
 #Contract id is the new token we are swaping to
 #contract_id = web3.toChecksumAddress("0xc9849e6fdb743d08faee3e34dd2d1bc69ea11a51")
@@ -38,45 +38,45 @@ contract_id = web3.toChecksumAddress(sys.argv[1])
  
 #Setup the PancakeSwap contract
 contract = web3.eth.contract(address=panRouterContractAddress, abi=panabi)
-logger.log('Created the contract object to pancakeRouterAddress: '+panRouterContractAddress, level="INFO")
+logging.info('Created the contract object to pancakeRouterAddress: '+panRouterContractAddress)
 
 #Abi for Token to sell - all we need from here is the balanceOf & approve function can replace with shortABI
 sellAbi = '[{"inputs":[{"internalType":"string","name":"_NAME","type":"string"},{"internalType":"string","name":"_SYMBOL","type":"string"},{"internalType":"uint256","name":"_DECIMALS","type":"uint256"},{"internalType":"uint256","name":"_supply","type":"uint256"},{"internalType":"uint256","name":"_txFee","type":"uint256"},{"internalType":"uint256","name":"_lpFee","type":"uint256"},{"internalType":"uint256","name":"_MAXAMOUNT","type":"uint256"},{"internalType":"uint256","name":"SELLMAXAMOUNT","type":"uint256"},{"internalType":"address","name":"routerAddress","type":"address"},{"internalType":"address","name":"tokenOwner","type":"address"}],"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"owner","type":"address"},{"indexed":true,"internalType":"address","name":"spender","type":"address"},{"indexed":false,"internalType":"uint256","name":"value","type":"uint256"}],"name":"Approval","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"uint256","name":"minTokensBeforeSwap","type":"uint256"}],"name":"MinTokensBeforeSwapUpdated","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"previousOwner","type":"address"},{"indexed":true,"internalType":"address","name":"newOwner","type":"address"}],"name":"OwnershipTransferred","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"uint256","name":"tokensSwapped","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"ethReceived","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"tokensIntoLiqudity","type":"uint256"}],"name":"SwapAndLiquify","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"bool","name":"enabled","type":"bool"}],"name":"SwapAndLiquifyEnabledUpdated","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"from","type":"address"},{"indexed":true,"internalType":"address","name":"to","type":"address"},{"indexed":false,"internalType":"uint256","name":"value","type":"uint256"}],"name":"Transfer","type":"event"},{"inputs":[],"name":"_liquidityFee","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"_maxTxAmount","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"_owner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"_taxFee","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"owner","type":"address"},{"internalType":"address","name":"spender","type":"address"}],"name":"allowance","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"spender","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"approve","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"account","type":"address"}],"name":"balanceOf","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"claimTokens","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"decimals","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"spender","type":"address"},{"internalType":"uint256","name":"subtractedValue","type":"uint256"}],"name":"decreaseAllowance","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"tAmount","type":"uint256"}],"name":"deliver","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"account","type":"address"}],"name":"excludeFromFee","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"account","type":"address"}],"name":"excludeFromReward","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"geUnlockTime","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"account","type":"address"}],"name":"includeInFee","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"account","type":"address"}],"name":"includeInReward","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"spender","type":"address"},{"internalType":"uint256","name":"addedValue","type":"uint256"}],"name":"increaseAllowance","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"account","type":"address"}],"name":"isExcludedFromFee","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"account","type":"address"}],"name":"isExcludedFromReward","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"time","type":"uint256"}],"name":"lock","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"name","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"numTokensSellToAddToLiquidity","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tAmount","type":"uint256"},{"internalType":"bool","name":"deductTransferFee","type":"bool"}],"name":"reflectionFromToken","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"renounceOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"liquidityFee","type":"uint256"}],"name":"setLiquidityFeePercent","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"maxTxPercent","type":"uint256"}],"name":"setMaxTxPercent","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"swapNumber","type":"uint256"}],"name":"setNumTokensSellToAddToLiquidity","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"bool","name":"_enabled","type":"bool"}],"name":"setSwapAndLiquifyEnabled","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"taxFee","type":"uint256"}],"name":"setTaxFeePercent","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"swapAndLiquifyEnabled","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"symbol","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"rAmount","type":"uint256"}],"name":"tokenFromReflection","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"totalFees","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"totalSupply","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"recipient","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"transfer","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"sender","type":"address"},{"internalType":"address","name":"recipient","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"transferFrom","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"newOwner","type":"address"}],"name":"transferOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"uniswapV2Pair","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"uniswapV2Router","outputs":[{"internalType":"contract IUniswapV2Router02","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"unlock","outputs":[],"stateMutability":"nonpayable","type":"function"},{"stateMutability":"payable","type":"receive"}]'
 
 #Create token Instance for Token
 sellTokenContract = web3.eth.contract(contract_id, abi=sellAbi)
-logger.log('Created the contract object to the token: '+contract_id, level="INFO")
+logging.info('Created the contract object to the token: '+contract_id)
 
 #Get Token Balance
 balance = sellTokenContract.functions.balanceOf(sender_address).call()
 symbol = sellTokenContract.functions.symbol().call()
 readable = web3.fromWei(balance,'ether')
-logger.log('Current account balance: '+str(readable), level="INFO")
+logging.info('Current account balance: '+str(readable))
 
 #Enter amount of token to sell
 tokenValue = web3.toWei(sys.argv[2], 'ether')
-logger.log('Amount of token to sell: '+str(tokenValue), level="INFO")
+logging.info('Amount of token to sell: '+str(tokenValue))
 
 #Approve Token before Selling
 tokenValue2 = web3.fromWei(tokenValue, 'ether')
-logger.log('Approving: '+str(tokenValue2)+ ' of the token', level="INFO")
+logging.info('Approving: '+str(balance)+ ' of the token')
 start = time.time()
 approve = sellTokenContract.functions.approve(panRouterContractAddress, balance).buildTransaction({
             'from': sender_address,
             'gasPrice': web3.toWei('20','gwei'),
             'nonce': web3.eth.get_transaction_count(sender_address),
             })
-logger.log('Current transaction count: '+str(web3.eth.get_transaction_count(sender_address)), level="INFO")
+logging.info('Current transaction count: '+str(web3.eth.get_transaction_count(sender_address)))
 signed_txn = web3.eth.account.sign_transaction(approve, private_key='d4f44d00b1995222dde4ce2d39ce177c78030628c0a9536e0f99c904ff74bebb')
 tx_token = web3.eth.send_raw_transaction(signed_txn.rawTransaction)
-logger.log("Approved transaction hash: " + web3.toHex(tx_token), level="HASH")
-logger.log('Now waiting to sell after 5 seconds');
+logging.info("Approved transaction hash: " + web3.toHex(tx_token))
+logging.info('Now waiting to sell after 5 seconds');
 
 #Wait after approve 10 seconds before sending transaction
 time.sleep(10)
-#print("Swapping {tokenValue2} {symbol} for BNB")
+#logging.info("Swapping {tokenValue2} {symbol} for BNB")
 #Swaping exact Token for ETH 
-logger.log('Token to sell amount: '+str(tokenValue))
+logging.info('Token to sell amount: '+str(tokenValue))
 pancakeswap2_txn = contract.functions.swapExactTokensForETH(
             tokenValue ,0, 
             [contract_id, spend],
@@ -91,5 +91,5 @@ pancakeswap2_txn = contract.functions.swapExactTokensForETH(
     
 signed_txn = web3.eth.account.sign_transaction(pancakeswap2_txn, private_key='d4f44d00b1995222dde4ce2d39ce177c78030628c0a9536e0f99c904ff74bebb')
 tx_token = web3.eth.send_raw_transaction(signed_txn.rawTransaction)
-logger.log('Token Sell Transaction hash: '+str(web3.toHex(tx_token)), level="HASH")
-print("Success="+web3.toHex(tx_token), flush=True)
+logging.info('Token Sell Transaction hash: '+str(web3.toHex(tx_token)))
+logging.info("Success="+web3.toHex(tx_token), flush=True)

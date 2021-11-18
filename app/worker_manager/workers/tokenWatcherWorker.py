@@ -1,7 +1,8 @@
 from web3 import Web3
-from scripts import logManager as Logger
 import requests
 import sys, json, time, platform
+import logging
+logging.basicConfig(filename='logs\\tokenWatcher_'+sys.argv[1]+'.log', encoding='utf-8', level=logging.DEBUG)
 
 # INFO help function
 if sys.argv[1].lower() not in ['-t', '-i', '-p', '-u', '-a'] or sys.argv[1].lower() == '-h':
@@ -22,8 +23,7 @@ token = sys.argv[sys.argv.index('-t')+1]
 initialAmountBNB = int(float(sys.argv[sys.argv.index('-i')+1]))
 initialAmountToken = int(float(sys.argv[sys.argv.index('-a')+1]))
 percent = float(sys.argv[sys.argv.index('-p')+1])
-logger = Logger.LogManager("tokenWatcher_"+token)
-logger.log("Arguments %s, %s, %s, %s, %s" % (token, initialAmountBNB, percent, net, initialAmountToken), level="STARTUP")
+logging.info("Arguments %s, %s, %s, %s, %s" % (token, initialAmountBNB, percent, net, initialAmountToken))
 
 # INFO set variables based on net
 provider_url = ""
@@ -84,7 +84,7 @@ def _get_amounts_out(amt, token, contract):
     amounts = contract.functions.getAmountsOut(amt, [_a(token), _a(wbnb_address)]).call()
     amount_bnb = amounts[1]
     amount_tokens = amounts[0]
-    logger.log('Get Amounts Out of [\''+str(token)+', '+str(wbnb_address)+'\'] returned [\''+str(amount_tokens)+', '+str(amount_bnb)+'\']', level="INFO")
+    logging.info('Get Amounts Out of [\''+str(token)+', '+str(wbnb_address)+'\'] returned [\''+str(amount_tokens)+', '+str(amount_bnb)+'\']')
     return {
         'bnb': amount_bnb,
         'tok': amount_tokens
@@ -94,31 +94,31 @@ def _get_amounts_out(amt, token, contract):
 currentBNB = initialAmountBNB
 targetBNB = initialAmountBNB * percent
 previousBNB = initialAmountBNB
-logger.log("Initial BNB: %s | Target BNB: %s" % (str(currentBNB), str(targetBNB)), level="INFO")
+logging.info("Initial BNB: %s | Target BNB: %s" % (str(currentBNB), str(targetBNB)))
 while currentBNB <= targetBNB:
     try:
         ratioObj = _get_amounts_out(initialAmountToken, token, pancake_factory_contract)
         previousBNB = currentBNB
         currentBNB = ratioObj['bnb']
-        logger.log("Current Ratio: %s pass?: %s" % (str(currentBNB), str(currentBNB >= targetBNB)), level="INFO")
+        logging.info("Current Ratio: %s pass?: %s" % (str(currentBNB), str(currentBNB >= targetBNB)))
         if currentBNB >= targetBNB:
             if(targetBNB == (initialAmountBNB * MOON_PERCENT)):
-                logger.log('Moon occured on token returning again', level="MOON")
-                logger.log(str(currentBNB), level="MOON")   
+                logging.info('Moon occured on token returning again', level="MOON")
+                logging.info(str(currentBNB), level="MOON")   
                 print('Success=sell_at_moon_'+token, flush=True)
                 sys.exit(0)
             else:
-                logger.log("Target ratio: %s, hit with current ratio: %s" % (str(targetBNB), str(currentBNB)), level="SUCCESS")
+                logging.info("Target ratio: %s, hit with current ratio: %s" % (str(targetBNB), str(currentBNB)))
                 print("Success=sell_at_gain_"+token)
                 # spawn the moon watch loop
                 targetBNB = initialAmountBNB * MOON_PERCENT
         elif currentBNB <= (initialAmountBNB * 0.5):
-            logger.log("Stop loss hit %s amount out: %s" % (str(targetBNB), str(currentBNB)), level="SUCCESS")
+            logging.info("Stop loss hit %s amount out: %s" % (str(targetBNB), str(currentBNB)))
             print("Success=sell_at_loss_"+token, flush=True)
             sys.exit(0)
 
     except Exception as e:
-        logger.log("Exception in loop: "+str(e), level="CRITICAL")
+        logging.info("Exception in loop: "+str(e))
     time.sleep(10)
     
 

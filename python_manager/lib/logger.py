@@ -1,12 +1,14 @@
 import inspect, datetime, os, time
+import logging
 
 path = os.path.join(os.getcwd(), 'logs', 'cryptovesting_'+str(time.time())+'.log')
 file = open(path, 'w')
 file.write('Starting Logger\n')
 file.close()
 class LogObject:
-    def __init__(self, name):
+    def __init__(self, name):        
         global path
+        logging.basicConfig(filename=path, encoding='utf-8', level=logging.DEBUG)
         self.name = name
         self.logPath = path
     
@@ -26,9 +28,10 @@ class LogObject:
         self.writeToFile(line)
 
     def writeToFile(self, line):
-        file = open(self.logPath, 'a')
-        file.write(line+'\n')
-        file.close()
+        if 'error' in line:
+            logging.error(line)
+        else:
+            logging.info(line)
 
     def logArgs(self, *args):
         functionCaller = inspect.stack()[1][3]

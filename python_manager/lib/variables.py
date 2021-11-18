@@ -19,7 +19,7 @@ allSettings = {
     'uniswap_sniper_abi': readJson('sniper_uniswap_abi'),
     'balance_abi': readJson('balance_abi'),
     'erc20_abi': readJson('erc20'),
-    'gas_price': '11',
+    'gas_price': '20',
     'gas_amount': 130000,
     'wbnb_buy_amount': 0.01,
     'slippage': 0.8,
@@ -35,7 +35,7 @@ class Variables(logger.LogObject):
     def __init__(self, net):
         global allSettings
         super().__init__('variables')
-        if net is 'test':
+        if net == 'test':
             self.settings = {
                 'bsc_url': 'https://data-seed-prebsc-1-s1.binance.org:8545/',
                 'network_id': 97,

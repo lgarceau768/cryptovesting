@@ -42,6 +42,7 @@ class BinanceInteractor(logger.LogObject):
         return contract
     
     def createTransaction(self, smartContractFunc, txParams=None, increaseNonce=False):
+        self.logArgs(smartContractFunc, txParams, increaseNonce)
         gasPrice = self.variables.getSetting('gas_price')
         gasPrice = self.gwei(gasPrice)
         gasAmount = self.variables.getSetting('gas_amount')
@@ -53,10 +54,13 @@ class BinanceInteractor(logger.LogObject):
         }
         if txParams is not None:
             params.update(txParams)
+        self.log('Building TX', 'tx')
         tx = smartContractFunc.buildTransaction(params)
-        signedTx = self.w3.eth.account.signTransaction(tx, self.walletPk)
+        self.log('Signing TX', 'tx')
+        signedTx = self.w3.eth.account.sign_transaction(tx, self.walletPk)
         try:
-            txHash = self.w3.eth.sendRawTransaction(signedTx.rawTransaction)
+            self.log('Sending TX', 'tx')
+            txHash = self.w3.eth.send_raw_transaction(signedTx.rawTransaction)
             txHash = self.w3.toHex(txHash)
             self.log(txHash, 'txHash')
             return txHash
@@ -65,6 +69,7 @@ class BinanceInteractor(logger.LogObject):
             return None
 
     def getCoinInfo(self, token):
+        self.logArgs(token)
         tokenContract = self.createContract('erc20_abi', token)
         name = tokenContract.functions.name().call()
         symbol = tokenContract.functions.symbol().call()
@@ -114,7 +119,37 @@ class BinanceInteractor(logger.LogObject):
         )
         return self.createTransaction(swapCall, None, True)
 
+    def sellToken(self, token, sellAmount):
+        self.logArgs(token, sellAmount)
+        self.log('Selling token '+token, 'sell')
+        tokenToSellInfo = self.getCoinInfo(token)
+        sellInEthers = self.ether(str(sellAmount))
+        wbnbAdr = self.variables.getSetting('wbnb_address')
+        if tokenToSellInfo['rawBalance'] < sellInEthers:
+            self.log('Insufficent Balance on '+token, 'user-fail')
+            return None
+        else:
+            approveHash = self.approve('basic_sell_abi', token, self.variables.getSetting('ps_router_address'), tokenToSellInfo['rawBalance'])
+            if approveHash is not None:
+                self.sleep()
+                self.log('Approval hash '+approveHash, 'approved')
+                swapHash = self.swapExactTokensForETH(sellInEthers, token, wbnbAdr)
+                if swapHash is not None:
+                    self.log('Swap hash '+swapHash, 'swapped')
+                    return {
+                        'swapHash': swapHash,
+                        'approvalHash': approveHash,
+                        'sellAmount': sellInEthers
+                    }
+                else:
+                    self.log('Swap hash fail', 'fail')
+                    return None
+            else:
+                self.log('Approval hash fail', 'fail')
+                return None
+
     def buyToken(self, token):
+        self.logArgs(token)
         self.log('Buying token '+token, 'buy')
         bnbBalance = self.w3.eth.getBalance(self.walletAdr)
         bnbAmount = self.ether(str(self.variables.getSetting('wbnb_buy_amount')))

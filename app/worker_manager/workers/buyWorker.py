@@ -1,25 +1,23 @@
 from web3 import Web3
-from scripts import logManager as Logger
 import sys, json, platform, time
+import logging
+logging.basicConfig(filename='logs\\buyWorker_'+sys.argv[1]+'.log', encoding='utf-8', level=logging.DEBUG)
 
 # INFO help function
-if sys.argv[1].lower() not in ['-u', '-t', '-a'] or sys.argv[1].lower() == '-h':
-    print('''Fail=
+if '0x' not in sys.argv[1]:
+    logging.info('''Fail=
         Please enter the following information
-        -u url (main / test)
-        -t token address
-        -a amount
-        -s slippage
+        token address
+        amount
     ''')
     sys.exit(0)
 
 # INFO unpack the arguments
-net = sys.argv[sys.argv.index('-u')+1]
-token = sys.argv[sys.argv.index('-t')+1]
-amount = sys.argv[sys.argv.index('-a')+1]
-slippage = float(sys.argv[sys.argv.index('-s')+1]) 
-logger = Logger.LogManager("buyWorker")
-logger.log("Arguments %s, %s, %s, %s" % (net, token, amount, str(slippage)), "STARTUP")
+net = 'main'#sys.argv[sys.argv.index('-u')+1]
+token = sys.argv[1]
+amount = sys.argv[2]
+slippage = 1#float(sys.argv[sys.argv.index('-s')+1]) 
+logging.info("Arguments %s, %s, %s, %s" % (net, token, amount, str(slippage)))
 
 # INFO set variables based on net
 provider_url = ""
@@ -42,23 +40,23 @@ elif net.lower() == "test":
     pancakeswap_router_address = "0xD99D1c33F9fC3444f8101754aBC46c52416550D1"
     pancake_swap_factory_address = "0x9Ac64Cc6e4415144C455BD8E4837Fea55603e5c3"
 else:
-    print("Fail=Correct net not specified (needs to be main or test)")
+    logging.info("Fail=Correct net not specified (needs to be main or test)")
     sys.exit(0)
 
 # INFO load web3
 w3 = Web3(Web3.HTTPProvider(provider_url))
 account = w3.toChecksumAddress(my_wallet_adr)
 account_obj = w3.eth.account.privateKeyToAccount(my_pk)
-if platform.system() != "Linux":
+if platform.system() == "Linux":
     router_abi = json.load(open('/home/fullsend/cryptovesting/app/worker_manager/workers/contract_abis/pancakeswap_factory_abi.json', 'r'))
     factoryAbi = json.load(open('/home/fullsend/cryptovesting/app/worker_manager/workers/contract_abis/pancakeswap_router_abi.json', 'r'))
 else:
-    router_abi = json.load(open('/home/fullsend/cryptovesting/app/worker_manager/workers/contract_abis/pancakeswap_factory_abi.json', 'r'))
-    factoryAbi = json.load(open('/home/fullsend/cryptovesting/app/worker_manager/workers/contract_abis/pancakeswap_router_abi.json', 'r'))
+    router_abi = json.load(open('app\worker_manager\workers\contract_abis\pancakeswap_factory_abi.json', 'r'))
+    factoryAbi = json.load(open('app\worker_manager\workers\contract_abis\pancakeswap_router_abi.json', 'r'))
 pancake_router_contract = w3.eth.contract(address=pancakeswap_router_address, abi=factoryAbi)
-logger.log('Pancake Router contract created on address: ' +pancakeswap_router_address, level="INFO");
+logging.info('Pancake Router contract created on address: ' +pancakeswap_router_address);
 pancake_factory_contract = w3.eth.contract(address=pancake_swap_factory_address, abi=router_abi)
-logger.log('Pancake Factory contract created on address: ' +pancake_swap_factory_address, level="INFO");
+logging.info('Pancake Factory contract created on address: ' +pancake_swap_factory_address);
 
 # INFO function to convert address
 def _a(adr):
@@ -78,8 +76,8 @@ def _w(amt):
 
 # INFO function to approve
 def _approve(amount, address, approveAdr):
-    logger.log('Approving '+str(amount)+' for spender: '+str(approveAdr)+' for the funds of: '+str(address), level="INFO");
-    tokenContractBasic = w3.eth.contract(_a(address), abi=json.load(open('/home/fullsend/cryptovesting/app/worker_manager/workers/contract_abis/sellabi.json', 'r')))
+    logging.info('Approving '+str(amount)+' for spender: '+str(approveAdr)+' for the funds of: '+str(address));
+    tokenContractBasic = w3.eth.contract(_a(address), abi=json.load(open('app\worker_manager\workers\contract_abis\sellabi.json', 'r')))
 
     approve = tokenContractBasic.functions.approve(_a(approveAdr), amount)
     nonce = w3.eth.getTransactionCount(account) + 1
@@ -94,15 +92,15 @@ def _approve(amount, address, approveAdr):
     sign_tx = account_obj.sign_transaction(tx)
     try:
         tx_token = _h(w3.eth.sendRawTransaction(sign_tx.rawTransaction))
-        logger.log("Success approve hash: "+tx_token, level="APPROVE")
+        logging.info("Success approve hash: "+tx_token)
     except Exception as e:
-        logger.log("Exception at approve "+str(e), level="CRITICAL")
+        logging.info("Exception at approve "+str(e))
 
 # INFO function to convert call getAmountsOut
 # 179746734697020058
 def _get_amounts_out(amt, token, contract):    
     amount_bnb, amount_tokens =  contract.functions.getAmountsOut(amt, [_a(wbnb_address), _a(token)]).call()
-    logger.log('Get Amounts Out of [\''+str(token)+', '+str(wbnb_address)+'\'] returned [\''+str(amount_tokens)+', '+str(amount_bnb)+'\']', level="INFO")
+    logging.info('Get Amounts Out of [\''+str(token)+', '+str(wbnb_address)+'\'] returned [\''+str(amount_tokens)+', '+str(amount_bnb)+'\']')
     return amount_bnb, int(amount_tokens * 0.8)
 
 # INFO function to make the swap
@@ -123,28 +121,28 @@ def _swap_exact_tokens_for_tokens(amt_WBNB, amt_token, token, contract):
         'gasPrice': gas_price,
         'nonce': nonce
     })
-    logger.log('Swaping for '+str(amt_token)+' for the BNB amount of '+str(amt_WBNB), level="INFO")
-    logger.log("Buying token: "+token, level="INFO")
+    logging.info('Swaping for '+str(amt_token)+' for the BNB amount of '+str(amt_WBNB))
+    logging.info("Buying token: "+token)
     signed_tx = account_obj.sign_transaction(swap_tx)
     try:
         tx_token = w3.eth.sendRawTransaction(signed_tx.rawTransaction)
-        logger.log('Buy Transaction Hash '+str(w3.toHex(tx_token)), level="INFO")
+        logging.info('Buy Transaction Hash '+str(w3.toHex(tx_token)))
         return tx_token
     except Exception as e:
-        logger.log("Exception at sendRawTransaction: "+str(e), level="BUY ISSUE")
-        print("Fail=Buy Issue Send Raw Transaction|"+str(e))
+        logging.info("Exception at sendRawTransaction: "+str(e))
+        logging.info("Fail=Buy Issue Send Raw Transaction|"+str(e))
         sys.exit(0)
         
 
 # INFO main program
 try:
-    logger.log("Approving the swap", level="APPROVE")
+    logging.info("Approving the swap")
     _approve(_e(amount), wbnb_address, pancakeswap_router_address)
     time.sleep(10)
-    logger.log('Getting amounts out', level="INFO")
+    logging.info('Getting amounts out')
     amount_bnb, amount_tokens = _get_amounts_out(_e(amount), token, pancake_router_contract)
     # INFO SLIPPAGE HERE
-    logger.log('Buying token')
+    logging.info('Buying token')
     tx_token = _h(_swap_exact_tokens_for_tokens(_e(amount), amount_tokens, token, pancake_router_contract))
     tokenValNice = w3.fromWei(amount_tokens, 'ether')
     returnVal = {
@@ -152,10 +150,10 @@ try:
         'amountToken': str(tokenValNice),
         'amountEther': amount_tokens,
     }
-    print("Success="+json.dumps(returnVal))
-    logger.log("Success="+json.dumps(returnVal), level="SUCCESS")
+    logging.info("Success="+json.dumps(returnVal))
+    logging.info("Success="+json.dumps(returnVal))
 except Exception as e:
-    logger.log("Exception: "+str(e))
-    print("Fail="+str(e))
-    print(e)
+    logging.info("Exception: "+str(e))
+    logging.info("Fail="+str(e))
+    logging.info(e)
 
