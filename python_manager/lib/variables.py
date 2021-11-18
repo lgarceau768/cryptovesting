@@ -28,20 +28,21 @@ allSettings = {
     'moon_percent': 5,
     'sell_amount': 0.75,
     'keep_amount': 0.25,
-    'sniper_interval': 2 * 1000
+    'sniper_interval': 2 * 1000,
+    'tx_delay': 10
 }
 
 class Variables(logger.LogObject):
     def __init__(self, net):
         global allSettings
-        super().__init__('variables')
+        super().__init__('Variables')
         if net == 'test':
             self.settings = {
                 'bsc_url': 'https://data-seed-prebsc-1-s1.binance.org:8545/',
                 'network_id': 97,
                 'chain_id': 97,
-                'account_address': '0xeB8ceace9be0e8E7fCF356a7dc523256d10dE8fC',
-                'account_pk': '6212aa6e4d2609a815d85f8afa7bc56264ffe337755ee2699caa2ebc2f6792d1',
+                'account_address': '0x2bA2FeF1502D30a6532A6B2D99A3725544C855BF',
+                'account_pk': '6f78884592d6b5ce54be1b74d5fb0f5915ec0ae4bea91bb282c54928bc02d041',
                 'wbnb_address': '0xae13d989daC2f0dEbFf460aC112a837C89BAa7cd',
                 'ps_router_address': '0xD99D1c33F9fC3444f8101754aBC46c52416550D1',
                 'ps_factory_address': '0x9Ac64Cc6e4415144C455BD8E4837Fea55603e5c3',
