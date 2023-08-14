@@ -9,7 +9,7 @@ const mysqlEvents = require('@rodrigogs/mysql-events')
 const sqlData = {
     host: "localhost",
     user: "root",
-    password: "Spook524*",
+    password: "",
     database: "cryptovesting",
     insecureAuth: true
 }
