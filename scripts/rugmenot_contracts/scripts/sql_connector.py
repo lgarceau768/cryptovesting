@@ -8,7 +8,7 @@ class CryptoSQL:
         self.db = mysql.connector.connect(
             host="localhost", 
             user="root",
-            password="Spook524*",
+            password="",
             database="cryptovesting",
             auth_plugin='mysql_native_password'
         )
