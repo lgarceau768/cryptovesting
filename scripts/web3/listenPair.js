@@ -35,8 +35,8 @@ const GAS_AMOUNT = 1500000
 
 // INFO Variables
 // INFO different accounts
-const my_pk = "6212aa6e4d2609a815d85f8afa7bc56264ffe337755ee2699caa2ebc2f6792d1"
-const mnemonic = "plunge shove witness distance twist illness above other use alter shield echo"
+const my_pk = ""
+const mnemonic = ""
 // const cryptovesting_account = generateAddressesFromSeed(mnemonic, 1)[0]
 //var targetAccount = web3.eth.accounts.privateKeyToAccount(cryptovesting_account.privateKey)
 var targetAccount = web3.eth.accounts.privateKeyToAccount(my_pk)
