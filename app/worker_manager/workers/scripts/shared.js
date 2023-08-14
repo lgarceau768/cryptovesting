@@ -42,9 +42,9 @@ shared = () => {
 
     // INFO Variables
     // INFO different accounts    
-    this.my_acc_testnet = "0x01420A7b545ac6c99F2b91e9f73464AA69C6E248"//"0xeB8ceace9be0e8E7fCF356a7dc523256d10dE8fC"
-    this.my_pk = "d4f44d00b1995222dde4ce2d39ce177c78030628c0a9536e0f99c904ff74bebb"//"6212aa6e4d2609a815d85f8afa7bc56264ffe337755ee2699caa2ebc2f6792d1"
-    this.mnemonic = "plunge shove witness distance twist illness above other use alter shield echo"    
+    this.my_acc_testnet = ""//""
+    this.my_pk = ""//""
+    this.mnemonic = ""    
     this.WBNBAddressTestNet = '0xae13d989daC2f0dEbFf460aC112a837C89BAa7cd'; // WBNB token address
     this.WBNBAddressMainNet = '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c'; // WBNB token address
     this.pancakeSwapRouterAddressMainNet = '0x10ED43C718714eb63d5aA57B78B54704E256024E';
@@ -168,7 +168,7 @@ shared = () => {
     this.sqlData = {
         host: "localhost",
         user: "root",
-        password: "Spook524*",
+        password: "",
         database: "cryptovesting",
         insecureAuth: true
     }
