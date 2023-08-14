@@ -1,6 +1,6 @@
 // TODO replace with the wallet address of crpytovesting
-let walletAddress = "0xeB8ceace9be0e8E7fCF356a7dc523256d10dE8fC";
-walletAddress =  '0x01420A7b545ac6c99F2b91e9f73464AA69C6E248';
+let walletAddress = "";
+walletAddress =  '';
 
 // The minimum ABI to get ERC20 Token balance
 let minABI = [
