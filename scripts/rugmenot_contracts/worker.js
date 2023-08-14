@@ -13,7 +13,7 @@ const logger = require('./logger.js')
 const sqlData = {
     host: "localhost",
     user: "root",
-    password: "Spook524*",
+    password: "",
     database: "cryptovesting",
     insecureAuth: true
 }
