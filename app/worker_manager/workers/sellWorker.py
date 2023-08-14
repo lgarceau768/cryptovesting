@@ -21,7 +21,7 @@ panabi = '[{"inputs":[{"internalType":"address","name":"_factory","type":"addres
 
 
 
-sender_address = web3.toChecksumAddress('0x01420a7b545ac6c99f2b91e9f73464aa69c6e248') #TokenAddress of holder
+sender_address = web3.toChecksumAddress('') #TokenAddress of holder
 spend = web3.toChecksumAddress("0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c")  #WBNB Address
 
 
@@ -67,7 +67,7 @@ approve = sellTokenContract.functions.approve(panRouterContractAddress, balance)
             'nonce': web3.eth.get_transaction_count(sender_address),
             })
 logger.log('Current transaction count: '+str(web3.eth.get_transaction_count(sender_address)), level="INFO")
-signed_txn = web3.eth.account.sign_transaction(approve, private_key='d4f44d00b1995222dde4ce2d39ce177c78030628c0a9536e0f99c904ff74bebb')
+signed_txn = web3.eth.account.sign_transaction(approve, private_key='')
 tx_token = web3.eth.send_raw_transaction(signed_txn.rawTransaction)
 logger.log("Approved transaction hash: " + web3.toHex(tx_token), level="HASH")
 logger.log('Now waiting to sell after 5 seconds');
@@ -89,7 +89,7 @@ pancakeswap2_txn = contract.functions.swapExactTokensForETH(
             'nonce': web3.eth.get_transaction_count(sender_address),
             })
     
-signed_txn = web3.eth.account.sign_transaction(pancakeswap2_txn, private_key='d4f44d00b1995222dde4ce2d39ce177c78030628c0a9536e0f99c904ff74bebb')
+signed_txn = web3.eth.account.sign_transaction(pancakeswap2_txn, private_key='')
 tx_token = web3.eth.send_raw_transaction(signed_txn.rawTransaction)
 logger.log('Token Sell Transaction hash: '+str(web3.toHex(tx_token)), level="HASH")
 print("Success="+web3.toHex(tx_token))
