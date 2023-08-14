@@ -1,7 +1,7 @@
 import requests, sys, json
 token = sys.argv[1]
 # INFO constants
-API_KEY = "375R5H9IX25IFJKI26JXMSP9RH6V1CTKDN"
+API_KEY = ""
 URL = "https://api.bscscan.com/api?module=contract&action=getsourcecode&address=%s&apikey=%s"
 
 # INFO main script
